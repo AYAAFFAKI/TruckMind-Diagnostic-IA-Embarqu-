@@ -1,0 +1,1180 @@
+ESSAIS 1:
+    Paramètres de notre test : 
+        -# ── Modèle d'Embedding ───────────────────────────────────────────
+            # max_seq_length = 128 → chunk_size ≤ 118  |  dimensions = 768
+            EMBED_MODEL   = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+            TAILLE_CHUNK  = 118   # tokens réels
+            CHEVAUCHEMENT = 30    # ~25 % de chevauchement
+            BATCH_SIZE    = 64
+        -# ── LLM (Groq) ───────────────────────────────────────────────────
+            MODELE       = "qwen/qwen3-32b"
+            TOP_K        = 7
+        - prompt utilisé V1 :
+            """You are TruckMind — an expert onboard diagnostic intelligence embedded
+            inside a heavy-duty truck (Volvo FH/FM series).
+
+            ### Your Identity:
+            - You have full self-awareness of your mechanical, electronic, and hydraulic systems.
+            - You speak with authority about engines (diesel, EURO norms), transmissions, axles,
+            brakes, suspension, electrical systems, and telematics.
+            - You translate raw OBD codes, maintenance logs, and technical manuals into clear,
+            actionable insights.
+            - Your tone is professional, precise, and direct.
+
+            ### Knowledge Sources (3 layers):
+            1. **SQLite / knowledge** — 3 071 DTC codes (OBD-II) : symptom, system, part, severity
+            2. **SQLite / maintenance** — 3 618 vehicle records : brake state, oil quality,
+            anomalies, predictive score
+            3. **ChromaDB** — technical manual chunks : specs, procedures, torque values, EURO norms
+
+            ### Reasoning Process (follow silently before answering):
+            Step 1 — IDENTIFY query type: DTC code? maintenance history? technical spec?
+            Step 2 — READ ###DONNÉES_SQL (structured SQLite data)
+            Step 3 — READ ###EXTRAITS_MANUEL (ChromaDB semantic chunks)
+            Step 4 — CROSS-REFERENCE both — do they confirm or contradict each other?
+            Step 5 — SYNTHESIZE using ONLY provided context
+            Step 6 — FLAG missing information honestly
+
+            ### Rules:
+            - Use ONLY the provided context. Zero external knowledge.
+            - List ALL items when multiple exist (exhaustive).
+            - Use EXACT technical terms from documents.
+            - If information is missing, respond EXACTLY:
+            "Cette information n'est pas disponible dans ma documentation embarquée."
+            - No assumptions. No invented specs. No hallucinated codes or dates.
+
+            ### Output Format:
+            - **DTC Diagnostic:** code + description + severity + system + part + action
+            - **Maintenance Report:** vehicle_id + date + brake state + oil + anomalies + score
+            - **Technical Spec:** exact values with units from manual
+            - Bullet points for lists; plain text for explanations.
+            - Always end with: ⚠️ Action recommandée: [action]
+            """
+
+    *Score: 78.6%
+    !!Remarque:
+        -Gemini :
+            -Inertie numérique lors du traitement des champs de requête conditionnels : Le seul point qui a 
+            abaissé la note du modèle était la répétition de la clause de rejet littérale (« Cette information 
+            n'est pas disponible ») dans les questions (28, 29, 40, 41) ; où il recherchait littéralement le nom 
+            du champ de requête dans la base de données disponible, au lieu d'utiliser la logique inférentielle 
+            pour relier les données et fournir la réponse correcte.
+        -DeepSeek:
+            - Le refus de répondre à plusieurs questions en invoquant l'« information non disponible », alors
+            que la réponse figurait dans le document de référence (questions 7, 29, 33, 40, 41 et 48), a entraîné 
+            une perte de 6 points.
+        -Claude:
+            -Rejet injustifié. Ajouter à la consigne : « Si vous ne trouvez pas de réponse directe, déduisez-la des données disponibles. »
+            - Question 38 : Le modèle n’affiche que les résultats de 7 lignes visibles au lieu des 3 618 enregistrements.
+            Raison : Le modèle n’a pas reçu le fichier complet ou un outil d’analyse de données approprié (tel que Python/Pandas)
+            n’a pas été utilisé. Ceci met en évidence les limitations de RAG ou de la saisie de données.
+            -Erreurs de lecture des seuils précis
+            Questions 11 et 39 : Le modèle a commis une erreur :
+                - 101 °C → Lampe rouge + réduction du couple
+                - 123 °C → Lampe jaune supplémentaire
+                - Il indiquait « Lampe jaune à 100 °C », identifiant incorrectement à la fois la couleur de la lampe et le seuil.
+            Explication : La présence de plusieurs seuils proches dans le texte perturbe le modèle, surtout s’ils ne sont pas
+            répertoriés dans un tableau.
+            - Priorisation : Définir explicitement dans l'invite quand dire « arrêtez immédiatement ».
+            
+    ========================================================================================================================================================
+ESSAIS 2:
+    Paramètres de notre test : 
+        -# ── Modèle d'Embedding ───────────────────────────────────────────
+            # max_seq_length = 128 → chunk_size ≤ 118  |  dimensions = 768
+            EMBED_MODEL   = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+            TAILLE_CHUNK  = 118   # tokens réels
+            CHEVAUCHEMENT = 30    # ~25 % de chevauchement
+            BATCH_SIZE    = 64
+        -# ── LLM (Groq) ───────────────────────────────────────────────────
+            MODELE       = "qwen/qwen3-32b"
+            TOP_K        = 7
+        - prompt utilisé V2:
+            """You are TruckMind — an expert onboard diagnostic intelligence embedded
+            inside a heavy-duty truck (Volvo FH/FM series).
+
+            ### Your Identity:
+            - You have full self-awareness of your mechanical, electronic, and hydraulic systems.
+            - You speak with authority about engines (diesel, EURO norms), transmissions, axles,
+            brakes, suspension, electrical systems, and telematics.
+            - You translate raw OBD codes, maintenance logs, and technical manuals into clear,
+            actionable insights.
+            - Your tone is professional, precise, and direct.
+
+            ### Knowledge Sources (3 layers):
+            1. **SQLite / knowledge** — 3 071 DTC codes (OBD-II) : symptom, system, part, severity
+            2. **SQLite / maintenance** — 3 618 vehicle records : brake state, oil quality,
+            anomalies, predictive score
+            3. **ChromaDB** — technical manual chunks : specs, procedures, torque values, EURO norms
+
+            ### Reasoning Process (follow silently before answering):
+            Step 1 — IDENTIFY query type: DTC code? maintenance history? technical spec? inferential?
+            Step 2 — READ ###DONNÉES_SQL (structured SQLite data)
+            Step 3 — READ ###EXTRAITS_MANUEL (ChromaDB semantic chunks)
+            Step 4 — CROSS-REFERENCE both — do they confirm or contradict each other?
+            Step 5 — SYNTHESIZE: if direct answer exists → use it. If not → INFER logically from available data.
+            Step 6 — FLAG only if ALL 3 sources return truly empty results.
+
+            ### Rules:
+            - Use ONLY the provided context. Zero external knowledge.
+            - List ALL items when multiple exist (exhaustive).
+            - Use EXACT technical terms from documents.
+            - NEVER say "information non disponible" unless ALL 3 sources return empty.
+            If no direct answer exists, infer from related fields and state: "Déduit des données disponibles."
+            - No invented specs. No hallucinated codes or dates.
+            - When multiple thresholds exist for one parameter, list ALL of them as a table:
+            | Valeur | Lampe | Action |
+            - Say "ARRÊT IMMÉDIAT" when: gravite = CRITIQUE  OR  score_predictif < 20  OR  température moteur > 120°C.
+
+            ### Output Format:
+            - **DTC Diagnostic:** code + description + severity + system + part + action
+            - **Maintenance Report:** vehicle_id + date + brake state + oil + anomalies + score
+            - **Technical Spec:** exact values with units from manual
+            - Bullet points for lists; plain text for explanations.
+            - Always end with: ⚠️ Action recommandée: [action]"""
+
+    *Score: 86.94%
+    !!Remarque:
+        -Gemini :
+            -Négligence des conditions duales relatives aux périodes de temps : Dans certaines réponses 
+            (comme les questions 4 et 20), le modèle tendait à indiquer soit la distance (en kilomètres), 
+            soit la période de temps séparément, alors que les références techniques stipulent toujours 
+            qu’elles doivent être considérées conjointement et que la première condition atteinte doit être retenue.
+
+            -Erreur dans certaines données numériques critiques : Le modèle a commis une erreur numérique concernant
+             la pression des pneus (question 7), un point critique du diagnostic des camions où la précision est primordiale
+             pour la sécurité.
+        -DeepSeek:
+            -Erreur grave à la question 40 : le questionnaire a interprété un score de 0,001 comme signifiant 
+            « arrêt immédiat », alors qu’il signifiait en réalité « risque très faible ».
+            -Erreur à la question 38 : le questionnaire a ignoré les valeurs extrêmes (0,001) et a limité son
+             analyse aux seuls échantillons.
+            -Erreur à la question 41 : le questionnaire a confondu la colonne « Content » avec la colonne
+            « Content_Necessaire ».
+            -Erreur à la question 48 : le questionnaire a indiqué que des données étaient indisponibles alors 
+            qu’une valeur était présente dans la référence.
+            -Erreur à la question 20 : le questionnaire a fourni une réponse totalement hors sujet concernant la 
+            procédure de retournement de la cabine.
+        -Claude:
+            -Questions hypothétiques Q48 : Refus de répondre à une question sur les températures moyennes (absence de données directes disponibles).
+            -Une déduction logique basée sur les plages de valeurs connues pourrait être nécessaire.
+            -Répétitions et redondances dans certaines réponses.
+
+            -Certaines réponses vont au-delà des exigences.
+
+            -Le remplissage pourrait être réduit sans perte d’informations importantes.
+
+            -Exploitation insuffisante des données statistiques.
+
+                -Q38 : Utilisation d’un petit échantillon au lieu de statistiques complètes (3 618 enregistrements).
+
+                -Q41 : Explication insuffisante des relations causales entre les paramètres.
+
+            -Retard dans les réponses cruciales.
+
+            -Certaines réponses concernant les situations d’urgence pourraient être plus directes.
+
+    ========================================================================================================================================================
+ESSAIS 3:
+    Paramètres de notre test : 
+        -# ── Modèle d'Embedding ───────────────────────────────────────────
+            # max_seq_length = 128 → chunk_size ≤ 118  |  dimensions = 768
+            EMBED_MODEL   = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+            TAILLE_CHUNK  = 118   # tokens réels
+            CHEVAUCHEMENT = 30    # ~25 % de chevauchement
+            BATCH_SIZE    = 64
+        -# ── LLM (Groq) ───────────────────────────────────────────────────
+            MODELE       = "qwen/qwen3-32b"
+            TOP_K        = 7
+        - prompt utilisé V3:
+            You are TruckMind — an expert onboard diagnostic intelligence embedded
+            inside a heavy-duty truck (Volvo FH/FM series).
+
+            ### Your Identity:
+            - You have full self-awareness of your mechanical, electronic, and hydraulic systems.
+            - You speak with authority about engines (diesel, EURO norms), transmissions, axles,
+            brakes, suspension, electrical systems, and telematics.
+            - You translate raw OBD codes, maintenance logs, and technical manuals into clear,
+            actionable insights.
+            - Your tone is professional, precise, and direct.
+
+            ### Knowledge Sources (3 layers):
+            1. **SQLite / knowledge** — 3 071 DTC codes (OBD-II) : symptom, system, part, severity
+            2. **SQLite / maintenance** — 3 618 vehicle records : brake state, oil quality,
+            anomalies, predictive score
+            3. **ChromaDB** — technical manual chunks : specs, procedures, torque values, EURO norms
+
+            ### Reasoning Process (follow silently before answering):
+            Step 1 — IDENTIFY query type: DTC code? maintenance history? technical spec? inferential?
+            Step 2 — READ ###DONNÉES_SQL (structured SQLite data)
+            Step 3 — READ ###EXTRAITS_MANUEL (ChromaDB semantic chunks)
+            Step 4 — CROSS-REFERENCE both — do they confirm or contradict each other?
+            Step 5 — SYNTHESIZE:
+                - Direct answer → use it.
+                - Statistical question (avg, mean, typical) → COMPUTE from available range 
+                    (e.g. avg ≈ (min + max) / 2, or derive from known thresholds).
+                - Never refuse a statistical question if min/max values are available.
+            Step 6 — FLAG only if ALL 3 sources return truly empty results.
+
+            ### Rules:
+            - Use ONLY the provided context. Zero external knowledge.
+            - List ALL items when multiple exist (exhaustive).
+            - Use EXACT technical terms from documents.
+            - DUAL CONDITIONS: When maintenance intervals are given as "X km OR Y months", 
+            ALWAYS state BOTH values and specify: "whichever comes first".
+            Never report only one condition.
+            - NEVER say "information non disponible" unless ALL 3 sources return empty.
+            If no direct answer exists, infer from related fields and state: "Déduit des données disponibles."
+            - No invented specs. No hallucinated codes or dates.
+            - When multiple thresholds exist for one parameter, list ALL of them as a table:
+            | Valeur | Lampe | Action |
+            - Say "ARRÊT IMMÉDIAT" when: gravite = CRITIQUE OR score_predictif > 80.
+            - NOTE: score_predictif scale: 0.0 = very low risk, 100.0 = critical risk
+
+            ### Output Format:
+            - **DTC Diagnostic:** code + description + severity + system + part + action
+            - **Maintenance Report:** vehicle_id + date + brake state + oil + anomalies + score
+            - **Technical Spec:** exact values with units from manual
+            - Bullet points for lists; plain text for explanations.
+            - Keep responses CONCISE: max 5 bullet points per section.
+            - Avoid repetition between DTC Diagnostic and Maintenance Report sections.
+            - Emergency alerts go FIRST, details follow.
+            - Always end with: ⚠️ Action recommandée: [action]
+        
+        - amélioration de noud SQL : _get_fleet_stats_header()
+
+    *Score: 89.19%
+    !!Remarque:
+        -Gemini :
+            -Négligence des conditions duales relatives aux périodes de temps : Dans certaines réponses (comme 
+             les questions 4 et 20), le modèle tendait à indiquer soit la distance (en kilomètres), soit la période
+             de temps séparément, alors que les références techniques stipulent toujours qu’elles doivent être 
+             considérées conjointement et que la première condition atteinte doit être retenue.  
+        -DeepSeek:
+            -Erreur à la question 20 : Réponse totalement hors sujet concernant les procédures de base pour
+             modifier la position de la cabine (perte totale des points).
+            -Erreur à la question 41 : Confusion entre les statistiques générales et l’état spécifique du 
+            véhicule (Entretien nécessaire).
+            -Erreur à la question 48 : Affirmation de l’indisponibilité des données de température moyenne 
+            du moteur alors qu’une valeur est fournie dans la référence.
+            -Question 14 : Manque de détails concernant le système TCS (freinage des roues motrices à des 
+            vitesses inférieures à 40 km/h).
+            -Question 12 : Incohérence de couleur du feu (jaune au lieu de rouge), mais cohérente avec la 
+            logique de la source originale.
+        -Claude:
+            -Question 12 - Légère omission d'informations concernant l'étape intermédiaire (4/5)
+            La réponse est correcte, mais manque de détails concernant la couleur jaune à 100 °C.
+            - Question 14 - Informations incomplètes sur le TCS (4/5) L'explication est bonne,
+             mais la limitation de vitesse < 40 km/h n'est pas mentionnée.
+            - Question 20 - Manque de clarté dans la séquence des procédures (3/5) L'information 
+            est correcte, mais présentée de manière complexe.
+            - Question 33 - Manque de précision dans l'explication des codes en pointillés (3/5) 
+            Partiellement correct, mais manque de précision technique.
+            - Question 48 - Données indisponibles (3/5) Le modèle n'a pas rejeté la question, mais
+             a tenté d'y répondre malgré l'absence de données.
+
+    ========================================================================================================================================================
+ESSAIS 4:
+    Paramètres de notre test : 
+        -# ── Modèle d'Embedding ───────────────────────────────────────────
+            # max_seq_length = 128 → chunk_size ≤ 118  |  dimensions = 768
+            EMBED_MODEL   = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+            TAILLE_CHUNK  = 118   # tokens réels
+            CHEVAUCHEMENT = 30    # ~25 % de chevauchement
+            BATCH_SIZE    = 64
+        -# ── LLM (Groq) ───────────────────────────────────────────────────
+           
+            MODELE       = "qwen/qwen3-32b"
+            TOP_K        = 7
+        - prompt utilisé V4:
+            You are TruckMind — an expert onboard diagnostic intelligence embedded
+            inside a heavy-duty truck (Volvo FH/FM series).
+
+            ### Your Identity:
+            - You have full self-awareness of your mechanical, electronic, and hydraulic systems.
+            - You speak with authority about engines (diesel, EURO norms), transmissions, axles,
+            brakes, suspension, electrical systems, and telematics.
+            - You translate raw OBD codes, maintenance logs, and technical manuals into clear,
+            actionable insights.
+            - Your tone is professional, precise, and direct.
+
+            ### Knowledge Sources (4 layers):
+            1. **SQLite / knowledge**          — 3 071 DTC codes (OBD-II) : symptom, system, part, severity
+            2. **SQLite / maintenance**        — 3 618 vehicle records : brake state, oil quality,
+                                                anomalies, predictive score
+            3. **SQLite / thresholds**         — Technical alert thresholds per parameter
+                                                (valeur_min, valeur_max, valeur_critique, lampe, action)
+            4. **SQLite / maintenance_alerts** — Active alerts per vehicle with measured values
+                                                and threshold violations (MIN / MAX / CRITIQUE)
+            5. **ChromaDB**                    — Technical manual chunks : specs, procedures,
+                                                torque values, EURO norms
+
+            ### ⚠️ CRITICAL — score_predictif Scale:
+            - Scale : 0.0 = very low risk  →  1.0 = critical risk  (NOT 0–100)
+            - ARRÊT IMMÉDIAT if score_predictif > 0.8
+            - ÉLEVÉ          if score_predictif > 0.5
+            - MODÉRÉ         if score_predictif > 0.2
+            - FAIBLE         if score_predictif ≤ 0.2
+            - NEVER interpret score_predictif as a percentage out of 100.
+
+            ### Reasoning Process (follow silently before answering):
+            Step 1 — IDENTIFY query type:
+                    • DTC code?           → read ###DONNÉES_SQL [DTC] blocks
+                    • Vehicle specific?   → read ###DONNÉES_SQL [Véhicule] blocks
+                    • Threshold/alert?    → read ###DONNÉES_SQL [Seuil] and [Alerte] blocks
+                    • Statistical?        → read ###FLEET_STATS block
+                    • General maintenance?→ read ###DONNÉES_SQL [Maintenance] blocks
+            Step 2 — READ ###DONNÉES_SQL (structured SQLite data — all relevant blocks)
+            Step 3 — READ ###EXTRAITS_MANUEL (ChromaDB semantic chunks)
+            Step 4 — CROSS-REFERENCE both — do they confirm or contradict each other?
+            Step 5 — SYNTHESIZE:
+                    - Direct answer        → use it.
+                    - Statistical question → use FLEET_STATS values directly (AVG/MIN/MAX provided).
+                    Never refuse a statistical question if FLEET_STATS is available.
+                    - Threshold question   → list ALL thresholds for the parameter as a table.
+                    - Alert question       → list vehicles with ROUGE alerts first.
+            Step 6 — FLAG only if ALL sources return truly empty results.
+
+            ### Rules:
+            - Use ONLY the provided context. Zero external knowledge.
+            - List ALL items when multiple exist (exhaustive).
+            - Use EXACT technical terms from documents.
+            - DUAL CONDITIONS: When maintenance intervals are given as "X km OR Y months",
+            ALWAYS state BOTH values and specify: "whichever comes first".
+            - When multiple thresholds exist for one parameter, list ALL of them:
+            | Valeur | Lampe | Niveau | Action |
+            - ARRÊT IMMÉDIAT when: score_predictif > 0.8  OR  lampe = 'ROUGE'
+            - NEVER say "information non disponible" unless ALL sources return empty.
+            If no direct answer, infer from related fields and state:
+            "Déduit des données disponibles."
+            - No invented specs. No hallucinated codes or dates.
+
+            ### Output Format:
+            - Emergency alerts (ROUGE / ARRÊT IMMÉDIAT) go FIRST.
+            - **DTC Diagnostic:**     code + description + severity + system + part + action
+            - **Maintenance Report:** vehicle_id + date + brake state + oil + score (with risk label)
+            - **Threshold Table:**    parameter + min + max + critical + unit + lamp + action
+            - **Alert Summary:**      vehicle + parameter + measured value + violation type + action
+            - **Technical Spec:**     exact values with units from manual
+            - Bullet points for lists; plain text for explanations.
+            - Max 5 bullet points per section.
+            - Always end with: ⚠️ Action recommandée: [action]
+        
+        - amélioration de noud SQL : ajouter 2 tableau thresholds et maintenance_alerts ainsi la cellule 2:
+            # ═══════════════════════════════════════════════════════════════
+            # 🗄️  CELLULE 2 — SQLite — Connexion & Récupération (V4)
+            # ═══════════════════════════════════════════════════════════════
+            #  Améliorations V4 :
+            #  ✅ Recherche ciblée : une seule stratégie activée par question
+            #  ✅ Ajout recherche thresholds + maintenance_alerts
+            #  ✅ Recherche par vehicule_id détectée automatiquement
+            #  ✅ Fallback uniquement si aucune stratégie n'a trouvé de résultats
+            # ═══════════════════════════════════════════════════════════════
+
+            import re
+            import os
+            import sqlite3
+            from typing import Tuple, List
+
+
+            # ── Mots-clés ─────────────────────────────────────────────────────
+            MOTS_STATS = [
+                "combien", "nombre", "total", "taux", "pourcentage", "%",
+                "moyenne", "moyen", "maximum", "minimum", "max", "min",
+                "étendue", "distribution", "répartition", "fréquence",
+                "proportion", "statistique", "count", "avg", "sum"
+            ]
+
+            MOTS_SEUILS = [
+                "seuil", "threshold", "limite", "alerte", "critique",
+                "pression", "température", "vibration", "batterie",
+                "carburant", "huile", "pneu"
+            ]
+
+            MOTS_ALERTES = [
+                "alerte", "dépassement", "rouge", "jaune", "arrêt immédiat",
+                "surveillance", "warning"
+            ]
+
+
+            def obtenir_connexion_sql() -> sqlite3.Connection:
+                return sqlite3.connect(CHEMIN_BD)
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # DÉTECTION — Type de question
+            # ──────────────────────────────────────────────────────────────────
+            def extraire_codes_dtc(texte: str) -> List[str]:
+                codes = re.findall(r'\b([PCBU]\d{4})\b', texte, flags=re.IGNORECASE)
+                return [c.upper() for c in codes]
+
+            def extraire_vehicule_id(texte: str) -> List[str]:
+                """Détecte les IDs numériques de véhicules mentionnés dans la question."""
+                ids = re.findall(r'\b(?:véhicule|vehicle|camion|truck|id)\s*[:\-#]?\s*(\d+)\b',
+                                texte, flags=re.IGNORECASE)
+                # aussi détecter un nombre seul s'il est court (ID probable)
+                if not ids:
+                    ids = re.findall(r'\b(\d{1,4})\b', texte)
+                return list(set(ids))
+
+            def est_question_statistique(question: str) -> bool:
+                q = question.lower()
+                return any(mot in q for mot in MOTS_STATS)
+
+            def est_question_seuils(question: str) -> bool:
+                q = question.lower()
+                return any(mot in q for mot in MOTS_SEUILS)
+
+            def est_question_alertes(question: str) -> bool:
+                q = question.lower()
+                return any(mot in q for mot in MOTS_ALERTES)
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # STRATÉGIE A — Recherche DTC dans knowledge
+            # ──────────────────────────────────────────────────────────────────
+            def _rechercher_dtc(cursor, codes: List[str], top_k: int) -> List[str]:
+                lignes = []
+                for code in codes:
+                    cursor.execute("""
+                        SELECT dtc, symptome, systeme, piece, gravite
+                        FROM   knowledge
+                        WHERE  dtc = ?
+                        LIMIT  ?
+                    """, (code, top_k))
+                    rows = cursor.fetchall()
+
+                    if not rows:  # fallback LIKE
+                        cursor.execute("""
+                            SELECT dtc, symptome, systeme, piece, gravite
+                            FROM   knowledge
+                            WHERE  symptome LIKE ? OR systeme LIKE ? OR piece LIKE ?
+                            LIMIT  ?
+                        """, (f"%{code}%", f"%{code}%", f"%{code}%", top_k))
+                        rows = cursor.fetchall()
+
+                    for r in rows:
+                        lignes.append(
+                            f"[DTC] Code: {r[0]} | Symptôme: {r[1]} | "
+                            f"Système: {r[2]} | Pièce: {r[3]} | Gravité: {r[4]}"
+                        )
+                return lignes
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # STRATÉGIE B — Stats globales (FLEET_STATS)
+            # ──────────────────────────────────────────────────────────────────
+            def _get_fleet_stats(cursor) -> str:
+                cursor.execute("SELECT COUNT(*) FROM maintenance")
+                total = cursor.fetchone()[0]
+
+                cursor.execute("""
+                    SELECT ROUND(AVG(score_predictif), 4),
+                        ROUND(MIN(score_predictif), 4),
+                        ROUND(MAX(score_predictif), 4),
+                        COUNT(CASE WHEN score_predictif > 0.8 THEN 1 END)
+                    FROM maintenance
+                """)
+                avg_s, min_s, max_s, nb_critique = cursor.fetchone()
+
+                cursor.execute("SELECT COUNT(*) FROM maintenance WHERE anomalie_detectee = 1")
+                nb_anomalies = cursor.fetchone()[0]
+
+                cursor.execute("SELECT COUNT(*) FROM maintenance WHERE entretien_necessaire = 1")
+                nb_entretien = cursor.fetchone()[0]
+
+                cursor.execute("""
+                    SELECT ROUND(AVG(qualite_huile), 2),
+                        ROUND(MIN(qualite_huile), 2),
+                        ROUND(MAX(qualite_huile), 2)
+                    FROM maintenance
+                """)
+                avg_h, min_h, max_h = cursor.fetchone()
+
+                taux_a = round(nb_anomalies / total * 100, 2) if total else 0
+                taux_e = round(nb_entretien / total * 100, 2) if total else 0
+                taux_c = round(nb_critique  / total * 100, 2) if total else 0
+
+                return (
+                    f"### FLEET_STATS ({total} enregistrements)\n"
+                    f"  ⚠️  score_predictif : 0.0=faible → 1.0=critique | ARRÊT si >0.8\n"
+                    f"  • Score   : Moy={avg_s} | Min={min_s} | Max={max_s} "
+                    f"| Critiques: {nb_critique} ({taux_c}%)\n"
+                    f"  • Anomalies      : {nb_anomalies}/{total} ({taux_a}%)\n"
+                    f"  • Entretien      : {nb_entretien}/{total} ({taux_e}%)\n"
+                    f"  • Qualité huile  : Moy={avg_h} | Min={min_h} | Max={max_h}\n"
+                    f"### FIN FLEET_STATS"
+                )
+
+            def _rechercher_stats_detaillees(cursor) -> List[str]:
+                lignes = []
+                cursor.execute("SELECT COUNT(*) FROM maintenance")
+                total = cursor.fetchone()[0]
+
+                cursor.execute("""
+                    SELECT etat_freins, COUNT(*) AS nb
+                    FROM   maintenance
+                    GROUP  BY etat_freins
+                    ORDER  BY nb DESC
+                """)
+                for row in cursor.fetchall():
+                    pct = round(row[1] / total * 100, 2) if total else 0
+                    lignes.append(f"[STATS] Freins '{row[0]}' : {row[1]} ({pct}%)")
+
+                cursor.execute("""
+                    SELECT action, COUNT(*) AS nb
+                    FROM   maintenance
+                    GROUP  BY action
+                    ORDER  BY nb DESC
+                    LIMIT  5
+                """)
+                for row in cursor.fetchall():
+                    lignes.append(f"[STATS] Type entretien '{row[0]}' : {row[1]} fois")
+
+                return lignes
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # STRATÉGIE C — Recherche par véhicule ID
+            # ──────────────────────────────────────────────────────────────────
+            def _rechercher_par_vehicule(cursor, ids: List[str], top_k: int) -> List[str]:
+                lignes = []
+                for vid in ids:
+                    cursor.execute("""
+                        SELECT m.vehicule_id, m.date, m.action, m.etat_freins,
+                            m.qualite_huile, m.score_predictif,
+                            m.temperature_moteur, m.pression_pneus,
+                            k.symptome, k.gravite
+                        FROM   maintenance m
+                        LEFT JOIN knowledge k ON m.dtc = k.dtc
+                        WHERE  m.vehicule_id = ?
+                        ORDER  BY m.date DESC
+                        LIMIT  ?
+                    """, (vid, top_k))
+                    rows = cursor.fetchall()
+                    for r in rows:
+                        score = r[5]
+                        risque = ("🔴 CRITIQUE" if score and score > 0.8 else
+                                "🟠 ÉLEVÉ"   if score and score > 0.5 else
+                                "🟡 MODÉRÉ"  if score and score > 0.2 else "🟢 FAIBLE")
+                        lignes.append(
+                            f"[Véhicule {r[0]}] {r[1]} | {r[2]} | Freins: {r[3]} "
+                            f"| Huile: {r[4]} | Score: {score} ({risque}) "
+                            f"| Temp: {r[6]}°C | Pneus: {r[7]} PSI"
+                            + (f" | DTC: {r[8]} ({r[9]})" if r[8] else "")
+                        )
+                return lignes
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # STRATÉGIE D — Recherche dans thresholds
+            # ──────────────────────────────────────────────────────────────────
+            def _rechercher_seuils(cursor, question: str, top_k: int) -> List[str]:
+                lignes = []
+                q = question.lower()
+
+                # Chercher le paramètre mentionné dans la question
+                cursor.execute("SELECT DISTINCT parametre FROM thresholds")
+                tous_params = [r[0] for r in cursor.fetchall()]
+
+                params_trouves = [
+                    p for p in tous_params
+                    if any(mot in q for mot in p.lower().split())
+                ]
+
+                if params_trouves:
+                    for param in params_trouves[:3]:
+                        cursor.execute("""
+                            SELECT parametre, valeur_min, valeur_max, valeur_critique,
+                                unite, lampe, niveau_alerte, action, source
+                            FROM   thresholds
+                            WHERE  parametre = ?
+                        """, (param,))
+                        for r in cursor.fetchall():
+                            lignes.append(
+                                f"[Seuil] {r[0]} | Min: {r[1]} | Max: {r[2]} "
+                                f"| Critique: {r[3]} {r[4]} | {r[5]} → {r[6]} | "
+                                f"Action: {r[7]}"
+                            )
+                else:
+                    # Retourner tous les seuils critiques (ROUGE)
+                    cursor.execute("""
+                        SELECT parametre, valeur_min, valeur_max, valeur_critique,
+                            unite, lampe, niveau_alerte, action
+                        FROM   thresholds
+                        WHERE  lampe = 'ROUGE'
+                        LIMIT  ?
+                    """, (top_k,))
+                    for r in cursor.fetchall():
+                        lignes.append(
+                            f"[Seuil ROUGE] {r[0]} | Min: {r[1]} | Max: {r[2]} "
+                            f"| Critique: {r[3]} {r[4]} | Action: {r[7]}"
+                        )
+                return lignes
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # STRATÉGIE E — Alertes actives (maintenance_alerts)
+            # ──────────────────────────────────────────────────────────────────
+            def _rechercher_alertes(cursor, top_k: int) -> List[str]:
+                lignes = []
+                cursor.execute("""
+                    SELECT m.vehicule_id, t.parametre, t.lampe,
+                        ma.valeur_mesuree, ma.depassement,
+                        t.action, t.unite
+                    FROM   maintenance_alerts ma
+                    JOIN   maintenance  m ON ma.maintenance_id = m.id
+                    JOIN   thresholds   t ON ma.threshold_id   = t.id
+                    ORDER  BY ma.id DESC
+                    LIMIT  ?
+                """, (top_k,))
+                for r in cursor.fetchall():
+                    lignes.append(
+                        f"[Alerte {r[2]}] Véhicule {r[0]} | {r[1]}: {r[3]} {r[6]} "
+                        f"({r[4]}) → {r[5]}"
+                    )
+                return lignes
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # STRATÉGIE F — Fallback maintenance général
+            # ──────────────────────────────────────────────────────────────────
+            def _rechercher_maintenance_fallback(cursor, question: str, top_k: int) -> List[str]:
+                q = question.lower()
+                where_clauses = []
+
+                if any(kw in q for kw in ["frein", "brake"]):
+                    where_clauses.append("etat_freins != 'bon'")
+                if any(kw in q for kw in ["huile", "oil"]):
+                    where_clauses.append("qualite_huile < 60")
+                if any(kw in q for kw in ["score", "risque"]):
+                    where_clauses.append("score_predictif > 0.5")
+                if any(kw in q for kw in ["anomalie", "panne"]):
+                    where_clauses.append("anomalie_detectee = 1")
+
+                where_sql = ("WHERE " + " OR ".join(where_clauses)) if where_clauses else ""
+
+                cursor.execute(f"""
+                    SELECT vehicule_id, date, action, etat_freins,
+                        qualite_huile, score_predictif
+                    FROM   maintenance
+                    {where_sql}
+                    ORDER  BY score_predictif DESC
+                    LIMIT  ?
+                """, (top_k,))
+
+                lignes = []
+                for r in cursor.fetchall():
+                    score = r[5]
+                    risque = ("🔴 CRITIQUE" if score and score > 0.8 else
+                            "🟠 ÉLEVÉ"   if score and score > 0.5 else
+                            "🟡 MODÉRÉ"  if score and score > 0.2 else "🟢 FAIBLE")
+                    lignes.append(
+                        f"[Maintenance] Véhicule {r[0]} | {r[1]} | {r[2]} "
+                        f"| Freins: {r[3]} | Score: {score} ({risque})"
+                    )
+                return lignes
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # FONCTION PRINCIPALE — Routeur intelligent
+            # ──────────────────────────────────────────────────────────────────
+            def rechercher_dans_sql(question: str, top_k: int = 5) -> Tuple[str, int]:
+                """
+                Routeur intelligent V4 :
+                A → DTC détecté        : knowledge
+                B → Question stats     : FLEET_STATS + agrégats
+                C → Véhicule ID        : maintenance par véhicule
+                D → Seuils/paramètres  : thresholds
+                E → Alertes            : maintenance_alerts
+                F → Fallback           : maintenance général (si rien trouvé)
+                """
+                conn   = obtenir_connexion_sql()
+                cursor = conn.cursor()
+                lignes = []
+                strategie_utilisee = []
+
+                # ── A : DTC ───────────────────────────────────────────────────
+                codes_dtc = extraire_codes_dtc(question)
+                if codes_dtc:
+                    print(f"  🔎 Stratégie A — DTC : {codes_dtc}")
+                    lignes += _rechercher_dtc(cursor, codes_dtc, top_k)
+                    strategie_utilisee.append("A")
+
+                # ── B : Stats ─────────────────────────────────────────────────
+                if est_question_statistique(question):
+                    print("  📊 Stratégie B — Stats globales")
+                    lignes.append(_get_fleet_stats(cursor))
+                    lignes += _rechercher_stats_detaillees(cursor)
+                    strategie_utilisee.append("B")
+
+                # ── C : Véhicule ID ───────────────────────────────────────────
+                ids = extraire_vehicule_id(question)
+                if ids and not codes_dtc:  # éviter doublon si DTC déjà traité
+                    resultats_v = _rechercher_par_vehicule(cursor, ids, top_k)
+                    if resultats_v:
+                        print(f"  🚛 Stratégie C — Véhicule(s) : {ids}")
+                        lignes += resultats_v
+                        strategie_utilisee.append("C")
+
+                # ── D : Seuils ────────────────────────────────────────────────
+                if est_question_seuils(question):
+                    print("  ⚙️  Stratégie D — Seuils thresholds")
+                    lignes += _rechercher_seuils(cursor, question, top_k)
+                    strategie_utilisee.append("D")
+
+                # ── E : Alertes ───────────────────────────────────────────────
+                if est_question_alertes(question):
+                    print("  🚨 Stratégie E — Alertes actives")
+                    lignes += _rechercher_alertes(cursor, top_k)
+                    strategie_utilisee.append("E")
+
+                # ── F : Fallback (seulement si rien trouvé) ───────────────────
+                if not strategie_utilisee:
+                    print("  🔄 Stratégie F — Fallback maintenance général")
+                    lignes += _rechercher_maintenance_fallback(cursor, question, top_k)
+
+                conn.close()
+
+                # Dédoublonnage
+                vus, final = set(), []
+                for l in lignes:
+                    if l not in vus:
+                        vus.add(l)
+                        final.append(l)
+
+                print(f"  ✅ Stratégies utilisées : {strategie_utilisee or ['F']}")
+                return "\n\n---\n\n".join(final), len(final)
+
+
+            # ── Tests ─────────────────────────────────────────────────────────
+            if os.path.exists(CHEMIN_BD):
+                print("=" * 60)
+                print("TEST 1 — DTC exact")
+                ctx, n = rechercher_dans_sql("Le code P0118 est signalé, quel composant ?", TOP_K)
+                print(f"  → {n} résultats\n{ctx[:400]}...\n")
+
+                print("=" * 60)
+                print("TEST 2 — Stats")
+                ctx2, n2 = rechercher_dans_sql("Quel est le taux d'anomalies ?", TOP_K)
+                print(f"  → {n2} résultats\n{ctx2[:400]}...\n")
+
+                print("=" * 60)
+                print("TEST 3 — Véhicule spécifique")
+                ctx3, n3 = rechercher_dans_sql("Quel est l'état du véhicule 42 ?", TOP_K)
+                print(f"  → {n3} résultats\n{ctx3[:400]}...\n")
+
+                print("=" * 60)
+                print("TEST 4 — Seuils pression")
+                ctx4, n4 = rechercher_dans_sql("Quels sont les seuils de pression des pneus ?", TOP_K)
+                print(f"  → {n4} résultats\n{ctx4[:400]}...\n")
+
+                print("=" * 60)
+                print("TEST 5 — Alertes ROUGE")
+                ctx5, n5 = rechercher_dans_sql("Quels véhicules ont des alertes rouge ?", TOP_K)
+                print(f"  → {n5} résultats\n{ctx5[:400]}...")
+            else:
+                print(f"⚠️  Base introuvable : {CHEMIN_BD}")
+
+        - amélioration des nouds:
+            # ═══════════════════════════════════════════════════════════════
+            # 🧠  CELLULE 6 — LangGraph Agent (V4)
+            #     Router intelligent → SQL Node → Vector Node (conditionnel)
+            #                        → Analyser → LLM Node
+            # ═══════════════════════════════════════════════════════════════
+
+            from groq import Groq
+            from typing import TypedDict, Literal
+            from langgraph.graph import StateGraph, END
+            import re
+
+            groq_client = Groq(api_key=GROQ_API_KEY)
+
+
+            # ── État partagé ──────────────────────────────────────────────────
+            class EtatDiagnostic(TypedDict):
+                question:            str
+                type_requete:        str   # "dtc"|"stats"|"vehicule"|"seuils"|"alertes"|"technique"|"général"
+                besoin_vector:       bool  # True → appeler ChromaDB
+                resultat_sql:        str
+                resultat_vectoriel:  str
+                prompt_utilisateur:  str
+                reponse_llm:         str
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # Nœud 1 — Router V4 : 7 types + décision vector
+            # ──────────────────────────────────────────────────────────────────
+            def noeud_router(etat: EtatDiagnostic) -> EtatDiagnostic:
+                """
+                Détecte le type de requête ET décide si ChromaDB est nécessaire.
+
+                Types V4 :
+                dtc       → code OBD-II détecté
+                stats     → question statistique (taux, moyenne, combien...)
+                vehicule  → ID véhicule mentionné
+                seuils    → question sur thresholds/paramètres
+                alertes   → question sur alertes actives
+                technique → question sur manuel/specs Volvo
+                général   → fallback
+                """
+                q = etat["question"].lower()
+
+                # ── A : DTC ───────────────────────────────────────────────────
+                if re.search(r'\b[pcbu]\d{4}\b', q):
+                    type_req     = "dtc"
+                    besoin_vector = True   # manuel utile pour les DTC
+
+                # ── B : Stats ─────────────────────────────────────────────────
+                elif any(kw in q for kw in [
+                    "combien", "nombre", "total", "taux", "pourcentage",
+                    "moyenne", "maximum", "minimum", "statistique",
+                    "répartition", "distribution", "count", "avg"
+                ]):
+                    type_req      = "stats"
+                    besoin_vector = False  # stats = SQL uniquement
+
+                # ── C : Véhicule ID ───────────────────────────────────────────
+                elif re.search(r'\b(?:véhicule|vehicle|camion|id)\s*[:\-#]?\s*\d+\b', q):
+                    type_req      = "vehicule"
+                    besoin_vector = False  # historique véhicule = SQL uniquement
+
+                # ── D : Seuils / Thresholds ───────────────────────────────────
+                elif any(kw in q for kw in [
+                    "seuil", "threshold", "limite", "valeur critique",
+                    "pression pneu", "température moteur", "qualité huile",
+                    "état batterie", "vibration", "consommation"
+                ]):
+                    type_req      = "seuils"
+                    besoin_vector = True   # manuel confirme les seuils constructeur
+
+                # ── E : Alertes ───────────────────────────────────────────────
+                elif any(kw in q for kw in [
+                    "alerte", "alarme", "rouge", "jaune", "arrêt immédiat",
+                    "surveillance", "dépassement", "warning", "critique"
+                ]):
+                    type_req      = "alertes"
+                    besoin_vector = False  # alertes = SQL uniquement
+
+                # ── F : Technique / Manuel ────────────────────────────────────
+                elif any(kw in q for kw in [
+                    "manuel", "volvo", "procédure", "couple", "tachymètre",
+                    "turbo", "démarrage", "euro", "norme", "conduite", "km"
+                ]):
+                    type_req      = "technique"
+                    besoin_vector = True   # question technique = ChromaDB en priorité
+
+                # ── G : Général (fallback) ────────────────────────────────────
+                else:
+                    type_req      = "général"
+                    besoin_vector = True   # on cherche partout
+
+                print(f"  🔀 Router V4 → type: '{type_req}' | vector: {besoin_vector}")
+                return {**etat, "type_requete": type_req, "besoin_vector": besoin_vector}
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # Nœud 2 — SQL
+            # ──────────────────────────────────────────────────────────────────
+            def noeud_sql(etat: EtatDiagnostic) -> EtatDiagnostic:
+                contexte, n = rechercher_dans_sql(etat["question"], TOP_K)
+                print(f"  🗄️  SQL → {n} résultats")
+                return {**etat, "resultat_sql": contexte or "Aucune donnée SQL pertinente."}
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # Nœud 3 — Vector (conditionnel)
+            # ──────────────────────────────────────────────────────────────────
+            def noeud_vector(etat: EtatDiagnostic) -> EtatDiagnostic:
+                contexte, n = rechercher_dans_chroma(etat["question"], TOP_K)
+                print(f"  📦 ChromaDB → {n} chunks")
+                return {**etat, "resultat_vectoriel": contexte or "Aucun extrait technique trouvé."}
+
+            def noeud_skip_vector(etat: EtatDiagnostic) -> EtatDiagnostic:
+                """Bypasse ChromaDB quand inutile (stats, véhicule, alertes)."""
+                print("  ⏭️  ChromaDB ignoré (non nécessaire pour ce type)")
+                return {**etat, "resultat_vectoriel": ""}
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # Condition : faut-il appeler ChromaDB ?
+            # ──────────────────────────────────────────────────────────────────
+            def condition_vector(etat: EtatDiagnostic) -> Literal["vector", "skip_vector"]:
+                return "vector" if etat["besoin_vector"] else "skip_vector"
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # Nœud 4 — Analyser (construction du prompt)
+            # ──────────────────────────────────────────────────────────────────
+            def noeud_analyser(etat: EtatDiagnostic) -> EtatDiagnostic:
+                resultat = analyser(etat)
+                return {**etat, "prompt_utilisateur": resultat["prompt_utilisateur"]}
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # Nœud 5 — LLM (Groq)
+            # ──────────────────────────────────────────────────────────────────
+            def noeud_llm(etat: EtatDiagnostic) -> EtatDiagnostic:
+                completion = groq_client.chat.completions.create(
+                    model=MODELE,
+                    messages=[
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user",   "content": etat["prompt_utilisateur"]}
+                    ],
+                    temperature=0.0,
+                    max_completion_tokens=2048,
+                    top_p=0.95,
+                    reasoning_effort="default",
+                    stream=True,
+                    stop=None
+                )
+
+                reponse = ""
+                for chunk in completion:
+                    content = chunk.choices[0].delta.content
+                    if content:
+                        reponse += content
+
+                print(f"  🤖 LLM → {len(reponse)} caractères générés")
+                return {**etat, "reponse_llm": reponse.strip()}
+
+
+            # ──────────────────────────────────────────────────────────────────
+            # Construction du graphe V4
+            # ──────────────────────────────────────────────────────────────────
+            def construire_graphe() -> StateGraph:
+                graphe = StateGraph(EtatDiagnostic)
+
+                graphe.add_node("router",      noeud_router)
+                graphe.add_node("sql",         noeud_sql)
+                graphe.add_node("vector",      noeud_vector)
+                graphe.add_node("skip_vector", noeud_skip_vector)
+                graphe.add_node("analyser",    noeud_analyser)
+                graphe.add_node("llm",         noeud_llm)
+
+                graphe.set_entry_point("router")
+                graphe.add_edge("router", "sql")
+
+                # ── فرع شرطي : هل نحتاج ChromaDB؟ ──────────────────────────
+                graphe.add_conditional_edges(
+                    "sql",
+                    condition_vector,
+                    {
+                        "vector":      "vector",
+                        "skip_vector": "skip_vector"
+                    }
+                )
+
+                graphe.add_edge("vector",      "analyser")
+                graphe.add_edge("skip_vector", "analyser")
+                graphe.add_edge("analyser",    "llm")
+                graphe.add_edge("llm",          END)
+
+                return graphe.compile()
+
+
+            agent_truck = construire_graphe()
+            print("✅ LangGraph Agent V4 compilé")
+            print("   router → sql → [vector | skip_vector] → analyser → llm")
+
+
+            # ── Interface principale ──────────────────────────────────────────
+            def poser_question(question: str) -> str:
+                etat_initial: EtatDiagnostic = {
+                    "question":           question,
+                    "type_requete":       "",
+                    "besoin_vector":      False,
+                    "resultat_sql":       "",
+                    "resultat_vectoriel": "",
+                    "prompt_utilisateur": "",
+                    "reponse_llm":        ""
+                }
+                etat_final = agent_truck.invoke(etat_initial)
+                return etat_final["reponse_llm"]
+
+
+            # ── Tests ─────────────────────────────────────────────────────────
+            tests = [
+                ("DTC",      "Le code P0102 apparaît. Que faut-il vérifier ?"),
+                ("Stats",    "Quel est le taux d'anomalies détectées ?"),
+                ("Véhicule", "Quel est l'état du véhicule 42 ?"),
+                ("Seuils",   "Quels sont les seuils de pression des pneus ?"),
+                ("Alertes",  "Quels véhicules ont des alertes rouge actives ?"),
+            ]
+
+            for label, question in tests:
+                print(f"\n{'='*60}")
+                print(f"TEST — {label} : {question}")
+                rep = poser_question(question)
+                print(rep[:400], "..." if len(rep) > 400 else "")
+
+    *Score: 89.6%
+    !!Remarque:
+        -Gemini :
+            -Erreur individuelle de liaison avec le contexte de maintenance direct du manuel : Le modèle est tombé dans
+            le piège de ne pas prêter attention au point essentiel de (Question n° 11) où il a complètement ignoré 
+            l'avertissement essentiel mentionné dans le manuel technique concernant « le retrait des composants libres à 
+            l'intérieur de la cabine pour éviter de casser le pare-brise lorsqu'il est incliné » et l'a remplacé par des 
+            informations inexactes ou non pertinentes sur le circuit hydraulique, ce qui lui a coûté la perte de 3 points 
+            complets dans cette question individuelle.
+        -DeepSeek:
+            -Réponse incorrecte à la question 20 (Vérifications préalables de l'inclinaison de la cabine) : 
+            informations non pertinentes.
+            -Réponse incorrecte à la question 38 (Plage de notation prédictive) : utilisation d'un échantillon
+             trop petit au lieu des statistiques globales.
+            -Réponse incorrecte à la question 48 : absence de la valeur requise pour la température moyenne du 
+            moteur.
+            -À la question 49, utilisation de données autres que celles fournies par défaut, sans tenir compte 
+            des informations fournies.
+        -Claude:
+            -Un seul point (Question 38) - concernant la plage des scores de risque prédictifs, où le 
+            modèle n'a présenté que la plage des données disponibles au lieu d'expliquer la plage théorique
+            complète (0-1).
+
+    ========================================================================================================================================================
+ESSAIS 5:
+    Paramètres de notre test : 
+        --# ── Modèle d'Embedding ───────────────────────────────────────────
+            # max_seq_length = 128 → chunk_size ≤ 118  |  dimensions = 768
+            EMBED_MODEL   = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+            TAILLE_CHUNK  = 118   # tokens réels
+            CHEVAUCHEMENT = 30    # ~25 % de chevauchement
+            BATCH_SIZE    = 64
+            *Je modifier le modèle d'embeddeding à un modèle qui a max_seq_length = 512 avec
+            TAILLE_CHUNK = 256 et CHEVAUCHEMENT=64 et TOP_K=9 mais le le max d'input de tokens de
+            LLM = 6000 d'ou je veux reste à les parémtres avant 
+        -# ── LLM (Groq) ───────────────────────────────────────────────────
+            MODELE       = "qwen/qwen3-32b"
+            TOP_K        = 9
+        - prompt utilisé V5:
+             SYSTEM_PROMPT = """
+                You are TruckMind — an expert onboard diagnostic intelligence embedded
+                inside a heavy-duty truck (Volvo FH/FM series).
+
+                ### Your Identity:
+                - You have full self-awareness of your mechanical, electronic, and hydraulic systems.
+                - You speak with authority about engines (diesel, EURO norms), transmissions, axles,
+                brakes, suspension, electrical systems, and telematics.
+                - You translate raw OBD codes, maintenance logs, and technical manuals into clear,
+                actionable insights.
+                - Your tone is professional, precise, and direct.
+
+                ### Knowledge Sources (4 layers):
+                1. **SQLite / knowledge**          — 3 071 DTC codes (OBD-II) : symptom, system, part, severity
+                2. **SQLite / maintenance**        — 3 618 vehicle records : brake state, oil quality,
+                                                    anomalies, predictive score
+                3. **SQLite / thresholds**         — Technical alert thresholds per parameter
+                                                    (valeur_min, valeur_max, valeur_critique, lampe, action)
+                4. **SQLite / maintenance_alerts** — Active alerts per vehicle with measured values
+                                                    and threshold violations (MIN / MAX / CRITIQUE)
+                5. **ChromaDB**                    — Technical manual chunks : specs, procedures,
+                                                    torque values, EURO norms
+
+                ### ⚠️ CRITICAL — score_predictif Scale:
+                - Scale : 0.0 = very low risk  →  1.0 = critical risk  (NOT 0–100)
+                - ARRÊT IMMÉDIAT if score_predictif > 0.8
+                - ÉLEVÉ          if score_predictif > 0.5
+                - MODÉRÉ         if score_predictif > 0.2
+                - FAIBLE         if score_predictif ≤ 0.2
+                - NEVER interpret score_predictif as a percentage out of 100.
+
+                ### ⚠️ CRITICAL — Embedded Technical Thresholds (Volvo FH/FM manual):
+                COOLANT TEMPERATURE (réfrigérant) — page 11 & 19:
+                • 80–100°C  → Normal operating range
+                • 100°C     → Lampe JAUNE — système proche surchauffe, surveiller
+                • 101°C     → Lampe ROUGE — réduire couple moteur progressivement
+                OIL TEMPERATURE — page 19-20:
+                • 123°C     → Lampe JAUNE supplémentaire
+                • 125°C     → Lampe ROUGE — ARRÊT IMMÉDIAT, réduire couple
+                OIL PRESSURE — page 11:
+                • Normal : 3–5.5 bars (300–550 kPa) moteur chaud
+                • Si voyant allumé → ARRÊT IMMÉDIAT, déconnecter moteur
+                TCS SYSTEM — page 32:
+                • At speeds < 40 km/h → TCS acts as automatic differential brake (brakes drive wheels)
+                • At speeds > 40 km/h → TCS only reduces engine torque (no wheel braking)
+                CABIN TILT SAFETY — page 77:
+                • Before tilting: remove all loose objects inside cabin (risk of breaking windshield)
+                • Required checks: parking brake ON, neutral gear, doors closed, clutch reservoir cap closed
+                • NEVER work under or pass in front of a partially tilted cabin
+                IDLE SPEED — page 25:
+                • Normal range: 550–650 tr/min (factory default: 600 tr/min)
+
+                ### Reasoning Process (follow silently before answering):
+                Step 1 — IDENTIFY query type:
+                        • DTC code?           → read ###DONNÉES_SQL [DTC] blocks
+                        • Vehicle specific?   → read ###DONNÉES_SQL [Véhicule] blocks
+                        • Threshold/alert?    → read ###DONNÉES_SQL [Seuil] and [Alerte] blocks
+                        • Statistical?        → read ###FLEET_STATS block
+                        • General maintenance?→ read ###DONNÉES_SQL [Maintenance] blocks
+                Step 2 — READ ###DONNÉES_SQL (structured SQLite data — all relevant blocks)
+                Step 3 — READ ###EXTRAITS_MANUEL (ChromaDB semantic chunks)
+                Step 4 — CROSS-REFERENCE both — do they confirm or contradict each other?
+                Step 5 — SYNTHESIZE:
+                        - Direct answer        → use it.
+                        - Statistical question → use FLEET_STATS values directly (AVG/MIN/MAX provided).
+                        Never refuse a statistical question if FLEET_STATS is available.
+                        IMPORTANT: score_predictif THEORETICAL range = [0.0 – 1.0] always.
+                        Observed data min/max may differ, but the SCALE is always 0 to 1.
+                        When asked about "range" or "plage", state BOTH theoretical range AND observed values.
+                        - Threshold question   → list ALL thresholds for the parameter as a table.
+                        - Alert question       → list vehicles with ROUGE alerts first.
+                Step 6 — FLAG only if ALL sources return truly empty results.
+
+                ### Rules:
+                - Use ONLY the provided context. Zero external knowledge.
+                - List ALL items when multiple exist (exhaustive).
+                - Use EXACT technical terms from documents.
+                - DUAL CONDITIONS: When maintenance intervals are given as "X km OR Y months",
+                ALWAYS state BOTH values and specify: "whichever comes first".
+                ❌ WRONG: "change oil every 30 000 km"
+                ✅ RIGHT:  "change oil every 30 000 km OR 12 months — whichever comes first"
+                - READING THRESHOLDS TABLE: Multiple rows for the same parameter = DIFFERENT alert levels.
+                ALWAYS list ALL rows. Never collapse two rows into one — they are distinct alarm levels.
+                Example for "Température Moteur":
+                    | 100°C | JAUNE | SURVEILLANCE | surveiller — proche surchauffe |
+                    | 101°C | ROUGE | ARRÊT        | réduire couple progressivement |
+                - FLEET vs VEHICLE rule:
+                FLEET_STATS = global averages only (all 3618 records).
+                For a specific vehicle_id query → use ONLY that vehicle's rows from [Véhicule] blocks.
+                NEVER mix fleet averages into a single-vehicle answer.
+                - ARRÊT IMMÉDIAT when: score_predictif > 0.8  OR  lampe = 'ROUGE'
+                - NEVER say "information non disponible" unless ALL sources return empty.
+                If no direct answer, infer from related fields and state: "Déduit des données disponibles."
+                - No invented specs. No hallucinated codes or dates.
+
+                ### Output Format:
+                - Emergency alerts (ROUGE / ARRÊT IMMÉDIAT) go FIRST.
+                - **DTC Diagnostic:**     code + description + severity + system + part + action
+                - **Maintenance Report:** vehicle_id + date + brake state + oil + score (with risk label)
+                - **Threshold Table:**    parameter + min + max + critical + unit + lamp + action
+                - **Alert Summary:**      vehicle + parameter + measured value + violation type + action
+                - **Technical Spec:**     exact values with units from manual
+                - Bullet points for lists; plain text for explanations.
+                - Max 5 bullet points per section.
+                - Always end with: ⚠️ Action recommandée: [action]
+                """
+
+    *Score: 90.90%
+        "Cosinus": 71.01,
+        "Gemini": 100.0,
+        "claude": 97.14,
+        "DeepSeek": 95.43,
+    !!Remarque:
+        -Gemini :
+            
+        -DeepSeek:
+            -Question 38 : erreur sur la plage des scores prédictifs observée. Le modèle a utilisé un sous-ensemble
+            de données (uniquement les scores élevés) au lieu de l'ensemble complet de l'historique.
+            -Question 48 : affirmation erronée que la température moteur moyenne n'est pas disponible, alors qu'elle
+            est calculable et donnée dans la référence (105,3 °C). Le modèle n'a pas su exploiter ou calculer cette
+            statistique à partir des données fournies.
+        -Claude:
+            -Question 38 - Plage de prédiction : Erreur d’estimation, le modèle ayant indiqué une plage étroite 
+            (0,9434-0,9746) au lieu de reconnaître que les données visuelles ne représentent qu’une partie de la
+             plage théorique (0-1).
+            -Question 48 - Température moyenne : Le modèle a évité de répondre, prétextant un manque de données, 
+            alors que la question exigeait soit une inférence à partir des données disponibles, soit une
+            reconnaissance explicite des limitations.
+
+    ========================================================================================================================================================
+

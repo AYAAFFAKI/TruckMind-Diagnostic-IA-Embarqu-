@@ -1,0 +1,303 @@
+{
+  "dataset_name": "truck_llm_evaluation_set",
+  "sources": ["rapport_Manuel.pdf", "codes_erreur.csv", "histoire_de_maintenance.csv"],
+  "questions_answers": [
+
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "À quoi sert la zone verte du tachymètre dans le camion Volvo FH/FM ?",
+      "answer": "La zone verte du tachymètre est destinée à la conduite normale et permet un fonctionnement approprié du moteur.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Pourquoi faut-il éviter la zone rouge du tachymètre ?",
+      "answer": "La zone rouge doit être évitée car elle peut provoquer des dommages au moteur.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Comment conduire de manière économique selon l'indicateur de pression du turbocompresseur ?",
+      "answer": "Pour une conduite économique, l'aiguille doit rester stable sur route plate sans accélérations ou relâchements inutiles de la pédale d'accélérateur.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Pourquoi Volvo recommande-t-il une conduite prudente pendant les premiers kilomètres ?",
+      "answer": "Volvo recommande une conduite prudente pendant les premiers kilomètres afin d'éviter l'usure prématurée des composants du véhicule, notamment les freins, les engrenages et la boîte de vitesses.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Que peut provoquer l'utilisation d'un carburant diesel de mauvaise qualité ?",
+      "answer": "Un carburant diesel de mauvaise qualité peut provoquer une usure prématurée du moteur, une saturation des filtres, une détérioration du système d'échappement, une carbonisation dans les chambres de combustion, des difficultés de démarrage à froid et une augmentation des émissions.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Le voyant de pression d'huile s'allume pendant la conduite. Que faut-il faire ?",
+      "answer": "Il faut arrêter immédiatement le véhicule et couper le moteur, puis chercher la cause du problème.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Quel est le rôle du compte-tours dans le camion Volvo FH/FM ?",
+      "answer": "Le compte-tours permet de surveiller le régime moteur et d'aider le conducteur à maintenir une conduite appropriée en restant dans les zones verte et sombre du cadran.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Pourquoi est-il déconseillé de rouler à haute vitesse avec un véhicule chargé ?",
+      "answer": "Il est déconseillé de rouler à haute vitesse avec un véhicule chargé afin d'éviter de forcer le moteur et d'augmenter la consommation de carburant.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Quel comportement est recommandé pendant les premiers 1 500 km du véhicule ?",
+      "answer": "Il faut éviter les charges excessives et adopter une conduite prudente afin de limiter les températures anormalement élevées et l'usure prématurée des composants.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Pourquoi faut-il faire le plein dans des stations-service de confiance ?",
+      "answer": "Il faut faire le plein dans des stations de confiance afin d'obtenir un carburant de haute qualité et de réduire les risques de dysfonctionnement moteur liés à un carburant non conforme.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Quelle est la plage de température normale du liquide de refroidissement en conduite ?",
+      "answer": "En conduite normale, la température du liquide de refroidissement doit se situer entre 80 °C et 100 °C.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Que se passe-t-il lorsque la température du réfrigérant atteint 101 °C dans le système de protection moteur D13A ?",
+      "answer": "Lorsque la température atteint 101 °C, une lampe d'avertissement rouge s'allume et le couple moteur diminue graduellement si l'état persiste.",
+      "difficulty": "difficile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Quelle pression d'huile est normale lorsque le moteur est chaud en conduite ?",
+      "answer": "En conduite normale avec le moteur chaud, la pression d'huile doit se situer entre 3 et 5,5 bars (300 à 550 kPa).",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "À quoi sert le système de contrôle de traction (TCS) du Volvo FH/FM ?",
+      "answer": "Le TCS réduit automatiquement le couple moteur lorsque les roues patinent. À moins de 40 km/h, il freine également les roues de traction d'un côté pour améliorer l'adhérence.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Quand faut-il activer le TCS hors route ?",
+      "answer": "Le TCS hors route doit être activé uniquement en conditions de conduite difficile comme sur le sable, le gravier ou la neige. Il ne doit pas être utilisé en conduite normale sur route.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Que surveille le système de protection moteur du D13A ?",
+      "answer": "Le système surveille la pression d'huile (basse), la température de l'huile (haute), la température du réfrigérant (haute), le niveau du réfrigérant (bas) et la pression dans le carter (élevée).",
+      "difficulty": "difficile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Quelle action doit-on effectuer après une conduite intense avant d'éteindre le moteur ?",
+      "answer": "Après une conduite intense, il faut maintenir le moteur en marche à un régime de ralenti pendant environ une minute avant de l'éteindre, pour éviter un choc thermique et une perte involontaire de réfrigérant.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Pourquoi ne faut-il pas utiliser le frein auxiliaire sur les routes glissantes ?",
+      "answer": "Sur les routes glissantes, utiliser le frein auxiliaire peut bloquer les roues motrices et provoquer un effet de ciseau, rendant le véhicule incontrôlable.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Quelle est la vitesse minimale pour activer le programmateur de vitesse (cruise control) ?",
+      "answer": "Le programmateur de vitesse ne peut pas être activé à des vitesses inférieures à 30 km/h.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "rapport_Manuel.pdf",
+      "question": "Que faut-il vérifier avant de basculer la cabine du Volvo FH/FM ?",
+      "answer": "Avant de basculer la cabine, il faut vérifier qu'il y a suffisamment d'espace devant, que le frein de stationnement est appliqué, que le levier de vitesses est au point mort et que les portes sont fermées correctement.",
+      "difficulty": "difficile"
+    },
+
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Que signifie le code OBD-II P0100 ?",
+      "answer": "Le code P0100 indique un dysfonctionnement du circuit de débit massique d'air.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Que signifie le code P0102 ?",
+      "answer": "Le code P0102 indique un signal d'entrée faible dans le circuit de débit massique d'air.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Quelle est la signification du code P0103 ?",
+      "answer": "Le code P0103 indique un signal d'entrée élevé dans le circuit de débit massique d'air.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Le code P0104 est détecté. Quel type de problème cela représente-t-il ?",
+      "answer": "Le code P0104 correspond à un problème intermittent dans le circuit de débit massique d'air.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Que signifie le code P0115 ?",
+      "answer": "Le code P0115 indique un dysfonctionnement du circuit de température du liquide de refroidissement.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Un véhicule affiche le code P0118. Quelle anomalie est signalée ?",
+      "answer": "Le code P0118 indique un signal d'entrée élevé dans le circuit de température du liquide de refroidissement.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Que signifie le code P0120 ?",
+      "answer": "Le code P0120 indique un dysfonctionnement du circuit du capteur ou interrupteur de position du papillon (volet A).",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Que signifie le code P0101 ?",
+      "answer": "Le code P0101 indique un problème de plage ou de performance dans le circuit de débit massique d'air.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Quelle famille de codes OBD-II commence par P01 ?",
+      "answer": "Les codes commençant par P01 concernent principalement les systèmes de mesure d'air admis (débit massique, pression collecteur, température d'air d'admission) et de température du liquide de refroidissement.",
+      "difficulty": "difficile"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Un camion remonte le code P0114. Que signifie-t-il ?",
+      "answer": "Le code P0114 signifie que le circuit de température d'air d'admission présente une défaillance intermittente.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Que signifie le code P0117 ?",
+      "answer": "Le code P0117 indique un signal d'entrée faible dans le circuit de température du liquide de refroidissement.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Quelle est la différence entre les codes P0102 et P0103 ?",
+      "answer": "P0102 indique un signal d'entrée trop faible dans le circuit de débit massique d'air, tandis que P0103 indique un signal d'entrée trop élevé dans ce même circuit.",
+      "difficulty": "difficile"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Qu'est-ce qu'un code OBD-II de type 'Intermittent' signifie en général ?",
+      "answer": "Un code de type Intermittent indique que la défaillance n'est pas permanente : elle apparaît et disparaît, rendant le diagnostic plus difficile car le problème peut ne pas être présent au moment du contrôle.",
+      "difficulty": "difficile"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": " ",
+      "answer": "Le code P0105 concerne le circuit de pression absolue du collecteur ou la pression barométrique et indique un dysfonctionnement.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "codes_erreur.csv",
+      "question": "Combien de codes DTC sont référencés dans la base de données du projet ?",
+      "answer": "La base de données contient 3 071 codes DTC importés depuis le fichier codes_erreur.csv.",
+      "difficulty": "facile"
+    },
+
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Le véhicule V0001 a une température moteur de 103,8 °C et une charge réelle supérieure à sa capacité. Quelle est la conclusion ?",
+      "answer": "Le véhicule est en surcharge et présente une température moteur élevée. Une maintenance est nécessaire (Entretien_Nécessaire = 1).",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Le véhicule V0002 a des freins en mauvais état. Peut-il circuler ?",
+      "answer": "Non. Un véhicule avec un état de freins 'mauvais' ne doit pas circuler tant que les freins n'ont pas été réparés, car cela représente un risque critique pour la sécurité.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Quelle est la plage des scores prédictifs observée dans l'historique de maintenance ?",
+      "answer": "Les scores prédictifs dans le fichier varient de 0,001 (risque minimal) à 0,666 (risque élevé) sur une échelle de 0 à 1.",
+      "difficulty": "difficile"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Un véhicule affiche une température moteur de 124,2 °C. Quel niveau de risque cela représente-t-il ?",
+      "answer": "Une température moteur de 124,2 °C est critique. Selon le manuel Volvo, le moteur réduit sa puissance à partir de 123 °C. Une maintenance immédiate est requise.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Un véhicule a un score prédictif de 0,001 et aucune anomalie détectée. Quelle est la conclusion ?",
+      "answer": "Le véhicule présente un risque prédictif très faible et aucune anomalie détectée. Il est opérationnel et aucun entretien immédiat n'est requis.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Quelle est la valeur d'Entretien_Nécessaire pour un véhicule sans anomalies critiques et avec un score prédictif faible ?",
+      "answer": "La valeur Entretien_Nécessaire est 0, ce qui signifie qu'aucun entretien immédiat n'est requis selon les données du véhicule.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Le véhicule V0003 a un historique de 1 panne et une température moteur de 111 °C. Faut-il intervenir ?",
+      "answer": "Oui. Avec une température moteur de 111 °C (au-dessus de la normale de 80-100 °C) et un historique de panne, une intervention est nécessaire. Le fichier indique Entretien_Nécessaire = 1.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Quelle proportion de véhicules dans l'historique ont un état de freins 'mauvais' ?",
+      "answer": "Sur les 3 618 enregistrements, 1 075 ont un état de freins 'mauvais', soit environ 29,7 % du parc.",
+      "difficulty": "difficile"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Un véhicule a une qualité d'huile de 71 % et des freins en état 'mauvais'. Quelle décision prendre ?",
+      "answer": "Les freins défaillants imposent une immobilisation immédiate du véhicule. La qualité d'huile à 71 % nécessite également un changement d'huile lors de la prochaine intervention.",
+      "difficulty": "moyen"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Quel type d'entretien le véhicule 3 a-t-il reçu lors de son dernier entretien ?",
+      "answer": "Le véhicule 3 a subi un changement d'huile lors de son dernier entretien, effectué le 2023-08-04.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Combien d'enregistrements de maintenance contient le fichier histoire_de_maintenance.csv ?",
+      "answer": "Le fichier contient 3 618 enregistrements de maintenance.",
+      "difficulty": "facile"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Un véhicule a 0 anomalie détectée et Entretien_Nécessaire = 1. Comment interpréter cette situation ?",
+      "answer": "L'absence d'anomalie ne suffit pas à exclure un entretien. D'autres paramètres comme l'état des freins, la température moteur, le score prédictif ou le type d'entretien planifié peuvent déclencher la nécessité d'une intervention.",
+      "difficulty": "difficile"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Quelle est la température moteur moyenne observée dans l'historique de maintenance ?",
+      "answer": "La température moteur moyenne est d'environ 105,3 °C dans l'ensemble des enregistrements, ce qui dépasse légèrement la plage normale de 80-100 °C préconisée par Volvo.",
+      "difficulty": "difficile"
+    },
+    {
+      "source_file": "histoire_de_maintenance.csv",
+      "question": "Le véhicule V0005 a une température moteur de 124,2 °C et un score prédictif de 0,41. Est-il opérationnel ?",
+      "answer": "Non. La température moteur de 124,2 °C est critique (proche du seuil de 125 °C où le moteur réduit sa puissance). Le score prédictif de 0,41 indique un risque modéré à élevé. Une maintenance immédiate est nécessaire.",
+      "difficulty": "moyen"
+    }
+  ]
+}

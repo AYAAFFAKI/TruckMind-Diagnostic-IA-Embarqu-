@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruckMind · Diagnostic IA Embarqué</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/png">
+</head>
+<body>
+
+<!-- ─── HEADER ──────────────────────────────────────────────── -->
+<header>
+  <div class="logo-wrap">
+    <img src="{{ url_for('static', filename='icon.png') }}" alt="TruckMind Logo" class="logo-icon" style="width:36px; height:36px; object-fit:contain;">
+    <div>
+      <div class="logo-text">TruckMind</div>
+      <div class="logo-ver">v3.0 · LangGraph IA</div>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-tab="chat"      onclick="switchTab('chat')">
+      <span class="tab-dot"></span> Chat IA
+    </button>
+    <button class="nav-tab" data-tab="dashboard" onclick="switchTab('dashboard')">
+      <span class="tab-dot"></span> Dashboard
+    </button>
+    <button class="nav-tab" data-tab="search"   onclick="switchTab('search')">
+      <span class="tab-dot"></span> DTC Search
+    </button>
+  </div>
+
+  <div class="header-spacer"></div>
+
+  <div class="hdr-status">
+    <div class="status-dot loading" id="status-dot"></div>
+    <span id="status-lbl">CONNEXION</span>
+  </div>
+</header>
+
+<!-- ─── LAYOUT ──────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- ─── SIDEBAR ─────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Flotte — Vue d'ensemble</div>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpi-total">—</div>
+          <div class="kpi-lbl">Enregistrements</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val danger" id="kpi-critique">—</div>
+          <div class="kpi-lbl">Score critique</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val warn" id="kpi-anomalies">—</div>
+          <div class="kpi-lbl">Anomalies</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val ok" id="kpi-dtc">—</div>
+          <div class="kpi-lbl">Codes DTC</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="risk-section">
+      <div class="sidebar-label">Répartition des risques</div>
+      <div class="risk-bar" id="risk-bar">
+        <div class="risk-seg critique" id="seg-critique" style="width:0%"></div>
+        <div class="risk-seg eleve"    id="seg-eleve"    style="width:0%"></div>
+        <div class="risk-seg modere"   id="seg-modere"   style="width:0%"></div>
+        <div class="risk-seg faible"   id="seg-faible"   style="width:0%"></div>
+      </div>
+      <div class="risk-legend">
+        <div class="risk-item"><div class="risk-dot" style="background:var(--red)"></div><span id="leg-c">—% Critique</span></div>
+        <div class="risk-item"><div class="risk-dot" style="background:var(--orange)"></div><span id="leg-e">—% Élevé</span></div>
+        <div class="risk-item"><div class="risk-dot" style="background:var(--yellow)"></div><span id="leg-m">—% Modéré</span></div>
+        <div class="risk-item"><div class="risk-dot" style="background:var(--green)"></div><span id="leg-f">—% Faible</span></div>
+      </div>
+    </div>
+
+    <div style="padding:10px 16px 6px">
+      <div class="sidebar-label">Alertes actives 🔴</div>
+    </div>
+    <div class="alert-list" id="alert-list">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);padding:8px">Chargement...</div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─────────────────────────────────────────────── -->
+  <main class="main">
+
+    <!-- TAB: CHAT -->
+    <div class="tab-content active" id="tab-chat">
+      <div class="chat-messages" id="messages">
+        <div class="welcome" id="welcome-screen">
+          <div class="welcome-badge">
+            <div class="badge-dot"></div>
+            SYSTÈME OPÉRATIONNEL · VOLVO FH/FM · RAG ACTIVÉ
+          </div>
+          <div class="welcome-title">TruckMind<br>Intelligence</div>
+          <div class="welcome-sub">Diagnostic embarqué IA • 3 071 codes DTC • 3 618 enregistrements de maintenance • Alertes temps réel</div>
+          <div class="chips-grid">
+            <div class="chip" onclick="chipSend(this)">🔧 Que signifie P0118 ?</div>
+            <div class="chip" onclick="chipSend(this)">📊 Taux d'anomalies de la flotte</div>
+            <div class="chip" onclick="chipSend(this)">🚛 État du véhicule V0042</div>
+            <div class="chip" onclick="chipSend(this)">⚡ Seuils température moteur</div>
+            <div class="chip" onclick="chipSend(this)">🚨 Véhicules en alerte rouge</div>
+            <div class="chip" onclick="chipSend(this)">🛢️ Qualité huile moyenne</div>
+          </div>
+          <div class="welcome-meta">ENTRÉE — envoyer &nbsp;·&nbsp; SHIFT+ENTRÉE — nouvelle ligne &nbsp;·&nbsp; /dtc P0301 — recherche directe</div>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <div class="input-inner">
+          <div class="input-box">
+            <textarea id="chat-input" rows="1" placeholder="Posez votre question technique... (/dtc CODE, /vehicle ID)"></textarea>
+          </div>
+          <button class="send-btn" id="send-btn" onclick="sendMessage()">▶</button>
+        </div>
+        <div class="input-hint">ENTRÉE — envoyer &nbsp;·&nbsp; SHIFT+ENTRÉE — nouvelle ligne &nbsp;·&nbsp; Auteure : AFFAKI Aya · EST Tétouan</div>
+      </div>
+    </div>
+
+    <!-- TAB: DASHBOARD -->
+    <div class="tab-content" id="tab-dashboard">
+      <div class="dashboard" id="dashboard-content">
+        <!-- Filled by JS -->
+        <div class="dash-card">
+          <div class="dash-title">Score Prédictif Moyen</div>
+          <div class="gauge-wrap">
+            <svg class="gauge-svg" viewBox="0 0 160 90">
+              <path d="M 15 80 A 65 65 0 0 1 145 80" fill="none" stroke="#1a2230" stroke-width="12" stroke-linecap="round"/>
+              <path id="gauge-arc" d="M 15 80 A 65 65 0 0 1 145 80" fill="none" stroke="#f59e0b" stroke-width="12" stroke-linecap="round" stroke-dasharray="204" stroke-dashoffset="204" style="transition:stroke-dashoffset 1s ease"/>
+              <text x="80" y="72" text-anchor="middle" class="gauge-text-val" id="gauge-val">—</text>
+              <text x="80" y="86" text-anchor="middle" class="gauge-text-lbl">RISQUE MOYEN</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-title">État des freins</div>
+          <div class="bar-chart" id="freins-chart">
+            <div style="font-family:var(--mono);font-size:10px;color:var(--text-3)">Chargement...</div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-title">Paramètres moyens</div>
+          <div class="stat-list" id="params-list">
+            <div style="font-family:var(--mono);font-size:10px;color:var(--text-3)">Chargement...</div>
+          </div>
+        </div>
+
+        <div class="dash-card full">
+          <div class="dash-title">Top 10 Véhicules à Risque</div>
+          <div style="overflow-x:auto">
+            <table class="risk-table" id="risk-table">
+              <thead>
+                <tr>
+                  <th>Véhicule</th>
+                  <th>Score Max</th>
+                  <th>Niveau</th>
+                  <th>Interventions</th>
+                  <th>Anomalies</th>
+                  <th>Huile Moy.</th>
+                  <th>Dernière date</th>
+                </tr>
+              </thead>
+              <tbody id="risk-table-body">
+                <tr><td colspan="7" style="text-align:center;padding:20px;font-family:var(--mono);font-size:10px;color:var(--text-3)">Chargement...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="dash-card half">
+          <div class="dash-title">Types d'entretien</div>
+          <div class="bar-chart" id="entretien-chart">
+            <div style="font-family:var(--mono);font-size:10px;color:var(--text-3)">Chargement...</div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-title">Alertes par lampe</div>
+          <div class="stat-list" id="alertes-list">
+            <div style="font-family:var(--mono);font-size:10px;color:var(--text-3)">Chargement...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: SEARCH -->
+    <div class="tab-content" id="tab-search">
+      <div class="search-panel">
+        <div style="text-align:center">
+          <div style="font-family:var(--head);font-size:28px;font-weight:800;color:var(--text-0);margin-bottom:6px">Base DTC</div>
+          <div style="font-size:12px;color:var(--text-3)">3 071 codes OBD-II référencés · Recherche par code, système, pièce</div>
+        </div>
+        <div class="search-bar-wrap">
+          <div class="search-bar">
+            <input type="text" class="search-input" id="dtc-search-input"
+              placeholder="P0100, débit massique, injection, système..."
+              onkeydown="if(event.key==='Enter')searchDTC()">
+            <button class="search-btn" onclick="searchDTC()">RECHERCHER</button>
+          </div>
+        </div>
+        <div id="dtc-results">
+          <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <div class="empty-text">Entrez un code DTC ou un terme de recherche</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ─── TOAST ────────────────────────────────────────────────── -->
+<div class="toast" id="toast"></div>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

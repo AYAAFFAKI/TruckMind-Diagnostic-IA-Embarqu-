@@ -1,0 +1,10 @@
+Flask
+groq
+langgraph
+langchain
+langchain-community
+langchain-text-splitters
+chromadb
+sentence-transformers
+pypdf
+python-dotenv

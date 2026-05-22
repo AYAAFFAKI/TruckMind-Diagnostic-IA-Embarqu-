@@ -1,0 +1,3071 @@
+P0100,Circuit de débit massique d'air Dysfonctionnement
+P0101,Circuit de débit massique d'air Problème de plage/performance
+P0102,Circuit de débit massique d'air Signal d'entrée faible
+P0103,Circuit de débit massique d'air Signal d'entrée élevé
+P0104,Circuit de débit massique d'air Intermittent
+P0105,Circuit de pression absolue du collecteur/pression barométrique Dysfonctionnement
+P0106,Circuit de pression absolue du collecteur/pression barométrique Problème de plage/performance
+P0107,Circuit de pression absolue du collecteur/pression barométrique Signal d'entrée faible
+P0108,Circuit de pression absolue du collecteur/pression barométrique Signal d'entrée élevé
+P0109,Circuit de pression absolue du collecteur/pression barométrique Intermittent
+P0110,Circuit capteur température d'air admis Dysfonctionnement
+P0111,Circuit de température d'air d'admission Problème de plage/performance
+P0112,Circuit de température d'air d'admission Signal d'entrée faible
+P0113,Circuit de température d'air d'admission Signal d'entrée élevé
+P0114,Circuit de température d'air d'admission Intermittent
+P0115,Circuit de température du liquide de refroidissement Dysfonctionnement
+P0116,Circuit de température du liquide de refroidissement Problème de plage/performance
+P0117,Circuit de température du liquide de refroidissement Signal d'entrée faible
+P0118,Circuit de température du liquide de refroidissement Signal d'entrée élevé
+P0119,Circuit de température du liquide de refroidissement Intermittent
+P0120,Circuit capteur/interrupteur de position du papillon A Dysfonctionnement
+P0121,Circuit capteur/interrupteur de position du papillon A Problème de plage/performance
+P0122,Circuit capteur/interrupteur de position du papillon A Signal d'entrée faible
+P0123,Circuit capteur/interrupteur de position du papillon A Signal d'entrée élevé
+P0124,Circuit capteur/interrupteur de position du papillon A Intermittent
+P0125,Insuffisant Coolant Température pour le contrôle de carburant en boucle fermée;
+P0126,TCE Temps excessif pour le contrôle de carburant en boucle fermée
+P0128,Insuffisant Coolant Température pour un fonctionnement stable
+P0130,Thermostat de refroidissement Dysfonctionnement
+P0131,Circuit capteur O2 Dysfonctionnement (Banc 1 Capteur 1)
+P0132,Circuit capteur O2 Tension faible (Banc 1 Capteur 1)
+P0133,Circuit capteur O2 Tension élevée (Banc 1 Capteur 1)
+P0134,Circuit capteur O2 Réponse lente (Banc 1 Capteur 1)
+P0135,Circuit capteur O2 Aucune activité détectée (Banc 1 Capteur 1)
+P0136,Circuit de chauffage du capteur O2 Dysfonctionnement (Banc 1 Capteur 1)
+P0137,Circuit capteur O2 Dysfonctionnement (Banc 1 Capteur 2)
+P0138,Circuit capteur O2 Tension faible (Banc 1 Capteur 2)
+P0139,Circuit capteur O2 Tension élevée (Banc 1 Capteur 2)
+P0140,Circuit capteur O2 Réponse lente (Banc 1 Capteur 2)
+P0141,Circuit capteur O2 Aucune activité détectée (Banc 1 Capteur 2)
+P0142,Circuit de chauffage du capteur O2 Dysfonctionnement (Banc 1 Capteur 2)
+P0143,Circuit capteur O2 Dysfonctionnement (Banc 1 Capteur 3)
+P0144,Circuit capteur O2 Tension faible (Banc 1 Capteur 3)
+P0145,Circuit capteur O2 Tension élevée (Banc 1 Capteur 3)
+P0146,Circuit capteur O2 Réponse lente (Banc 1 Capteur 3)
+P0147,Circuit capteur O2 Aucune activité détectée (Banc 1 Capteur 3)
+P0150,Circuit de chauffage du capteur O2 Dysfonctionnement (Banc 1 Capteur 3)
+P0151,Circuit capteur O2 Dysfonctionnement (Banc 2 Capteur 1)
+P0152,Circuit capteur O2 Tension faible (Banc 2 Capteur 1)
+P0153,Circuit capteur O2 Tension élevée (Banc 2 Capteur 1)
+P0154,Circuit capteur O2 Réponse lente (Banc 2 Capteur 1)
+P0155,Circuit capteur O2 Aucune activité détectée (Banc 2 Capteur 1)
+P0156,Circuit de chauffage du capteur O2 Dysfonctionnement (Banc 2 Capteur 1)
+P0157,Circuit capteur O2 Dysfonctionnement (Banc 2 Capteur 2)
+P0158,Circuit capteur O2 Tension faible (Banc 2 Capteur 2)
+P0159,Circuit capteur O2 Tension élevée (Banc 2 Capteur 2)
+P0160,Circuit capteur O2 Réponse lente (Banc 2 Capteur 2)
+P0161,Circuit capteur O2 Aucune activité détectée (Banc 2 Capteur 2)
+P0162,Circuit de chauffage du capteur O2 Dysfonctionnement (Banc 2 Capteur 2)
+P0163,Circuit capteur O2 Dysfonctionnement (Banc 2 Capteur 3)
+P0164,Circuit capteur O2 Tension faible (Banc 2 Capteur 3)
+P0165,Circuit capteur O2 Tension élevée (Banc 2 Capteur 3)
+P0166,Circuit capteur O2 Réponse lente (Banc 2 Capteur 3)
+P0167,Circuit capteur O2 Aucune activité détectée (Banc 2 Capteur 3)
+P0170,Circuit de chauffage du capteur O2 Dysfonctionnement (Banc 2 Capteur 3)
+P0171,Correction de carburant Dysfonctionnement (Banc 1)
+P0172,Correction de carburant Système Pauvre (Banc 1)
+P0173,Correction de carburant too Riche (Banc 1)
+P0174,Correction de carburant Dysfonctionnement (Banc 2)
+P0175,Correction de carburant too Pauvre (Banc 2)
+P0176,Correction de carburant too Riche (Banc 2)
+P0177,Fuel Composition Capteur Circuit Dysfonctionnement
+P0178,Fuel Composition Capteur Circuit Plage/performance
+P0179,Fuel Composition Capteur Circuit bas Input
+P0180,Fuel Composition Capteur Circuit haut Input
+P0181,Fuel Température Capteur A Circuit Dysfonctionnement
+P0182,Fuel Température Capteur A Circuit Plage/performance
+P0183,Fuel Température Capteur A Circuit bas Input
+P0184,Fuel Température Capteur A Circuit haut Input
+P0185,Fuel Température Capteur A Circuit Intermittent
+P0186,Fuel Température Capteur B Circuit Dysfonctionnement
+P0187,Fuel Température Capteur B Circuit Plage/performance
+P0188,Fuel Température Capteur B Circuit bas Input
+P0189,Fuel Température Capteur B Circuit haut Input
+P0190,Fuel Température Capteur B Circuit Intermittent
+P0191,Pression du rail de carburant Capteur Circuit Dysfonctionnement
+P0192,Pression du rail de carburant Capteur Circuit Plage/performance
+P0193,Pression du rail de carburant Capteur Circuit bas Input
+P0194,Pression du rail de carburant Capteur Circuit haut Input
+P0195,Pression du rail de carburant Capteur Circuit Intermittent
+P0196,Température de l'huile moteur Capteur Dysfonctionnement
+P0197,Température de l'huile moteur Capteur Plage/performance
+P0198,Température de l'huile moteur Capteur Low
+P0199,Température de l'huile moteur Capteur High
+P0200,Température de l'huile moteur Capteur Intermittent
+P0201,Circuit d'injecteur Dysfonctionnement
+P0202,Circuit d'injecteur Dysfonctionnement - Cylindre 1
+P0203,Circuit d'injecteur Dysfonctionnement - Cylindre 2
+P0204,Circuit d'injecteur Dysfonctionnement - Cylindre 3
+P0205,Circuit d'injecteur Dysfonctionnement - Cylindre 4
+P0206,Circuit d'injecteur Dysfonctionnement - Cylindre 5
+P0207,Circuit d'injecteur Dysfonctionnement - Cylindre 6
+P0208,Circuit d'injecteur Dysfonctionnement - Cylindre 7
+P0209,Circuit d'injecteur Dysfonctionnement - Cylindre 8
+P0210,Circuit d'injecteur Dysfonctionnement - Cylindre 9
+P0211,Circuit d'injecteur Dysfonctionnement - Cylindre 10
+P0212,Circuit d'injecteur Dysfonctionnement - Cylindre 11
+P0213,Circuit d'injecteur Dysfonctionnement - Cylindre 12
+P0214,Démarrage à froid Injector 1 Dysfonctionnement
+P0215,Démarrage à froid Injector 2 Dysfonctionnement
+P0216,Engine Shutoff Solénoïde Dysfonctionnement
+P0217,Calage de l'injection Contrôle Circuit Dysfonctionnement
+P0218,Engine Overtemp Condition
+P0219,Transmission Over Température Condition
+P0220,Engine Overspeed Condition
+P0221,Throttle/Petal Position Capteur/Interrupteur B Circuit Dysfonctionnement
+P0222,Throttle/Petal Position Capteur/Interrupteur B Circuit Problème de plage/performance
+P0223,Throttle/Petal Position Capteur/Interrupteur B Circuit bas Input
+P0224,Throttle/Petal Position Capteur/Interrupteur B Circuit haut Input
+P0225,Throttle/Petal Position Capteur/Interrupteur B Circuit Intermittent
+P0226,Throttle/Petal Position Capteur/Interrupteur C Circuit Dysfonctionnement
+P0227,Throttle/Petal Position Capteur/Interrupteur C Circuit Problème de plage/performance
+P0228,Throttle/Petal Position Capteur/Interrupteur C Circuit bas Input
+P0229,Throttle/Petal Position Capteur/Interrupteur C Circuit haut Input
+P0230,Throttle/Petal Position Capteur/Interrupteur C Circuit Intermittent
+P0231,Fuel Pompe Primary Circuit Dysfonctionnement
+P0232,Fuel Pompe Secondary Circuit bas
+P0233,Fuel Pompe Secondary Circuit haut
+P0234,Fuel Pompe Secondary Circuit Intermittent
+P0235,Engine Overboost Condition
+P0236,Turbocompresseur Boost Capteur A Circuit Dysfonctionnement
+P0237,Turbocompresseur Boost Capteur A Circuit Plage/performance
+P0238,Turbocompresseur Boost Capteur A Circuit bas
+P0239,Turbocompresseur Boost Capteur A Circuit haut
+P0240,Turbocompresseur Boost Capteur B Dysfonctionnement
+P0241,Turbocompresseur Boost Capteur B Circuit Plage/performance
+P0242,Turbocompresseur Boost Capteur B Circuit bas
+P0243,Turbocompresseur Boost Capteur B Circuit haut
+P0244,Turbocompresseur Wastegate Solénoïde A Dysfonctionnement
+P0245,Turbocompresseur Wastegate Solénoïde A Plage/performance
+P0246,Turbocompresseur Wastegate Solénoïde A Low
+P0247,Turbocompresseur Wastegate Solénoïde A High
+P0248,Turbocompresseur Wastegate Solénoïde B Dysfonctionnement
+P0249,Turbocompresseur Wastegate Solénoïde B Plage/performance
+P0250,Turbocompresseur Wastegate Solénoïde B Low
+P0251,Turbocompresseur Wastegate Solénoïde B High
+P0252,"Injection Pompe Fuel Metering Contrôle ""A"" Dysfonctionnement (Cam/Rotor/Injector)"
+P0253,"Injection Pompe Fuel Metering Contrôle ""A"" Plage/performance (Cam/Rotor/Injector)"
+P0254,"Injection Pompe Fuel Metering Contrôle ""A"" Low (Cam/Rotor/Injector)"
+P0255,"Injection Pompe Fuel Metering Contrôle ""A"" High (Cam/Rotor/Injector)"
+P0256,"Injection Pompe Fuel Metering Contrôle ""A"" Intermittent (Cam/Rotor/Injector)"
+P0257,"Injection Pompe Fuel Metering Contrôle ""B"" Dysfonctionnement (Cam/Rotor/Injector)"
+P0258,"Injection Pompe Fuel Metering Contrôle ""B"" Plage/performance (Cam/Rotor/Injector)"
+P0259,"Injection Pompe Fuel Metering Contrôle ""B"" Low (Cam/Rotor/Injector)"
+P0260,"Injection Pompe Fuel Metering Contrôle ""B"" High (Cam/Rotor/Injector)"
+P0261,"Injection Pompe Fuel Metering Contrôle ""B"" Intermittent (Cam/Rotor/Injector)"
+P0262,Cylindre 1 Circuit d'injecteur Low
+P0263,Cylindre 1 Circuit d'injecteur High
+P0264,Cylindre 1 Contribution/Balance Défaut
+P0265,Cylindre 2 Circuit d'injecteur Low
+P0266,Cylindre 2 Circuit d'injecteur High
+P0267,Cylindre 2 Contribution/Balance Défaut
+P0268,Cylindre 3 Circuit d'injecteur Low
+P0269,Cylindre 3 Circuit d'injecteur High
+P0270,Cylindre 3 Contribution/Balance Défaut
+P0271,Cylindre 4 Circuit d'injecteur Low
+P0272,Cylindre 4 Circuit d'injecteur High
+P0273,Cylindre 4 Contribution/Balance Défaut
+P0274,Cylindre 5 Circuit d'injecteur Low
+P0275,Cylindre 5 Circuit d'injecteur High
+P0276,Cylindre 5 Contribution/Balance Défaut
+P0277,Cylindre 6 Circuit d'injecteur Low
+P0278,Cylindre 6 Circuit d'injecteur High
+P0279,Cylindre 6 Contribution/Balance Défaut
+P0280,Cylindre 7 Circuit d'injecteur Low
+P0281,Cylindre 7 Circuit d'injecteur High
+P0282,Cylindre 7 Contribution/Balance Défaut
+P0283,Cylindre 8 Circuit d'injecteur Low
+P0284,Cylindre 8 Circuit d'injecteur High
+P0285,Cylindre 8 Contribution/Balance Défaut
+P0286,Cylindre 9 Circuit d'injecteur Low
+P0287,Cylindre 9 Circuit d'injecteur High
+P0288,Cylindre 9 Contribution/Balance Défaut
+P0289,Cylindre 10 Circuit d'injecteur Low
+P0290,Cylindre 10 Circuit d'injecteur High
+P0291,Cylindre 10 Contribution/Balance Défaut
+P0292,Cylindre 11 Circuit d'injecteur Low
+P0293,Cylindre 11 Circuit d'injecteur High
+P0294,Cylindre 11 Contribution/Balance Défaut
+P0295,Cylindre 12 Circuit d'injecteur Low
+P0296,Cylindre 12 Circuit d'injecteur High
+P0300,Cylindre 12 Contribution/Range Défaut
+P0301,Ratés d'allumage détectés sur plusieurs cylindres
+P0302,Cylindre 1 Raté d'allumage détecté
+P0303,Cylindre 2 Raté d'allumage détecté
+P0304,Cylindre 3 Raté d'allumage détecté
+P0305,Cylindre 4 Raté d'allumage détecté
+P0306,Cylindre 5 Raté d'allumage détecté
+P0307,Cylindre 6 Raté d'allumage détecté
+P0308,Cylindre 7 Raté d'allumage détecté
+P0309,Cylindre 8 Raté d'allumage détecté
+P0310,Cylindre 9 Raté d'allumage détecté
+P0311,Cylindre 10 Raté d'allumage détecté
+P0312,Cylindre 11 Raté d'allumage détecté
+P0320,Cylindre 12 Raté d'allumage détecté
+P0321,Ignition/Distributor Engine Vitesse Input Circuit Dysfonctionnement
+P0322,Ignition/Distributor Engine Vitesse Input Circuit Plage/performance
+P0323,Ignition/Distributor Engine Vitesse Input Circuit No Signal
+P0325,Ignition/Distributor Engine Vitesse Input Circuit Intermittent
+P0326,Capteur de cliquetis 1 Circuit Dysfonctionnement (Banc 1 or Single Capteur)
+P0327,Capteur de cliquetis 1 Circuit Plage/performance (Banc 1 or Single Capteur)
+P0328,Capteur de cliquetis 1 Circuit bas Input (Banc 1 or Single Capteur)
+P0329,Capteur de cliquetis 1 Circuit haut Input (Banc 1 or Single Capteur)
+P0330,Capteur de cliquetis 1 Circuit Intermittent (Banc 1 or Single Capteur)
+P0331,Capteur de cliquetis 2 Circuit Dysfonctionnement (Banc 2)
+P0332,Capteur de cliquetis 2 Circuit Plage/performance (Banc 2)
+P0333,Capteur de cliquetis 2 Circuit bas Input (Banc 2)
+P0334,Capteur de cliquetis 2 Circuit haut Input (Banc 2)
+P0335,Capteur de cliquetis 2 Circuit Intermittent (Banc 2)
+P0336,Position du vilebrequin Capteur A Circuit Dysfonctionnement
+P0337,Position du vilebrequin Capteur A Circuit Plage/performance
+P0338,Position du vilebrequin Capteur A Circuit bas Input
+P0339,Position du vilebrequin Capteur A Circuit haut Input
+P0340,Position du vilebrequin Capteur A Circuit Intermittent
+P0341,Position de l'arbre à cames Capteur Circuit Dysfonctionnement
+P0342,Position de l'arbre à cames Capteur Circuit Plage/performance
+P0343,Position de l'arbre à cames Capteur Circuit bas Input
+P0344,Position de l'arbre à cames Capteur Circuit haut Input
+P0350,Position de l'arbre à cames Capteur Circuit Intermittent
+P0351,Bobine d'allumage Primary/Secondary Circuit Dysfonctionnement
+P0352,Bobine d'allumage A Primary/Secondary Circuit Dysfonctionnement
+P0353,Bobine d'allumage B Primary/Secondary Circuit Dysfonctionnement
+P0354,Bobine d'allumage C Primary/Secondary Circuit Dysfonctionnement
+P0355,Bobine d'allumage D Primary/Secondary Circuit Dysfonctionnement
+P0356,Bobine d'allumage E Primary/Secondary Circuit Dysfonctionnement
+P0357,Bobine d'allumage F Primary/Secondary Circuit Dysfonctionnement
+P0358,Bobine d'allumage G Primary/Secondary Circuit Dysfonctionnement
+P0359,Bobine d'allumage H Primary/Secondary Circuit Dysfonctionnement
+P0360,Bobine d'allumage I Primary/Secondary Circuit Dysfonctionnement
+P0361,Bobine d'allumage J Primary/Secondary Circuit Dysfonctionnement
+P0362,Bobine d'allumage K Primary/Secondary Circuit Dysfonctionnement
+P0370,Bobine d'allumage L Primary/Secondary Circuit Dysfonctionnement
+P0371,Calage Référence High Resolution Signal A Dysfonctionnement
+P0372,Calage Référence High Resolution Signal A Too Many Pulses
+P0373,Calage Référence High Resolution Signal A Too Few Pulses
+P0374,Calage Référence High Resolution Signal A Intermittent/Erratic Pulses
+P0375,Calage Référence High Resolution Signal A No Pulses
+P0376,Calage Référence High Resolution Signal B Dysfonctionnement
+P0377,Calage Référence High Resolution Signal B Too Many Pulses
+P0378,Calage Référence High Resolution Signal B Too Few Pulses
+P0379,Calage Référence High Resolution Signal B Intermittent/Erratic Pulses
+P0380,Calage Référence High Resolution Signal B No Pulses
+P0381,"Bougie de préchauffage/Heater Circuit ""A"" Dysfonctionnement"
+P0382,Bougie de préchauffage/Heater Indicator Circuit Dysfonctionnement
+P0385,Recirculation des gaz d'échappement Débit Dysfonctionnement
+P0386,Position du vilebrequin Capteur B Circuit Dysfonctionnement
+P0387,Position du vilebrequin Capteur B Circuit Plage/performance
+P0388,Position du vilebrequin Capteur B Circuit bas Input
+P0389,Position du vilebrequin Capteur B Circuit haut Input
+P0400,Position du vilebrequin Capteur B Circuit Intermittent
+P0401,Recirculation des gaz d'échappement Débit Dysfonctionnement
+P0402,Recirculation des gaz d'échappement Débit Insuffisant Détecté
+P0403,Recirculation des gaz d'échappement Débit Excessif Détecté
+P0404,Recirculation des gaz d'échappement Circuit Dysfonctionnement
+P0405,Recirculation des gaz d'échappement Circuit Plage/performance
+P0406,Recirculation des gaz d'échappement Capteur A Circuit bas
+P0407,Recirculation des gaz d'échappement Capteur A Circuit haut
+P0408,Recirculation des gaz d'échappement Capteur B Circuit bas
+P0410,Recirculation des gaz d'échappement Capteur B Circuit haut
+P0411,Système d'injection d'air secondaire Dysfonctionnement
+P0412,Système d'injection d'air secondaire Incorrect Débit Détecté
+P0413,Système d'injection d'air secondaire Interrupteuring Vanne A Circuit Dysfonctionnement
+P0414,Système d'injection d'air secondaire Interrupteuring Vanne A Circuit ouvert
+P0415,Système d'injection d'air secondaire Interrupteuring Vanne A Circuit Shorted
+P0416,Système d'injection d'air secondaire Interrupteuring Vanne B Circuit Dysfonctionnement
+P0417,Système d'injection d'air secondaire Interrupteuring Vanne B Circuit ouvert
+P0418,Système d'injection d'air secondaire Interrupteuring Vanne B Circuit Shorted
+P0419,"Système d'injection d'air secondaire Relais ""A"" Circuit Dysfonctionnement"
+P0420,"Système d'injection d'air secondaire Relais ""B"" Circuit Dysfonctionnement"
+P0421,Efficacité du système catalytique En dessous du seuil (Banc 1)
+P0422,Warm Up Catalyst Efficacité En dessous du seuil (Banc 1)
+P0423,Main Catalyst Efficacité En dessous du seuil (Banc 1)
+P0424,Catalyseur chauffé Efficacité En dessous du seuil (Banc 1)
+P0426,Catalyseur chauffé Température En dessous du seuil (Banc 1)
+P0427,Catalyst Température Capteur Plage/performance (Banc 1)
+P0428,Catalyst Température Capteur Signal d'entrée faible (Banc 1)
+P0430,Catalyst Température Capteur Signal d'entrée élevé (Banc 1)
+P0431,Efficacité du système catalytique En dessous du seuil (Banc 2)
+P0432,Warm Up Catalyst Efficacité En dessous du seuil (Banc 2)
+P0433,Main Catalyst Efficacité En dessous du seuil (Banc 2)
+P0434,Catalyseur chauffé Efficacité En dessous du seuil (Banc 2)
+P0436,Catalyseur chauffé Température En dessous du seuil (Banc 2)
+P0437,Catalyst Température Capteur Plage/performance (Banc 2)
+P0438,Catalyst Température Capteur Signal d'entrée faible (Banc 2)
+P0440,Catalyst Température Capteur Signal d'entrée élevé (Banc 2)
+P0441,Système de contrôle des émissions par évaporation Dysfonctionnement
+P0442,Système de contrôle des émissions par évaporation Incorrect Purge Débit
+P0443,Système de contrôle des émissions par évaporation Fuite Détecté (small leak)
+P0444,Système de contrôle des émissions par évaporation Purge Contrôle Vanne Circuit Dysfonctionnement
+P0445,Système de contrôle des émissions par évaporation Purge Contrôle Vanne Circuit ouvert
+P0446,Système de contrôle des émissions par évaporation Purge Contrôle Vanne Circuit Shorted
+P0447,Système de contrôle des émissions par évaporation Évent Contrôle Circuit Dysfonctionnement
+P0448,Système de contrôle des émissions par évaporation Évent Contrôle Circuit ouvert
+P0449,Système de contrôle des émissions par évaporation Évent Contrôle Circuit Shorted
+P0450,Système de contrôle des émissions par évaporation Évent Vanne/Solénoïde Circuit Dysfonctionnement
+P0451,Système de contrôle des émissions par évaporation Pression Capteur Dysfonctionnement
+P0452,Système de contrôle des émissions par évaporation Pression Capteur Plage/performance
+P0453,Système de contrôle des émissions par évaporation Pression Capteur Signal d'entrée faible
+P0454,Système de contrôle des émissions par évaporation Pression Capteur Signal d'entrée élevé
+P0455,Système de contrôle des émissions par évaporation Pression Capteur Intermittent
+P0460,Système de contrôle des émissions par évaporation Fuite Détecté (gross leak)
+P0461,Fuel Niveau Capteur Circuit Dysfonctionnement
+P0462,Fuel Niveau Capteur Circuit Plage/performance
+P0463,Fuel Niveau Capteur Circuit bas Input
+P0464,Fuel Niveau Capteur Circuit haut Input
+P0465,Fuel Niveau Capteur Circuit Intermittent
+P0466,Purge Débit Capteur Circuit Dysfonctionnement
+P0467,Purge Débit Capteur Circuit Plage/performance
+P0468,Purge Débit Capteur Circuit bas Input
+P0469,Purge Débit Capteur Circuit haut Input
+P0470,Purge Débit Capteur Circuit Intermittent
+P0471,Exhaust Pression Capteur Dysfonctionnement
+P0472,Exhaust Pression Capteur Plage/performance
+P0473,Exhaust Pression Capteur Low
+P0474,Exhaust Pression Capteur High
+P0475,Exhaust Pression Capteur Intermittent
+P0476,Exhaust Pression Contrôle Vanne Dysfonctionnement
+P0477,Exhaust Pression Contrôle Vanne Plage/performance
+P0478,Exhaust Pression Contrôle Vanne Low
+P0479,Exhaust Pression Contrôle Vanne High
+P0480,Exhaust Pression Contrôle Vanne Intermittent
+P0481,Cooling Fan 1 Contrôle Circuit Dysfonctionnement
+P0482,Cooling Fan 2 Contrôle Circuit Dysfonctionnement
+P0483,Cooling Fan 3 Contrôle Circuit Dysfonctionnement
+P0484,Cooling Fan Rationality Check Dysfonctionnement
+P0485,Cooling Fan Circuit Over Courant
+P0500,Cooling Fan Puissance/Alimentation/Masse Circuit Dysfonctionnement
+P0501,Capteur de vitesse du véhicule Dysfonctionnement
+P0502,Capteur de vitesse du véhicule Plage/performance
+P0503,Capteur de vitesse du véhicule Signal d'entrée faible
+P0505,Capteur de vitesse du véhicule Intermittent/Erratic/High
+P0506,Système de contrôle du ralenti Dysfonctionnement
+P0507,Système de contrôle du ralenti RPM Lower Than Expected
+P0510,Système de contrôle du ralenti RPM Higher Than Expected
+P0520,Closed Throttle Position Interrupteur Dysfonctionnement
+P0521,Engine Oil Pression Capteur/Interrupteur Circuit Dysfonctionnement
+P0522,Engine Oil Pression Capteur/Interrupteur Circuit Plage/performance
+P0523,Engine Oil Pression Capteur/Interrupteur Circuit Tension faible
+P0530,Engine Oil Pression Capteur/Interrupteur Circuit Tension élevée
+P0531,Réfrigérant de climatisation Pression Capteur Circuit Dysfonctionnement
+P0532,Réfrigérant de climatisation Pression Capteur Circuit Plage/performance
+P0533,Réfrigérant de climatisation Pression Capteur Circuit bas Input
+P0534,Réfrigérant de climatisation Pression Capteur Circuit haut Input
+P0550,Air Conditioner Refrigerant Charge Perte
+P0551,Puissance/Alimentation Steering Pression Capteur Circuit Dysfonctionnement
+P0552,Puissance/Alimentation Steering Pression Capteur Circuit Plage/performance
+P0553,Puissance/Alimentation Steering Pression Capteur Circuit bas Input
+P0554,Puissance/Alimentation Steering Pression Capteur Circuit haut Input
+P0560,Puissance/Alimentation Steering Pression Capteur Circuit Intermittent
+P0561,Système Tension Dysfonctionnement
+P0562,Système Tension Unstable
+P0563,Climatisation pressure sensor low voltage(Chrysler)
+P0565,Système Tension High
+P0566,Régulateur de vitesse On Signal Dysfonctionnement
+P0567,Régulateur de vitesse Off Signal Dysfonctionnement
+P0568,Régulateur de vitesse Resume Signal Dysfonctionnement
+P0569,Régulateur de vitesse Set Signal Dysfonctionnement
+P0570,Régulateur de vitesse Coast Signal Dysfonctionnement
+P0571,Régulateur de vitesse Accel Signal Dysfonctionnement
+P0572,Régulateur de vitesse/Interrupteur de frein A Circuit Dysfonctionnement
+P0573,Régulateur de vitesse/Interrupteur de frein A Circuit bas
+P0574,Régulateur de vitesse/Interrupteur de frein A Circuit haut
+P0575,Régulateur de vitesse Related Dysfonctionnement
+P0576,Régulateur de vitesse Related Dysfonctionnement
+P0578,Régulateur de vitesse Related Dysfonctionnement
+P0579,Régulateur de vitesse Related Dysfonctionnement
+P0580,Régulateur de vitesse Related Dysfonctionnement
+P0600,Régulateur de vitesse Related Dysfonctionnement
+P0601,Serial Communication Link Dysfonctionnement
+P0602,Module de contrôle Read Only Memory(ROM)
+P0603,Module de contrôle Programming Erreur
+P0604,Internal Module de contrôle Keep Alive Memory (KAM) Erreur
+P0605,Internal Module de contrôle Random Access Memory (RAM) Erreur
+P0606,Internal Module de contrôle Read Only Memory (ROM) Erreur
+P0608,PCM Processor Défaut
+P0609,"Module de contrôle CVV Output ""A"" Dysfonctionnement"
+P0620,"Module de contrôle CVV Output ""B"" Dysfonctionnement"
+P0621,Generator Contrôle Circuit Dysfonctionnement
+P0622,"Generator Lamp ""L"" Contrôle Circuit Dysfonctionnement"
+P0650,"Generator Field ""F"" Contrôle Circuit Dysfonctionnement"
+P0654,Dysfonctionnement Indicator Lamp (MIL) Contrôle Circuit Dysfonctionnement
+P0655,Engine RPM Output Circuit Dysfonctionnement
+P0656,Engine Hot Lamp Output Contrôle Circuit Malfucntion
+P0700,Fuel Niveau Output Circuit Dysfonctionnement
+P0701,Transmission Contrôle Système Dysfonctionnement
+P0702,Transmission Contrôle Système Plage/performance
+P0703,Transmission Contrôle Système Electrical
+P0704,Convertisseur de couple/Interrupteur de frein B Circuit Dysfonctionnement
+P0705,Interrupteur d'embrayage Input Circuit Dysfonctionnement
+P0706,Transmission Range Capteur Circuit malfunction (PRNDL Input)
+P0707,Transmission Range Capteur Circuit Plage/performance
+P0708,Transmission Range Capteur Circuit bas Input
+P0709,Transmission Range Capteur Circuit haut Input
+P0710,Transmission Range Capteur Circuit Intermittent
+P0711,Transmission Fluid Température Capteur Circuit Dysfonctionnement
+P0712,Transmission Fluid Température Capteur Circuit Plage/performance
+P0713,Transmission Fluid Température Capteur Circuit bas Input
+P0714,Transmission Fluid Température Capteur Circuit haut Input
+P0715,Transmission Fluid Température Capteur Circuit Intermittent
+P0716,Capteur de vitesse d'entrée/turbine Circuit Dysfonctionnement
+P0717,Capteur de vitesse d'entrée/turbine Circuit Plage/performance
+P0718,Capteur de vitesse d'entrée/turbine Circuit No Signal
+P0719,Capteur de vitesse d'entrée/turbine Circuit Intermittent
+P0720,Convertisseur de couple/Interrupteur de frein B Circuit bas
+P0721,Capteur de vitesse de sortie Circuit Dysfonctionnement
+P0722,Capteur de vitesse de sortie Plage/performance
+P0723,Capteur de vitesse de sortie No Signal
+P0724,Capteur de vitesse de sortie Intermittent
+P0725,Convertisseur de couple/Interrupteur de frein B Circuit haut
+P0726,Engine Vitesse input Circuit Dysfonctionnement
+P0727,Engine Vitesse Input Circuit Plage/performance
+P0728,Engine Vitesse Input Circuit No Signal
+P0730,Engine Vitesse Input Circuit Intermittent
+P0731,Incorrect Rapport de boîte Ratio
+P0732,Rapport de boîte 1 Incorrect ratio
+P0733,Rapport de boîte 2 Incorrect ratio
+P0734,Rapport de boîte 3 Incorrect ratio
+P0735,Rapport de boîte 4 Incorrect ratio
+P0736,Rapport de boîte 5 Incorrect ratio
+P0740,Reverse incorrect gear ratio
+P0741,Convertisseur de couple Clutch Circuit Malfuction
+P0742,Convertisseur de couple Clutch Circuit Performance or Bloqué Off
+P0743,Convertisseur de couple Clutch Circuit Bloqué On
+P0744,Convertisseur de couple Clutch Circuit Electrical
+P0745,Convertisseur de couple Clutch Circuit Intermittent
+P0746,Solénoïde de contrôle de pression Dysfonctionnement
+P0747,Solénoïde de contrôle de pression Performance or Bloqué Off
+P0748,Solénoïde de contrôle de pression Bloqué On
+P0749,Solénoïde de contrôle de pression Electrical
+P0750,Solénoïde de contrôle de pression Intermittent
+P0751,Solénoïde de changement de rapport A Dysfonctionnement
+P0752,Solénoïde de changement de rapport A Performance or Bloqué Off/
+P0753,1-2 Solénoïde de changement de rapport Vanne Performance
+P0754,Solénoïde de changement de rapport A Bloqué On
+P0755,Solénoïde de changement de rapport A Electrical/
+P0756,1-2 Solénoïde de changement de rapport Circuit Electrical
+P0757,Solénoïde de changement de rapport A Intermittent
+P0758,Solénoïde de changement de rapport B Dysfonctionnement
+P0759,Solénoïde de changement de rapport B Performance or Bloqué Off/
+P0760,2-3 Solénoïde de changement de rapport Vanne Performance
+P0761,Solénoïde de changement de rapport B Bloqué On
+P0762,Solénoïde de changement de rapport B Electrical/ 2-3 Solénoïde de changement de rapport Circuit Electrical
+P0763,Solénoïde de changement de rapport B Intermittent
+P0764,Solénoïde de changement de rapport C Dysfonctionnement
+P0765,Solénoïde de changement de rapport C Performance or Bloqué Off
+P0766,Solénoïde de changement de rapport C Bloqué On
+P0767,Solénoïde de changement de rapport C Electrical
+P0768,Solénoïde de changement de rapport C Intermittent
+P0769,Solénoïde de changement de rapport D Dysfonctionnement
+P0770,Solénoïde de changement de rapport D Performance or Bloqué Off
+P0771,Solénoïde de changement de rapport D Bloqué On
+P0772,Solénoïde de changement de rapport D Electrical
+P0773,Solénoïde de changement de rapport D Intermittent
+P0774,Solénoïde de changement de rapport E Dysfonctionnement
+P0775,Solénoïde de changement de rapport E Performance or Bloqué Off
+P0776,Solénoïde de changement de rapport E Bloqué On
+P0777,Solénoïde de changement de rapport E Electrical
+P0778,Solénoïde de changement de rapport E Intermittent
+P0779,Solénoïde de contrôle de pression B Dysfonctionnement
+P0780,Solénoïde de contrôle de pression B Performance
+P0781,Solénoïde de contrôle de pression B Bloqué On
+P0782,Solénoïde de contrôle de pression B Electrical
+P0783,Solénoïde de contrôle de pression B Intermittent
+P0784,Shift Dysfonctionnement
+P0785,1-2 Shift Dysfonctionnement
+P0786,2-3 Shift Dysfonctionnement
+P0787,3-4 Shift Dysfonctionnement
+P0788,4-5 Shift Dysfonctionnement
+P0789,Shift/Calage Solénoïde Dysfonctionnement/ 3-2 Solénoïde de changement de rapport Circuit Electrical
+P0790,Shift/Calage Solénoïde Plage/performance
+P0801,Shift/Calage Solénoïde Low
+P0803,Shift/Calage Solénoïde High
+P0804,Shift/Calage Solénoïde Intermittent
+P1100,Normal/Performance Interrupteur Circuit Dysfonctionnement
+P1101,Reverse Inhibit Contrôle Circuit Dysfonctionnement
+P1102,1-4 Upshift (Skip Shift) Solénoïde Contrôle Circuit Dysfonctionnement
+P1103,1-4 Upshift (Skip Shift) Lamp Contrôle Circuit Dysfonctionnement
+P1104,DMH Capteur Intermittent/ Check of all OBDII Systèmes Not Complete
+P1105,DMH Capteur Out Of Self Test Range./
+P1106,KOER Not Able To Complete  KOER Aborted
+P1107,DMH Capteur In Range But Lower Than Expected
+P1108,DMH Capteur In Range But Higher Than Expected
+P1109,DMH Masse Dysfonctionnement
+P1110,Dual Alternator Upper Défaut
+P1111,Dual Alternator Lower Défaut/ Manifold Absolute Pression (Pression absolue collecteur) Capteur Circuit Intermittent Tension élevée
+P1112,Dual Alternator Lower Circuit Dysfonctionnement/ Manifold Absolute Pression (Pression absolue collecteur) Capteur Circuit Intermittent Tension faible
+P1113,Dual Alternator Batterie Lamp Circuit Dysfonctionnement
+P1114,Capteur température admission - B Capteur Intermittent
+P1115,Capteur température admission Capteur (D/C) Circuit ouvert/Short
+P1116,Intake Air Température (Capteur température admission) Capteur Circuit Intermittent Tension élevée
+P1117,Intake Air Température (Capteur température admission) Capteur Circuit Intermittent Tension faible
+P1118,Capteur température admission Capteur Circuit ouvert/Short
+P1119,Engine Coolant Température (TCE) Capteur Circuit Intermittent Tension faible/Capteur température admission - B Circuit bas Input
+P1120,Engine Coolant Température (TCE) Capteur Circuit Intermittent Tension élevée/Capteur température admission - B Circuit haut Input
+P1121,Engine Coolant sensor out of range/TCE Capteur Out Of Self Test Range
+P1122,Engine Coolant Capteur intermittent/TCE Capteur Intermittent
+P1123,Manifold Absolute Température Circuit bas Input
+P1124,Manifold Absolute Température Circuit haut Input
+P1125,Throttle position sensor out of range
+P1126,Throttle Position (TP) Capteur Circuit Intermittent Tension élevée
+P1127,Throttle Position (TP) Capteur Circuit Intermittent Tension faible
+P1128,Throttle Position Capteur In Range But Higher Than Expected
+P1129,Throttle Position Capteur Out Of Self Test Range
+P1130,Throttle position sensor intermittent
+P1131,Throttle Position (Narrow Range) Capteur Circuit Dysfonctionnement
+P1132,Exhaust Not Warm
+P1133,Upstream Heated O2 Capteurs Swapped
+P1134,Downstream Heated O2 Capteurs Swapped
+P1135,Lack Of HO2S Interrupteur - Adaptive Fuel At Limit
+P1136,Lack Of HO2S Interrupteur - Capteur Indicates Pauvre
+P1137,Lack Of HO2S Interrupteur - Capteur Indicates Riche
+P1138,HO2S Insuffisant Interrupteuring Capteur 1
+P1139,HO2S Transition Time Ratio Capteur 1
+P1140,Pedal Position Capteur A Circuit Intermittent
+P1141,Fan Contrôle Circuit Dysfonctionnement
+P1142,Lack Of HO2S Interrupteur - Capteur Indicates Pauvre
+P1143,Lack Of HO2S12 Interrupteur - Capteur Indicates Riche
+P1144,Water In Fuel Indicator Circuit Dysfonctionnement
+P1150,Water In Fuel Condition
+P1151,Fuel Restriction Indicator Circuit Dysfonctionnement
+P1152,Fuel Restriction Condition
+P1153,Air Assist Contrôle Vanne Plage/performance
+P1154,Air Assist Contrôle Vanne Circuit Dysfonctionnement
+P1155,Lack Of HO2S21 Interrupteur - Adaptive Fuel At Limit
+P1156,Lack Of HO2S21 Interrupteur - Capteur Indicates Pauvre
+P1157,Lack Of HO2S21 Interrupteur - Capteur Indicates Riche
+P1158,Banc 2 Contrôle du carburant Shifted Pauvre
+P1159,Banc 2 Contrôle du carburant Shifted Riche
+P1167,Alternative Contrôle du carburantler
+P1168,Fuel Select Interrupteur Dysfonctionnement
+P1169,Lack Of HO2S22 Interrupteur - Capteur Indicates Pauvre
+P1170,Lack Of HO2S22 Interrupteur - Capteur Indicates Riche
+P1171,Fuel Stepper Moteur Dysfonctionnement
+P1172,Invalid Test
+P1173,Fuel Rail Capteur In-Range Low Défaillance
+P1174,Fuel Rail Capteur In-Range High Défaillance
+P1175,ESO - Engine Shut Off Solénoïde Défaut
+P1176,Rotor Capteur Défaut
+P1177,Rotor Contrôle Défaut
+P1178,Rotor Calibration Défaut
+P1180,Cam Capteur Défaut
+P1181,Cam Contrôle Défaut
+P1182,Cam Calibration Défaut
+P1183,Synchronization Défaut
+P1184,( open )
+P1185,Fuel Delivery Système Dysfonctionnement - Low
+P1186,Fuel Delivery Système Dysfonctionnement - High
+P1187,Fuel Shut Off Solénoïde Dysfonctionnement
+P1188,Température de l'huile moteur Circuit Dysfonctionnement
+P1189,Température de l'huile moteur Out Of Self Test Range
+P1190,FTS High - Fuel Pompe Température Capteur High
+P1191,FTS Low - Fuel Pompe Température Capteur Low
+P1192,Variant Selection
+P1193,Calibration Memory Défaut
+P1194,Pompe Vitesse Signal Défaut
+P1195,Calibration Resistor Out Of Range
+P1196,Key Line Tension
+P1197,Tension External
+P1198,EGR Drive Overcurrent
+P1199,ECU A/D Converter
+P1200,SCP HBCC Failed To Initialize
+P1201,Key Off Tension High
+P1202,Key Off Tension Low
+P1203,Pompe Rotor Contrôle Underfueling
+P1204,Fuel Niveau Input Circuit bas
+P1205,Injector Contrôle Circuit
+P1206,Circuit d'injecteur Circuit ouvert / Shorted - Cylindre #1
+P1209,Circuit d'injecteur Circuit ouvert / Shorted - Cylindre #2
+P1210,Circuit d'injecteur Circuit ouvert / Shorted - Cylindre #3
+P1211,Circuit d'injecteur Circuit ouvert / Shorted - Cylindre #4
+P1212,Circuit d'injecteur Circuit ouvert / Shorted - Cylindre #5
+P1213,Circuit d'injecteur Circuit ouvert / Shorted - Cylindre #6
+P1214,Injector Contrôle Pression Système Défaut
+P1215,Injector Contrôle Pression Above Expected Niveau
+P1216,Injector Contrôle Pression Capteur Above / Below Desired
+P1217,Injector Contrôle Pression Non détecté During Crank
+P1218,Start Circuit d'injecteur Dysfonctionnement
+P1219,Pedal Position Capteur B Circuit Intermittent
+P1220,Pedal Position Capteur C Circuit bas Input
+P1221,Pedal Position Capteur C Circuit haut Input
+P1222,Pedal Position Capteur C Circuit Intermittent
+P1223,CID High
+P1224,CID Low
+P1225,Series Throttle Contrôle Système Dysfonctionnement
+P1226,Traction Contrôle Système Dysfonctionnement
+P1227,Traction Contrôle Output Circuit Dysfonctionnement
+P1228,Pedal Demand Capteur B Circuit haut Input
+P1229,Throttle Position Capteur B Out Of Self Test Range
+P1230,Needle Lift Capteur Dysfonctionnement
+P1231,Contrôle Sleeve Capteur Dysfonctionnement
+P1232,Wastegate Failed Closed (Over Pression)
+P1233,Wastegate Failed Circuit ouvert (Under Pression)
+P1234,Intercooler Pompe Driver Défaut
+P1235,Fuel Pompe Low Vitesse Dysfonctionnement
+P1236,Fuel Pompe Secondary Circuit bas
+P1237,Fuel Pompe Vitesse Primary Circuit Dysfonctionnement
+P1238,Fuel Pompe Driver Module Off Line
+P1239,Fuel Pompe Driver Module Off Line
+P1240,Fuel Pompe Contrôle Out Of Range
+P1241,Fuel Pompe Contrôle Out Of Range
+P1242,Fuel Pompe Secondary Circuit Dysfonctionnement
+P1243,Fuel Pompe Secondary Circuit Dysfonctionnement
+P1244,Vitesse Fuel Pompe Positive Feed Défaut
+P1245,Capteur Puissance/Alimentation Alimentation Dysfonctionnement
+P1246,Capteur Puissance/Alimentation Alimentation Signal d'entrée faible
+P1247,Capteur Puissance/Alimentation Alimentation Signal d'entrée élevé
+P1248,Second Fuel Pompe Défauty or Masse Défaut
+P1249,Alternator Charge Input Failed High
+P1250,Alternator Charge Input Failed Low
+P1251,Alternator Charge Input Failed
+P1252,Turbo Pression de suralimentation Low
+P1253,Turbo Pression de suralimentation Non détecté
+P1254,Wastegate Contrôle Vanne Performance
+P1255,PRC Solénoïde Circuit Dysfonctionnement
+P1256,Air Mélange Solénoïde Circuit Dysfonctionnement
+P1257,Pedal Correlation PDS1 and LPDS High
+P1258,Pedal Correlation PDS1 and LPDS Low
+P1259,Pedal Correlation PDS2 and LPDS High
+P1260,Pedal Correlation PDS2 and LPDS Low
+P1261,Pedal Correlation PDS1 and HPDS
+P1262,Pedal Correlation PDS2 and HPDS
+P1263,Pedal Correlation PDS1 and PDS2
+P1264,Immobilizer to PCM Signal Erreur
+P1265,THEFT Détecté
+P1266,Cylindre #1 High To Low Side Short
+P1267,Cylindre #2 High To Low Side Short
+P1268,Cylindre #3 High To Low Side Short
+P1269,Cylindre #4 High To Low Side Short
+P1270,Cylindre #5 High To Low Side Short
+P1271,Cylindre #6 High To Low Side Short
+P1272,Cylindre #7 High To Low Side Short
+P1273,Cylindre #8 High To Low Side Short
+P1274,Immobilizer Code Not Programmed
+P1275,Engine RPM Or Vitesse Limiter Reached
+P1276,Cylindre #1 High To Low Side Circuit ouvert
+P1277,Cylindre #2 High To Low Side Circuit ouvert
+P1278,Cylindre #3 High To Low Side Circuit ouvert
+P1280,Cylindre #4 High To Low Side Circuit ouvert
+P1281,Cylindre #5 High To Low Side Circuit ouvert
+P1282,Cylindre #6 High To Low Side Circuit ouvert
+P1283,Cylindre #7 High To Low Side Circuit ouvert
+P1284,Cylindre #8 High To Low Side Circuit ouvert
+P1285,Injection Contrôle Pression Out Of Range Low
+P1286,Injection Contrôle Pression Out Of Range High
+P1287,Excessif Injection Contrôle Pression
+P1288,IPR Circuit Défaillance
+P1289,Aborted KOER - ICP Défaillance
+P1290,Cylindre head over temp sensed
+P1291,Fuel Pulse In Range But Lower Than Expected
+P1292,Fuel Pulse In Range But Higher Than Expected
+P1293,Cylindre Head Temp Capteur Out Of Self Test Range
+P1294,Cylindre Head Temp Capteur Signal d'entrée élevé
+P1295,Cylindre Head Temp Capteur Signal d'entrée faible
+P1296,Injector High Side Short To GND Or VBATT - Banc 1
+P1297,Injector High Side Short To GND Or VBATT - Banc 2
+P1298,Injector High Side Circuit ouvert - Banc 1
+P1299,Injector High Side Circuit ouvert - Banc 2/Target idle not reached
+P1300,Multi-faults - Banc 1 - With Low Side Shorts
+P1301,Multi-faults - Banc 2 - With Low Side Shorts
+P1302,Injector High Sides Shorted Together
+P1303,IDM Défaillance
+P1304,Cylindre Head Overtemperature Protection Active
+P1305,Boost Calibration Défaut
+P1306,Boost Calibration High
+P1307,Boost Calibration Low
+P1308,EGR Calibration Défaut
+P1309,EGR Calibration High
+P1313,EGR Calibration Low
+P1314,Kickdown Relais Pull - In Circuit Défaut
+P1315,Kickdown Relais Hold Circuit Défaut
+P1316,Climatisation Clutch Circuit Défaut
+P1317,Misfire Monitor AICE Chip Défaut
+P1336,Misfire Rate Catalyst Damage Défaut - Banc 1
+P1340,Misfire Rate Catalyst Damage Défaut - Banc 2
+P1341,Persistent Misfire
+P1345,Circuit d'injecteur / IDM Codes Détecté
+P1346,Circuit d'injecteur / IDM Codes Not Updated
+P1347,Crank / Cam Capteur Range / Performance
+P1348,Position de l'arbre à cames Capteur B Circuit Dysfonctionnement
+P1349,Position de l'arbre à cames Capteur B Range / Performance
+P1350,SGC (Cam Position) Capteur Circuit Dysfonctionnement/ Position du vilebrequin - Position de l'arbre à cames Correlation
+P1351,Fuel Niveau Capteur B Circuit Dysfonctionnement
+P1352,Fuel Niveau Capteur B Range / Performance
+P1353,Fuel Niveau Capteur B Circuit bas
+P1354,Fuel Niveau Capteur B Circuit haut
+P1355,Fuel Niveau Capteur B Intermittent/Bypass Line Monitor
+P1360,IDM Input Circuit Dysfonctionnement/ Bobine d'allumage Contrôle Circuit Tension élevée
+P1361,Bobine d'allumage A Primary Circuit Dysfonctionnement
+P1362,Bobine d'allumage B Primary Circuit Dysfonctionnement
+P1363,Bobine d'allumage C Primary Circuit Dysfonctionnement
+P1364,Bobine d'allumage D Primary Circuit Dysfonctionnement
+P1365,Bobine d'allumage A Secondary Circuit Dysfonctionnement
+P1366,Ignition Contrôle (IC) Circuit Tension faible
+P1367,Bobine d'allumage C Secondary Circuit Dysfonctionnement
+P1368,Bobine d'allumage D Secondary Circuit Dysfonctionnement
+P1369,Bobine d'allumage Primary Circuit Défaillance
+P1370,Bobine d'allumage Secondary Circuit Défaillance
+P1371,Ignition Spare
+P1372,Ignition Spare
+P1373,Ignition Spare
+P1374,Engine Température Light Monitor Défaillance
+P1375,Insuffisant RMP Increase During Spark Test
+P1376,Bobine d'allumage - Cylindre 1 - Early Activation Défaut
+P1380,Bobine d'allumage - Cylindre 2 - Early Activation Défaut
+P1381,Bobine d'allumage - Cylindre 3 - Early Activation Défaut
+P1382,Position du vilebrequin (Capteur position vilebrequin)/Bobine d'allumage - Cylindre 4 - Early Activation Défaut
+P1383,Bobine d'allumage - Cylindre 5 - Early Activation Défaut
+P1384,Bobine d'allumage - Cylindre 6 - Early Activation Défaut
+P1385,Raté d'allumage détecté - Irrégulier Road Données Not Available
+P1386,Variable Cam Calage Overadvanced (Bank #1)/ Raté d'allumage détecté - No Communication with BCM
+P1387,Variable Cam Calage Solénoïde #1 Circuit Dysfonctionnement
+P1388,Variable Cam Calage Overretarded (Bank #1)
+P1389,VVT Solénoïde A Dysfonctionnement
+P1390,Variable Cam Calage Solénoïde B Dysfonctionnement
+P1391,Variable Cam Calage Overadvanced (Bank #2)
+P1392,Variable Cam Calage Solénoïde #2 Circuit Dysfonctionnement
+P1393,Variable Cam Calage Overretarded (Bank #2)
+P1394,Bougie de préchauffage Circuit haut Side Signal d'entrée faible
+P1395,Octane Adjust Pin Out Of Self Test Range
+P1396,Bougie de préchauffage Circuit bas Input (Bank #1)
+P1397,Bougie de préchauffage Circuit haut Input (Bank #1)
+P1398,Bougie de préchauffage Circuit bas Input (Bank #2)
+P1399,Bougie de préchauffage Circuit haut Input (Bank #2)
+P1400,Bougie de préchauffage Monitor Défaut (Bank #1)
+P1401,Bougie de préchauffage Monitor Défaut (Bank #2)
+P1402,Système Tension Out Of Self Test Range
+P1403,VVT Solénoïde B Circuit haut Input
+P1404,Bougie de préchauffage Circuit haut Side
+P1405,DPFE Circuit bas Input
+P1406,DPFE Circuit haut Input
+P1407,EGR Metering Orifice Restricted
+P1408,DPFE Capteur Hoses Reversed
+P1409,Capteur température admission - B Circuit Dysfonctionnement/ Recirculation des gaz d'échappement Closed Position Performance
+P1411,DPFE Capteur Upstream Hose Off Or Plugged
+P1413,Recirculation des gaz d'échappement (EGR) Position Capteur Performance
+P1414,EGR No Débit Détecté
+P1415,EGR Débit Out Of Self Test Range
+P1416,EVR Contrôle Circuit Dysfonctionnement
+P1417,SAI Système Incorrect Downstream Débit Détecté
+P1418,SAI Système Monitor Circuit bas Input
+P1419,SAI Système Monitor Circuit haut Input
+P1420,Air Pompe Circuit Dysfonctionnement/ (AIR) Système Banc 1
+P1421,Port Air Circuit Dysfonctionnement/ (AIR) Système Banc 2
+P1422,Port Air Relief Circuit Dysfonctionnement
+P1423,Split Air #1 Circuit Dysfonctionnement
+P1424,Split Air #2 Circuit Dysfonctionnement
+P1425,Catalyst Température Capteur Défaillance
+P1426,Catalyst Damage
+P1427,EGI Température Capteur Défaillance
+P1428,EGI Functionality Test Failed
+P1429,EGI Bougie de préchauffage Primary Défaillance
+P1430,EGI Bougie de préchauffage Secondary Défaillance
+P1433,EGI Mini - DMH Failed Out Of Range
+P1434,EGI Mini - DMH Failed Court-circuit
+P1435,EGI Mini - DMH Failed Circuit ouvert
+P1436,Electric Air Pompe Primary Défaillance
+P1437,Electric Air Pompe Secondary Défaillance
+P1438,Réfrigérant de climatisation Température Circuit bas
+P1439,Réfrigérant de climatisation Température Circuit haut
+P1440,Réfrigérant de climatisation Température Circuit Plage/performance
+P1441,Climatisation Evaporator Air Température Circuit bas
+P1442,Climatisation Evaporator Air Température Circuit Plage/performance
+P1443,Floor Température Interrupteur Circuit Dysfonctionnement
+P1444,Purge Vanne Bloqué Circuit ouvert
+P1445,Evaporative Emission (EVAP) Système Débit During Non-Purge Chevrolet Only
+P1446,Evaporative Emission (EVAP) Système Débit During Non-Purge Oldsmobile Only
+P1447,Système de contrôle des émissions par évaporation Fuite Détecté
+P1448,Système de contrôle des émissions par évaporation Contrôle Vanne
+P1449,Purge Débit Capteur Circuit bas Input
+P1450,Purge Débit Capteur Circuit haut Input
+P1451,Evaporative Vac Solénoïde Circuit Dysfonctionnement
+P1452,ELC Système Closure Vanne Débit Défaut
+P1453,ELC Système 2 Défaut
+P1454,Evaporative Check Solénoïde Circuit Dysfonctionnement
+P1455,Unable To Bleed Up Fuel Tank Vacuum
+P1456,Evap  Emission Contrôle Sys Évent Contrôle Vanne Circuit
+P1457,Unable To Bleed - Up Vacuum in Tank
+P1460,Fuel Tank Pression Relief Vanne Dysfonctionnement
+P1461,Evaporative Système Vacuum Test Dysfonctionnement
+P1462,Evap  Emission Contrôle Sys  Fuite Détecté (Gross Fuite/No Débit)
+P1463,Fuel Tank Température Capteur Circuit Dysfonctionnement
+P1464,Unable To Pull Vacuum In Tank
+P1465,Wide open throttle Climatisation cutoff relay circuit
+P1466,Climatisation pressure sensor circuit voltage low
+P1467,Climatisation pressure sensor circuit voltage high
+P1468,Climatisation Pression Capteur Insuffisant Pression Change
+P1469,Climatisation Demand Out of Self Test Range
+P1470,Climatisation Relais Circuit Dysfonctionnement
+P1471,Réfrigérant de climatisation Température Capteur/Circuit Dysfonctionnement
+P1472,Climatisation Compressor Température Capteur Dysfonctionnement
+P1473,SSPOD Circuit ouvert or Closed Circuit Défaut
+P1474,Low Climatisation Cycling Period
+P1475,Climatisation Cycling Period Too Short
+P1476,Electrodrive Fan 1 Operational Défaillance (Driver Side)
+P1477,Electrodrive Fan 2 Operational Défaillance (Passenger Side)
+P1478,Fan Secondary High With Fan(s) Off
+P1479,Low Fan Contrôle Primary Circuit Dysfonctionnement
+P1480,Fan Relais (Low) Circuit Dysfonctionnement
+P1481,Fan Relais (High) Circuit Dysfonctionnement
+P1482,Additional Fan Relais Circuit Dysfonctionnement
+P1483,Cooling Fan Driver Défaut
+P1484,High Fan Contrôle Primary Circuit Dysfonctionnement
+P1485,Fan Secondary Low with Low Fan On
+P1486,Fan Secondary Low With High Fan On
+P1487,SCP
+P1490,Puissance/Alimentation To Fan Circuit Overcurrent
+P1491,Circuit ouvert Puissance/Alimentation To Masse VCRM
+P1492,EGRV Circuit Dysfonctionnement
+P1493,EGRA Circuit Dysfonctionnement
+P1494,EGRCHK Solénoïde Circuit Dysfonctionnement
+P1495,Secondary Air Relief Solénoïde Circuit Dysfonctionnement
+P1500,Secondary Interrupteur Solénoïde Circuit Dysfonctionnement
+P1501,APLSOL Solénoïde Circuit Dysfonctionnement
+P1502,RCNT Solénoïde Circuit Dysfonctionnement
+P1503,SPCUT Solénoïde Circuit Dysfonctionnement
+P1504,TCSPL Solénoïde Circuit Dysfonctionnement
+P1505,Capteur de vitesse du véhicule Intermittent
+P1506,Capteur de vitesse du véhicule Out Of Self Test Range
+P1507,Capteur de vitesse du véhicule Intermittent Dysfonctionnement
+P1508,Auxillary Vitesse Capteur Défaut
+P1509,Ralenti Air Contrôle Circuit Dysfonctionnement
+P1510,Ralenti Air Contrôle Système At Adaptive Clip
+P1511,Ralenti Air Contrôle Overspeed Erreur
+P1512,Ralenti Air Contrôle Underspeed Erreur
+P1513,Système de contrôle du ralenti Circuit ouvert
+P1514,Système de contrôle du ralenti Circuit Shorted
+P1515,Ralenti Signal Circuit Dysfonctionnement
+P1516,Ralenti Interrupteur (Electric Contrôle Throttle) Circuit Dysfonctionnement
+P1517,Intake Manifold Runner Contrôle (Banc 1) Bloqué Closed
+P1518,Intake Manifold Runner Contrôle (Banc 2) Bloqué Closed
+P1519,High Charge Neutral/Drive Défaut
+P1520,Electric Courant Circuit Dysfonctionnement
+P1521,IMRC Input Erreur (Banc 1)
+P1522,IMRC Input Erreur (Banc 2)
+P1523,Intake Manifold Runner Contrôle (Bloqué Circuit ouvert)
+P1524,Intake Manifold Runner Contrôle (Bloqué Closed)
+P1525,Intake Manifold Runner Contrôle Circuit Dysfonctionnement
+P1526,Variable Intake Solénoïde #1 Circuit Dysfonctionnement
+P1527,Variable Intake Solénoïde #2 Circuit Dysfonctionnement
+P1528,IVC Solénoïde Circuit Dysfonctionnement
+P1529,Variable Intake Solénoïde Système
+P1530,Air Bypass Vanne Système
+P1531,Air Bypass Système
+P1532,Accelerate Warmup Solénoïde Circuit Dysfonctionnement
+P1533,Subsidiary Throttle Vanne Solénoïde Circuit Dysfonctionnement
+P1534,SCAIR Solénoïde Circuit Dysfonctionnement
+P1535,Climatisation Clutch Circuit Dysfonctionnement
+P1536,Invalid Test - Accelerator Pedal Movement
+P1537,IMCC Circuit Dysfonctionnement
+P1538,AAI Circuit Dysfonctionnement
+P1539,Inertia Interrupteur Activated
+P1540,Blower Fan Vitesse Circuit Plage/performance
+P1549,Parking Interrupteur de frein Circuit Défaillance
+P1550,Intake Manifold Runner Contrôle (Banc 1) Bloqué Circuit ouvert
+P1565,Intake Manifold Runner Contrôle (Banc 2) Bloqué Circuit ouvert
+P1566,Puissance/Alimentation To Climatisation Clutch Circuit Overcurrent
+P1567,Air Bypass Vanne Circuit Dysfonctionnement
+P1568,IMCC Circuit Dysfonctionnement
+P1571,PSPS Out Of Self Test Range
+P1572,Vitesse Contrôle Command Interrupteur Out of Range High
+P1573,Vitesse Contrôle Command Interrupteur Out of Range Low
+P1574,Vitesse Contrôle Output Circuit Continuity
+P1575,Vitesse Contrôle Unable to Hold Vitesse
+P1576,Interrupteur de frein Dysfonctionnement
+P1577,Brake Pedal Interrupteur Circuit Dysfonctionnement
+P1578,Throttle Position Not Available
+P1579,Throttle Position Capteur Disagreement btwn Capteurs
+P1580,Pedal Position Out of Self Test Range
+P1581,Pedal Position Not Available
+P1582,Pedal Position Capteur Disagreement btwn Capteurs
+P1583,ETC Puissance/Alimentation Less Than Demand
+P1584,ETC In Puissance/Alimentation Limiting Mode
+P1585,Electronic Throttle Monitor PCM Override
+P1586,Electronic Throttle Monitor Dysfonctionnement
+P1587,Electronic Throttle Monitor Données Available
+P1588,Electronic Throttle Monitor Cruise Disable
+P1589,TCU Détecté IPE Circuit Dysfonctionnement
+P1600,Throttle Contrôle Unit Dysfonctionnement
+P1601,Throttle Contrôle Unit Throttle Position Dysfonctionnement
+P1602,Throttle Contrôle Unit Modulated Command Dysfonctionnement
+P1603,Throttle Contrôle Unit Détecté Perte of Return Spring
+P1604,TCU Unable To Contrôle Desired Throttle Angle
+P1605,Perte of KAM Puissance/Alimentation; Circuit ouvert
+P1606,ECM/TCM Serial Communication Erreur
+P1607,Immobilizer/ECM Communication Erreur
+P1608,EEPROM Dysfonctionnement
+P1609,Code Word Unregestered
+P1610,Keep Alive Memory Test Défaillance
+P1611,ECM Contrôle Relais O/P Circuit Dysfonctionnement
+P1612,MIL O/P Circuit Dysfonctionnement
+P1613,Internal ECM Dysfonctionnement
+P1614,Diagnostic Lamp Driver Défaut
+P1615,SBDS Interactive Codes
+P1616,SBDS Interactive Codes
+P1617,SBDS Interactive Codes
+P1618,SBDS Interactive Codes
+P1619,SBDS Interactive Codes
+P1620,SBDS Interactive Codes
+P1621,SBDS Interactive Codes
+P1622,SBDS Interactive Codes
+P1623,SBDS Interactive Codes
+P1624,SBDS Interactive Codes
+P1625,SBDS Interactive Codes
+P1626,Module de contrôle Long Term Performance de la mémoire/ Immobilizer Code Words Do Not Match
+P1627,Immobilizer ID Does Not Match
+P1628,Immobilizer Code Word/ID Number Write Défaillance
+P1629,Anti Theft Système
+P1630,B+ Alimentation To VCRM Fan Circuit Dysfonctionnement
+P1631,Theft Deterrent Fuel Enable Signal Not Received/ B+ Alimentation To VCRM Climatisation Circuit Dysfonctionnement
+P1632,Module Alimentation Tension Out Of Range
+P1633,Module Ignition Alimentation Input Dysfonctionnement
+P1634,Internal Tension Regulator Dysfonctionnement
+P1635,Internal Vref Dysfonctionnement
+P1636,Theft Deterrent Start Enable Signal Not Correct/ Main Relais Dysfonctionnement (Puissance/Alimentation Hold)
+P1637,Smart Alternator Défauts Capteur/Circuit Dysfonctionnement
+P1638,KAM Tension Too Low
+P1639,Données Output Link Circuit Défaillance
+P1640,Tire / Axle Ratio Out of Acceptable Range
+P1641,Inductive Signature Chip Communication Erreur
+P1642,Can Link ECM/ABSCM Circuit / Réseau Dysfonctionnement
+P1643,Can Link ECM/INSTM Circuit / Réseau Dysfonctionnement
+P1644,Vehicle ID Block Corrupted or Not Programmed
+P1645,Puissance/Alimentationtrain DTCs Available in Another Module
+P1650,Fuel Pompe Primary Circuit Défaillance
+P1651,Fuel Pompe Monitor Circuit haut Input
+P1652,Fuel Pompe Monitor Circuit bas Input
+P1653,Fuel Pompe Vitesse Contrôle Circuit Dysfonctionnement
+P1654,Fuel Pompe Resistor Interrupteur Circuit Dysfonctionnement
+P1655,PSP Interrupteur Out of Self Test Range
+P1660,PSP Interrupteur Input Dysfonctionnement
+P1661,Vanne de ralenti Monitor Disabled by PSP Interrupteur Failed On
+P1662,Puissance/Alimentation Steering Output Circuit Dysfonctionnement
+P1663,Recirculation Override Circuit Dysfonctionnement
+P1667,Démarreur Disable Circuit Dysfonctionnement
+P1668,Output Circuit Check Signal High
+P1670,Output Circuit Check Signal Low
+P1680,IDM_EN Circuit Défaillance
+P1681,Fuel Demand Command Signal Circuit Dysfonctionnement
+P1682,CI Circuit Dysfonctionnement
+P1683,PCM - IDM Communications Erreur
+P1684,Electronic Feedback Signal Non détecté
+P1685,Metering Oil Pompe Dysfonctionnement
+P1686,Metering Oil Pompe Dysfonctionnement
+P1687,Metering Oil Pompe Dysfonctionnement
+P1688,Metering Oil Pompe Température Capteur Circuit Dysfonctionnement
+P1689,Metering Oil Pompe Position Capteur Circuit Dysfonctionnement
+P1690,Metering Oil Pompe Stepping Moteur Circuit Dysfonctionnement
+P1691,Metering Oil Pompe Stepping Moteur Circuit Dysfonctionnement
+P1692,Metering Oil Pompe Stepping Moteur Circuit Dysfonctionnement
+P1693,Metering Oil Pompe Stepping Moteur Circuit Dysfonctionnement
+P1694,Oil Solénoïde de contrôle de pression Circuit Dysfonctionnement
+P1700,Wastegate Solénoïde Circuit Dysfonctionnement
+P1701,Turbo Solénoïde de contrôle de pression Circuit Dysfonctionnement
+P1702,Turbo Contrôle Solénoïde Circuit Dysfonctionnement
+P1703,Turbo Charge Contrôle Circuit Dysfonctionnement
+P1704,Turbo Charge Relief Circuit Dysfonctionnement
+P1705,Transmission Indeterminate Défaillance (Failed to Neutral)
+P1706,Reverse Engagement Erreur
+P1707,TRS Circuit Intermittent Dysfonctionnement
+P1708,Interrupteur de frein Out Of Self Test Range
+P1709,Digital TRS Failed to Transition States in KOEO / KOER
+P1711,Not in P or N During KOEO / KOER
+P1712,High Vehicle Vitesse Observed in Park
+P1713,Transfer Case Neutral Indicator Hard Défaut Present
+P1714,Interrupteur d'embrayage Circuit Dysfonctionnement
+P1715,PNP Interrupteur Out Of Self Test Range
+P1716,TFT Capteur Out Of Self Test Range
+P1717,Trans Torque Reduction Request Signal Dysfonctionnement
+P1718,TFT Capteur In Range Défaillance Low Value
+P1720,SSA Inductive Signature Dysfonctionnement
+P1721,SSB Inductive Signature Dysfonctionnement
+P1722,SSC Inductive Signature Dysfonctionnement
+P1723,SSD Inductive Signature Dysfonctionnement
+P1724,TFT Capteur In Range Défaillance High
+P1725,Vehicle Vitesse (Meter) Circuit Dysfonctionnement
+P1726,Rapport de boîte 1 Incorrect Ratio
+P1727,Rapport de boîte 2 Incorrect Ratio
+P1728,Rapport de boîte 3 incorrect Ratio
+P1729,Rapport de boîte 4 Incorrect Ratio
+P1730,Insuffisant Engine Vitesse Increase During Self Test
+P1731,Insuffisant Engine Vitesse Decrease During Self Test
+P1732,Coast Clutch Solénoïde Inductive Signature Dysfonctionnement
+P1733,Transmission Slip Erreur
+P1734,4x4 Low Interrupteur Erreur
+P1735,Rapport de boîte Contrôle Dysfonctionnement 2
+P1736,1-2 Shift Dysfonctionnement
+P1737,2-3 Shift Dysfonctionnement
+P1738,3-4 Shift Dysfonctionnement
+P1739,Rapport de boîte Contrôle Dysfonctionnement
+P1740,First Rapport de boîte Interrupteur Circuit Dysfonctionnement
+P1741,Second Rapport de boîte Interrupteur Circuit Dysfonctionnement
+P1742,Lockup Solénoïde Système
+P1743,Shift Time Erreur
+P1744,Slip Solénoïde Système
+P1745,Convertisseur de couple Clutch Inductive Signature Dysfonctionnement
+P1746,Convertisseur de couple Clutch Contrôle Erreur
+P1747,Convertisseur de couple Clutch Solénoïde Failed On
+P1748,Convertisseur de couple Clutch Solénoïde Failied On
+P1749,Convertisseur de couple Clutch Système Performance
+P1751,Line Pression Solénoïde Système
+P1754,"Solénoïde de contrôle de pression ""A"" Circuit ouvert"
+P1755,"Solénoïde de contrôle de pression ""A"" Court-circuit"
+P1756,EPC Dysfonctionnement
+P1760,Solénoïde de contrôle de pression Failed Low
+P1761,Solénoïde de changement de rapport A Performance
+P1762,Coast Clutch Solénoïde Circuit Dysfonctionnement
+P1765,Intermediate Vitesse Capteur (ISS) Dysfonctionnement
+P1767,Solénoïde de changement de rapport B Performance
+P1768,"Solénoïde de contrôle de pression ""A"" Court-circuit"
+P1769,Solénoïde de changement de rapport C Performance
+P1770,Overdrive Band Failed Off
+P1775,Calage Solénoïde Circuit Dysfonctionnement
+P1776,Convertisseur de couple Clutch Circuit Dysfonctionnement
+P1777,Performance / Normal / Winter Mode Input Dysfonctionnement
+P1778,AG4 Transmission Torque Modulation Défaut
+P1779,Clutch Solénoïde Circuit Dysfonctionnement
+P1780,Transmission Système MIL Défaut
+P1781,Ignition Retard Request Duration Défaut
+P1782,Ignition Retard Request Circuit Défaut
+P1783,Transmission Reverse I/P Circuit Dysfonctionnement
+P1784,TCIL Circuit Dysfonctionnement
+P1785,Trans Contrôle Interrupteur (O/D Cancel) Out of Self Test Range
+P1786,4X4 Interrupteur Out of Self Test Range
+P1787,P/ES Circuit Out Of Self Test Range
+P1788,Transmission Overtemperature Condition
+P1789,Transmission Mechanical Défaillance - First And Reverse
+P1790,Transmission Mechanical Défaillance - First And Second
+P1791,3-2 Downshift Erreur
+P1792,2-1 Downshift Erreur
+P1793,"Solénoïde de contrôle de pression ""B"" Circuit ouvert"
+P1794,"Solénoïde de contrôle de pression ""B"" Court-circuit"
+P1795,TP (Mechanical) Circuit Dysfonctionnement
+P1796,TP (Electric) Circuit Dysfonctionnement
+P1797,Barometer Pression Circuit Dysfonctionnement
+P1798,Intake Air Volume Circuit Dysfonctionnement
+P1799,Batterie Tension Circuit Dysfonctionnement
+P1800,Ralenti Interrupteur Circuit Dysfonctionnement
+P1801,Kick Down Interrupteur Circuit Dysfonctionnement
+P1802,Neutral Interrupteur Circuit Dysfonctionnement
+P1803,Coolant Température Circuit Dysfonctionnement
+P1804,Hold Interrupteur Circuit Dysfonctionnement
+P1805,Transmission Clutch Interlock Safety Interrupteur Circuit Défaillance
+P1806,Transmission Clutch Interlock Safety Interrupteur Circuit ouvert
+P1807,Transmission Clutch Interlock Safety Interrupteur Court-circuit To Batterie
+P1808,Transmission Clutch Interlock Safety Interrupteur Court-circuit To Masse
+P1809,Transmission 4-Wheel Drive High Indicator Circuit Défaillance
+P1810,Transmission 4-Wheel Drive High Indicator Circuit ouvert
+P1811,Transmission 4-Wheel Drive High Indicator Court-circuit To Batterie
+P1812,Transmission 4-Wheel Drive High Indicator Court-circuit To Masse
+P1813,Transmission 4-Wheel Drive Low Indicator Circuit Défaillance
+P1814,Transmission 4-Wheel Drive Low Indicator Circuit ouvert
+P1815,TFP Vanne Position Interrupteur Circuit/ Transmission 4-Wheel Drive Low Indicator Court-circuit To Batterie
+P1816,Transmission 4-Wheel Drive Low Indicator Court-circuit To Masse
+P1817,Transmission 4-Wheel Drive Mode Select Circuit Défaillance
+P1818,Transmission 4-Wheel Drive Mode Select Circuit ouvert
+P1819,Transmission 4-Wheel Drive Mode Select Court-circuit To Batterie
+P1820,Transmission 4-Wheel Drive Mode Select Court-circuit To Masse
+P1821,Transmission Neutral Safety Interrupteur Circuit Défaillance
+P1822,Transmission Neutral Safety Interrupteur Circuit ouvert
+P1823,Transmission Neutral Safety Interrupteur Court-circuit To Batterie
+P1824,Transmission Neutral Safety Interrupteur Court-circuit To Masse
+P1825,Transmission Transfer Case Clockwise Shift Relais Coil Circuit Défaillance
+P1826,Transmission Transfer Case Clockwise Shift Relais Coil Circuit ouvert
+P1827,Transmission Transfer Case Clockwise Shift Relais Coil Court-circuit To Batterie
+P1828,Transmission Transfer Case Clockwise Shift Relais Coil Court-circuit To Masse
+P1829,Transmission 4-Wheel Drive Clutch Relais Circuit Défaillance
+P1830,Transmission 4-Wheel Drive Clutch Relais Circuit ouvert
+P1831,Transmission 4-Wheel Drive Low Clutch Relais Circuit To Batterie
+P1832,Transmission 4-Wheel Drive Low Clutch Relais Circuit To Masse
+P1833,Transmission Transfer Case Counter Clockwise Shift Relais Coil Circuit Défaillance
+P1834,Transmission Transfer Case Counter Clockwise Shift Relais Coil Circuit ouvert
+P1835,Transmission Transfer Case Counter Clockwise Shift Relais Coil Court-circuit To Batterie
+P1836,Transmission Transfer Case Counter Clockwise Shift Relais Coil Court-circuit To Masse
+P1837,Transmission Transfer Case Differential Lock-Up Solénoïde Circuit Défaillance
+P1838,Transmission Transfer Case Differential Lock-Up Solénoïde Circuit ouvert
+P1839,Transmission Transfer Case Differential Lock-Up Solénoïde Court-circuit To Batterie
+P1840,Transmission Transfer Case Differential Lock-Up Solénoïde Court-circuit To Masse
+P1841,Transmission Transfer Case Front Shaft Vitesse Capteur Circuit Défaillance
+P1842,Transmission Transfer Case Rear Shaft Vitesse Capteur Circuit Défaillance
+P1843,Transmission Transfer Case Shift Moteur Circuit Défaillance
+P1844,Transmission Transfer Case Shift Moteur Circuit ouvert
+P1845,Transmission Transfer Case Shift Moteur Court-circuit To Batterie
+P1846,Transmission Transfer Case Shift Moteur Court-circuit To Masse
+P1847,Transmission Transfer Case Differential Lock-Up Feedback Interrupteur Circuit Défaillance
+P1848,Transmission Transfer Case Differential Lock-Up Feedback Interrupteur Circuit ouvert
+P1849,Transmission Transfer Case Differential Lock-Up Feedback Interrupteur Court-circuit To Batterie
+P1850,Transmission Transfer Case Differential Lock-Up Feedback Interrupteur Court-circuit To Masse
+P1867,Transmission Transfer Case Contact Plate Puissance/Alimentation Circuit Défaillance
+P1868,Transmission Transfer Case Contact Plate Puissance/Alimentation Circuit ouvert
+P1869,Transmission Transfer Case Contact Plate Puissance/Alimentation Short To Batterie
+P1870,Transmission Transfer Case Contact Plate Puissance/Alimentation Short To Masse
+P1871,Transmission Transfer Case Système Concern - Servicing Required
+P1872,Transmission Transfer Case Contact Plate General Circuit Défaillance
+P1873,Transmission Automatic 4-Wheel Drive Indicator (Lamp) Circuit Défaillance
+P1874,Transmission Automatic 4-Wheel Drive Indicator (Lamp) Circuit Short To Batterie
+P1875,Transmission Component Slipping/ Transmission Mechanical Transfer Case 4x4 Interrupteur Circuit Défaillance
+P1876,Transmission Mechanical Transfer Case 4x4 Interrupteur Circuit Short To Batterie
+P1877,Transmission Mechanical 4-Wheel Drive Axle Lock Lamp Circuit Défaillance
+P1878,Transmission Mechanical 4-Wheel Drive Axle Lock Lamp Circuit Short To Batterie
+P1879,Transmission Automatic Hall Effect Capteur Puissance/Alimentation Circuit Défaillance
+P1880,Transmission Automatic Hall Effect Capteur Puissance/Alimentation Circuit Short To Batterie / 4WD Low Interrupteur Circuit Electrical
+P1881,Transmission Transfer Case 2-Wheel Drive Solénoïde Circuit Défaillance
+P1882,Transmission Transfer Case 2-Wheel Drive Solénoïde Circuit Short To Batterie
+P1883,Transmission Transfer Case Disengaged Solénoïde Circuit Défaillance
+P1884,Transmission Transfer Case Disengaged Solénoïde Circuit ouvert
+P1885,Transmission Transfer Case Disengaged Solénoïde Court-circuit à la batterie
+P1886,Engine Coolant Niveau Interrupteur Circuit Défaillance
+P1890,Engine Coolant Niveau Interrupteur Circuit Court-circuit à la masse
+P1891,Engine Coolant Niveau Interrupteur Circuit Défaillance
+P1900,Engine Coolant Niveau Lamp Circuit Court-circuit à la masse
+P1901,Transmission Transfer Case Disengaged Solénoïde Court-circuit à la masse
+P1902,4X4 Initialization Défaillance
+P1903,Transmission 4WD Mode Select Return Input Circuit Défaillance
+P1904,Transmission Transfer Case Contact Plate Masse Return Circuit ouvert
+P1905,OSS Circuit Intermittent Dysfonctionnement
+P1906,TSS Circuit Intermittent Dysfonctionnement
+P1907,"Solénoïde de contrôle de pression ""B"" Intermittent Short"
+P1908,"Solénoïde de contrôle de pression ""C"" Court-circuit"
+P1909,"Solénoïde de contrôle de pression ""C"" Circuit ouvert"
+P1910,"Solénoïde de contrôle de pression ""C"" Intermittent Short"
+P1911,Kickdown Pull Relais Circuit ouvert or Court-circuit to Masse
+P1912,Kickdown Hold Relais Circuit ouvert or Court-circuit to Masse
+P1913,Transmission Pression Circuit Solénoïde Circuit ouvert or Court-circuit à la masse
+P1914,Trans  Temp  Capteur Circuit ouvert or Shorted to Pwr  or Gnd
+P1915,VFS A Pression Output Failed Low
+P1916,VFS B Pression Output Failed Low
+P1917,VFS C Pression Output Failed Low
+P1918,Pression Interrupteur A Circuit Dysfonctionnement
+B1200,Climate Contrôle Pushbutton Circuit Défaillance
+B1201,Fuel Sender Circuit Défaillance
+B1202,Fuel Sender Circuit ouvert
+B1203,Fuel Sender Circuit Short To Batterie
+B1204,Fuel Sender Circuit Short To Masse
+B1205,EIC Interrupteur-1 Assembly Circuit Défaillance
+B1206,EIC Interrupteur-1 Assembly Circuit ouvert
+B1207,EIC Interrupteur-1 Assembly Circuit Short To Batterie
+B1208,EIC Interrupteur-1 Assembly Circuit Short To Masse
+B1209,EIC Interrupteur-2 Assembly Circuit Défaillance
+B1210,EIC Interrupteur-2 Assembly Circuit ouvert
+B1211,EIC Interrupteur-2 Assembly Circuit Short To Batterie
+B1212,EIC Interrupteur-2 Assembly Circuit Short To Masse
+B1213,Anti-Theft Number of Programmed Keys Is Below Minimum
+B1214,Running Board Lamp Circuit Défaillance
+B1215,Running Board Lamp Circuit Court-circuit à la batterie
+B1216,Emergency & Road Side Assistance Interrupteur Circuit Court-circuit à la masse
+B1217,Horn Relais Coil Circuit Défaillance
+B1218,Horn Relais Coil Circuit Short to Vbatt
+B1219,Fuel Tank Pression Capteur Circuit Défaillance
+B1220,Fuel Tank Pression Capteur Circuit ouvert
+B1222,Fuel Température Capteur #1 Circuit Défaillance
+B1223,Fuel Température Capteur #1 Circuit ouvert
+B1224,Fuel Température Capteur #1 Circuit Court-circuit à la batterie
+B1225,Fuel Température Capteur #1 Circuit Court-circuit à la masse
+B1226,Fuel Température Capteur #2 Circuit Défaillance
+B1227,Fuel Température Capteur #2 Circuit ouvert
+B1228,Fuel Température Capteur #2 Circuit Court-circuit à la batterie
+B1229,Fuel Température Capteur #2 Circuit Court-circuit à la masse
+B1231,Longitudinal Accélération Threshold Exceeded
+B1232,See Manufacturer
+B1233,Glass Break Capteur Défaillance
+B1234,Mirror Interrupteur Invalid Code
+B1235,Window Feedback Défaillance
+B1236,Window Feedback Perte of Signal
+B1237,Window Feedback Out of Range
+B1238,Over Température Défaut
+B1239,Air Débit Blend Door Driver Circuit Défaillance
+B1240,Wiper Washer Rear Pompe Relais Circuit Défaillance
+B1241,Wiper Washer Rear Pompe Relais Circuit Court-circuit à la batterie
+B1242,Air Débit Recirculation Door Driver Circuit Défaillance
+B1243,Express Window Down Interrupteur Circuit Court-circuit à la batterie
+B1244,Wiper Rear Moteur Run Relais Circuit Défaillance
+B1245,Wiper Rear Moteur Run Relais Circuit Court-circuit à la batterie
+B1246,Dim Panel Potentiometer Interrupteur Circuit Défaillance
+B1247,Panel Dim Interrupteur Circuit ouvert
+B1249,Blend Door Défaillance
+B1250,Air Température Internal Capteur Circuit Défaillance
+B1251,Air Température Internal Capteur Circuit ouvert
+B1252,Air Température Internal Capteur Circuit Short To Batterie
+B1253,Air Température Internal Capteur Circuit Short To Masse
+B1254,Air Température External Capteur Circuit Défaillance
+B1255,Air Température External Capteur Circuit ouvert
+B1256,Air Température External Capteur Circuit Short To Batterie
+B1257,Air Température External Capteur Circuit Short To Masse
+B1258,Solar Radiation Capteur Circuit Défaillance
+B1259,Solar Radiation Capteur Circuit ouvert
+B1260,Solar Radiation Capteur Circuit Short To Batterie
+B1261,Solar Radiation Capteur Circuit Short To Masse
+B1262,Servo Moteur Defrost Circuit Défaillance
+B1263,Servo Moteur Évent Circuit Défaillance
+B1264,Servo Moteur Foot Circuit Défaillance
+B1265,Servo Moteur Coolair Bypass Circuit  Défaillance
+B1266,Servo Moteur Airintake Left Circuit Défaillance
+B1267,Servo Moteur Airintake Right Circuit Défaillance
+B1268,Servo Moteur Potentiometer Defrost Circuit Défaillance
+B1269,Servo Moteur Potentiometer Defrost Circuit ouvert
+B1270,Servo Moteur Potentiometer Defrost Circuit Short To Batterie
+B1271,Servo Moteur Potentiometer Defrost Circuit Short To Masse
+B1272,Servo Moteur Potentiometer Évent Circuit Défaillance
+B1273,Servo Moteur Potentiometer Évent Circuit ouvert
+B1274,Servo Moteur Potentiometer Évent Circuit Short To Batterie
+B1275,Servo Moteur Potentiometer Évent Circuit Short To Masse
+B1276,Servo Moteur Potentiometer Foot Circuit Défaillance
+B1277,Servo Moteur Potentiometer Foot Circuit ouvert
+B1278,Servo Moteur Potentiometer Foot Circuit Short To Batterie
+B1279,Servo Moteur Potentiometer Foot Circuit Short To Masse
+B1280,Servo Moteur Potentiometer Coolair Circuit Défaillance
+B1281,Servo Moteur Potentiometer Coolair Circuit ouvert
+B1282,Servo Moteur Potentiometer Coolair Circuit Short To Batterie
+B1283,Servo Moteur Potentiometer Coolair Circuit Short To Masse
+B1284,Servo Moteur Potentiometer Airintake Left Circuit Défaillance
+B1285,Servo Moteur Potentiometer Airintake Left Circuit ouvert
+B1286,Servo Moteur Potentiometer Airintake Left Circuit Short To Batterie
+B1287,Servo Moteur Potentiometer Airintake Left Circuit Short To Masse
+B1288,Servo Moteur Potentiometer Airintake Right Circuit Défaillance
+B1289,Servo Moteur Potentiometer Airintake Right Circuit ouvert
+B1290,Servo Moteur Potentiometer Airintake Right Circuit Short To Batterie
+B1291,Servo Moteur Potentiometer Airintake Right Circuit Short To Masse
+B1292,Batterie Puissance/Alimentation Relais Circuit Défaillance
+B1293,Batterie Puissance/Alimentation Relais Circuit ouvert
+B1294,Batterie Puissance/Alimentation Relais Circuit Short To Batterie
+B1295,Batterie Puissance/Alimentation Relais Circuit Short To Masse
+B1296,Puissance/Alimentation Alimentation Capteur Circuit Défaillance
+B1297,Puissance/Alimentation Alimentation Capteur Circuit ouvert
+B1298,Puissance/Alimentation Alimentation Capteur Circuit Short To Batterie
+B1299,Puissance/Alimentation Alimentation Capteur Circuit Short To Masse
+B1300,Puissance/Alimentation Door Lock Circuit Défaillance
+B1301,Puissance/Alimentation Door Lock Circuit ouvert
+B1302,Accessory Delay Relais Coil Circuit Défaillance
+B1303,Accessory Delay Relais Coil Circuit ouvert
+B1304,Accessory Delay Relais Coil Circuit Short To Batterie
+B1305,Accessory Delay Relais Coil Circuit Short To Masse
+B1306,Oil Niveau Interrupteur Circuit ouvert
+B1307,Oil Niveau Interrupteur Circuit Short To Batterie
+B1308,Oil Niveau Interrupteur Circuit Short To Masse
+B1309,Puissance/Alimentation Door Lock Circuit Short To Masse
+B1310,Puissance/Alimentation Door Unlock Circuit Défaillance
+B1311,Puissance/Alimentation Door Unlock Circuit ouvert
+B1312,Lamp Headlamp Input Circuit Short To Batterie
+B1313,Batterie Saver Relais Coil Circuit Défaillance
+B1314,Batterie Saver Relais Coil Circuit ouvert
+B1315,Batterie Saver Relais Coil Circuit Short To Batterie
+B1316,Batterie Saver Relais Coil Circuit Short To Masse
+B1317,Batterie Tension High
+B1318,Batterie Tension Low
+B1319,Driver Door Ajar Circuit Défaillance
+B1320,Driver Door Ajar Circuit ouvert
+B1321,Driver Door Ajar Circuit Short To Batterie
+B1322,Driver Door Ajar Circuit Short To Masse
+B1323,Door Ajar Lamp Circuit Défaillance
+B1324,Door Ajar Lamp Circuit ouvert
+B1325,Door Ajar Lamp Circuit Short To Batterie
+B1326,Door Ajar Lamp Circuit Short To Masse
+B1327,Passenger Door Ajar Circuit Défaillance
+B1328,Passenger Door Ajar Circuit ouvert
+B1329,Passenger Door Ajar Circuit Short To Batterie
+B1330,Passenger Door Ajar Circuit Short To Masse
+B1331,Decklid Ajar Rear Door Circuit Défaillance
+B1332,Decklid Ajar Rear Door Circuit ouvert
+B1333,Decklid Ajar Rear Door Circuit Short To Batterie
+B1334,Decklid Ajar Rear Door Circuit Short To Masse
+B1335,Door Ajar RR Circuit Défaillance
+B1336,Door Ajar RR Circuit ouvert
+B1337,Door Ajar RR Circuit Short To Batterie
+B1338,Door Ajar RR Circuit Short To Masse
+B1339,Chime Input Request Circuit Short To Batterie
+B1340,Chime Input Request Circuit Short To Masse
+B1341,Puissance/Alimentation Door Unlock Circuit Short To Masse
+B1342,ECU Is Defective
+B1343,Heated Backlite Input Circuit Défaillance
+B1344,Heated Backlite Input Circuit ouvert
+B1345,Heated Backlite Input Circuit Short To Masse
+B1346,Heated Backlite Input Circuit Short To Batterie
+B1347,Heated Backlite Relais Circuit Défaillance
+B1348,Heated Backlite Relais Circuit ouvert
+B1349,Heated Backlite Relais Short To Batterie
+B1350,Heated Backlite Relais Short To Masse
+B1351,Ignition Key-In Circuit Short To Batterie
+B1352,Ignition Key-In Circuit Défaillance
+B1353,Ignition Key-In Circuit ouvert
+B1354,Ignition Key-In Circuit Short To Masse
+B1355,Ignition Run Circuit Défaillance
+B1356,Ignition Run Circuit ouvert
+B1357,Ignition Run Circuit Short To Batterie
+B1358,Ignition Run Circuit Short To Masse
+B1359,Ignition Run/Acc Circuit Défaillance
+B1360,Ignition Run/Acc Circuit ouvert
+B1361,Ignition Run/Acc Circuit Short To Batterie
+B1362,Ignition Run/Acc Circuit Short To Masse
+B1363,Ignition Start Circuit Défaillance
+B1364,Ignition Start Circuit ouvert
+B1365,Ignition Start Circuit Short To Batterie
+B1366,Ignition Start Circuit Short To Masse
+B1367,Ignition Tach Circuit Défaillance
+B1368,Ignition Tach Circuit ouvert
+B1369,Ignition Tach Circuit Short To Batterie
+B1370,Ignition Tach Circuit Short To Masse
+B1371,Illuminated Entry Relais Circuit Défaillance
+B1372,Illuminated Entry Relais Circuit ouvert
+B1373,Illuminated Entry Relais Short To Batterie
+B1374,Illuminated Entry Relais Short To Masse
+B1375,Oil Change Lamp Circuit ouvert
+B1376,Oil Change Lamp Circuit Short To Batterie
+B1377,Oil Change Lamp Circuit Défaillance
+B1378,Oil Change Lamp Circuit Short To Masse
+B1379,Oil Change Reset Button Circuit Short To Masse
+B1380,Oil Change Reset Button Circuit Défaillance
+B1381,Oil Change Reset Button Circuit ouvert
+B1382,Oil Change Reset Button Circuit Short To Batterie
+B1383,Oil Niveau Lamp Circuit Short To Batterie
+B1384,Oil Niveau Lamp Circuit Défaillance
+B1385,Oil Niveau Lamp Circuit ouvert
+B1386,Oil Niveau Lamp Circuit Short To Masse
+B1387,Oil Température Capteur Circuit ouvert
+B1388,Oil Température Capteur Circuit Short To Batterie
+B1389,Oil Température Capteur Circuit Défaillance
+B1390,Oil Température Capteur Circuit Short To Masse
+B1391,Oil Niveau Interrupteur Circuit Défaillance
+B1392,Puissance/Alimentation Door Memory Lock Relais Circuit Défaillance
+B1393,Puissance/Alimentation Door Memory Lock Relais Circuit ouvert
+B1394,Puissance/Alimentation Door Memory Lock Relais Circuit Short To Batterie
+B1395,Puissance/Alimentation Door Memory Lock Relais Circuit Short To Masse
+B1396,Puissance/Alimentation Door Lock Circuit Short To Batterie
+B1397,Puissance/Alimentation Door Unlock Circuit Short To Batterie
+B1398,Driver Puissance/Alimentation Window One Touch Window Relais Circuit Défaillance
+B1399,Driver Puissance/Alimentation Window One Touch Window Relais Circuit ouvert
+B1400,Driver Puissance/Alimentation Window One Touch Window Relais Circuit Short To Batterie
+B1401,Driver Puissance/Alimentation Window One Touch Window Relais Circuit Short To Masse
+B1402,Driver Puissance/Alimentation Window Down Interrupteur Circuit Défaillance
+B1403,Driver Puissance/Alimentation Window Up Interrupteur Circuit Défaillance
+B1404,Driver Puissance/Alimentation Window Down Circuit ouvert
+B1405,Driver Puissance/Alimentation Window Down Circuit Short To Batterie
+B1406,Driver Puissance/Alimentation Window Down Circuit Short To Masse
+B1407,Driver Puissance/Alimentation Window Up Circuit ouvert
+B1408,Driver Puissance/Alimentation Window Up Circuit Short To Batterie
+B1409,Driver Puissance/Alimentation Window Up Circuit Short To Masse
+B1410,Driver Puissance/Alimentation Window Moteur Circuit Défaillance
+B1411,Driver Puissance/Alimentation Window Moteur Circuit ouvert
+B1412,Driver Puissance/Alimentation Window Moteur Circuit Short To Batterie
+B1413,Driver Puissance/Alimentation Window Moteur Circuit Short To Masse
+B1414,Puissance/Alimentation Window LR Moteur Circuit Défaillance
+B1415,Puissance/Alimentation Window LR Moteur Circuit ouvert
+B1416,Puissance/Alimentation Window LR Moteur Circuit Short To Batterie
+B1417,Puissance/Alimentation Window LR Moteur Circuit Short To Masse
+B1418,Passenger Puissance/Alimentation Window Moteur Circuit Défaillance
+B1419,Passenger Puissance/Alimentation Window Moteur Circuit ouvert
+B1420,Passenger Puissance/Alimentation Window Moteur Circuit Short To Batterie
+B1421,Passenger Puissance/Alimentation Window Moteur Circuit Short To Masse
+B1422,Puissance/Alimentation Window RR Moteur Circuit Défaillance
+B1423,Puissance/Alimentation Window RR Moteur Circuit ouvert
+B1424,Puissance/Alimentation Window RR Moteur Circuit Short To Batterie
+B1425,Puissance/Alimentation Window RR Moteur Circuit Short To Masse
+B1426,Lamp Seat Belt Circuit Short To Batterie
+B1427,Lamp Seat Belt Circuit ouvert
+B1428,Lamp Seat Belt Circuit Défaillance
+B1429,Lamp Seat Belt Circuit Short To Masse
+B1430,Seat Belt Interrupteur Circuit Short To Masse
+B1431,Wiper Brake/Run Relais Circuit Défaillance
+B1432,Wiper Brake/Run Relais Circuit Short To Batterie
+B1433,Wiper Brake/Run Relais Circuit Short To Masse
+B1434,Wiper Hi/Low Vitesse Relais Coil Circuit Défaillance
+B1435,Wiper Hi/Low Vitesse Relais Coil Circuit ouvert
+B1436,Wiper Hi/Low Vitesse Relais Coil Circuit Short To Batterie
+B1437,Wiper Hi/Low Vitesse Relais Coil Circuit Short To Masse
+B1438,Wiper Mode Select Interrupteur Circuit Défaillance
+B1439,Wiper Mode Select Interrupteur Circuit ouvert
+B1440,Wiper Mode Select Interrupteur Circuit Short To Batterie
+B1441,Wiper Mode Select Interrupteur Circuit Short To Masse
+B1442,Door Handle Interrupteur Circuit Défaillance
+B1443,Door Handle Interrupteur Circuit ouvert
+B1444,Door Handle Interrupteur Circuit Short To Batterie
+B1445,Door Handle Interrupteur Circuit Short To Masse
+B1446,Wiper Park Sense Circuit Défaillance
+B1447,Wiper Park Sense Circuit ouvert
+B1448,Wiper Park Sense Circuit Short To Batterie
+B1449,Wiper Park Sense Circuit Short To Masse
+B1450,Wiper Wash/Delay Interrupteur Circuit Défaillance
+B1451,Wiper Wash/Delay Interrupteur Circuit ouvert
+B1452,Wiper Wash/Delay Interrupteur Circuit Short To Batterie
+B1453,Wiper Wash/Delay Interrupteur Circuit Short To Masse
+B1454,Wiper Washer Fluid Lamp Circuit Défaillance
+B1455,Wiper Washer Fluid Lamp Circuit ouvert
+B1456,Wiper Washer Fluid Lamp Circuit Short To Batterie
+B1457,Wiper Washer Fluid Lamp Circuit Short To Masse
+B1458,Wiper Washer Pompe Moteur Relais Circuit Défaillance
+B1459,Wiper Washer Pompe Moteur Relais Coil Circuit ouvert
+B1460,Wiper Washer Pompe Moteur Relais Coil Circuit Short To Batterie
+B1461,Wiper Washer Pompe Moteur Relais Coil Circuit Short To Masse
+B1462,Seat Belt Interrupteur Circuit Défaillance
+B1463,Seat Belt Interrupteur Circuit ouvert
+B1464,Seat Belt Interrupteur Circuit Short To Batterie
+B1465,Wiper Brake/Run Relais Circuit ouvert
+B1466,Wiper Hi/Low Vitesse Not Interrupteuring
+B1467,Wiper Hi/Low Vitesse Circuit Moteur Short To Batterie
+B1468,Chime Input Request Circuit Défaillance
+B1469,Chime Input Request Circuit ouvert
+B1470,Lamp Headlamp Input Circuit Défaillance
+B1471,Lamp Headlamp Input Circuit ouvert
+B1472,Lamp Headlamp Input Circuit Short To Masse
+B1473,Wiper Low Vitesse Circuit Moteur Défaillance
+B1474,Batterie Saver Puissance/Alimentation Relais Circuit Short To Batterie
+B1475,Accessory Delay Relais Contact Short To Batterie
+B1476,Wiper High Vitesse Circuit Moteur Défaillance
+B1477,Wiper Hi/Low Circuit Moteur Short To Masse
+B1478,Puissance/Alimentation Window One Touch Up/Down Activated Simultaneously
+B1479,Wiper Washer Fluid Niveau Capteur Circuit Défaillance
+B1480,Wiper Washer Fluid Niveau Capteur Circuit ouvert
+B1481,Wiper Washer Fluid Niveau Capteur Circuit Short To Batterie
+B1482,Wiper Washer Fluid Niveau Capteur Circuit Short To Masse
+B1483,Brake Pedal Input Circuit Défaillance
+B1484,Brake Pedal Input Circuit ouvert
+B1485,Brake Pedal Input Circuit Batterie Short
+B1486,Brake Pedal Input Circuit Masse Short
+B1487,Door Handle Right Front Circuit Défaillance
+B1488,Door Handle Right Front Circuit ouvert
+B1489,Door Handle Right Front Short To Batterie
+B1490,Door Handle Right Front Short To Masse
+B1491,Ignition Cylindre Capteur Circuit Défaillance
+B1492,Ignition Cylindre Capteur Circuit ouvert
+B1493,Ignition Cylindre Capteur Batterie Short
+B1494,Ignition Cylindre Capteur Masse Short
+B1495,Decklid Punch-Out Capteur Circuit Défaillance
+B1496,Decklid Punch-Out Capteur Circuit ouvert
+B1497,Decklid Punch-Out Capteur Batterie Short
+B1498,Decklid Punch-Out Capteur Masse Short
+B1499,Lamp Turn Signal Left Circuit Défaillance
+B1500,Lamp Turn Signal Left Circuit ouvert
+B1501,Lamp Turn Signal Left Circuit Short To Batterie
+B1502,Lamp Turn Signal Left Circuit Short To Masse
+B1503,Lamp Turn Signal Right Circuit Défaillance
+B1504,Lamp Turn Signal Right Circuit ouvert
+B1505,Lamp Turn Signal Right Circuit Short To Batterie
+B1506,Lamp Turn Signal Right Circuit Short To Masse
+B1507,Flash To Pass Interrupteur Circuit Défaillance
+B1508,Flash To Pass Interrupteur Circuit ouvert
+B1509,Flash To Pass Interrupteur Circuit Short To Batterie
+B1510,Flash To Pass Interrupteur Circuit Short To Masse
+B1511,Driver Door Handle  Circuit Défaillance
+B1512,Driver Door Handle  Circuit ouvert
+B1513,Driver Door Handle  Circuit Short To Batterie
+B1514,Driver Door Handle  Circuit Short To Masse
+B1515,Seat Driver Occupied Interrupteur Circuit Défaillance
+B1516,Seat Driver Occupied Interrupteur Circuit ouvert
+B1517,Seat Driver Occupied Interrupteur Circuit Short To Batterie
+B1518,Seat Driver Occupied Interrupteur Circuit Short To Masse
+B1519,Hood Interrupteur Circuit Défaillance
+B1520,Hood Interrupteur Circuit ouvert
+B1521,Hood Interrupteur Circuit Short To Batterie
+B1522,Hood Interrupteur Circuit Short To Masse
+B1523,Keyless Entry Circuit Défaillance
+B1524,Keyless Entry Circuit ouvert
+B1525,Keyless Entry Circuit Short To Batterie
+B1526,Keyless Entry Circuit Short To Masse
+B1527,Memory Set Interrupteur Circuit Défaillance
+B1528,Memory Set Interrupteur Circuit ouvert
+B1529,Memory Set Interrupteur Circuit Short To Batterie
+B1530,Memory Set Interrupteur Circuit Short To Masse
+B1531,Memory 1 Interrupteur Circuit Défaillance
+B1532,Memory 1 Interrupteur Circuit ouvert
+B1533,Memory 1 Interrupteur Circuit Short To Batterie
+B1534,Memory 1 Interrupteur Circuit Short To Masse
+B1535,Memory 2 Interrupteur Circuit Défaillance
+B1536,Memory 2 Interrupteur Circuit ouvert
+B1537,Memory 2 Interrupteur Circuit Short To Batterie
+B1538,Memory 2 Interrupteur Circuit Short To Masse
+B1539,Mirror Driver Interrupteur Assembly Circuit Défaillance
+B1540,Mirror Driver Interrupteur Assembly Circuit ouvert
+B1541,Mirror Driver Interrupteur Assembly Circuit Short To Batterie
+B1542,Mirror Driver Interrupteur Assembly Circuit Short To Masse
+B1543,Seat Direction Interrupteur Assembly Circuit Défaillance
+B1544,Seat Direction Interrupteur Assembly Circuit ouvert
+B1545,Seat Direction Interrupteur Assembly Circuit Short To Batterie
+B1546,Seat Direction Interrupteur Assembly Circuit Short To Masse
+B1547,Puissance/Alimentation Window Master Circuit Défaillance
+B1548,Puissance/Alimentation Window Master Circuit ouvert
+B1549,Puissance/Alimentation Window Master Circuit Short To Batterie
+B1550,Puissance/Alimentation Window Master Circuit Short To Masse
+B1551,Decklid Release Circuit Défaillance
+B1552,Decklid Release Circuit ouvert
+B1553,Decklid Release Circuit Short To Batterie
+B1554,Decklid Release Circuit Short To Masse
+B1555,Ignition Run/Start Circuit Défaillance
+B1556,Ignition Run/Start Circuit ouvert
+B1557,Ignition Run/Start Circuit Short To Batterie
+B1558,Ignition Run/Start Circuit Short To Masse
+B1559,Door Lock Cylindre Circuit Défaillance
+B1560,Door Lock Cylindre Circuit ouvert
+B1561,Door Lock Cylindre Circuit Short To Batterie
+B1562,Door Lock Cylindre Circuit Short To Masse
+B1563,Door Ajar Circuit Défaillance
+B1564,Door Ajar Circuit ouvert
+B1565,Door Ajar Circuit Short To Batterie
+B1566,Door Ajar Circuit Short To Masse
+B1567,Lamp Headlamp High-Beam Circuit Défaillance
+B1568,Lamp Headlamp High-Beam Circuit ouvert
+B1569,Lamp Headlamp High-Beam Circuit Short To Batterie
+B1570,Lamp Headlamp High-Beam Circuit Short To Masse
+B1571,Door Ajar LR Circuit Défaillance
+B1572,Door Ajar LR Circuit ouvert
+B1573,Door Ajar LR Circuit  Short To Batterie
+B1574,Door Ajar LR Circuit Short To Masse
+B1575,Lamp Park Input Circuit Défaillance
+B1576,Lamp Park Input Circuit ouvert
+B1577,Lamp Park Input Circuit Short To Batterie
+B1578,Lamp Park Input Circuit Short To Masse
+B1579,Dim Panel Increase Input Circuit Défaillance
+B1580,Dim Panel Increase Input Circuit ouvert
+B1581,Dim Panel Increase Input Circuit Short To Batterie
+B1582,Dim Panel Increase Input Circuit Short To Masse
+B1583,Dim Panel Decrease Input Circuit Défaillance
+B1584,Dim Panel Decrease Input Circuit ouvert
+B1585,Dim Panel Decrease Input Circuit Short To Batterie
+B1586,Dim Panel Decrease Input Circuit Short To Masse
+B1587,Autolamp Delay Increase Circuit Défaillance
+B1588,Autolamp Delay Increase Circuit ouvert
+B1589,Autolamp Delay Increase Circuit Short To Batterie
+B1590,Autolamp Delay Increase Circuit Short To Masse
+B1591,Autolamp Delay Decrease Circuit Défaillance
+B1592,Autolamp Delay Decrease Circuit ouvert
+B1593,Autolamp Delay Decrease Circuit Short To Batterie
+B1594,Autolamp Delay Decrease Circuit Short To Masse
+B1595,Ignition Interrupteur Illegal Input Code
+B1596,Service Continuous Codes
+B1600,PATS Ignition Key Transponder Signal Is Not Received
+B1601,PATS Received Incorrect Key-Code From Ignition Key Transponder
+B1602,PATS Received Invalid Format Of Key-Code From Ignition Key Transponder
+B1603,Lamp Anti-Theft Indicator Circuit Défaillance
+B1604,Lamp Anti-Theft Indicator Circuit ouvert
+B1605,Lamp Anti-Theft Indicator Circuit Short To Batterie
+B1606,Lamp Anti-Theft Indicator Circuit Short To Masse
+B1607,Illuminated Entry Input Circuit Défaillance
+B1608,Illuminated Entry Input Circuit ouvert
+B1609,Illuminated Entry Input Court-circuit To Batterie
+B1610,Illuminated Entry Input Court-circuit To Masse
+B1611,Wiper Rear Mode Select Interrupteur Circuit Défaillance
+B1612,Wiper Rear Mode Select Interrupteur Circuit ouvert
+B1613,Wiper Rear Mode Select Interrupteur Circuit Short To Batterie
+B1614,Wiper Rear Mode Select Interrupteur Circuit Short To Masse
+B1615,Wiper Rear Disable Interrupteur Circuit Défaillance
+B1616,Wiper Rear Disable Interrupteur Circuit ouvert
+B1617,Wiper Rear Disable Interrupteur Circuit Short To Batterie
+B1618,Wiper Rear Disable Interrupteur Circuit Short To Masse
+B1619,Wiper Rear Low Limit Input Circuit Défaillance
+B1620,Wiper Rear Low Limit Input Circuit ouvert
+B1621,Wiper Rear Low Limit Input Circuit Short To Batterie
+B1622,Wiper Rear Low Limit Input Circuit Short To Masse
+B1623,Lamp Keypad Output Circuit Défaillance
+B1624,Lamp Keypad Output Circuit ouvert
+B1625,Lamp Keypad Output Court-circuit To Batterie
+B1626,Lamp Keypad Output Court-circuit To Masse
+B1627,PRNDL Reverse Input Circuit Défaillance
+B1628,PRNDL Reverse Input Circuit ouvert
+B1629,PRNDL Reverse Input Short To Batterie
+B1630,PRNDL Reverse Input Court-circuit To Masse
+B1631,Mirror Driver Left Circuit Défaillance
+B1632,Mirror Driver Left Circuit ouvert
+B1633,Mirror Driver Left Circuit Short To Batterie
+B1634,Mirror Driver Left Circuit Short To Masse
+B1635,Mirror Driver Right Circuit Défaillance
+B1636,Mirror Driver Right Circuit ouvert
+B1637,Mirror Driver Right Circuit Short To Batterie
+B1638,Mirror Driver Right Short To Masse
+B1639,Mirror Passenger Left Circuit Défaillance
+B1640,Mirror Passenger Left Circuit ouvert
+B1641,Mirror Passenger Left Circuit Short To Batterie
+B1642,Mirror Passenger Left Circuit Short To Masse
+B1643,Mirror Passenger Right Circuit Défaillance
+B1644,Mirror Passenger Right Circuit ouvert
+B1645,Mirror Passenger Right Circuit Short To Batterie
+B1646,Mirror Passenger Right Circuit Short To Masse
+B1647,Seat Driver Recline Forward Circuit Défaillance
+B1648,Seat Driver Recline Forward Circuit ouvert
+B1649,Seat Driver Recline Forward Circuit Short To Batterie
+B1650,Seat Driver Recline Forward Circuit Short To Masse
+B1651,Seat Driver Recline Backward Circuit Défaillance
+B1652,Seat Driver Recline Backward Circuit ouvert
+B1653,Seat Driver Recline Backward Circuit Short To Batterie
+B1654,Seat Driver Recline Backward Circuit Short To Masse
+B1655,Seat Driver Rear Up  Circuit Défaillance
+B1656,Seat Driver Rear Up Circuit ouvert
+B1657,Seat Driver Rear Up Circuit Short To Batterie
+B1658,Seat Driver Rear Up Circuit Short To Masse
+B1659,Seat Driver Front Up Circuit Défaillance
+B1660,Seat Driver Front Up Circuit ouvert
+B1661,Seat Driver Front Up Circuit Short To Batterie
+B1662,Seat Driver Front Up Circuit Short To Masse
+B1663,Seat Driver Front Up/Down Moteur Stalled
+B1664,Seat Driver Rear Up/Down Moteur Stalled
+B1665,Seat Driver Forward/Backward Moteur Stalled
+B1666,Seat Driver Recline Moteur Stalled
+B1667,Mirror Driver Up/Down Moteur Stalled
+B1668,Mirror Driver Right/Left Moteur Stalled
+B1669,Mirror Passenger Up/Down Moteur Stalled
+B1670,Mirror Passenger Right/Left Moteur Stalled
+B1671,Batterie Module Tension Out Of Range
+B1672,Seat Driver Occupied Input Circuit Défaillance
+B1673,Seat Driver Occupied Input Circuit ouvert
+B1674,Seat Driver Occupied Input Circuit Short To Batterie
+B1675,Seat Driver Occupied Input Circuit Short To Masse
+B1676,Batterie Pack Tension Out Of Range
+B1677,Alarm Panic Input Circuit Défaillance
+B1678,Alarm Panic Input Circuit ouvert
+B1679,Alarm Panic Input Circuit Short To Batterie
+B1680,Alarm Panic Input Circuit Short To Masse
+B1681,PATS Transceiver Module Signal Is Not Received
+B1682,PATS Is Disabled (Check Link Between PATS And Transponder)
+B1683,Mirror Driver/Passenger Interrupteur Circuit Défaillance
+B1684,Mirror Driver/Passenger Interrupteur Circuit ouvert
+B1685,Lamp Dome Input Circuit Défaillance
+B1686,Lamp Dome Input Circuit ouvert
+B1687,Lamp Dome Input Circuit Short To Batterie
+B1688,Lamp Dome Input Circuit Short To Masse
+B1689,Autolamp Delay Circuit Défaillance
+B1690,Autolamp Delay Circuit ouvert
+B1691,Autolamp Delay Circuit Short To Batterie
+B1692,Autolamp Delay Circuit Short To Masse
+B1693,Autolamp On Circuit Défaillance
+B1694,Autolamp On Circuit ouvert
+B1695,Autolamp On Circuit Short To Batterie
+B1696,Autolamp On Circuit Short To Masse
+B1697,Mirror Driver/Passenger Interrupteur Circuit Short To Batterie
+B1698,Mirror Driver/Passenger Interrupteur Circuit Short To Masse
+B1701,Seat Driver Recline Forward Interrupteur Circuit Défaillance
+B1702,Seat Driver Recline Forward Interrupteur Circuit ouvert
+B1703,Seat Driver Recline Forward Interrupteur Circuit Short To Batterie
+B1704,Seat Driver Recline Forward Interrupteur Circuit Short To Masse
+B1705,Seat Driver Recline Rearward Interrupteur Circuit Défaillance
+B1706,Seat Driver Recline Rearward Interrupteur Circuit ouvert
+B1707,Seat Driver Recline Rearward Interrupteur Circuit Short To Batterie
+B1708,Seat Driver Recline Rearward Interrupteur Circuit Short To Masse
+B1709,Seat Driver Front Up Interrupteur Circuit Défaillance
+B1710,Seat Driver Front Up Interrupteur Circuit ouvert
+B1711,Seat Driver Front Up Interrupteur Circuit Short To Batterie
+B1712,Seat Driver Front Up Interrupteur Circuit Short To Masse
+B1713,Seat Driver Front Down Interrupteur Circuit Défaillance
+B1714,Seat Driver Front Down Interrupteur Circuit ouvert
+B1715,Seat Driver Front Down Interrupteur Circuit Short To Batterie
+B1716,Seat Driver Front Down Interrupteur Circuit Short To Masse
+B1717,Seat Driver Forward Interrupteur Circuit Défaillance
+B1718,Seat Driver Forward Interrupteur Circuit ouvert
+B1719,Seat Driver Forward Interrupteur Circuit Short To Batterie
+B1720,Seat Driver Forward Interrupteur Circuit Short To Masse
+B1721,Seat Driver Rearward Interrupteur Circuit Défaillance
+B1722,Seat Driver Rearward Interrupteur Circuit ouvert
+B1723,Seat Driver Rearward Interrupteur Circuit Short To Batterie
+B1724,Seat Driver Rearward Interrupteur Circuit Short To Masse
+B1725,Seat Driver Rear Up Interrupteur Circuit Défaillance
+B1726,Seat Driver Rear Up Interrupteur Circuit ouvert
+B1727,Seat Driver Rear Up Interrupteur Circuit Short To Batterie
+B1728,Seat Driver Rear Up Interrupteur Circuit Short To Masse
+B1729,Seat Driver Rear Down Interrupteur Circuit Défaillance
+B1730,Seat Driver Rear Down Interrupteur Circuit ouvert
+B1731,Seat Driver Rear Down Interrupteur Circuit Short To Batterie
+B1732,Seat Driver Rear Down Interrupteur Circuit Short To Masse
+B1733,Mirror Driver Vertical Interrupteur Circuit Défaillance
+B1734,Mirror Driver Vertical Interrupteur Circuit ouvert
+B1735,Mirror Driver Vertical Interrupteur Circuit Short To Batterie
+B1736,Mirror Driver Vertical Interrupteur Circuit Short To Masse
+B1737,Mirror Driver Horizontal Interrupteur Circuit Défaillance
+B1738,Mirror Driver Horizontal Interrupteur Circuit ouvert
+B1739,Mirror Driver Horizontal Interrupteur Circuit Short To Batterie
+B1740,Mirror Driver Horizontal Interrupteur Circuit Short To Masse
+B1741,Mirror Passenger Vertical Interrupteur Circuit Défaillance
+B1742,Mirror Passenger Vertical Interrupteur Circuit ouvert
+B1743,Mirror Passenger Vertical Interrupteur Circuit Short To Batterie
+B1744,Mirror Passenger Vertical Interrupteur Circuit Short To Masse
+B1745,Mirror Passenger Horizontal Interrupteur Circuit Défaillance
+B1746,Mirror Passenger Horizontal Interrupteur Circuit ouvert
+B1747,Mirror Passenger Horizontal Interrupteur Circuit Short To Batterie
+B1748,Mirror Passenger Horizontal Interrupteur Circuit Short To Masse
+B1749,Park/Neutral Interrupteur Circuit Défaillance
+B1750,Park/Neutral Interrupteur Circuit ouvert
+B1751,Park/Neutral Interrupteur Circuit Short To Batterie
+B1752,Park/Neutral Interrupteur Circuit Short To Masse
+B1753,Hazard Flash Output Circuit Défaillance
+B1754,Hazard Flash Output Circuit ouvert
+B1755,Hazard Flash Output Circuit Short Batterie
+B1756,Hazard Flash Output Circuit Short To Masse
+B1757,Seat Driver Rear Down  Circuit Défaillance
+B1758,Seat Driver Rear Down Circuit ouvert
+B1759,Seat Driver Rear Down Circuit Short To Batterie
+B1760,Seat Driver Rear Down Circuit Short To Masse
+B1761,Seat Driver Front Down  Circuit Défaillance
+B1762,Seat Driver Front Down Circuit ouvert
+B1763,Seat Driver Front Down Circuit Short To Batterie
+B1764,Seat Driver Front Down Circuit Short To Masse
+B1765,Seat Driver Forward Circuit Défaillance
+B1766,Seat Driver Forward Circuit ouvert
+B1767,Seat Driver Forward Circuit Short To Batterie
+B1768,Seat Driver Forward Circuit Short To Masse
+B1769,Seat Driver Backward Circuit Défaillance
+B1770,Seat Driver Backward Circuit ouvert
+B1771,Seat Driver Backward Circuit Short To Batterie
+B1772,Seat Driver Backward Circuit Short To Masse
+B1773,Mirror Driver Up Circuit Défaillance
+B1774,Mirror Driver Up Circuit ouvert
+B1775,Mirror Driver Up Circuit Short To Batterie
+B1776,Mirror Driver Up Circuit Short To Masse
+B1778,Mirror Driver Down Circuit Défaillance
+B1779,Mirror Driver Down Circuit ouvert
+B1780,Mirror Driver Down Circuit Short To Batterie
+B1781,Mirror Driver Down Short To Masse
+B1782,Mirror Passenger Up Circuit Défaillance
+B1783,Mirror Passenger Up Circuit ouvert
+B1784,Mirror Passenger Up Circuit Short To Batterie
+B1785,Mirror Passenger Up Circuit Short To Masse
+B1786,Mirror Passenger Down Circuit Défaillance
+B1787,Mirror Passenger Down Circuit ouvert
+B1788,Mirror Passenger Down Circuit Short To Batterie
+B1789,Mirror Passenger Down Circuit Short To Masse
+B1790,Autolamp Capteur Input Circuit Défaillance
+B1791,Autolamp Capteur Input Circuit ouvert
+B1792,Autolamp Capteur Input Circuit Short To Batterie
+B1793,Autolamp Capteur Input Circuit Short To Masse
+B1794,Lamp Headlamp Low-Beam Circuit Défaillance
+B1795,Lamp Headlamp Low-Beam Circuit ouvert
+B1796,Lamp Headlamp Low-Beam Circuit Short To Batterie
+B1797,Lamp Headlamp Low-Beam Circuit Short To Masse
+B1798,Lamp Turn Signal Front Output Circuit Défaillance
+B1799,Lamp Turn Signal Front Output Circuit ouvert
+B1800,Lamp Turn Signal Front Output Circuit Short To Batterie
+B1801,Lamp Turn Signal Front Output Circuit Short To Masse
+B1802,Lamp Turn Signal Rear Output Circuit Défaillance
+B1803,Lamp Turn Signal Rear Output Circuit ouvert
+B1804,Lamp Turn Signal Rear Output Circuit Short To Batterie
+B1805,Lamp Turn Signal Rear Output Circuit Short To Masse
+B1806,Lamp Tail Output Circuit Défaillance
+B1807,Lamp Tail Output Circuit ouvert
+B1808,Lamp Tail Output Circuit Short To Batterie
+B1809,Lamp Tail Output Circuit Short To Masse
+B1810,Lamp Backup Interrupteur Input Circuit Défaillance
+B1811,Lamp Backup Interrupteur Input Circuit ouvert
+B1812,Lamp Backup Interrupteur Input Circuit Short To Batterie
+B1813,Lamp Backup Interrupteur Input Circuit Short To Masse
+B1814,Wiper Rear Moteur Down Relais Coil Circuit Défaillance
+B1815,Wiper Rear Moteur Down Relais Coil Circuit ouvert
+B1816,Wiper Rear Moteur Down Relais Coil Circuit Short To Batterie
+B1817,Wiper Rear Moteur Down Relais Coil Circuit Short To Masse
+B1818,Wiper Rear Moteur Up Relais Coil Circuit Défaillance
+B1819,Wiper Rear Moteur Up Relais Coil Circuit ouvert
+B1820,Wiper Rear Moteur Up Relais Coil Circuit Short To Batterie
+B1821,Wiper Rear Moteur Up Relais Coil Circuit Short To Masse
+B1822,Wiper Rear Park Sense Input Circuit Défaillance
+B1823,Wiper Rear Park Sense Input Circuit ouvert
+B1824,Wiper Rear Park Sense Input Circuit Short To Batterie
+B1825,Wiper Rear Park Sense Input Circuit Short To Masse
+B1826,Wiper Rear High Limit Input Circuit Défaillance
+B1827,Wiper Rear High Limit Input Circuit ouvert
+B1828,Wiper Rear High Limit Input Circuit Short To Batterie
+B1829,Wiper Rear High Limit Input Circuit Short To Masse
+B1830,Door Unlock Disarm Interrupteur Circuit Défaillance
+B1831,Door Unlock Disarm Interrupteur Circuit ouvert
+B1832,Door Unlock Disarm Interrupteur Circuit Short To Batterie
+B1833,Door Unlock Disarm Interrupteur Circuit Short To Masse
+B1834,Door Unlock Disarm Output Circuit Défaillance
+B1835,Door Unlock Disarm Output Circuit ouvert
+B1836,Door Unlock Disarm Output Circuit Short To Batterie
+B1837,Door Unlock Disarm Output Circuit Short To Masse
+B1838,Batterie Saver Puissance/Alimentation Relais Circuit Défaillance
+B1839,Wiper Rear Moteur Circuit Défaillance
+B1840,Wiper Front Puissance/Alimentation Circuit Défaillance
+B1841,Wiper Front Puissance/Alimentation Circuit ouvert
+B1842,Wiper Front Puissance/Alimentation Circuit Short To Batterie
+B1843,Wiper Front Puissance/Alimentation Circuit Short To Masse
+B1844,Phone Handset Circuit Défaillance
+B1845,Ignition Tamper Circuit Défaillance
+B1846,Ignition Tamper Circuit ouvert
+B1847,Ignition Tamper Circuit Short To Batterie
+B1848,Ignition Tamper Circuit Short To Masse
+B1849,Climate Contrôle Température Differential Circuit Défaillance
+B1850,Climate Contrôle Température Differential Circuit ouvert
+B1851,Climate Contrôle Température Differential Circuit Short To Batterie
+B1852,Climate Contrôle Température Differential Circuit Short To Masse
+B1853,Climate Contrôle Air Température Internal Capteur Moteur Circuit Défaillance
+B1854,Climate Contrôle Air Température Internal Capteur Moteur Circuit ouvert
+B1855,Climate Contrôle Air Température Internal Capteur Moteur Circuit Short To Batterie
+B1856,Climate Contrôle Air Température Internal Capteur Moteur Circuit Short To Masse
+B1857,Climate Contrôle On/Off Interrupteur Circuit Défaillance
+B1858,Climate Contrôle Climatisation Pression Interrupteur Circuit Défaillance
+B1859,Climate Contrôle Climatisation Pression Interrupteur Circuit ouvert
+B1860,Climate Contrôle Climatisation Pression Interrupteur Circuit Short To Batterie
+B1861,Climate Contrôle Climatisation Pression Interrupteur Circuit Short To Masse
+B1862,Climate Contrôle Climatisation Lock Capteur Défaillance
+B1863,Masse ECU Circuit ouvert
+B1864,Batterie Puissance/Alimentation Alimentation ECU Circuit Défaillance
+B1865,Batterie Puissance/Alimentation Alimentation ECU Circuit ouvert
+B1866,Batterie Puissance/Alimentation Alimentation ECU Circuit Short To Batterie
+B1867,Batterie Puissance/Alimentation Alimentation ECU Circuit Short To Masse
+B1868,Lamp Air Bag Warning Indicator Circuit Défaillance
+B1869,Lamp Air Bag Warning Indicator Circuit ouvert
+B1870,Lamp Air Bag Warning Indicator Circuit Short To Batterie
+B1871,Passenger Air Bag Disable Module Défaut
+B1872,Turn Signal / Hazard Puissance/Alimentation Feed Circuit Short To Batterie
+B1873,Turn Signal / Hazard Puissance/Alimentation Feed Circuit Short To Masse
+B1874,Cellular Phone Handset Not Present
+B1875,Turn Signal / Hazard Interrupteur Signal Circuit Défaillance
+B1876,Seatbelt Driver Pretensioner Circuit Défaillance
+B1877,Seatbelt Driver Pretensioner Circuit ouvert
+B1878,Seatbelt Driver Pretensioner Circuit Court-circuit à la batterie
+B1879,Seatbelt Driver Pretensioner Circuit Court-circuit à la masse
+B1880,Seatbelt Passenger Pretensioner Circuit Défaillance
+B1881,Seatbelt Passenger Pretensioner Circuit ouvert
+B1882,Seatbelt Passenger Pretensioner Circuit Court-circuit à la batterie
+B1883,Seatbelt Passenger Pretensioner Circuit Court-circuit à la masse
+B1884,PAD Warning Lamp Inoperative
+B1885,Seatbelt Driver Pretensioner Circuit Résistance Low on Squib
+B1886,Seatbelt Passenger Pretensioner Circuit Résistance Low on Squib
+B1887,Air Bag Driver Circuit Résistance Low or Shorted Together
+B1888,Air Bag Passenger Circuit Résistance Low or Shorted Together
+B1889,Passenger Airbag Disable Module Capteur Obstructed
+B1890,PAD Warning Lamp Circuit Court-circuit à la batterie
+B1891,Air Bag Tone Warning Indicator Circuit Court-circuit à la batterie
+B1892,Air Bag Tone Warning Indicator Circuit Défaillance
+B1893,GPS Antenna Circuit ouvert
+B1894,Wiper Rear Moteur Vitesse Sense Circuit Défaillance
+B1897,Horn Interrupteur Circuit Défaillance
+B1898,Chime Input #2 Circuit Court-circuit à la masse
+B1899,Microphone Input Signal Circuit ouvert
+B1900,Driver Side Airbag Défaut
+B1901,Air Bag Crash Capteur #1 Feed/Return Circuit Short To Masse
+B1902,Air Bag Crash Capteur #1 Masse Circuit Défaillance
+B1903,Air Bag Crash Capteur #1 Masse Circuit Short To Batterie
+B1904,Air Bag Crash Capteur #2 Feed/Return Circuit Défaillance
+B1905,Air Bag Crash Capteur #2 Feed/Return Circuit Short To Batterie
+B1906,Air Bag Crash Capteur #2 Feed/Return Circuit Short To Masse
+B1907,Air Bag Crash Capteur #2 Masse Circuit Défaillance
+B1908,Air Bag Crash Capteur #2 Masse Circuit Short To Batterie
+B1909,Air Bag Crash Capteur #2 Masse Circuit Short To Masse
+B1910,Air Bag Diagnostic Monitor Masse Circuit Défaillance
+B1911,Air Bag Diagnostic Monitor Masse Circuit Short To Batterie
+B1912,Air Bag Diagnostic Monitor Masse Circuit Short To Masse
+B1913,Air Bag Driver/Passenger Circuit Short To Masse
+B1914,Air Bag Crash Capteurs #1 / #2  Circuit Short To Masse
+B1915,Air Bag Driver Circuit Défaillance
+B1916,Air Bag Driver Circuit Short To Batterie
+B1917,Air Bag Memory Clear Circuit Défaillance
+B1918,Air Bag Memory Clear Circuit ouvert
+B1919,Air Bag Memory Clear Circuit Short To Batterie
+B1920,Air Bag Passenger Circuit Défaillance
+B1921,Air Bag Diagnostic Monitor Masse Circuit ouvert
+B1922,Air Bag Safing Capteur Output Circuit Short To Batterie
+B1923,Air Bag Memory Clear Circuit Short To Masse
+B1924,Air Bag Internal Diagnostic Monitor Défaut or Système Disarm Défaut
+B1925,Air Bag Passenger Circuit Short To Batterie
+B1926,Air Bag Passenger Pression Interrupteur Circuit Défaillance
+B1927,Passenger Side Airbag Défaut
+B1928,Air Bag Safing Capteur Output Circuit Défaillance
+B1929,Air Bag Safing Capteur Output Circuit ouvert
+B1930,Air Bag Safing Capteur Output Circuit Short To Masse
+B1931,Air Bag Crash Capteur #1 Feed/Return Circuit Défaillance
+B1932,Air Bag Driver Circuit ouvert
+B1933,Air Bag Passenger Circuit ouvert
+B1934,Air Bag Driver Inflator Circuit Résistance Low on Squib
+B1935,Air Bag Passenger Inflator Circuit Résistance Low on Squib
+B1936,Air Bag Driver Circuit Short To Masse
+B1937,Air Bag Passenger Pression Interrupteur Circuit ouvert
+B1938,Air Bag Passenger Circuit Short To Masse
+B1939,Air Bag Passenger Pression Interrupteur Circuit Short To Masse
+B1941,Air Bag Crash Capteur #1 Feed/Return Circuit ouvert
+B1942,Air Bag Crash Capteur #2 Feed/Return Circuit ouvert
+B1943,Air Bag Crash Capteur #1 Masse Circuit Short To Masse
+B1944,Air Bag Crash Capteur #1 Masse Circuit ouvert
+B1945,Air Bag Crash Capteur #2 Masse Circuit ouvert
+B1946,Climate Contrôle Climatisation Post Evaporator Capteur Circuit Défaillance
+B1947,Climate Contrôle Climatisation Post Evaporator Capteur Circuit Short To Masse
+B1948,Climate Contrôle Water Température Capteur Circuit Défaillance
+B1949,Climate Contrôle Water Température Capteur Circuit Short To Masse
+B1950,Seat Rear Up/Down Potentiometer Feedback Circuit Défaillance
+B1951,Seat Rear Up/Down Potentiometer Feedback Circuit ouvert
+B1952,Seat Rear Up/Down Potentiometer Feedback Circuit Short To Batterie
+B1953,Seat Rear Up/Down Potentiometer Feedback Circuit Short To Masse
+B1954,Seat Front Up/Down Potentiometer Feedback Circuit Défaillance
+B1955,Seat Front Up/Down Potentiometer Feedback Circuit ouvert
+B1956,Seat Front Up/Down Potentiometer Feedback Circuit Short To Batterie
+B1957,Seat Front Up/Down Potentiometer Feedback Circuit Short To Masse
+B1958,Seat Recline Forward/Backward Potentiometer Feedback Circuit Défaillance
+B1959,Seat Recline Forward/Backward Potentiometer Feedback Circuit ouvert
+B1960,Seat Recline Forward/Backward Potentiometer Feedback Circuit Short To Batterie
+B1961,Seat Recline Forward/Backward Potentiometer Feedback Circuit Short To Masse
+B1962,Seat Horizontal Forward/Rearward Potentiometer Feedback Circuit Défaillance
+B1963,Seat Horizontal Forward/Rearward Potentiometer Feedback Circuit ouvert
+B1964,Seat Horizontal Forward/Rearward Potentiometer Feedback Circuit Short To Batterie
+B1965,Seat Horizontal Forward/Rearward Potentiometer Feedback Circuit Short To Masse
+B1966,Climatisation Post Heater Capteur Circuit Défaillance
+B1967,Climatisation Post Heater Capteur Circuit Short To Masse
+B1968,Climatisation Water Pompe Detection Circuit Défaillance
+B1969,Climatisation Clutch Magnetic Contrôle Circuit Défaillance
+B1970,Passenger Seatback Forward Interrupteur Circuit Court-circuit à la masse
+B1971,Passenger Seatback Rearward Interrupteur Circuit Court-circuit à la masse
+B1972,Passenger Rear Seat Up Interrupteur Circuit Court-circuit à la batterie
+B1973,Passenger Rear Seat Down Interrupteur Circuit Court-circuit à la batterie
+B1979,Passenger Seat Rearward Interrupteur Circuit Court-circuit à la batterie
+B1980,Bulb - Outage Condition Détecté
+B1981,Memory Off Interrupteur Circuit Court-circuit à la batterie
+B1984,Seat Interrupteur Lumbar Inflate Circuit Défaillance
+B1985,Seat Interrupteur Lumbar Deflate Circuit Défaillance
+B1987,Pedal Forward / Rearward Moteur Stalled
+B1988,Pedal Position Forward Interrupteur Circuit Court-circuit à la batterie
+B1989,Pedal Position Rearward Interrupteur Circuit Court-circuit à la batterie
+B1990,Pedal Forward / Rearward Potentiometer Feedback Circuit Défaillance
+B1991,Pedal Forward / Rearward Potentiometer Feedback Circuit Court-circuit à la batterie
+B1992,Driver Side
+B1993,Driver Side
+B1994,Driver Side
+B1995,Driver Side
+B1996,Passenger Side
+B1997,Passenger Side
+B1998,Passenger Side
+B1999,Passenger Side
+B2100,Door Driver Key Cylindre Interrupteur Défaillance
+B2101,Head Rest Interrupteur Circuit Défaillance
+B2102,Antenna Circuit Court-circuit à la masse
+B2103,Antenna Not Connected
+B2104,Door Passenger Key Cylindre Interrupteur Défaillance
+B2105,Throttle Position Input Out of Range Low
+B2106,Throttle Position Input Out of Range High
+B2107,Front Wiper Moteur Relais Circuit Short to Vbatt
+B2108,Trunk Key Cylindre Interrupteur Défaillance
+B2109,Heated Wind Shield Relais Short to Vbatt (changed from Défaillance 2/6/97)
+B2110,Front Wiper Moteur Relais Circuit ouvert (changed from Défaillance 2/6/97)
+B2111,All Door Lock Input Court-circuit à la masse
+B2112,Door Driver Set Interrupteur Bloqué Défaillance
+B2113,Heated Windshield Input Court-circuit à la masse
+B2114,Front Washer Input Court-circuit à la masse
+B2115,Rear Washer Input Court-circuit à la masse
+B2116,Door Driver Reset Interrupteur Bloqué Défaillance
+B2117,Driver Side
+B2118,Passenger Side
+B2119,Compressor Défaillance
+B2120,Door Passenger Set Interrupteur Bloqué Défaillance
+B2122,Driver Side Satellite Communication Circuit Court-circuit à la masse
+B2123,Passenger Side Satellite Communication Circuit Court-circuit à la masse
+B2124,Door Passenger Reset Interrupteur Bloqué Défaillance
+B2128,Central Lock Moteur Défaillance
+B2129,Central Lock Feedback Défaillance
+B2130,Double Lock Timeout Défaillance
+B2131,Double Lock Feedback Défaillance
+B2132,Dimmer switch Circuit Short to Gnd
+B2133,Brake Moteur Warning lamp Circuit Défaillance
+B2134,Brake Moteur Warning lamp Circuit Short to Vbatt
+B2135,Park Brake Applied Warning Lamp Circuit Défaillance
+B2136,Park Brake Applied Warning Lamp Circuit Short To Batterie
+B2139,Données Mismatch (receive data does not match what was expected)
+B2141,NVM Configuration Défaillance
+B2142,NVM TIC Défaillance
+B2143,NVM Memory Défaillance
+B2144,NVM Alarm Données Défaillance
+B2145,NVM RF HR Défaillance
+B2146,Seat Recline Moteur Position Out of Range
+B2148,PWM Input Circuit Défaillance
+B2149,Seat Front Vertical Moteur Position Out of Range
+B2150,Puissance/Alimentation Alimentation #1 Circuit Court-circuit à la masse
+B2151,Puissance/Alimentation Alimentation #2 Circuit Court-circuit à la masse
+B2152,Seat Rear Vertical Moteur Position Out of Range
+B2153,Rear Echo Capteur Circuit Défaillance
+B2154,Front Echo Capteur Circuit Défaillance
+B2155,Seat Horizontal Moteur Position Out of Range
+B2156,Rear Doppler Capteur Circuit Défaillance
+B2157,Front Doppler Capteur Circuit Défaillance
+B2158,Seat Recline Moteur Memory Position Out of Range
+B2159,Memory #1 output Court-circuit à la masse
+B2160,Memory #1 output Short to VBatt
+B2161,Seat Front Vertical Moteur Memory Position Out of Range
+B2162,Données Mismatch #2 (receive data does not match what was expected)
+B2163,Clutch Position Défaut
+B2164,Seat Rear Vertical Moteur Memory Position Out of Range
+B2165,Rapport de boîte shift position Défaut
+B2166,Rapport de boîte select position Défaut
+B2167,Seat Horizontal Moteur Memory Position Out of Range
+B2168,Unable to confirm Unlock Condition
+B2169,Unable to confirm lock Condition
+B2170,Steering Column Lock Interrupteur Circuit Défaillance
+B2172,Inertia Interrupteur input Circuit ouvert
+B2174,Window Driver Rear Remote Up Interrupteur Court-circuit à la batterie
+B2175,Climatisation Request Signal Circuit Court-circuit à la masse
+B2176,Overdrive switch circuit short to Vbatt
+B2177,Interior Scanning Capteur Circuit Défaillance
+B2178,Window Driver Rear Remote Down Interrupteur Court-circuit à la batterie
+B2179,"Front Wiper Select Interrupteur ""A"" Court-circuit à la masse"
+B2180,"Front Wiper Select Interrupteur ""B"" Court-circuit à la masse"
+B2181,"Front Wiper Select Interrupteur ""C"" Court-circuit à la masse"
+B2182,Window Passenger Front Remote Up Interrupteur Court-circuit à la batterie
+B2183,"Front Wiper Select Interrupteur ""H"" Court-circuit à la masse"
+B2184,"Front Wiper Select Interrupteur ""W"" Court-circuit à la masse"
+B2185,"Rear Wiper Select Interrupteur ""D"" Court-circuit à la masse"
+B2186,Window Passenger Front Remote Down Interrupteur Court-circuit à la batterie
+B2187,"Rear Wiper Select Interrupteur ""B"" Court-circuit à la masse"
+B2188,"Rear Wiper Select Interrupteur ""E"" Court-circuit à la masse"
+B2190,Window Passenger Rear Remote Up Interrupteur Court-circuit à la batterie
+B2194,Window Passenger Rear Remote Down Interrupteur Court-circuit à la batterie
+B2195,Driver Window  Up / Down Puissance/Alimentation Circuit Court-circuit à la masse
+B2196,Passenger Window Up / Down Puissance/Alimentation Circuit Court-circuit à la masse
+B2197,TV Module Erreur
+B2198,TrafficMaster Module Erreur
+B2199,VICS Module Erreur
+B2200,No Communication to TV Module (No Fitting of TV)
+B2201,No Communication With Traffic MasterModule
+B2202,No Communication to VICS Module (No Fitting of VICS)
+B2203,CD-ROM Erreur
+B2204,GPS Antenna Connection Circuit ouvert or Short
+B2205,GPS Receiver Erreur
+B2206,Gyroscope Erreur
+B2207,ECU ROM Checksum Erreur
+B2208,Communication Link to Display and Interrupteur Module Erreur
+B2209,Interior Lamp Override Interrupteur Circuit ouvert
+B2210,Interior Lamp Override Interrupteur Court-circuit à la masse
+B2211,Low Coolant Lamp Output Circuit Court-circuit à la batterie
+B2214,Window Passenger Front Up Interrupteur Court-circuit à la batterie
+B2215,Window Passenger Front Down Interrupteur Court-circuit à la batterie
+B2219,Window Driver Front Courant Feedback Exceeded
+B2220,Window Driver Rear Courant Feedback Exceeded
+B2221,Window Passenger Front Courant Feedback Exceeded
+B2222,Window Passenger Rear Courant Feedback Exceeded
+B2223,Mirror Driver Drive Circuit Défaillance
+B2224,Mirror Passenger Drive Circuit Défaillance
+B2225,Front Crash Capteur Mount Défaut
+B2226,Front Crash Capteur Internal Défaut
+B2227,Front Crash Capteur Driver Communications Défaut
+B2228,Air Bag Driver Circuit Court-circuit à la masse - Loop #2
+B2229,Air Bag Passenger Circuit Court-circuit à la masse - Loop #2
+B2230,Air Bag Driver Circuit Court-circuit à la batterie - Loop #2
+B2231,Air Bag Passenger Circuit Court-circuit à la batterie - Loop #2
+B2232,Air Bag Driver Circuit ouvert - Loop #2
+B2233,Air Bag passenger Circuit ouvert - Loop #2
+B2234,Air Bag Driver Inflator Circuit Résistance Low on Squib - Loop #2
+B2235,Air Bag Passenger Inflator Circuit
+B2236,Weak or Defected Electric Vehicle Batterie Module Défaut
+B2237,Vehicle Signal indicating Park While CVV Present
+B2238,Puissance/Alimentation Cable For Puissance/Alimentation Sliding Door Broken
+B2239,Rear Cargo Door Set Interrupteur Bloqué (Court-circuit à la masse)
+B2240,Rear Cargo Door Reset Interrupteur Bloqué (Court-circuit à la masse)
+B2241,Rear Cargo Door Lock Circuit Court-circuit à la masse
+B2242,Rear Cargo Door Unlock Circuit ouvert
+B2243,Driver Rear Door Ajar Circuit ouvert
+B2244,Driver Sliding Door Ajar Circuit Short to GND
+B2245,Passenger Rear Door Ajar Circuit ouvert
+B2246,Passenger Sliding Door Ajar Circuit Short to GND
+B2247,EV Batterie Pack Température Défaut
+B2248,Heated Windshield Relais Coil Circuit Défaillance
+B2249,Head Lamp Relais Coil Court-circuit à la batterie
+B2250,All Doors Unlock Relais Circuit Défaillance
+B2251,Parklamp Output Relais Driver Circuit Défaillance
+B2252,Parklamp Output Relais Dirver Court-circuit à la batterie
+B2300,Seat Driver Memory Position Erreur
+B2301,Seat Passenger Memory Position Erreur
+B2302,Seat Headrest Feedback Potentiometer Circuit Défaillance
+B2303,Seat Headrest Feedback Potentiometer Circuit ouvert
+B2304,Seat Headrest Feedback Potentiometer Circuit Court-circuit à la batterie
+B2305,Seat Headrest Feedback Potentiometer Circuit Court-circuit à la masse
+B2306,Seat Headrest Moteur Stalled
+B2310,Mirror Driver Memory Position Erreur
+B2311,Mirror Passenger Memory Position Erreur
+B2312,Mirror Passenger Horizontal Feedback Potentiometer Circuit Défaillance
+B2313,Mirror Passenger Horizontal Feedback Potentiometer Circuit ouvert
+B2314,Mirror Passenger Horizontal Feedback Potentiometer Circuit Court-circuit à la batterie
+B2315,Mirror Passenger Horizontal Feedback Potentiometer Circuit Court-circuit à la masse
+B2316,Mirror Passenger Vertical Feedback Potentiometer Circuit Défaillance
+B2317,Mirror Passenger Vertical Feedback Potentiometer Circuit ouvert
+B2318,Mirror Passenger Vertical Feedback Potentiometer Circuit Court-circuit à la batterie
+B2319,Mirror Passenger Vertical Feedback Potentiometer Circuit Court-circuit à la masse
+B2320,Mirror Driver Horizontal Feedback Potentiometer Circuit Défaillance
+B2321,Mirror Driver Horizontal Feedback Potentiometer Circuit ouvert
+B2322,Mirror Driver Horizontal Feedback Potentiometer Circuit Court-circuit à la batterie
+B2323,Mirror Driver Horizontal Feedback Potentiometer Circuit Court-circuit à la masse
+B2324,Mirror Driver Vertical Feedback Potentiometer Circuit Défaillance
+B2325,Mirror Driver Vertical Feedback Potentiometer Circuit ouvert
+B2326,Mirror Driver Vertical Feedback Potentiometer Circuit Court-circuit à la batterie
+B2327,Mirror Driver Vertical Feedback Potentiometer Circuit Court-circuit à la masse
+B2328,Column Reach Feedback Potentiometer Circuit Défaillance
+B2329,Column Reach Feedback Potentiometer Circuit ouvert
+B2330,Column Reach Feedback Potentiometer Circuit Court-circuit à la batterie
+B2331,Column Reach Feedback Potentiometer Circuit Court-circuit à la masse
+B2332,Column Tilt Feedback Potentiometer Circuit Défaillance
+B2333,Column Tilt Feedback Potentiometer Circuit ouvert
+B2334,Column Tilt Feedback Potentiometer Circuit Court-circuit à la batterie
+B2335,Column Tilt Feedback Potentiometer Circuit Court-circuit à la masse
+B2336,Mirror Interrupteur Assembly Circuit Défaillance
+B2337,Mirror Interrupteur Assembly Circuit ouvert
+B2338,Mirror Interrupteur Assembly Circuit Court-circuit à la batterie
+B2339,Mirror Interrupteur Assembly Circuit Court-circuit à la masse
+B2340,Column Reach Moteur Stalled
+B2341,Column Tilt Moteur Stalled
+B2342,Seat Interrupteur Référence Tension Positive Common Circuit ouvert
+B2343,Seat Interrupteur Référence Tension Positive Common Alimentation Tension faible
+B2344,Seat Interrupteur Référence Tension Positive Common Alimentation Tension Défaut
+B2345,Seat Interrupteur Référence Tension Negative Common Circuit ouvert
+B2346,Mirror Interrupteur Référence Tension Positive Common Circuit ouvert
+B2347,Mirror Interrupteur Référence Tension Positive Common Alimentation Tension faible
+B2348,Mirror Interrupteur Référence Tension Positive Common Alimentation Tension Défaut
+B2349,Mirror Interrupteur Référence Tension Negative Common Circuit ouvert
+B2350,Steering Column Interrupteur Circuit Court-circuit à la batterie
+B2351,Steering Column Interrupteur Circuit Défaillance
+B2352,Driver Memory Puissance/Alimentation Interrupteur Indicator Circuit Court-circuit à la batterie
+B2353,Driver Mirror Puissance/Alimentation Driver Circuit Short Masse
+B2354,Driver Mirror Horizontal / Vertical Feedback Potentiometer Circuit ouvert
+B2355,Passenger Mirror Horizontal / Vertical Feedback Potentiometer Circuit ouvert
+B2357,Driver Window Down Courant Sense Low Circuit Défaillance
+B2362,Remote Circuit ouvert/Close signal Circuit Court-circuit à la masse
+B2363,Optical Capteur Système Défaillance
+B2364,Fuel Filler Door Circuit ouvert
+B2365,B-pillar Puissance/Alimentation Sliding Door Circuit ouvert/Close Interrupteur Input Ckt Short to Gnd
+B2366,IP Puissance/Alimentation Sliding Door Circuit ouvert/Close switch Ckt Short to Gnd
+B2367,Puissance/Alimentation Sliding Door Override Interrupteur Input Ckt Short to Gnd
+B2368,Steering Column Interrupteur Circuit Out of Range
+B2369,Chime OUTPUT Request Ckt Court-circuit à la masse
+B2373,LED #1 Circuit Court-circuit à la batterie
+B2374,Puissance/Alimentation Sliding Detent (Latch) Circuit  Défaillance
+B2380,Heater Coolant Temp sensor circuit Short to GND
+B2381,Heater Coolant Temp sensor circuit Circuit ouvert
+B2384,Audio Reverse Aid Mute Input Ckt Défaillance
+B2385,Audio Navigation Mute Input Ckt  Défaillance
+B2401,Audio Tape Deck Mechanism Défaut
+B2402,Audio CD/DJ Thermal Shutdown Défaut
+B2403,Audio CD/DJ Internal Défaut
+B2404,Audio Steering Wheel Interrupteur Circuit Défaut
+B2405,Audio Single-Disc CD Player Thermal Shutdown Défaut
+B2406,Audio Single-Disc CD Player Internal Défaut
+B2416,Climate Contrôle Recirculation Actuator Out of Limits
+B2425,Remote Keyless Entry Out of Synchronization
+B2426,Passenger Solar Radiation Capteur  Circuit ouvert
+B2427,Passenger Solar Radiation Capteur  Circuit Court-circuit à la masse
+B2428,Climatisation Post Heater Capteur #2 Circuit Défaillance
+B2429,Climatisation Post Heater Capteur #2 Circuit Court-circuit à la masse
+B2431,Transponder Programming Failed
+B2432,Drivers Seat Belt Buckle Interrupteur Circuit ouvert
+B2433,Drivers Seat Belt Buckle Interrupteur Circuit Court-circuit à la batterie
+B2434,Drivers Seat Belt Buckle Interrupteur Circuit Court-circuit à la masse
+B2435,Drivers Seat Belt Buckle Interrupteur Résistance out of Range
+B2436,Passengers Seat Belt Buckle Interrupteur Circuit ouvert
+B2437,Passengers Seat Belt Buckle Interrupteur Circuit Court-circuit à la batterie
+B2438,Passengers Seat Belt Buckle Interrupteur Circuit Court-circuit à la masse
+B2439,Passengers Seat Belt Buckle Interrupteur Résistance out of Range
+B2440,Passenger Side
+B2441,Driver Side
+B2442,Intrusion Capteur Défaut
+B2443,Puissance/Alimentationtrain Performance Mode Interrupteur Circuit failure
+B2444,Driver Side Crash Capteur Internal Défaut
+B2445,Passenger Side Crash Capteur Internal Défaut
+B2446,RESCU/VEMS Input Circuit ouvert
+B2447,RESCU/VEMS Input Circuit Court-circuit à la batterie
+B2448,RESCU/VEMS Input Circuit Court-circuit à la masse
+B2449,Aux Heater Bougie de préchauffage Circuit Court-circuit à la masse
+B2450,Aux Heater Bougie de préchauffage Circuit ouvert
+B2451,Aux Heater Fuel Pompe Circuit Court-circuit à la masse
+B2452,Aux Heater Fuel Pompe Circuit ouvert
+B2453,Aux Heater Blower Fan Circuit Court-circuit à la masse
+B2454,Aux Heater Blower Fan Circuit ouvert
+B2455,Aux Heater Blower Défauted
+B2456,Aux Heater Coolant Capteur Circuit Court-circuit à la masse
+B2457,Aux Heater Coolant Capteur Circuit ouvert
+B2458,Aux Heater Overheat Capteur Circuit Court-circuit à la masse
+B2459,Aux Heater Overheat Capteur Circuit ouvert
+B2460,Aux Heater Flame Capteur Circuit Court-circuit à la masse
+B2461,Aux Heater Flame Capteur Circuit ouvert
+B2462,Aux Heater Flame Out Défaut
+B2463,Aux Heater Overheat Défaut
+B2464,Aux Heater Start Time Exceeded
+B2465,Aux Heater Start Counter Overrun/Système Locked (same as below ?)
+B2466,Aux Heater Overheat Counter Overrun/Système Locked
+B2467,Aux Heater Cool Down Time Exceeded (may be con to a453-5 )
+B2468,Aux Heater Coolant Pompe Circuit Court-circuit à la masse
+B2469,Aux Heater Coolant Pompe Circuit ouvert
+B2470,Interior Fan Contrôle Circuit Court-circuit à la masse
+B2471,Interior Fan Contrôle Circuit ouvert
+B2472,Fog Lamp Interrupteur  Défaillance
+B2473,Passenger Door Disarm Interrupteur ckt Court-circuit à la masse
+B2474,Passenger Door Lock Interrupteur Circuit Shorted to Masse
+B2475,Passenger Door Unlock Interrupteur Circuit Shorted to Masse
+B2476,RADIO PRESENT SWITCH Ckt Défaillance
+B2477,Module Configuration Défaillance
+B2478,ANTI THEFT INPUT SIGNAL SHORT TO GROUND
+B2479,BRAKE PARK SWITCH CIRCUIT SHORT TO GROUND
+B2480,LF CORNER LAMP OUTPUT Ckt Court-circuit à la batterie
+B2481,Convertible Top Up/Down switch Défaut
+B2482,RF CORNER LAMP OUTPUT Ckt Court-circuit à la batterie
+B2483,Enable Signal Circuit ouvert
+B2484,Disable Signal Court-circuit à la masse
+B2485,LF SIDE REPEATER LAMP OUTPUT Ckt Court-circuit à la batterie
+B2487,RF SIDE REPEATER LAMP OUTPUT Ckt Court-circuit à la batterie
+B2489,UNDERHOOD LAMP OUTPUT CIRCUIT Défaillance
+B2490,UNDERHOOD LAMP OUTPUT CIRCUIT Court-circuit à la batterie
+B2491,RF PARK LAMP OUTPUT CIRCUIT Court-circuit à la batterie
+B2492,Already Programmed (Test Mode DTC Only !!!)
+B2493,LF PARK LAMP OUTPUT CIRCUIT Court-circuit à la batterie
+B2494,ANTI THEFT HORN OUTPUT CIRCUIT Short to Batt
+B2495,ANTI THEFT HORN OUTPUT CIRCUIT Défaillance
+B2496,ANTI THEFT HORN OUTPUT CIRCUIT Short to Gnd
+B2499,COURTESY LAMP OUTPUT Défaillance
+B2500,COURTESY LAMP OUTPUT Ckt Court-circuit à la batterie
+B2501,LF LAMP LOW BEAM CIRCUIT Défaillance
+B2502,LF LAMP LOW BEAM CIRCUIT Court-circuit à la batterie
+B2503,RF LAMP LOW BEAM CIRCUIT Défaillance
+B2504,RF LAMP LOW BEAM CIRCUIT Court-circuit à la batterie
+B2505,LF LAMP HIGH BEAM CIRCUIT Défaillance
+B2506,LF LAMP HIGH BEAM CIRCUIT Court-circuit à la batterie
+B2507,RF LAMP HIGH BEAM CIRCUIT Défaillance
+B2508,RF LAMP HIGH BEAM CIRCUIT Court-circuit à la batterie
+B2509,Rear Fog Lamp Interrupteur Circuit Défaillance
+B2510,Main Blower Moteur Relais Circuit Court-circuit à la batterie
+B2511,Horn Output Relais Circuit Court-circuit à la batterie
+B2512,Front Fog Lamp Relais Ckt Court-circuit à la batterie
+B2513,Blower (Fan) Circuit Défaillance
+B2514,Blower (Fan) Circuit Short to Vbatt
+B2515,Heater Blower Relais Circuit Défaillance
+B2516,Blower Contrôle Circuit Défaillance
+B2517,Emergency Puissance/Alimentation Off Système Défauted
+B2518,Compressor Overtemp Défaut
+B2519,High Mount Stop Lamp Circuit Défaillance
+B2520,High Mount Stop Lamp Circuit Court-circuit à la batterie
+B2523,License Lamp Circuit Défaillance
+B2524,License Lamp Circuit Court-circuit à la batterie
+B2525,Left Rear Backup Lamp Circuit Défaillance
+B2526,Left Rear Backup Lamp Circuit Court-circuit à la batterie
+B2527,Left Rear Stop lamp Circuit Défaillance
+B2528,Left Rear Stop lamp Circuit Court-circuit à la batterie
+B2529,Left Rear  Turn Lamp Circuit Défaillance
+B2530,Left Rear  Turn Lamp Circuit Court-circuit à la batterie
+B2531,Right Rear Backup Lamp Circuit Défaillance
+B2532,Right Rear Backup Lamp Circuit Court-circuit à la batterie
+B2533,Right Rear Stop lamp Circuit Défaillance
+B2534,Right Rear Stop lamp Circuit Court-circuit à la batterie
+B2535,Right Rear  Turn Lamp Circuit Défaillance
+B2536,Right Rear  Turn Lamp Circuit Court-circuit à la batterie
+B2539,Aux Climatisation Mode Position Référence Circuit Court-circuit à la masse
+B2540,Aux Climatisation Mode Position Référence Circuit Court-circuit à la batterie
+B2543,Aux Climatisation Contrôle Interrupteur Référence Circuit Court-circuit à la masse
+B2544,Aux Climatisation Contrôle Interrupteur Référence Circuit Court-circuit à la batterie
+B2545,Système Puissance/Alimentation Relais Circuit Court-circuit à la batterie
+B2546,Système Puissance/Alimentation Relais Circuit Défaillance
+B2550,LAMP DOME OUTPUT Circuit Court-circuit à la masse
+B2553,Disable Signal Output Circuit Court-circuit à la batterie
+B2554,LAMP DOME OUTPUT Circuit Défaillance
+B2555,LAMP DOME OUTPUT Circuit Court-circuit à la batterie
+B2556,Enable Signal  Circuit Court-circuit à la batterie
+B2557,Left Puissance/Alimentation Sliding Door Circuit ouvert/Close Output Circuit Court-circuit à la batterie
+B2558,Right Puissance/Alimentation Sliding Door Circuit ouvert/Close Output Circuit Court-circuit à la batterie
+B2559,Aux Climatisation Blower Moteur Relais Circuit Court-circuit à la batterie
+B2560,Aux Climatisation Blower Moteur Relais Circuit Court-circuit à la masse
+B2561,Aux Climatisation Blower Vitesse 1 Circuit Défaillance
+B2562,Aux Climatisation Blower Vitesse 1 Circuit Court-circuit à la masse
+B2563,Aux Climatisation Blower Vitesse 2 Circuit Défaillance
+B2564,Aux Climatisation Blower Vitesse 2 Circuit Court-circuit à la masse
+B2565,Right Tail Lamp Circuit Défaillance
+B2566,Right Tail Lamp Circuit Court-circuit à la masse
+B2567,Reverse Mirror Output Circuit Défaillance
+B2568,Reverse Mirror Output Circuit Court-circuit à la masse
+B2569,Liftgate Disarm Interrupteur Circuit Court-circuit à la masse
+B2570,Right Lamp Outage Signal Circuit Court-circuit à la masse
+B2571,Left Lamp Outage Signal Circuit Court-circuit à la masse
+B2580,Aux Blower Sense Interrupteur Circuit Défaillance
+B2581,Passenger Seat Occupant Detection Circuit Short To Masse
+B2582,Passenger Seat Occupant Detection Circuit ouvert
+B2583,Child Seat Detection Circuit Court-circuit à la masse
+B2584,Child Seat Detection Circuit ouvert
+B2585,Anti Theft Input Signal Circuit Short To Batterie
+B2586,Headlamp Mode Select Circuit Défaillance
+B2587,Passenger Seat Occupant Detection Circuit Short To Batterie
+B2588,Child Seat Detection Circuit Short To Batterie
+B2589,Unexpected Door Reversal During Close
+B2590,Vehicle Park/Vitesse Signal Circuit Défaillance
+B2591,Detent Signal Missing During Unlatch
+B2592,PSD Not Fully Closed (Module Commanded Successfully)
+B2593,Puissance/Alimentation Sliding Door Circuit ouverted During Module Close Command
+B2594,No Movement Détecté After an Unlatch During Puissance/Alimentation Circuit ouvert
+B2595,Anti Theft Input Signal Circuit Défaillance
+B2596,Headlamp Aim Output Relais Circuit Short To Batterie
+B2597,Headlamp Aim Output Relais Circuit Défaillance
+B2598,Headlamp Relais Circuit Défaillance
+B2599,Tailgate Release Circuit ouvert
+B2600,Double Locking Door Moteur Frozen
+B2601,No Latch Signal Sensed on Closing and Door Reversed
+B2602,Missing Latch Signal During Puissance/Alimentation Sliding Door Unlatch
+B2603,PSD Not Fully Closed During Self-Test
+B2604,Puissance/Alimentation Sliding Door On/Off Interrupteur Circuit ouvert
+B2605,Disable Signal Circuit ouvert
+B2606,Climatisation Température Capteur Out of Range
+C1091,Vitesse Wheel Capteur All Coherency Défaillance
+C1095,ABS Hydraulic Pompe Moteur Circuit Défaillance
+C1096,ABS Hydraulic Pompe Moteur Circuit ouvert
+C1097,ABS Hydraulic Pompe Moteur Circuit Short To Masse
+C1098,ABS Hydraulic Pompe Moteur Circuit Short To Batterie
+C1100,ABS Pompe Interrupteur Circuit Défaillance
+C1101,ABS Hydraulic Vanne Circuit Défaillance
+C1102,ABS Accélération Interrupteur Circuit Défaillance
+C1103,ABS Hydraulic Interrupteur de frein Circuit Défaillance
+C1104,Traction Contrôle Active Lamp - Circuit Court-circuit à la batterie
+C1105,Traction Contrôle Disable Lamp - Circuit Court-circuit à la batterie
+C1106,Traction Contrôle Disable Interrupteur Circuit Court-circuit à la batterie
+C1107,ABS Function Enabled Input Circuit Défaillance
+C1109,Vitesse Contrôle Actuator Assembly Cable Release  Défaillance
+C1110,ABS Puissance/Alimentation Relais Coil Circuit Défaillance
+C1111,ABS Puissance/Alimentation Relais Coil Circuit ouvert
+C1112,ABS Puissance/Alimentation Relais Coil Court-circuit To Masse
+C1113,ABS Puissance/Alimentation Relais Coil Court-circuit To Batterie
+C1114,ABS Puissance/Alimentation Relais Output Court-circuit To Masse
+C1115,ABS Puissance/Alimentation Relais Output Court-circuit To Batterie
+C1116,Démarreur Moteur Circuit Défaillance
+C1117,RPM Input Circuit Défaillance
+C1123,Capteur de vitesse du véhicule Input Court-circuit à la batterie
+C1124,Input shaft speed signal missing/faulted
+C1125,Brake Fluid Niveau Capteur Input Circuit Défaillance
+C1126,Régulateur de vitesse Command Interrupteur Assembly Circuit Défaillance
+C1127,Régulateur de vitesse Deactivator Interrupteur de frein Circuit Défaillance
+C1132,Clutch position ckt short to ground
+C1133,Clutch position ckt short to battery
+C1134,Rapport de boîte Shift position short to ground
+C1135,Rapport de boîte Shift position short to battery
+C1136,Rapport de boîte Select position short to ground
+C1137,ECU is Defective
+C1138,Rapport de boîte Select position short to Batterie
+C1139,Wheel Vitesse Capteur Center Tone Ring Missing Tooth Défaut
+C1140,Hydraulic Base Brake Défaillance
+C1141,Wheel Vitesse Capteur LF Tone Ring Tooth Missing Défaut
+C1142,Wheel Vitesse Capteur RF Tone Ring Tooth Missing Défaut
+C1143,Wheel Vitesse Capteur LR Tone Ring Tooth Missing Défaut
+C1144,Wheel Vitesse Capteur RR Tone Ring Tooth Missing Défaut
+C1145,Vitesse Wheel Capteur RF Input Circuit Défaillance
+C1146,Vitesse Wheel Capteur RF Circuit ouvert
+C1148,Vitesse Wheel Capteur RF Coherency Défaut
+C1149,Hydraulic Fluid Pression/ Débit Circuit Défaillance
+C1150,Two Vitesse Rear Axle Input Interrupteur Circuit Short to Vbatt
+C1155,Vitesse Wheel Capteur LF Input Circuit Défaillance
+C1156,Vitesse Wheel Capteur LF Circuit ouvert
+C1157,Park Brake Actuator Assembly Interrupteur Applied Circuit Défaillance
+C1158,Vitesse Wheel Capteur LF Coherency Défaut
+C1159,Hydraulic Fluid Pression/ Débit Circuit Short to Gnd
+C1161,Air Pression Low Circuit Short to Gnd
+C1162,Park Interrupteur de frein # 2 Released Circuit Défaillance
+C1163,Park Interrupteur de frein # 2 Applied Circuit Short to Gnd
+C1164,Park Brake Actuator Assembly Interrupteur Circuit Défaillance
+C1165,Vitesse Wheel Capteur RR Input Circuit Défaillance
+C1166,Vitesse Wheel Capteur RR Input Circuit ouvert
+C1167,Park Brake Actuator Assembly Interrupteur Released Circuit Short to Gnd
+C1168,Vitesse Wheel Capteur RR Coherency Défaut
+C1169,ABS Fluid Dumping Exceeds Maximum Calage
+C1170,PRNDL  Interrupteur Circuit Défaillance
+C1172,Park Interrupteur de frein # 1 Applied Circuit Défaillance
+C1173,Park Interrupteur de frein # 1 Released Circuit Short to Gnd
+C1174,Park Interrupteur de frein # 2 Applied Circuit Défaillance
+C1175,Vitesse Wheel Capteur LR Input Circuit Défaillance
+C1176,Vitesse Wheel Capteur LR Circuit ouvert
+C1177,Park Brake Actuator Assembly Interrupteur Released Circuit Défaillance
+C1178,Vitesse Wheel Capteur LR Coherency Défaut
+C1179,Vitesse Contrôle Actuator Assembly Cable Slack Défaillance
+C1180,Park Brake Vanne Solénoïde #1 Sense Input Circuit Défaillance
+C1181,Park Brake Vanne Solénoïde #1 Sense Input Circuit Short to Gound
+C1182,Park Lamp Flash Relais Circuit Défaillance
+C1183,Park Lamp Flash Relais Circuit Court-circuit à la batterie
+C1184,ABS Système Is Not Operational
+C1185,ABS Puissance/Alimentation Relais Output Circuit Défaillance
+C1186,ABS Puissance/Alimentation Relais Output Circuit ouvert
+C1187,Brake Fluid Niveau Capteur Input Circuit ouvert
+C1188,Brake Fluid Niveau Capteur Input Court-circuit To Batterie
+C1189,Brake Fluid Niveau Capteur Input Court-circuit To Masse
+C1190,Vitesse Wheel Capteur LF Input Court-circuit To Batterie
+C1191,Vitesse Wheel Capteur LF Input Court-circuit To Masse
+C1192,Vitesse Wheel Capteur RF Input Court-circuit To Batterie
+C1193,Vitesse Wheel Capteur RF Input Court-circuit To Masse
+C1194,ABS Outlet Vanne Coil LF Circuit Défaillance
+C1195,ABS Outlet Vanne Coil LF Circuit ouvert
+C1196,ABS Outlet Vanne Coil LF Circuit Short To Batterie
+C1197,ABS Outlet Vanne Coil LF Circuit Short To Masse
+C1198,ABS Inlet Vanne Coil LF Circuit Défaillance
+C1199,ABS Inlet Vanne Coil LF Circuit ouvert
+C1200,ABS Inlet Vanne Coil LF Circuit Short To Batterie
+C1201,ABS Inlet Vanne Coil LF Circuit Short To Masse
+C1202,ABS Outlet Vanne Coil Rear Circuit Défaillance
+C1203,ABS Outlet Vanne Coil Rear Circuit ouvert
+C1204,ABS Outlet Vanne Coil Rear Circuit Short To Batterie
+C1205,ABS Outlet Vanne Coil Rear Circuit Short To Masse
+C1206,ABS Inlet Vanne Coil Rear Circuit Défaillance
+C1207,ABS Inlet Vanne Coil Rear Circuit ouvert
+C1208,ABS Inlet Vanne Coil Rear Circuit Short To Batterie
+C1209,ABS Inlet Vanne Coil Rear Circuit Short To Masse
+C1210,ABS Outlet Vanne Coil RF Circuit Défaillance
+C1211,ABS Outlet Vanne Coil RF Circuit ouvert
+C1212,ABS Outlet Vanne Coil RF Circuit Short To Batterie
+C1213,ABS Outlet Vanne Coil RF Circuit Short To Masse
+C1214,ABS Inlet Vanne Coil RF Circuit Défaillance
+C1215,ABS Inlet Vanne Coil RF Circuit ouvert
+C1216,ABS Inlet Vanne Coil RF Circuit Short To Batterie
+C1217,ABS Inlet Vanne Coil RF Circuit Short To Masse
+C1218,Lamp ABS Warning Output Circuit Défaillance
+C1219,Lamp ABS Warning Output Circuit ouvert
+C1220,Lamp ABS Warning Output Circuit Short To Batterie
+C1221,Lamp ABS Warning Output Circuit Short To Masse
+C1222,Vitesse Wheel Mismatch
+C1223,Lamp Brake Warning Output Circuit Défaillance
+C1224,Lamp Brake Warning Output Circuit ouvert
+C1225,Lamp Brake Warning Output Circuit Short To Batterie
+C1226,Lamp Brake Warning Output Circuit Short To Masse
+C1227,Vitesse Wheel Capteur LR Input Court-circuit To Batterie
+C1228,Vitesse Wheel Capteur LR Input Court-circuit To Masse
+C1229,Vitesse Wheel Capteur Rear Center Coherency Défaut
+C1230,Vitesse Wheel Capteur Rear Center Input Circuit Défaillance
+C1231,Vitesse Wheel Capteur Rear Center Circuit ouvert
+C1232,Vitesse Wheel Capteur Rear Center Input Court-circuit To Batterie
+C1233,Vitesse Wheel LF Input Signal Missing
+C1234,Vitesse Wheel RF Input Signal Missing
+C1235,Vitesse Wheel RR Input Signal Missing
+C1236,Vitesse Wheel LR Input Signal Missing
+C1237,Vitesse Wheel Rear Input Signal Missing
+C1238,ABS Hydraulic Pression Differential Interrupteur Input Circuit Défaillance
+C1239,ABS Hydraulic Pression Differential Interrupteur Input  Circuit ouvert
+C1240,ABS Hydraulic Pression Differential Interrupteur Input Court-circuit To Batterie
+C1241,ABS Hydraulic Pression Differential Interrupteur Input Court-circuit To Masse
+C1242,ABS Outlet Vanne Coil LR Circuit Défaillance
+C1243,ABS Outlet Vanne Coil LR Circuit ouvert
+C1244,ABS Outlet Vanne Coil LR Circuit Short To Batterie
+C1245,ABS Outlet Vanne Coil LR Circuit Short To Masse
+C1246,ABS Outlet Vanne Coil RR Circuit Défaillance
+C1247,ABS Outlet Vanne Coil RR Circuit ouvert
+C1248,ABS Outlet Vanne Coil RR Circuit Short To Batterie
+C1249,ABS Outlet Vanne Coil RR Circuit Short To Masse
+C1250,ABS Inlet Vanne Coil LR Circuit Défaillance
+C1251,ABS Inlet Vanne Coil LR Circuit ouvert
+C1252,ABS Inlet Vanne Coil LR Circuit Short To Batterie
+C1253,ABS Inlet Vanne Coil LR Circuit Short To Masse
+C1254,ABS Inlet Vanne Coil RR Circuit Défaillance
+C1255,ABS Inlet Vanne Coil RR Circuit ouvert
+C1256,ABS Inlet Vanne Coil RR Circuit Short To Batterie
+C1257,ABS Inlet Vanne Coil RR Circuit Short To Masse
+C1258,Vitesse Wheel LF Comparison Défaillance
+C1259,Vitesse Wheel RF Comparison Défaillance
+C1260,Vitesse Wheel RR Comparison Défaillance
+C1261,Vitesse Wheel LR Comparison Défaillance
+C1262,Lamp Warning Relais Circuit Défaillance
+C1263,Lamp Warning Relais Circuit ouvert
+C1264,Lamp Warning Relais Circuit Short To Batterie
+C1265,Lamp Warning Relais Circuit Short To Masse
+C1266,ABS Vanne Puissance/Alimentation Relais Circuit Défaillance
+C1267,ABS Functions Temporarily Disabled
+C1268,Moteur Relais # 1 Circuit Défaillance
+C1269,Moteur Relais # 1 Circuit Court-circuit à la batterie
+C1270,Moteur # 1 Input Circuit Défaillance
+C1271,Moteur # 1 Input Circuit Short to Gnd
+C1272,Moteur # 2 Input Circuit Défaillance
+C1273,Moteur # 2 Input Circuit Short to Vbat
+C1274,Solénoïde Relais # 1 Circuit Défaillance
+C1275,Solénoïde Relais # 1 Circuit Short to Vbatt
+C1276,Park Brake Actuator Assembly Interrupteur Applied Circuit Short to Gnd
+C1277,STEERING Wheel Angle 1and 2 Circuit Défaillance
+C1278,STEERING Wheel Angle 1and 2 Signal Défauted
+C1279,Yaw Rate Capteur circuit Défaillance
+C1280,Yaw Rate Capteur Signal Défaut
+C1281,Lateral Accelerometer circuit Défaillance
+C1282,Lateral Accelerometer Signal Défaut
+C1283,Interrupteur Test Signal Défaillance
+C1284,Oil Pression Interrupteur Défaillance
+C1285,Booster Solénoïde circuit Défaillance
+C1286,Booster Mechanical Défaillance
+C1287,Booster Pedal Force switch circuit Défaillance
+C1288,Pression Transducer Main / Primary Input Circuit Défaillance
+C1289,Pression Transducer Redundant / Secondary Input Circuit Défaillance
+C1400,Traction Contrôle Vanne RF Circuit Défaillance
+C1401,Traction Contrôle Vanne RF Circuit ouvert
+C1402,Traction Contrôle Vanne RF Circuit Short To Masse
+C1403,Traction Contrôle Vanne RF Circuit Short To Batterie
+C1404,Traction Contrôle Vanne Rear Circuit Défaillance
+C1405,Traction Contrôle Vanne Rear Circuit ouvert
+C1406,Traction Contrôle Vanne Rear Circuit Short To Masse
+C1407,Traction Contrôle Vanne Rear Circuit Short To Batterie
+C1410,Traction Contrôle Vanne LF Circuit Défaillance
+C1411,Traction Contrôle Vanne LF Circuit ouvert
+C1412,Traction Contrôle Vanne LF Circuit Short To Masse
+C1413,Traction Contrôle Vanne LF Circuit Short To Batterie
+C1414,Incorrect Module Design Niveau
+C1415,Incorrect Module Configuration
+C1416,Damper RF Circuit Short To Batterie
+C1417,Damper RF Circuit Court-circuit à la masse
+C1418,Damper RF Circuit Défaillance
+C1419,Damper RF Circuit ouvert
+C1420,Hydraulic Fluid Pression/ Débit Circuit Short to Vbatt
+C1421,Damper LF Circuit Short To Batterie
+C1422,Damper LF Circuit Court-circuit à la masse
+C1423,Damper LF Circuit Défaillance
+C1424,Damper LF Circuit ouvert
+C1425,Damper RR Circuit Court-circuit à la masse
+C1426,Damper RR Circuit Short To Batterie
+C1427,Damper RR Circuit ouvert
+C1428,Damper RR Circuit Défaillance
+C1429,Input-shaft-speed input circuit failure
+C1430,Damper LR Circuit ouvert
+C1431,Damper LR Circuit Short To Batterie
+C1432,Damper LR Circuit Court-circuit à la masse
+C1433,Damper LR Circuit Défaillance
+C1435,Accelerometer Rear Circuit Défaillance
+C1436,Accelerometer Rear Circuit Signal Is Not Sensed
+C1437,Accelerometer Rear Circuit Short To Masse
+C1438,Accelerometer Rear Circuit Short To Batterie
+C1439,Vehicle Accélération EEC-IV Circuit Défaillance
+C1440,Pression Transducer Main / Primary signal Défauted
+C1441,Steering Phase A Circuit Signal Is Not Sensed
+C1442,Steering Phase B Circuit Signal Is Not Sensed
+C1443,Steering Phase A Circuit Short To Masse
+C1444,Steering Phase B Circuit Short To Masse
+C1445,Vitesse Vehicle Signal Circuit Défaillance
+C1446,Interrupteur de frein Circuit Défaillance
+C1447,Traction Module de contrôle Request Circuit Défaillance
+C1448,Lamp Adaptive Damping Warning Circuit Défaillance
+C1449,Traction Contrôle Moteur Coherency Défaut
+C1450,Traction Contrôle Moteur Circuit Défaillance
+C1451,Traction Contrôle Moteur Circuit ouvert
+C1452,Traction Contrôle Moteur Circuit Court-circuit à la batterie
+C1453,Traction Contrôle Moteur Circuit Court-circuit à la masse
+C1454,Front Lateral Accelerometer Circuit Défaillance
+C1455,Accelerometer Front Circuit Défaillance
+C1456,Accelerometer Front Circuit Is Not Sensed
+C1457,Accelerometer Front Circuit Short To Masse
+C1458,Accelerometer Front Circuit Short To Batterie
+C1459,Adaptive Mode Interrupteur Circuit Défaillance
+C1460,Vehicle Accelerometer Puissance/Alimentation Circuit Défaillance
+C1461,Vehicle Accelerometer Puissance/Alimentation Circuit Court-circuit à la batterie
+C1462,Left Front Vertical Accelerometer Circuit Défaillance
+C1463,Right Front Vertical Accelerometer Circuit Défaillance
+C1464,Pression Transducer Redundant / Secondary Signal Défauted
+C1465,Damper High Side Front Circuit Short To Batterie
+C1466,Damper Circuit Défaillance
+C1467,Damper High Side Rear Circuit Short To Batterie
+C1468,Damper Low Side Front Circuit Défaillance
+C1469,Damper Low Side Rear Circuit Défaillance
+C1495,Traction Contrôle Moteur Potentiometer Circuit Défaillance
+C1496,Traction Contrôle Moteur Potentiometer Circuit ouvert
+C1497,Traction Contrôle Moteur Potentiometer Circuit Court-circuit à la batterie
+C1498,Traction Contrôle Moteur Potentiometer Circuit Court-circuit à la masse
+C1499,"Transfer Case Contact Plate ""A"" Encoder Circuit Défaillance"
+C1500,"Transfer Case Contact Plate ""B"" Encoder Circuit Défaillance"
+C1501,"Transfer Case Contact Plate ""C"" Encoder Circuit Défaillance"
+C1502,"Transfer Case Contact Plate ""D"" Encoder Circuit Défaillance"
+C1503,Dynamic Stability Contrôle Left Front Vanne Dysfonctionnement
+C1504,Dynamic Stability Contrôle Right Front Vanne Dysfonctionnement
+C1505,Dynamic Stability Contrôle Left Rear Vanne Dysfonctionnement
+C1506,Dynamic Stability Contrôle Right Rear Vanne Dysfonctionnement
+C1507,Traction Contrôle of Brake Exceeds Time-Out
+C1508,Traction Contrôle of Engine Exceeds Time-Out
+C1510,Right Front Wheel Pression Reduction Performance Problem
+C1511,Left Front Wheel Pression Reduction Performance Problem
+C1512,Right Rear Wheel Pression Reduction Performance Problem
+C1513,Left rear Wheel Pression Reduction Performance Problem
+C1699,Left Rear Capteur Circuit Short to Vbat
+C1700,Left Rear Capteur Circuit Défaillance
+C1701,Left Rear Capteur Circuit Défaut
+C1702,RightRear Capteur Circuit Short to Vbat
+C1703,Right Rear Capteur Circuit Défaillance
+C1704,Right Rear Capteur Circuit Défaut
+C1705,Left Rear Center Capteur Circuit Short to Vbat
+C1706,Left Rear Center Capteur Circuit Défaillance
+C1707,Left Rear Center Capteur Circuit Défaut
+C1708,Right Rear Center Capteur Circuit Short to Vbat
+C1709,Right Rear Center Capteur Circuit Défaillance
+C1710,Right Rear Center Capteur Circuit Défaut
+C1711,Left Front Capteur Circuit Short to Vbat
+C1712,Left Front Capteur Circuit Défaillance
+C1713,Left Front Capteur Circuit Défaut
+C1714,Right Front Capteur Circuit Short to Vbat
+C1715,Right Front Capteur Circuit Défaillance
+C1716,Right Front Capteur Circuit Défaut
+C1717,Left Front Center Capteur Circuit Short to Vbat
+C1718,Left Front Center Capteur Circuit Défaillance
+C1719,Left Front Center Capteur Circuit Défaut
+C1721,Air Suspension Height Capteur Puissance/Alimentation Circuit ouvert
+C1722,Air Suspension Height Capteur Puissance/Alimentation Circuit Short To Batterie
+C1723,Air Suspension Height Capteur Puissance/Alimentation Circuit Short To Masse
+C1724,Air Suspension Height Capteur Puissance/Alimentation Circuit Défaillance
+C1725,Air Suspension Front Pneumatic Défaillance
+C1726,Air Suspension Rear Pneumatic Défaillance
+C1727,Air Suspension Reservoir Pneumatic Défaillance
+C1728,Transfer  Case unable to transition between 2H and 4H
+C1729,Transfer  Case unable to transition between 4H and 4L
+C1730,Référence Tension Out of Range (+5 v)
+C1731,Air Suspension LF Corner Up Timeout
+C1732,Air Suspension LF Corner Down Timeout
+C1733,Air Suspension RF Corner Up Timeout
+C1734,Air Suspension RF Corner Down Timeout
+C1735,Air Suspension LR Corner Up Timeout
+C1736,Air Suspension LR Corner Down Timeout
+C1737,Air Suspension RR Corner Up Timeout
+C1738,Air Suspension RR Corner Down Timeout
+C1739,Right Front Center Capteur Circuit Short to Vbat
+C1740,Right Front Center Capteur Circuit Défaillance
+C1741,Right Front Center Capteur Circuit Défaut
+C1742,Rear Sounder Circuit Défaillance
+C1743,Rear Sounder Circuit Short to Vbatt
+C1744,Front Sounder Circuit Défaillance
+C1745,Front Sounder Circuit Short to Vbatt
+C1748,Interrupteur input Circuit Short to Gnd
+C1749,Trailer Input Circuit Défaillance
+C1750,Accelerator Position Capteur Out of Range
+C1751,Capteur de vitesse du véhicule # 1 Output Circuit Short to Vbatt
+C1752,Capteur de vitesse du véhicule # 1 Output Circuit Short to Gnd
+C1753,Hydraulic Clutch Actuator Vanne Signal Défaut
+C1754,Hydraulic Clutch Actuator Vanne Circuit Défaillance
+C1755,Puissance/Alimentation Limit Shutdown Défaut
+C1756,Air Suspension Front Height Capteur High (SE) Signal Circuit Défaillance
+C1757,Air Suspension Front Height Capteur High (SE) Signal Circuit ouvert
+C1758,Air Suspension Front Height Capteur High (SE) Signal Circuit Short To Batterie
+C1759,Air Suspension Front Height Capteur High (SE) Signal Circuit Short To Masse
+C1760,Air Suspension Rear Height Capteur High (SE) Signal Circuit Défaillance
+C1761,Air Suspension Rear Height Capteur High (SE) Signal Circuit ouvert
+C1762,Air Suspension Rear Height Capteur High (SE) Signal Circuit Short To Batterie
+C1763,Air Suspension Rear Height Capteur High (SE) Signal Circuit Short To Masse
+C1765,Air Suspension Rear Height Capteur Low Signal Circuit Défaillance
+C1766,Air Suspension Rear Height Capteur Low Signal Circuit ouvert
+C1767,Air Suspension Rear Height Capteur Low Signal Circuit Short To Batterie
+C1768,Air Suspension Rear Height Capteur Low Signal Circuit Short To Masse
+C1770,Air Suspension Évent Solénoïde Output Circuit Défaillance
+C1771,Air Suspension Évent Solénoïde Output Circuit ouvert
+C1772,Air Suspension Évent Solénoïde Output Circuit Short To Batterie
+C1773,Air Suspension Évent Solénoïde Output Circuit Short To Masse
+C1774,Coolant Temp Out of Range
+C1775,DC-DC Converter Défaillance
+C1776,Heater Système Défaillance
+C1777,Vacuum Pression Circuit Défaillance
+C1778,Puissance/Alimentation Steering Défaillance
+C1779,Blower Interrupteur Défaillance
+C1780,Température Select Défaillance
+C1781,Engine Coolant Température Signal Missing/Défaut
+C1790,Air Suspension LR Air Spring/Shock Solénoïde Output Circuit Défaillance
+C1791,Air Suspension LR Air Spring/Shock Solénoïde Output Circuit ouvert
+C1792,Air Suspension LR Air Spring/Shock Solénoïde Output Circuit Short To Batterie
+C1793,Air Suspension LR Air Spring/Shock Solénoïde Output Circuit Short To Masse
+C1795,Air Suspension RR Air Spring/Shock Solénoïde Output Circuit Défaillance
+C1796,Air Suspension RR Air Spring/Shock Solénoïde Output Circuit ouvert
+C1797,Air Suspension RR Air Spring/Shock Solénoïde Output Circuit Short To Batterie
+C1798,Air Suspension RR Air Spring/Shock Solénoïde Output Circuit Short To Masse
+C1800,Air Suspension Reservoir Solénoïde Circuit Défaillance
+C1805,Mismatched PCM and/or ABS-TC Module
+C1813,Air Suspension LR Évent Request Exceeded Max Calage
+C1814,Air Suspension RR Évent Request Exceeded Max Calage
+C1818,Air Suspension LR Air Compress Request Exceeded Max Calage
+C1819,Air Suspension RR Air Compress Request Exceeded Max Calage
+C1820,Air Suspension RF Air Compress Request Exceeded Max Calage
+C1830,Air Suspension Compressor Relais Circuit Défaillance
+C1831,Air Suspension Compressor Relais Circuit ouvert
+C1832,Air Suspension Compressor Relais Circuit Short To Batterie
+C1833,Air Suspension Compressor  Relais Circuit Short To Masse
+C1834,Gauge Drive Courant Défaut
+C1835,Courant Sense Circuit Défaillance
+C1836,Batterie Temp out of Range
+C1837,Batterie Heater Circuit Défaillance
+C1838,Système de charge Défaut
+C1839,Fuiteage Défaut
+C1840,Air Suspension Disable Interrupteur Circuit Défaillance
+C1841,Air Suspension Disable Interrupteur Circuit ouvert
+C1842,Air Suspension Disable Interrupteur Circuit Short To Batterie
+C1843,Air Suspension Disable Interrupteur Circuit Short To Masse
+C1844,Air Suspension Secondary Front Inflator Solénoïde Output Circuit Défaillance
+C1845,Air Suspension Front Inflator Solénoïde Output Circuit Défaillance
+C1846,Air Suspension Front Inflator Solénoïde Output Circuit ouvert
+C1847,Air Suspension Front Inflator Solénoïde Output Circuit Short To  Batterie
+C1848,Air Suspension Front Inflator Solénoïde Output Circuit Short To Masse
+C1849,Master Cylindre Pression Out of Range
+C1850,Air Suspension Warning Lamp Circuit Défaillance
+C1851,Air Suspension Warning Lamp Circuit ouvert
+C1852,Air Suspension Warning Lamp Circuit Short To Batterie
+C1853,Air Suspension Warning Lamp Circuit Short To Masse
+C1854,Moteur Température Out of Range
+C1855,Accélération Position Capteur Conflict
+C1856,Traction Moteur Encoder  circuit Défaillance
+C1859,PRNDL Input #2 Circuit Défaillance
+C1860,PRNDL Input #3 Circuit Défaillance
+C1861,PRNDL Input #4 Circuit Défaillance
+C1862,Contactor Circuit Défaillance
+C1863,External Charging Défaut
+C1864,Batterie Module Défaut
+C1865,Air Suspension Rear Inflator Solénoïde Output Circuit Défaillance
+C1866,Air Suspension Rear Inflator Solénoïde Output Circuit ouvert
+C1867,Air Suspension Rear Inflator Solénoïde Output Circuit Short To  Batterie
+C1868,Air Suspension Rear Inflator Solénoïde Output Circuit Short To Masse
+C1869,Air Suspension Gate Solénoïde Output Circuit Défaillance
+C1870,Air Suspension Gate Solénoïde Output Circuit ouvert
+C1871,Air Suspension Gate Solénoïde Output Circuit Short To  Batterie
+C1872,Air Suspension Gate Solénoïde Output Circuit Short To Masse
+C1873,Air Suspension RF Air Spring Solénoïde Output Circuit Défaillance
+C1874,Air Suspension RF Air Spring Solénoïde Output Circuit ouvert
+C1875,Air Suspension RF Air Spring Solénoïde Output Circuit Short To Batterie
+C1876,Air Suspension RF Air Spring Solénoïde Output Circuit Short To Masse
+C1877,Air Suspension LF Air Spring Solénoïde Output Circuit Défaillance
+C1878,Air Suspension LF Air Spring Solénoïde Output Circuit ouvert
+C1879,Air Suspension LF Air Spring Solénoïde Output Circuit Short To Batterie
+C1880,Air Suspension LF Air Spring Solénoïde Output Circuit Short To Masse
+C1881,Air Suspension RF Height Capteur Circuit Défaillance
+C1882,Air Suspension RF Height Capteur Circuit ouvert
+C1883,Air Suspension RF Height Capteur Circuit Short To Batterie
+C1884,Air Suspension RF Height Capteur Circuit Short To Masse
+C1885,Air Suspension RR Height Capteur Circuit Défaillance
+C1886,Air Suspension RR Height Capteur Circuit ouvert
+C1887,Air Suspension RR Height Capteur Circuit Short To Batterie
+C1888,Air Suspension RR Height Capteur Circuit Short To Masse
+C1889,Air Suspension LF Height Capteur Circuit Défaillance
+C1890,Air Suspension LF Height Capteur Circuit ouvert
+C1891,Air Suspension LF Height Capteur Circuit Short To Batterie
+C1892,Air Suspension LF Height Capteur Circuit Short To Masse
+C1893,Air Suspension LR Height Capteur Circuit Défaillance
+C1894,Air Suspension LR Height Capteur Circuit ouvert
+C1895,Air Suspension LR Height Capteur Circuit Short To Batterie
+C1896,Air Suspension LR Height Capteur Circuit Short To Masse
+C1897,Steering VAPS II Circuit Loop Défaillance
+C1898,Steering VAPS II Circuit Loop Circuit ouvert
+C1899,Steering VAPS II Circuit Loop Short To Batterie
+C1900,Steering VAPS II Circuit Loop Short To Masse
+C1901,Ride Contrôle RR Shock Actuator Circuit Défaillance
+C1902,Ride Contrôle RR Shock Actuator Circuit ouvert
+C1903,Ride Contrôle RR Shock Actuator Circuit Short To Batterie
+C1904,Ride Contrôle RR Shock Actuator Circuit Short To Masse
+C1905,Ride Contrôle LR Shock Actuator Circuit Défaillance
+C1906,Ride Contrôle LR Shock Actuator Circuit ouvert
+C1907,Ride Contrôle LR Shock Actuator Circuit Short To Batterie
+C1908,Ride Contrôle LR Shock Actuator Circuit Short To Masse
+C1909,Ride Contrôle RF Shock Actuator Circuit Défaillance
+C1910,Ride Contrôle RF Shock Actuator Circuit ouvert
+C1911,Ride Contrôle RF Shock Actuator Circuit Short To Batterie
+C1912,Ride Contrôle RF Shock Actuator Circuit Short To Masse
+C1913,Ride Contrôle LF Shock Actuator Circuit Défaillance
+C1914,Ride Contrôle LF Shock Actuator Circuit ouvert
+C1915,Ride Contrôle LF Shock Actuator Circuit Short To Batterie
+C1916,Ride Contrôle LF Shock Actuator Circuit Short To Masse
+C1917,Steering EVO Out-of-Range Défaut
+C1918,Air Suspension Ride Height Select Interrupteur Circuit Défaillance
+C1920,Led #1 Circuit Défaillance
+C1921,VAPS Solénoïde Actuator Output Circuit Défaillance
+C1922,VAPS Solénoïde Actuator Output Circuit ouvert
+C1923,VAPS Solénoïde Actuator Output Circuit Short To Batterie
+C1924,VAPS Solénoïde Actuator Output Circuit Short To Masse
+C1925,VAPS Solénoïde Actuator Return Circuit Défaillance
+C1926,VAPS Solénoïde Actuator Return Circuit ouvert
+C1927,VAPS Solénoïde Actuator Return Circuit Short To Batterie
+C1928,VAPS Solénoïde Actuator Return Circuit Short To Masse
+C1929,Air Suspension Front Compressor Relais Circuit Défaillance
+C1930,Air Suspension Front Compressor Relais Circuit ouvert
+C1931,Air Suspension Front Compressor Relais Circuit Short To Batterie
+C1932,Air Suspension Front Compressor Relais Circuit Short To Masse
+C1933,Solénoïde Courant Out Of Range
+C1934,HPU (Hydraulic Pompe Unit) Pressurisation Défaillance
+C1935,Chime Circuit Défaillance
+C1936,Hydraulic Pompe Relais Circuit Défaillance
+C1937,Steering Wheel Angle Capteur Décalage Défaillance
+C1938,Invalid Steering Wheel Angle Capteur ID
+C1939,Brake Pression Interrupteur Input Circuit Défaillance
+C1940,Brake Pression Interrupteur Mechanical Défaillance
+C1942,Unrecognized Puissance/Alimentationtrain Configuration
+C1943,Airbag Deployment Indication Input Défaut
+C1944,Gauge Driver Circuit Défaut
+C1945,Park Interrupteur Indicates Park with Vehicle Moving
+C1946,Seat Track Position Interrupteur Circuit ouvert
+C1947,Seat Track Position Interrupteur Circuit Court-circuit à la masse
+C1948,Seat Track Position Interrupteur Circuit Résistance Out of Range
+C1949,Accelerometer Capteur Circuit ouvert
+C1950,Accelerometer Capteur Circuit Défaillance
+C1951,Lateral Accelerometer Capteur Circuit ouvert
+C1952,Yaw Rate Capteur Circuit ouvert
+C1953,Master Cylindre Pression Capteur Circuit ouvert
+C1954,Master Cylindre Pression Capteur Circuit Défaillance
+C1955,Steering Angle Capteur Circuit ouvert
+C1956,Steering Angle Capteur Circuit Défaillance
+C1957,Dynamic Stability Contrôle Vanne RF Circuit Défaillance
+C1958,Dynamic Stability Contrôle Vanne LF Circuit Défaillance
+C1959,Lateral Accelerometer Capteur Circuit Défaillance
+C1960,Driver Brake Apply Circuit Défaut
+C1961,Park Lamp Relais Coil Circuit Défaillance
+C1962,Park Lamp Relais Coil Court-circuit à la batterie
+C1963,Stability Contrôle Inhibit Warning
+C2767,Reserved - TBD
+U1000,SCP (J1850) Invalid or Missing Données for Primary Id
+U1001,SCP (J1850) Invalid or Missing Données for Primary Id
+U1002,SCP (J1850) Invalid or Missing Données for Primary Id
+U1003,SCP (J1850) Invalid or Missing Données for Primary Id
+U1004,SCP (J1850) Invalid or Missing Données for EEC Programming
+U1005,SCP (J1850) Invalid or Missing Données for EEC Programming
+U1006,SCP (J1850) Invalid or Missing Données for Primary Id
+U1007,SCP (J1850) Invalid or Missing Données for Primary Id
+U1008,SCP (J1850) Invalid or Missing Données for Engine Torque
+U1009,SCP (J1850) Invalid or Missing Données for Engine Torque
+U1010,SCP (J1850) Invalid or Missing Données for Engine Air Intake
+U1011,SCP (J1850) Invalid or Missing Données for Engine Air Intake
+U1012,SCP (J1850) Invalid or Missing Données for Primary Id
+U1013,SCP (J1850) Invalid or Missing Données for Primary Id
+U1014,SCP (J1850) Invalid or Missing Données for Primary Id
+U1015,SCP (J1850) Invalid or Missing Données for Primary Id
+U1016,SCP (J1850) Invalid or Missing Données for Primary Id
+U1017,SCP (J1850) Invalid or Missing Données for Primary Id
+U1018,SCP (J1850) Invalid or Missing Données for Throttle
+U1019,SCP (J1850) Invalid or Missing Données for Throttle
+U1020,SCP (J1850) Invalid or Missing Données for Air Conditioning Clutch
+U1021,SCP (J1850) Invalid or Missing Données for Air Conditioning Clutch
+U1022,SCP (J1850) Invalid or Missing Données for Primary Id
+U1023,SCP (J1850) Invalid or Missing Données for Primary Id
+U1024,SCP (J1850) Invalid or Missing Données for Primary Id
+U1025,SCP (J1850) Invalid or Missing Données for Primary Id
+U1026,SCP (J1850) Invalid or Missing Données for Engine RPM
+U1027,SCP (J1850) Invalid or Missing Données for Engine RPM
+U1028,SCP (J1850) Invalid or Missing Données for Primary Id
+U1029,SCP (J1850) Invalid or Missing Données for Primary Id
+U1030,SCP (J1850) Invalid or Missing Données for Experimental #1
+U1031,SCP (J1850) Invalid or Missing Données for Experimental #1
+U1032,SCP (J1850) Invalid or Missing Données for Primary Id
+U1033,SCP (J1850) Invalid or Missing Données for Primary Id
+U1034,SCP (J1850) Invalid or Missing Données for Primary Id
+U1035,SCP (J1850) Invalid or Missing Données for Primary Id
+U1036,SCP (J1850) Invalid or Missing Données for Wheels
+U1037,SCP (J1850) Invalid or Missing Données for Wheels
+U1038,SCP (J1850) Invalid or Missing Données for Primary Id
+U1039,SCP (J1850) Invalid or Missing Données for Primary Id / Vehicle Vitesse
+U1040,SCP (J1850) Invalid or Missing Données for Vehicle Vitesse
+U1041,SCP (J1850) Invalid or Missing Données for Vehicle Vitesse
+U1042,SCP (J1850) Invalid or Missing Données for Traction Contrôle
+U1043,SCP (J1850) Invalid or Missing Données for Traction Contrôle
+U1044,SCP (J1850) Invalid or Missing Données for Traction Moteur
+U1045,SCP (J1850) Invalid or Missing Données for Traction Moteur
+U1046,SCP (J1850) Invalid or Missing Données for Primary Id
+U1047,SCP (J1850) Invalid or Missing Données for Primary Id
+U1048,SCP (J1850) Invalid or Missing Données for Primary Id
+U1049,SCP (J1850) Invalid or Missing Données for Primary Id
+U1050,SCP (J1850) Invalid or Missing Données for Brakes
+U1051,SCP (J1850) Invalid or Missing Données for Brakes
+U1052,SCP (J1850) Invalid or Missing Données for Steering / Steering Wheel
+U1053,SCP (J1850) Invalid or Missing Données for Steering / Steering Wheel
+U1054,SCP (J1850) Invalid or Missing Données for Primary Id
+U1055,SCP (J1850) Invalid or Missing Données for Primary Id
+U1056,SCP (J1850) Invalid or Missing Données for Vehicle Configuration
+U1057,SCP (J1850) Invalid or Missing Données for Vehicle Configuration
+U1058,SCP (J1850) Invalid or Missing Données for Transmission / Transaxle / PRNDL
+U1059,SCP (J1850) Invalid or Missing Données for Transmission / Transaxle / PRNDL
+U1060,SCP (J1850) Invalid or Missing Données for Primary Id
+U1061,SCP (J1850) Invalid or Missing Données for Primary Id
+U1062,SCP (J1850) Invalid or Missing Données for Primary Id
+U1063,SCP (J1850) Invalid or Missing Données for Primary Id
+U1064,SCP (J1850) Invalid or Missing Données for Primary Id
+U1065,SCP (J1850) Invalid or Missing Données for Primary Id
+U1066,SCP (J1850) Invalid or Missing Données for Primary Id
+U1067,SCP (J1850) Invalid or Missing Données for Primary Id
+U1068,SCP (J1850) Invalid or Missing Données for Primary Id
+U1069,SCP (J1850) Invalid or Missing Données for Primary Id
+U1070,SCP (J1850) Invalid or Missing Données for Engine Capteurs
+U1071,SCP (J1850) Invalid or Missing Données for Engine Capteurs
+U1072,SCP (J1850) Invalid or Missing Données for Engine Coolant
+U1073,SCP (J1850) Invalid or Missing Données for Engine Coolant
+U1074,SCP (J1850) Invalid or Missing Données for Engine Oil
+U1075,SCP (J1850) Invalid or Missing Données for Engine Oil Temp
+U1076,SCP (J1850) Invalid or Missing Données for Primary Id
+U1077,SCP (J1850) Invalid or Missing Données for Primary Id
+U1078,SCP (J1850) Invalid or Missing Données for Primary Id
+U1079,SCP (J1850) Invalid or Missing Données for Primary Id
+U1080,SCP (J1850) Invalid or Missing Données for Primary Id
+U1081,SCP (J1850) Invalid or Missing Données for Primary Id
+U1082,SCP (J1850) Invalid or Missing Données for Engine Systèmes Other
+U1083,SCP (J1850) Invalid or Missing Données for Engine Systèmes Other
+U1084,SCP (J1850) Invalid or Missing Données for Puissance/Alimentationtrain Status Request
+U1085,SCP (J1850) Invalid or Missing Données for Puissance/Alimentationtrain Status Request
+U1086,SCP (J1850) Invalid or Missing Données for Primary Id
+U1087,SCP (J1850) Invalid or Missing Données for Primary Id
+U1088,SCP (J1850) Invalid or Missing Données for Suspension
+U1089,SCP (J1850) Invalid or Missing Données for Suspension
+U1090,SCP (J1850) Invalid or Missing Données for Non-Legislated Diagnostics
+U1091,SCP (J1850) Invalid or Missing Données for Non-Legislated Diagnostics
+U1092,SCP (J1850) Invalid or Missing Données for Primary Id
+U1093,SCP (J1850) Invalid or Missing Données for Primary Id
+U1094,SCP (J1850) Invalid or Missing Données for Experimental #2
+U1095,SCP (J1850) Invalid or Missing Données for Experimental #2
+U1096,SCP (J1850) Invalid or Missing Données for Primary Id
+U1097,SCP (J1850) Invalid or Missing Données for Primary Id
+U1098,SCP (J1850) Invalid or Missing Données for Vehicle Vitesse Contrôle
+U1099,SCP (J1850) Invalid or Missing Données for Vehicle Vitesse Contrôle
+U1100,SCP (J1850) Invalid or Missing Données for Primary Id
+U1101,SCP (J1850) Invalid or Missing Données for Primary Id
+U1102,SCP (J1850) Invalid or Missing Données for Primary Id
+U1103,SCP (J1850) Invalid or Missing Données for Primary Id
+U1104,SCP (J1850) Invalid or Missing Données for Chassis Status Request
+U1105,SCP (J1850) Invalid or Missing Données for Chassis Status Request
+U1106,SCP (J1850) Invalid or Missing Données for Legislated Diagnostics
+U1107,SCP (J1850) Invalid or Missing Données for Legislated Diagnostics
+U1108,SCP (J1850) Invalid or Missing Données for Electric Traction Drive (Inverter)
+U1109,SCP (J1850) Invalid or Missing Données for Electric Traction Drive (Inverter)
+U1110,SCP (J1850) Invalid or Missing Données for Primary Id
+U1111,SCP (J1850) Invalid or Missing Données for Primary Id
+U1112,SCP (J1850) Invalid or Missing Données for Primary Id
+U1113,SCP (J1850) Invalid or Missing Données for Primary Id
+U1114,SCP (J1850) Invalid or Missing Données for Système de charge
+U1115,SCP (J1850) Invalid or Missing Données for Système de charge
+U1116,SCP (J1850) Invalid or Missing Données for Electrical Energy Management
+U1117,SCP (J1850) Invalid or Missing Données for Electrical Energy Management
+U1118,SCP (J1850) Invalid or Missing Données for Primary Id
+U1119,SCP (J1850) Invalid or Missing Données for Primary Id
+U1120,SCP (J1850) Invalid or Missing Données for Primary Id
+U1121,SCP (J1850) Invalid or Missing Données for Primary Id
+U1122,SCP (J1850) Invalid or Missing Données for Odometer
+U1123,SCP (J1850) Invalid or Missing Données for Odometer
+U1124,SCP (J1850) Invalid or Missing Données for Primary Id
+U1125,SCP (J1850) Invalid or Missing Données for Primary Id
+U1126,SCP (J1850) Invalid or Missing Données for Primary Id
+U1127,SCP (J1850) Invalid or Missing Données for Primary Id
+U1128,SCP (J1850) Invalid or Missing Données for Primary Id
+U1129,SCP (J1850) Invalid or Missing Données for Primary Id
+U1130,SCP (J1850) Invalid or Missing Données for Système d'alimentation
+U1131,SCP (J1850) Invalid or Missing Données for Système d'alimentation
+U1132,SCP (J1850) Invalid or Missing Données for Vehicle Motion
+U1133,SCP (J1850) Invalid or Missing Données for Vehicle Motion
+U1134,SCP (J1850) Invalid or Missing Données for Ignition Interrupteur / Démarreur
+U1135,SCP (J1850) Invalid or Missing Données for Ignition Interrupteur / Démarreur
+U1136,SCP (J1850) Invalid or Missing Données for Telltales
+U1137,SCP (J1850) Invalid or Missing Données for Telltales
+U1138,SCP (J1850) Invalid or Missing Données for Primary Id
+U1139,SCP (J1850) Invalid or Missing Données for Primary Id
+U1140,SCP (J1850) Invalid or Missing Données for Gateway
+U1141,SCP (J1850) Invalid or Missing Données for Gateway
+U1142,SCP (J1850) Invalid or Missing Données for Primary Id
+U1143,SCP (J1850) Invalid or Missing Données for Primary Id
+U1144,SCP (J1850) Invalid or Missing Données for Primary Id
+U1145,SCP (J1850) Invalid or Missing Données for Primary Id
+U1146,SCP (J1850) Invalid or Missing Données for Vehicle Security
+U1147,SCP (J1850) Invalid or Missing Données for Vehicle Security
+U1148,SCP (J1850) Invalid or Missing Données for Audio Contrôle
+U1149,SCP (J1850) Invalid or Missing Données for Audio Contrôle
+U1150,SCP (J1850) Invalid or Missing Données for Audible Warnings
+U1151,SCP (J1850) Invalid or Missing Données for Audible Warnings
+U1152,SCP (J1850) Invalid or Missing Données for Experimental #3
+U1153,SCP (J1850) Invalid or Missing Données for Experimental #3
+U1154,SCP (J1850) Invalid or Missing Données for Compact Disc
+U1155,SCP (J1850) Invalid or Missing Données for Compact Disc
+U1156,SCP (J1850) Invalid or Missing Données for Digital Signal Processing
+U1157,SCP (J1850) Invalid or Missing Données for Digital Signal Processing
+U1158,SCP (J1850) Invalid or Missing Données for Antenna
+U1159,SCP (J1850) Invalid or Missing Données for Antenna
+U1160,SCP (J1850) Invalid or Missing Données for Primary Id
+U1161,SCP (J1850) Invalid or Missing Données for Primary Id
+U1162,SCP (J1850) Invalid or Missing Données for Digital Audio Tape
+U1163,SCP (J1850) Invalid or Missing Données for Digital Audio Tape
+U1164,SCP (J1850) Invalid or Missing Données for Tuner / Receiver
+U1165,SCP (J1850) Invalid or Missing Données for Tuner / Receiver
+U1166,SCP (J1850) Invalid or Missing Données for Cassette Tape
+U1167,SCP (J1850) Invalid or Missing Données for Cassette Tape
+U1168,SCP (J1850) Invalid or Missing Données for Primary Id
+U1169,SCP (J1850) Invalid or Missing Données for Primary Id
+U1170,SCP (J1850) Invalid or Missing Données for Cellular Phone / Paging Système
+U1171,SCP (J1850) Invalid or Missing Données for Cellular Phone / Paging Système
+U1172,SCP (J1850) Invalid or Missing Données for Remote Button Contrôle
+U1173,SCP (J1850) Invalid or Missing Données for Remote Button Contrôle
+U1174,SCP (J1850) Invalid or Missing Données for Primary Id
+U1175,SCP (J1850) Invalid or Missing Données for Primary Id
+U1176,SCP (J1850) Invalid or Missing Données for Primary Id
+U1177,SCP (J1850) Invalid or Missing Données for Primary Id
+U1178,SCP (J1850) Invalid or Missing Données for Climate Contrôle (HVAC)
+U1179,SCP (J1850) Invalid or Missing Données for Climate Contrôle (HVAC)
+U1180,SCP (J1850) Invalid or Missing Données for Personalization (Memory) Features
+U1181,SCP (J1850) Invalid or Missing Données for Personalization (Memory) Features
+U1182,SCP (J1850) Invalid or Missing Données for Primary Id
+U1183,SCP (J1850) Invalid or Missing Données for Primary Id
+U1184,SCP (J1850) Invalid or Missing Données for Window Wiper / Washer
+U1185,SCP (J1850) Invalid or Missing Données for Window Wiper / Washer
+U1186,SCP (J1850) Invalid or Missing Données for Primary Id
+U1187,SCP (J1850) Invalid or Missing Données for Primary Id
+U1188,SCP (J1850) Invalid or Missing Données for Primary Id
+U1189,SCP (J1850) Invalid or Missing Données for Primary Id
+U1190,SCP (J1850) Invalid or Missing Données for Primary Id
+U1191,SCP (J1850) Invalid or Missing Données for Primary Id
+U1192,SCP (J1850) Invalid or Missing Données for Primary Id
+U1193,SCP (J1850) Invalid or Missing Données for Primary Id
+U1194,SCP (J1850) Invalid or Missing Données for Mirrors
+U1195,SCP (J1850) Invalid or Missing Données for Mirrors
+U1196,SCP (J1850) Invalid or Missing Données for Door Locks
+U1197,SCP (J1850) Invalid or Missing Données for Door Locks
+U1198,SCP (J1850) Invalid or Missing Données for External Access (Doors)
+U1199,SCP (J1850) Invalid or Missing Données for External Access (Doors)
+U1200,SCP (J1850) Invalid or Missing Données for Seat Motion / Contrôle
+U1201,SCP (J1850) Invalid or Missing Données for Seat Motion / Contrôle
+U1202,SCP (J1850) Invalid or Missing Données for Windows
+U1203,SCP (J1850) Invalid or Missing Données for Windows
+U1204,SCP (J1850) Invalid or Missing Données for Steering Column
+U1205,SCP (J1850) Invalid or Missing Données for Steering Column
+U1206,SCP (J1850) Invalid or Missing Données for Primary Id
+U1207,SCP (J1850) Invalid or Missing Données for Primary Id
+U1208,SCP (J1850) Invalid or Missing Données for Seat Interrupteures
+U1209,SCP (J1850) Invalid or Missing Données for Seat Interrupteures
+U1210,SCP (J1850) Invalid or Missing Données for Restraints
+U1211,SCP (J1850) Invalid or Missing Données for Restraints
+U1212,SCP (J1850) Invalid or Missing Données for Primary Id
+U1213,SCP (J1850) Invalid or Missing Données for Primary Id
+U1214,SCP (J1850) Invalid or Missing Données for Primary Id
+U1215,SCP (J1850) Invalid or Missing Données for Primary Id
+U1216,SCP (J1850) Invalid or Missing Données for External Lamp Outage
+U1217,SCP (J1850) Invalid or Missing Données for External Lamp Outage
+U1218,SCP (J1850) Invalid or Missing Données for External Lamps
+U1219,SCP (J1850) Invalid or Missing Données for External Lamps
+U1220,SCP (J1850) Invalid or Missing Données for Interior Lamp Outage
+U1221,SCP (J1850) Invalid or Missing Données for Interior Lamp Outage
+U1222,SCP (J1850) Invalid or Missing Données for Interior Lamps
+U1223,SCP (J1850) Invalid or Missing Données for Interior Lamps
+U1224,SCP (J1850) Invalid or Missing Données for Primary Id
+U1225,SCP (J1850) Invalid or Missing Données for Primary Id
+U1226,SCP (J1850) Invalid or Missing Données for Body Status Request
+U1227,SCP (J1850) Invalid or Missing Données for Body Status Request
+U1228,SCP (J1850) Invalid or Missing Données for Tires
+U1229,SCP (J1850) Invalid or Missing Données for Tires
+U1230,SCP (J1850) Invalid or Missing Données for Electric Defrost
+U1231,SCP (J1850) Invalid or Missing Données for Electric Defrost
+U1232,SCP (J1850) Invalid or Missing Données for Navigation
+U1233,SCP (J1850) Invalid or Missing Données for Navigation
+U1234,SCP (J1850) Invalid or Missing Données for Displays
+U1235,SCP (J1850) Invalid or Missing Données for Displays
+U1236,SCP (J1850) Invalid or Missing Données for Memory Storage
+U1237,SCP (J1850) Invalid or Missing Données for Memory Storage
+U1238,SCP (J1850) Invalid or Missing Données for Experimental #4
+U1239,SCP (J1850) Invalid or Missing Données for Experimental #4
+U1240,SCP (J1850) Invalid or Missing Données for Primary Id
+U1241,SCP (J1850) Invalid or Missing Données for Primary Id
+U1242,SCP (J1850) Invalid or Missing Données for Exterior Environment
+U1243,SCP (J1850) Invalid or Missing Données for Exterior Environment
+U1244,SCP (J1850) Invalid or Missing Données for Interior Environment
+U1245,SCP (J1850) Invalid or Missing Données for Interior Environment
+U1246,SCP (J1850) Invalid or Missing Données for Primary Id
+U1247,SCP (J1850) Invalid or Missing Données for Primary Id
+U1248,SCP (J1850) Invalid or Missing Données for Time / Date
+U1249,SCP (J1850) Invalid or Missing Données for Time / Date
+U1250,SCP (J1850) Invalid or Missing Données for Vehicle Id (VIN)
+U1251,SCP (J1850) Invalid or Missing Données for Vehicle Id (VIN)
+U1252,SCP (J1850) Invalid or Missing Données for Class A Functions
+U1253,SCP (J1850) Invalid or Missing Données for Class A Functions
+U1254,SCP (J1850) Invalid or Missing Données for Réseau Contrôle
+U1255,SCP (J1850) Invalid or Missing Données for Réseau Contrôle
+U1260,SCP (J1850) Single Ended (+) Circuit Défaillance
+U1261,SCP (J1850) Single Ended (-) Circuit Défaillance
+U1262,SCP (J1850) Communication Bus Défaut
+U1308,SCP (J1850) Invalid or Missing Données for Function Read  Engine Torque
+U1341,SCP (J1850) Invalid or Missing Données for Function Read Vehicle Vitesse
+U1430,SCP (J1850) Invalid or Missing Données for Function Read Système d'alimentation
+U1451,SCP (J1850) Invalid or Missing Données for Function Read Audible Warnings /Anti-Theft Module
+U1612,SCP (J1850) Lack of Acknowledgment for Primary Id
+U1736,SCP (J1850) Lack of Acknowledgment for  Telltales
+U1750,SCP (J1850) Lack of Acknowledgment for  Audible Warnings
+U1794,SCP (J1850) Lack of Acknowledgment for Mirrors
+U1797,SCP (J1850) Lack of Acknowledgment for  Door Locks
+U1798,SCP (J1850) Lack of Acknowledgment for  External Access (Doors)
+U1806,SCP (J1850) Lack of Acknowledgment for Primary Id
+U1900,CAN Communication Bus Défaut
+U1950,UPB Communication Bus Défaut
+U2000,Audio Rear Contrôle Unit is Not Responding
+U2001,Audio Tape Deck Unit is Not Responding
+U2002,Audio Bezel is Not Responding
+U2003,Audio Compact Disk / Disk Jockey Unit is Not Responding
+U2004,Audio Steering Wheel Contrôle Unit is Not Responding
+U2005,Audio Rear Integrated Contrôle Panel Unit is Not Responding
+U2006,Audio Remote Climate Contrôle Unit is Not Responding
+U2007,Audio Navigation Unit is Not Responding
+U2008,Audio Phone is Not Responding
+U2009,Audio Front Module de contrôle (ACM) is Not Responding
+U2010,Module is Not Responding (Non SCP)
+U2011,Module Transmitted Invalid Données (Non SCP)
+U2012,Communication Bus Erreur (Non SCP)
+U2013,Compass Module is not Responding
+U2014,Audio Subwoofer Unit is Not Responding
+U2015,Signal Link Défaut (Non SCP)
+U2016,Signal Link Court-circuit à la masse (Non SCP) / From NGV Module
+U2017,Driver Side Crash Capteur Communication Défaut (Non SCP)
+U2018,Passenger Side Crash Capteur Communication Défaut (Non SCP)
+U2019,Audio Voice Module Not Responding
+U2020,Audio Center Amp is not responding
+U2021,Invalid /fault data received (Non SCP)
+U2150,SCP (J1850) Invalid Données from REM
+U2152,SCP (J1850) Invalid Données from GEM
+U2160,SCP (J1850) Invalid Données from IC
+U2195,SCP (J1850) Invalid Données from SCLM
+U2500,(CAN) Lack of Acknowledgement From Engine Management
