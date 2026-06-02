@@ -870,6 +870,63 @@ def _generate_demo_response(question: str, context: str) -> str:
            f"*Système opérationnel — RAG fonctionnel*")
 
 
+# ── Gestion de l'historique (JSON Persistant) ───────────────────────────
+HISTORY_FILE = os.path.join(os.path.dirname(__file__), "conversations_history.json")
+MAX_MESSAGES_PER_CONV = 10  # Limite stricte par conversation
+
+@app.route("/api/history", methods=["GET"])
+def get_history():
+    """Charge l'historique depuis le fichier JSON (persistant entre les redémarrages)."""
+    if not os.path.exists(HISTORY_FILE):
+        return jsonify([])
+    try:
+        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+            return jsonify(json.load(f))
+    except Exception as e:
+        log.error(f"Erreur lecture historique: {str(e)}")
+        return jsonify([])
+
+@app.route("/api/history", methods=["POST"])
+def save_history():
+    """Sauvegarde l'historique dans le fichier JSON.
+    Applique la limite de MAX_MESSAGES_PER_CONV messages par conversation côté serveur.
+    Le fichier est préservé entre les redémarrages (PAS de reset au démarrage).
+    """
+    try:
+        data = request.get_json(force=True)
+        # Appliquer la limite côté serveur (sécurité)
+        if isinstance(data, list):
+            for conv in data:
+                if isinstance(conv.get("messages"), list):
+                    if len(conv["messages"]) > MAX_MESSAGES_PER_CONV:
+                        conv["messages"] = conv["messages"][-MAX_MESSAGES_PER_CONV:]
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        return jsonify({"status": "success"})
+    except Exception as e:
+        log.error(f"Erreur sauvegarde historique: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/api/history/count/<int:conv_id>", methods=["GET"])
+def get_conversation_message_count(conv_id: int):
+    """Retourne le nombre de messages dans une conversation spécifique."""
+    if not os.path.exists(HISTORY_FILE):
+        return jsonify({"count": 0, "limit": MAX_MESSAGES_PER_CONV, "locked": False})
+    try:
+        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        conv = next((c for c in data if c.get("id") == conv_id), None)
+        count = len(conv["messages"]) if conv and conv.get("messages") else 0
+        return jsonify({
+            "count": count,
+            "limit": MAX_MESSAGES_PER_CONV,
+            "locked": count >= MAX_MESSAGES_PER_CONV
+        })
+    except Exception as e:
+        log.error(f"Erreur count historique: {str(e)}")
+        return jsonify({"count": 0, "limit": MAX_MESSAGES_PER_CONV, "locked": False})
+
+
 # ═══════════════════════════════════════════════════════════════════
 # ROUTES API
 # ═══════════════════════════════════════════════════════════════════
@@ -951,32 +1008,7 @@ def api_chat():
         log.error(f"Chat error: {e}", exc_info=True)
         return jsonify({"error": f"Erreur serveur: {str(e)}"}), 500
 
-# ── Gestion de l'historique (JSON Persistant) ───────────────────────
-HISTORY_FILE = os.path.join(os.path.dirname(__file__), "conversations_history.json")
 
-@app.route("/api/history", methods=["GET"])
-def get_history():
-    """Charge l'historique depuis le fichier JSON."""
-    if not os.path.exists(HISTORY_FILE):
-        return jsonify([])
-    try:
-        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
-            return jsonify(json.load(f))
-    except Exception as e:
-        log.error(f"Erreur lecture historique: {str(e)}")
-        return jsonify([])
-
-@app.route("/api/history", methods=["POST"])
-def save_history():
-    """Sauvegarde l'historique dans le fichier JSON."""
-    try:
-        data = request.get_json(force=True)
-        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        return jsonify({"status": "success"})
-    except Exception as e:
-        log.error(f"Erreur sauvegarde historique: {str(e)}")
-        return jsonify({"error": str(e)}), 500
 
 @app.route("/api/fleet/stats")
 def api_fleet_stats():

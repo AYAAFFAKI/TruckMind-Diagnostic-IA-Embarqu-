@@ -14,6 +14,36 @@ let lastAnswer   = null;
 let globalHistory = [];
 let currentConversationId = null;
 
+// ── Messages limit per conversation ──────────────────────────────
+const MAX_MESSAGES = 10;
+
+/** Lock the chat input when message limit is reached */
+function lockInput() {
+  const input   = $('chat-input');
+  const sendBtn = $('send-btn');
+  if (input)   { input.disabled = true; input.placeholder = '🔒 Limite de 10 messages atteinte — démarrez une nouvelle conversation'; }
+  if (sendBtn) { sendBtn.disabled = true; }
+  // Show a permanent notice below the input area
+  const existing = $('limit-notice');
+  if (!existing) {
+    const notice = document.createElement('div');
+    notice.id = 'limit-notice';
+    notice.style.cssText = 'text-align:center;font-size:11px;color:var(--accent);padding:6px 0;font-family:var(--mono);letter-spacing:.05em';
+    notice.textContent = '⛔ Limite de 10 messages atteinte — Démarrez une nouvelle conversation';
+    const inputArea = input?.parentElement;
+    if (inputArea) inputArea.appendChild(notice);
+  }
+}
+
+/** Unlock the chat input (e.g. after new conversation starts) */
+function unlockInput() {
+  const input   = $('chat-input');
+  const sendBtn = $('send-btn');
+  if (input)   { input.disabled = false; input.placeholder = 'Posez votre question technique…'; }
+  if (sendBtn) { sendBtn.disabled = false; }
+  $('limit-notice')?.remove();
+}
+
 function toggleRightSidebar() {
   const rs = $('right-sidebar');
   if (rs.style.display === 'none' || rs.style.display === '') {
@@ -67,10 +97,6 @@ function addToHistory(question, answer) {
     let conv = history.find(h => h.id === currentConversationId);
     if (conv) {
       conv.messages.push({ q: question, a: answer, time: time });
-      // Limite de 10 messages par conversation
-      if (conv.messages.length > 10) {
-        conv.messages = conv.messages.slice(-10);
-      }
       conv.timestamp = time;
     } else {
       // Sécurité si non trouvé
@@ -82,6 +108,13 @@ function addToHistory(question, answer) {
         messages: [{ q: question, a: answer, time: time }]
       });
     }
+  }
+
+  // ── Vérifier la limite de messages ────────────────────────────
+  const conv = history.find(h => h.id === currentConversationId);
+  if (conv && conv.messages.length >= MAX_MESSAGES) {
+    lockInput();
+    toast(`🔒 Limite de ${MAX_MESSAGES} messages atteinte — nouvelle conversation requise`, 'inf', 4000);
   }
 
   saveHistory(history);
@@ -142,6 +175,13 @@ function loadConversation(id) {
   const idx = history.findIndex(h => h.id === id);
   if (items[idx]) items[idx].classList.add('active');
 
+  // ── Verrouiller si la limite est atteinte ─────────────────────
+  if (conv.messages.length >= MAX_MESSAGES) {
+    lockInput();
+  } else {
+    unlockInput();
+  }
+
   switchTab('chat');
 }
 
@@ -182,6 +222,9 @@ function startNewConversation() {
 
   // Deselect history items
   document.querySelectorAll('.history-item').forEach(el => el.classList.remove('active'));
+
+  // ── Toujours déverrouiller l'input pour une nouvelle conversation
+  unlockInput();
 
   switchTab('chat');
   $('chat-input')?.focus();
@@ -231,39 +274,49 @@ function md(text) {
     .replace(/```([\s\S]*?)```/g, '<pre>$1</pre>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/^#{1,3} (.+)$/gm, '<strong>$1</strong>')
+    .replace(/^#{1,6} (.+)$/gm, '<strong>$1</strong>')
     .replace(/^[-•] (.+)$/gm, '<li>$1</li>')
     .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
     .replace(/---/g, '<hr>');
 
-  // Parse markdown tables
+  // Parse markdown tables — with proper thead/tbody + keyword coloring
   t = t.replace(/((?:\|[^\n]+\|\n?)+)/g, match => {
-    let rows = match.trim().split('\n');
-    let html = '<div class="table-wrap"><table class="md-table">';
-    let isHead = true;
+    const rows = match.trim().split('\n');
+    let headerHTML = '';
+    let bodyHTML   = '';
+    let headerDone = false;
+    let sepFound   = false;
+
     for (let row of rows) {
-      if (row.match(/^[|\s-:]+$/)) {
-        isHead = false;
-        continue;
+      // Separator row (|---|---| or | --- | --- |)
+      if (row.match(/^[\|\s\-:]+$/)) { sepFound = true; continue; }
+
+      const cells = row.split('|').filter((_, i, a) => i > 0 && i < a.length - 1);
+
+      // Skip rows where ALL cells are empty or contain only dashes (| - | - | - |)
+      const isEmptyRow = cells.every(c => /^\s*-+\s*$/.test(c) || c.trim() === '');
+      if (isEmptyRow) continue;
+
+      if (!headerDone && !sepFound) {
+        headerHTML += '<tr>' + cells.map(c => `<th>${c.trim()}</th>`).join('') + '</tr>';
+        headerDone = true;
+      } else {
+        bodyHTML += '<tr>' + cells.map(c => {
+          const text = c.trim();
+          let style = '';
+          if (/ROUGE|CRITIQUE|ARR[EÊ]T|IMMED/i.test(text))      style = ' style="color:var(--red);font-weight:600"';
+          else if (/JAUNE|MOD[EÉ]R[EÉ]|MOYEN/i.test(text))      style = ' style="color:var(--yellow)"';
+          else if (/VERT|FAIBLE|BON|NORMAL|NOMINAL/i.test(text)) style = ' style="color:var(--green)"';
+          return `<td${style}>${text}</td>`;
+        }).join('') + '</tr>';
       }
-      let cells = row.split('|');
-      if (cells[0] !== undefined && cells[0].trim() === '') cells.shift();
-      if (cells.length > 0 && cells[cells.length - 1].trim() === '') cells.pop();
-      
-      html += '<tr>';
-      let tag = isHead ? 'th' : 'td';
-      for (let cell of cells) {
-        html += `<${tag}>${cell.trim()}</${tag}>`;
-      }
-      html += '</tr>';
-      isHead = false;
     }
-    html += '</table></div>';
-    return html;
+    return `<div class="table-wrap"><table class="md-table"><thead>${headerHTML}</thead><tbody>${bodyHTML}</tbody></table></div>`;
   });
 
   return t.replace(/\n/g, '<br>');
 }
+
 
 // ── Add message to chat ───────────────────────────────────────────
 function addMessage(role, html, meta = null) {
@@ -285,7 +338,7 @@ function addMessage(role, html, meta = null) {
   }
 
   row.innerHTML = `
-    <div class="msg-av ${isUser ? 'av-user' : 'av-bot'}">${isUser ? '👤' : '🚛'}</div>
+    <div class="msg-av ${isUser ? 'av-user' : 'av-bot'}">${isUser ? '👤' : '<img src="/static/icon.png" alt="TruckMind" style="width:22px;height:22px;object-fit:contain;border-radius:4px;">'}</div>
     <div class="msg-body">
       <div class="msg-meta">
         <span class="msg-name">${isUser ? 'OPÉRATEUR' : 'TRUCKMIND'}</span>
@@ -318,6 +371,8 @@ function addTyping() {
 // ── Send message ──────────────────────────────────────────────────
 async function sendMessage() {
   if (STATE.loading) return;
+  // ── Bloquer si limite de messages atteinte ───────────────────
+  if ($('chat-input')?.disabled) return;
   const input = $('chat-input');
   const q = input.value.trim();
   if (!q) return;
@@ -420,6 +475,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render conversation history on load
   renderHistory();
+
+  // Load persistent history from backend on startup
+  fetchHistoryFromBackend();
 });
 
 // ── Load system status ─────────────────────────────────────────────

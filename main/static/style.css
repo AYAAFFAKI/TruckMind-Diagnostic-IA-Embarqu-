@@ -253,36 +253,93 @@ header::after {
   color: var(--text-2);
 }
 
-/* ── Markdown Table ──────────────────────── */
+/* ── Markdown Table ──────────────────────────────────────────────── */
 .table-wrap {
   overflow-x: auto;
-  margin: 12px 0;
-  border-radius: 4px;
-  border: 1px solid var(--border-2);
+  margin: 14px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-a);
+  box-shadow: 0 4px 24px rgba(0,0,0,.35), 0 0 0 1px rgba(0,212,255,.06);
+  background: var(--bg-1);
+  position: relative;
 }
+/* top accent bar */
+.table-wrap::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-dim) 0%, var(--accent) 40%, transparent 100%);
+  border-radius: 8px 8px 0 0;
+}
+
 .md-table {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--mono);
   font-size: 12px;
+  min-width: 400px;
 }
-.md-table th, .md-table td {
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border-2);
-  text-align: left;
+
+/* Header */
+.md-table thead tr {
+  background: linear-gradient(135deg, rgba(0,212,255,.08) 0%, rgba(0,100,255,.06) 100%);
 }
 .md-table th {
-  background: var(--bg-2);
+  padding: 10px 16px;
   color: var(--accent);
+  font-size: 10px;
   font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--accent-dim);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(10,12,16,.92);
+  backdrop-filter: blur(8px);
 }
-.md-table tr:last-child th,
-.md-table tr:last-child td {
+.md-table th:first-child { padding-left: 18px; border-radius: 0; }
+.md-table th:last-child  { padding-right: 18px; }
+
+/* Body rows */
+.md-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(30,37,53,.9);
+  color: var(--text-1);
+  font-size: 12px;
+  line-height: 1.5;
+  transition: background .12s;
+  vertical-align: middle;
+}
+.md-table td:first-child { padding-left: 18px; }
+.md-table td:last-child  { padding-right: 18px; }
+
+/* Zebra striping */
+.md-table tbody tr:nth-child(even) td {
+  background: rgba(255,255,255,.025);
+}
+
+/* Row hover */
+.md-table tbody tr:hover td {
+  background: rgba(0,212,255,.06);
+  color: var(--text-0);
+}
+
+/* Last row — no border */
+.md-table tbody tr:last-child td {
   border-bottom: none;
 }
-.md-table tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.02);
+
+/* Color highlights inside cells — alert keywords */
+.md-table td:contains("ROUGE"),
+.md-table td:contains("CRITIQUE"),
+.md-table td:contains("ARRÊT") {
+  color: var(--red);
 }
+.md-table td:contains("JAUNE") { color: var(--yellow); }
+.md-table td:contains("VERT"),
+.md-table td:contains("FAIBLE") { color: var(--green); }
 
 /* ═══════════════════════════════════════════════════════════════════
    NEW CHAT BUTTON & CONVERSATION HISTORY
