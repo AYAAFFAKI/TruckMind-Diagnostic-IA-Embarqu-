@@ -1,10 +1,192 @@
 /* ═══════════════════════════════════════════════════════════════════
-   TruckMind Frontend — main.js v3.0 (LangGraph)
+   TruckMind Frontend — main.js v3.1 (LangGraph + Memory + History)
    Auteure : AFFAKI Aya — EST Tétouan — IA DUT 2025-2026
 ═══════════════════════════════════════════════════════════════════ */
 
 // ── State ────────────────────────────────────────────────────────
 const STATE = { ready: false, loading: false, stats: null, alerts: [] };
+
+// ── Conversation Memory — last Q/A pair for LLM context ──────────
+let lastQuestion = null;
+let lastAnswer   = null;
+
+// ── Conversation History (Backend JSON) ──────────────────────────
+let globalHistory = [];
+let currentConversationId = null;
+
+function toggleRightSidebar() {
+  const rs = $('right-sidebar');
+  if (rs.style.display === 'none' || rs.style.display === '') {
+    rs.style.display = 'flex';
+  } else {
+    rs.style.display = 'none';
+  }
+}
+
+async function fetchHistoryFromBackend() {
+  try {
+    const res = await fetch('/api/history');
+    if (res.ok) {
+      globalHistory = await res.json();
+    }
+  } catch (err) {
+    console.error("Erreur chargement historique:", err);
+  }
+  renderHistory();
+}
+
+function loadHistory() {
+  return globalHistory;
+}
+
+function saveHistory(history) {
+  globalHistory = history;
+  fetch('/api/history', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(history)
+  }).catch(err => console.error("Erreur sauvegarde historique:", err));
+}
+
+function addToHistory(question, answer) {
+  let history = loadHistory();
+  const time = new Date().toLocaleString('fr-FR');
+  const preview = question.length > 40 ? question.slice(0, 40) + '…' : question;
+
+  if (!currentConversationId) {
+    // Nouvelle conversation
+    currentConversationId = Date.now();
+    history.unshift({
+      id: currentConversationId,
+      preview: preview,
+      timestamp: time,
+      messages: [{ q: question, a: answer, time: time }]
+    });
+  } else {
+    // Ajouter à la conversation actuelle
+    let conv = history.find(h => h.id === currentConversationId);
+    if (conv) {
+      conv.messages.push({ q: question, a: answer, time: time });
+      // Limite de 10 messages par conversation
+      if (conv.messages.length > 10) {
+        conv.messages = conv.messages.slice(-10);
+      }
+      conv.timestamp = time;
+    } else {
+      // Sécurité si non trouvé
+      currentConversationId = Date.now();
+      history.unshift({
+        id: currentConversationId,
+        preview: preview,
+        timestamp: time,
+        messages: [{ q: question, a: answer, time: time }]
+      });
+    }
+  }
+
+  saveHistory(history);
+  renderHistory();
+}
+
+function renderHistory() {
+  const list = $('history-list');
+  if (!list) return;
+  const history = loadHistory();
+
+  if (!history.length) {
+    list.innerHTML = '<div style="font-family:var(--mono);font-size:10px;color:var(--text-3);padding:8px;text-align:center">Aucune conversation</div>';
+    return;
+  }
+
+  list.innerHTML = history.map((h, i) => {
+    // Use the preview of the first question, or preview field
+    const p = h.preview || (h.messages && h.messages.length > 0 ? h.messages[0].q.substring(0,40) : "Conversation");
+    return `
+    <div class="history-item ${h.id === currentConversationId ? 'active' : ''}" onclick="loadConversation(${h.id})" title="${p}">
+      <div class="history-icon">💬</div>
+      <div class="history-body">
+        <div class="history-preview">${h.preview}</div>
+        <div class="history-time">${h.timestamp}</div>
+      </div>
+      <button class="history-delete" onclick="event.stopPropagation();deleteConversation(${h.id})" title="Supprimer">✕</button>
+    </div>
+    `;
+  }).join('');
+}
+
+function loadConversation(id) {
+  const history = loadHistory();
+  const conv = history.find(h => h.id === id);
+  if (!conv || !conv.messages || conv.messages.length === 0) return;
+
+  currentConversationId = id;
+
+  // Récupérer le contexte du dernier message pour le LLM
+  const lastMsg = conv.messages[conv.messages.length - 1];
+  lastQuestion = lastMsg.q;
+  lastAnswer   = lastMsg.a;
+
+  // Afficher la conversation
+  const msgs = $('messages');
+  $('welcome-screen')?.remove();
+  msgs.innerHTML = '';
+
+  conv.messages.forEach(m => {
+    addMessage('user', md(m.q));
+    addMessage('bot', md(m.a)); // Les anciens messages n'auront pas les badges meta, ce qui est normal
+  });
+
+  // Marquer actif dans la barre latérale
+  document.querySelectorAll('.history-item').forEach(el => el.classList.remove('active'));
+  const items = document.querySelectorAll('.history-item');
+  const idx = history.findIndex(h => h.id === id);
+  if (items[idx]) items[idx].classList.add('active');
+
+  switchTab('chat');
+}
+
+function deleteConversation(id) {
+  let history = loadHistory();
+  history = history.filter(h => h.id !== id);
+  saveHistory(history);
+  renderHistory();
+  toast('Conversation supprimée', 'inf', 1500);
+}
+
+function startNewConversation() {
+  // Réinitialiser la mémoire et l'ID
+  lastQuestion = null;
+  lastAnswer   = null;
+  currentConversationId = null;
+
+  // Reset chat UI
+  const msgs = $('messages');
+  msgs.innerHTML = `
+    <div class="welcome" id="welcome-screen">
+      <div class="welcome-badge">
+        <div class="badge-dot"></div>
+        SYSTÈME OPÉRATIONNEL · VOLVO FH/FM · RAG ACTIVÉ
+      </div>
+      <div class="welcome-title">TruckMind<br>Intelligence</div>
+      <div class="welcome-sub">Diagnostic embarqué IA • 3 071 codes DTC • 3 618 enregistrements de maintenance • Alertes temps réel</div>
+      <div class="chips-grid">
+        <div class="chip" onclick="chipSend(this)">🔧 Que signifie P0118 ?</div>
+        <div class="chip" onclick="chipSend(this)">📊 Taux d'anomalies de la flotte</div>
+        <div class="chip" onclick="chipSend(this)">🚛 État du véhicule V0042</div>
+        <div class="chip" onclick="chipSend(this)">⚡ Seuils température moteur</div>
+        <div class="chip" onclick="chipSend(this)">🚨 Véhicules en alerte rouge</div>
+        <div class="chip" onclick="chipSend(this)">🛢️ Qualité huile moyenne</div>
+      </div>
+      <div class="welcome-meta">ENTRÉE — envoyer &nbsp;·&nbsp; SHIFT+ENTRÉE — nouvelle ligne &nbsp;·&nbsp; /dtc P0301 — recherche directe</div>
+    </div>`;
+
+  // Deselect history items
+  document.querySelectorAll('.history-item').forEach(el => el.classList.remove('active'));
+
+  switchTab('chat');
+  $('chat-input')?.focus();
+  toast('Nouvelle conversation', 'ok', 1500);
+}
 
 // ── Utils ────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
@@ -44,7 +226,7 @@ function switchTab(tab) {
 
 // ── Markdown renderer ─────────────────────────────────────────────
 function md(text) {
-  return text
+  let t = text
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/```([\s\S]*?)```/g, '<pre>$1</pre>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
@@ -52,8 +234,35 @@ function md(text) {
     .replace(/^#{1,3} (.+)$/gm, '<strong>$1</strong>')
     .replace(/^[-•] (.+)$/gm, '<li>$1</li>')
     .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    .replace(/---/g, '<hr>')
-    .replace(/\n/g, '<br>');
+    .replace(/---/g, '<hr>');
+
+  // Parse markdown tables
+  t = t.replace(/((?:\|[^\n]+\|\n?)+)/g, match => {
+    let rows = match.trim().split('\n');
+    let html = '<div class="table-wrap"><table class="md-table">';
+    let isHead = true;
+    for (let row of rows) {
+      if (row.match(/^[|\s-:]+$/)) {
+        isHead = false;
+        continue;
+      }
+      let cells = row.split('|');
+      if (cells[0] !== undefined && cells[0].trim() === '') cells.shift();
+      if (cells.length > 0 && cells[cells.length - 1].trim() === '') cells.pop();
+      
+      html += '<tr>';
+      let tag = isHead ? 'th' : 'td';
+      for (let cell of cells) {
+        html += `<${tag}>${cell.trim()}</${tag}>`;
+      }
+      html += '</tr>';
+      isHead = false;
+    }
+    html += '</table></div>';
+    return html;
+  });
+
+  return t.replace(/\n/g, '<br>');
 }
 
 // ── Add message to chat ───────────────────────────────────────────
@@ -68,7 +277,7 @@ function addMessage(role, html, meta = null) {
   if (meta) {
       footerHTML = `<div class="msg-footer">
         <span class="msg-badge sql">SQL: ${meta.sql_results || 0}</span>
-        ${meta.vector_results !== undefined ? `<span class="msg-badge" style="color:var(--amber);border-color:rgba(245,158,11,.2)">VEC: ${meta.vector_results}</span>` : ''}
+        ${meta.vector_results !== undefined ? `<span class="msg-badge" style="color:var(--accent);border-color:rgba(0,212,255,.2)">VEC: ${meta.vector_results}</span>` : ''}
         <span class="msg-badge type">${meta.type_requete || '—'}</span>
         ${meta.total_ms ? `<span class="msg-badge ms">${meta.total_ms}ms</span>` : ''}
         ${meta.mode ? `<span class="msg-badge" style="color:var(--text-3)">${meta.mode}</span>` : ''}
@@ -137,14 +346,23 @@ async function sendMessage() {
   STATE.loading = true;
   $('send-btn').disabled = true;
 
+  // Add message to UI
   addMessage('user', md(q));
   addTyping();
+
+  // Build the history string for LLM memory
+  let historique = "";
+  if (lastQuestion && lastAnswer) {
+    // Truncate to keep it manageable
+    const prevAnswer = lastAnswer.length > 500 ? lastAnswer.slice(0, 500) + '…' : lastAnswer;
+    historique = `Q: ${lastQuestion}\nR: ${prevAnswer}`;
+  }
 
   try {
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: q })
+      body: JSON.stringify({ question: q, historique: historique })
     });
     const data = await res.json();
     $('typing')?.remove();
@@ -159,6 +377,13 @@ async function sendMessage() {
         total_ms: data.meta?.total_ms,
         mode: data.meta?.mode
       });
+
+      // Update memory
+      lastQuestion = q;
+      lastAnswer   = data.answer;
+
+      // Save to history
+      addToHistory(q, data.answer);
     }
   } catch (e) {
     $('typing')?.remove();
@@ -192,6 +417,9 @@ document.addEventListener('DOMContentLoaded', () => {
     this.style.height = 'auto';
     this.style.height = Math.min(this.scrollHeight, 120) + 'px';
   });
+
+  // Render conversation history on load
+  renderHistory();
 });
 
 // ── Load system status ─────────────────────────────────────────────
@@ -352,14 +580,14 @@ function renderDashboard(data) {
     ].map(r => `
       <div class="stat-row">
         <div class="stat-label">${r.l}</div>
-        <div class="stat-val" style="${r.warn ? 'color:var(--amber)' : ''}">${r.v}</div>
+        <div class="stat-val" style="${r.warn ? 'color:var(--accent)' : ''}">${r.v}</div>
       </div>`).join('');
   }
 
   // ── Entretien bar chart ─────────────────────────────────────────
   const ents = data.entretiens || [];
   const maxEnt = Math.max(...ents.map(e => e.nb), 1);
-  const entColors = ['var(--blue)', 'var(--cyan)', 'var(--purple)', 'var(--amber)', 'var(--green)'];
+  const entColors = ['var(--blue)', 'var(--cyan)', 'var(--purple)', 'var(--accent)', 'var(--green)'];
   const eChart = $('entretien-chart');
   if (eChart) {
     eChart.innerHTML = ents.map((e, i) => `
@@ -381,7 +609,7 @@ function renderDashboard(data) {
   if (aList) {
     aList.innerHTML = Object.entries(alertes).map(([k, v]) => {
       const icon  = k === 'ROUGE' ? '🔴' : k === 'JAUNE' ? '🟡' : '🟢';
-      const color = k === 'ROUGE' ? 'var(--red)' : k === 'JAUNE' ? 'var(--amber)' : 'var(--green)';
+      const color = k === 'ROUGE' ? 'var(--red)' : k === 'JAUNE' ? 'var(--accent)' : 'var(--green)';
       return `
         <div class="stat-row">
           <div class="stat-label">${icon} ${k}</div>
@@ -414,7 +642,7 @@ async function loadTopRisk() {
         <td style="font-family:var(--mono);font-size:11px;color:var(--text-0)">${(v.score_max || 0).toFixed(4)}</td>
         <td><span class="risk-pill ${v.niveau_risque}">${v.niveau_risque}</span></td>
         <td style="font-family:var(--mono);font-size:11px;color:var(--text-2)">${v.nb_interventions || 0}</td>
-        <td style="font-family:var(--mono);font-size:11px;color:${(v.nb_anomalies || 0) > 0 ? 'var(--amber)' : 'var(--text-3)'}">${v.nb_anomalies || 0}</td>
+        <td style="font-family:var(--mono);font-size:11px;color:${(v.nb_anomalies || 0) > 0 ? 'var(--accent)' : 'var(--text-3)'}">${v.nb_anomalies || 0}</td>
         <td style="font-family:var(--mono);font-size:11px;color:var(--text-2)">${(v.avg_huile || 0).toFixed(1)}%</td>
         <td style="font-size:11px;color:var(--text-3)">${v.derniere_intervention || '—'}</td>
       </tr>`).join('');

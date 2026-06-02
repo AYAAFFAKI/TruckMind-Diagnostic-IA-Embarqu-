@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TruckMind · Diagnostic IA Embarqué</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3.4">
 <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/png">
 </head>
 <body>
@@ -39,6 +39,9 @@
     <div class="status-dot loading" id="status-dot"></div>
     <span id="status-lbl">CONNEXION</span>
   </div>
+  <button class="nav-tab" style="margin-left:8px; border: 1px solid var(--border-1);" onclick="toggleRightSidebar()">
+    <img src="{{ url_for('static', filename='historique.png') }}" alt="Historique" style="width:14px; height:14px; opacity:0.8; filter: drop-shadow(0 0 2px rgba(0,212,255,0.5));"> Historique
+  </button>
 </header>
 
 <!-- ─── LAYOUT ──────────────────────────────────────────────── -->
@@ -46,6 +49,19 @@
 
   <!-- ─── SIDEBAR ─────────────────────────────────────────── -->
   <aside class="sidebar">
+
+    <!-- ── Bouton Nouvelle Conversation ── -->
+    <div class="sidebar-new-chat">
+      <button class="new-chat-btn" id="new-chat-btn" onclick="startNewConversation()">
+        <span class="new-chat-icon">＋</span>
+        Nouvelle conversation
+      </button>
+    </div>
+
+
+    <!-- ── Séparateur ── -->
+    <div style="border-top:1px solid var(--border-1)"></div>
+
     <div class="sidebar-section">
       <div class="sidebar-label">Flotte — Vue d'ensemble</div>
       <div class="kpi-grid">
@@ -221,11 +237,24 @@
     </div>
 
   </main>
+
+  <!-- ─── RIGHT SIDEBAR (HISTORY) ────────────────────────────── -->
+  <aside class="right-sidebar" id="right-sidebar">
+    <div class="sidebar-history-section" style="height: 100%; max-height: none;">
+      <div class="sidebar-label" style="display:flex; justify-content:space-between; align-items:center;">
+        <span>📋 Historique</span>
+        <button onclick="toggleRightSidebar()" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:16px;">✕</button>
+      </div>
+      <div class="history-list" id="history-list">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);padding:8px;text-align:center">Aucune conversation</div>
+      </div>
+    </div>
+  </aside>
 </div>
 
 <!-- ─── TOAST ────────────────────────────────────────────────── -->
 <div class="toast" id="toast"></div>
 
-<script src="{{ url_for('static', filename='main.js') }}"></script>
+<script src="{{ url_for('static', filename='main.js') }}?v=3.4"></script>
 </body>
 </html>

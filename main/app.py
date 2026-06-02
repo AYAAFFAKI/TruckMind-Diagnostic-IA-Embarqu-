@@ -21,9 +21,6 @@ Routes API :
 
 import os
 from dotenv import load_dotenv
-
-load_dotenv()
-
 import re
 import json
 import time
@@ -37,6 +34,9 @@ from datetime import datetime
 from flask import Flask, request, jsonify, render_template, g
 from groq import Groq
 from langgraph.graph import StateGraph, END
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ─── Config ──────────────────────────────────────────────────────
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
@@ -642,6 +642,9 @@ USER_TEMPLATE = """
     EXTRAITS_MANUEL:
     {resultat_vectoriel}
 
+    HISTORIQUE_CONVERSATION:
+    {historique}
+
     ###Question
     {question}
 """
@@ -653,6 +656,7 @@ USER_TEMPLATE = """
 
 class EtatDiagnostic(TypedDict):
     question:            str
+    historique:          str
     type_requete:        str
     besoin_vector:       bool
     resultat_sql:        str
@@ -728,6 +732,7 @@ def noeud_analyser(etat: EtatDiagnostic) -> EtatDiagnostic:
     prompt = USER_TEMPLATE.format(
         resultat_sql=etat.get("resultat_sql", "Aucune donnée SQL"),
         resultat_vectoriel=etat.get("resultat_vectoriel", "Aucun extrait technique"),
+        historique=etat.get("historique", "Aucun historique"),
         question=etat.get("question", "Quel est le diagnostic ?")
     )
     return {**etat, "prompt_utilisateur": prompt}
@@ -806,10 +811,11 @@ agent_truck = construire_graphe()
 log.info("LangGraph Agent compilé: router → sql → [vector | skip_vector] → analyser → llm")
 
 
-def poser_question(question: str) -> dict:
+def poser_question(question: str, historique: str = "") -> dict:
     """Interface principale — invoque le pipeline LangGraph complet."""
     etat_initial: EtatDiagnostic = {
         "question":           question,
+        "historique":         historique,
         "type_requete":       "",
         "besoin_vector":      False,
         "resultat_sql":       "",
@@ -914,12 +920,13 @@ def api_status():
 def api_chat():
     data = request.get_json(force=True)
     question = (data.get("question") or "").strip()
+    historique = (data.get("historique") or "").strip()
     if not question:
         return jsonify({"error": "Question vide"}), 400
 
     t0 = time.time()
     try:
-        etat_final = poser_question(question)
+        etat_final = poser_question(question, historique)
         total_ms = int((time.time() - t0) * 1000)
 
         sql_ctx = etat_final.get("resultat_sql", "")
@@ -943,6 +950,33 @@ def api_chat():
     except Exception as e:
         log.error(f"Chat error: {e}", exc_info=True)
         return jsonify({"error": f"Erreur serveur: {str(e)}"}), 500
+
+# ── Gestion de l'historique (JSON Persistant) ───────────────────────
+HISTORY_FILE = os.path.join(os.path.dirname(__file__), "conversations_history.json")
+
+@app.route("/api/history", methods=["GET"])
+def get_history():
+    """Charge l'historique depuis le fichier JSON."""
+    if not os.path.exists(HISTORY_FILE):
+        return jsonify([])
+    try:
+        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+            return jsonify(json.load(f))
+    except Exception as e:
+        log.error(f"Erreur lecture historique: {str(e)}")
+        return jsonify([])
+
+@app.route("/api/history", methods=["POST"])
+def save_history():
+    """Sauvegarde l'historique dans le fichier JSON."""
+    try:
+        data = request.get_json(force=True)
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        return jsonify({"status": "success"})
+    except Exception as e:
+        log.error(f"Erreur sauvegarde historique: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/api/fleet/stats")
 def api_fleet_stats():

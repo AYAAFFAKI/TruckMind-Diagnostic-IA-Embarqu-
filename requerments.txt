@@ -8,3 +8,5 @@ chromadb
 sentence-transformers
 pypdf
 python-dotenv
+fastapi
+uvicorn
