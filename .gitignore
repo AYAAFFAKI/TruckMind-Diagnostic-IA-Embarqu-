@@ -36,7 +36,7 @@ main/logs/*.cfg
 main/logs/*.properties
 main/logs/*.log
 main/logs/*.txt
-main/conversations_history.jsonl
+main/conversations_history.json
 *.mmd
 *.png
 test/simulateur/camion_volvo.json
