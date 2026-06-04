@@ -37,3 +37,5 @@ main/logs/*.properties
 main/logs/*.log
 main/logs/*.txt
 main/conversations_history.jsonl
+*.mmd
+*.png
