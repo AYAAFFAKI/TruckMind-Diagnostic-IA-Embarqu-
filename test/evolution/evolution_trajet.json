@@ -1,0 +1,3336 @@
+[
+  {
+    "cycle": 1,
+    "timestamp": "2026-06-04T13:08:08.162133",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Surcharge Élevée",
+    "alertes": [
+      "[ROUGE] SURCHARGE ÉLEVÉE (>120%) — 39.4 T > 30.0 T (31.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Surcharge Élevée\n**État actuel** : 1.91 km / 60.0 km — 3.2% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] SURCHARGE ÉLEVÉE (>120%) — 39.4 T > 30.0 T (31.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.75357,
+        "lon": -5.81903
+      },
+      "distance_covered_km": 1.91,
+      "total_distance_km": 60.0,
+      "progress_percent": 3.2,
+      "load_tonnes": 39.4,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 91.2,
+      "pression_pneus": 107.9,
+      "consommation_carburant": 29.3,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 5.05,
+      "freins_usure_percent": 14.3,
+      "anomalie_detectee": false,
+      "description_anomalie": "Moteur démarré - prêt à partir"
+    }
+  },
+  {
+    "cycle": 2,
+    "timestamp": "2026-06-04T13:09:08.186110",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Freins Défectueux",
+    "alertes": [
+      "[ROUGE] Usure Freins = 81.6 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale. [→ stable]"
+    ],
+    "actions": [
+      "Arrêter le véhicule — freins trop usés, risque de défaillance totale."
+    ],
+    "notification": "**Titre** : CRITIQUE Freins Défectueux\n**État actuel** : 2.8 km / 60.0 km — 4.7% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Usure Freins = 81.6 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le véhicule — freins trop usés, risque de défaillance totale.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.75078,
+        "lon": -5.81199
+      },
+      "distance_covered_km": 2.8,
+      "total_distance_km": 60.0,
+      "progress_percent": 4.7,
+      "load_tonnes": 26.0,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 80.9,
+      "pression_pneus": 112.9,
+      "consommation_carburant": 27.8,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.99,
+      "freins_usure_percent": 81.6,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (81.6%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 3,
+    "timestamp": "2026-06-04T13:11:08.216323",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Freins Défectueux",
+    "alertes": [
+      "[ROUGE] Usure Freins = 81.6 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale. [→ stable]"
+    ],
+    "actions": [
+      "Arrêter le véhicule — freins trop usés, risque de défaillance totale."
+    ],
+    "notification": "**Titre** : CRITIQUE Freins Défectueux\n**État actuel** : 4.34 km / 60.0 km — 7.2% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Usure Freins = 81.6 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le véhicule — freins trop usés, risque de défaillance totale.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.746,
+        "lon": -5.79991
+      },
+      "distance_covered_km": 4.34,
+      "total_distance_km": 60.0,
+      "progress_percent": 7.2,
+      "load_tonnes": 25.2,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 82.8,
+      "pression_pneus": 113.1,
+      "consommation_carburant": 26.5,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.31,
+      "freins_usure_percent": 81.6,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (81.6%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 4,
+    "timestamp": "2026-06-04T13:16:08.206270",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Température Moteur",
+    "alertes": [
+      "[ROUGE] Température Moteur = 113.2 °C (MAX) → Arrêter le moteur immédiatement — refroidir 10-15 min [→ stable]",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.6 T > 30.0 T (18.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Arrêter le moteur immédiatement — refroidir 10-15 min",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Température Moteur\n**État actuel** : 8.69 km / 60.0 km — 14.5% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [ROUGE] Température Moteur = 113.2 °C (MAX) → Arrêter le moteur immédiatement — refroidir 10-15 min  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.6 T > 30.0 T (18.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le moteur immédiatement — refroidir 10-15 min\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.73247,
+        "lon": -5.76573
+      },
+      "distance_covered_km": 8.69,
+      "total_distance_km": 60.0,
+      "progress_percent": 14.5,
+      "load_tonnes": 35.6,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 113.2,
+      "pression_pneus": 109.8,
+      "consommation_carburant": 27.2,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.53,
+      "freins_usure_percent": 14.7,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Température moteur critique (113.2°C) — arrêt recommandé"
+    }
+  },
+  {
+    "cycle": 5,
+    "timestamp": "2026-06-04T13:20:08.205859",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Usure Freins",
+    "alertes": [
+      "[JAUNE] Usure Freins = 73.4 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité. [↓ en_baisse]"
+    ],
+    "actions": [
+      "Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité."
+    ],
+    "notification": "**Titre** : ATTENTION Usure Freins\n**État actuel** : 11.98 km / 60.0 km — 20.0% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Usure Freins = 73.4 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.72225,
+        "lon": -5.73995
+      },
+      "distance_covered_km": 11.98,
+      "total_distance_km": 60.0,
+      "progress_percent": 20.0,
+      "load_tonnes": 26.8,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 83.0,
+      "pression_pneus": 111.4,
+      "consommation_carburant": 26.3,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.09,
+      "freins_usure_percent": 73.4,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (73.4%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 6,
+    "timestamp": "2026-06-04T13:22:08.213751",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Surcharge Élevée",
+    "alertes": [
+      "[ROUGE] SURCHARGE ÉLEVÉE (>120%) — 40.7 T > 30.0 T (35.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Surcharge Élevée\n**État actuel** : 13.99 km / 60.0 km — 23.3% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] SURCHARGE ÉLEVÉE (>120%) — 40.7 T > 30.0 T (35.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.71598,
+        "lon": -5.72411
+      },
+      "distance_covered_km": 13.99,
+      "total_distance_km": 60.0,
+      "progress_percent": 23.3,
+      "load_tonnes": 40.7,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 94.4,
+      "pression_pneus": 106.1,
+      "consommation_carburant": 29.2,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 4.72,
+      "freins_usure_percent": 19.2,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 7,
+    "timestamp": "2026-06-04T13:30:08.197318",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Température Moteur",
+    "alertes": [
+      "[JAUNE] Température Moteur = 102.0 °C (MAX) → Surveiller — risque de surchauffe [↓ en_baisse]"
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe"
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur\n**État actuel** : 21.75 km / 60.0 km — 36.2% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 102.0 °C (MAX) → Surveiller — risque de surchauffe  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.69186,
+        "lon": -5.66321
+      },
+      "distance_covered_km": 21.75,
+      "total_distance_km": 60.0,
+      "progress_percent": 36.2,
+      "load_tonnes": 26.4,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 102.0,
+      "pression_pneus": 111.0,
+      "consommation_carburant": 26.8,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.86,
+      "freins_usure_percent": 16.9,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Température moteur élevée (102.0°C) — surchauffe légère"
+    }
+  },
+  {
+    "cycle": 8,
+    "timestamp": "2026-06-04T13:32:08.209776",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Température Moteur",
+    "alertes": [
+      "[JAUNE] Température Moteur = 102.0 °C (MAX) → Surveiller — risque de surchauffe [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))"
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe"
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur\n**État actuel** : 23.07 km / 60.0 km — 38.5% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 102.0 °C (MAX) → Surveiller — risque de surchauffe  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.68775,
+        "lon": -5.65282
+      },
+      "distance_covered_km": 23.07,
+      "total_distance_km": 60.0,
+      "progress_percent": 38.5,
+      "load_tonnes": 25.6,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 102.0,
+      "pression_pneus": 111.1,
+      "consommation_carburant": 26.3,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.12,
+      "freins_usure_percent": 17.3,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Température moteur élevée (102.0°C) — surchauffe légère"
+    }
+  },
+  {
+    "cycle": 9,
+    "timestamp": "2026-06-04T13:34:08.230158",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 32.5 T > 30.0 T (8.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Surcharge Modérée\n**État actuel** : 24.38 km / 60.0 km — 40.6% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 32.5 T > 30.0 T (8.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.68367,
+        "lon": -5.64251
+      },
+      "distance_covered_km": 24.38,
+      "total_distance_km": 60.0,
+      "progress_percent": 40.6,
+      "load_tonnes": 32.5,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 88.4,
+      "pression_pneus": 108.2,
+      "consommation_carburant": 27.5,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.25,
+      "freins_usure_percent": 19.2,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 10,
+    "timestamp": "2026-06-04T13:35:08.237947",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Surcharge Élevée",
+    "alertes": [
+      "[ROUGE] SURCHARGE ÉLEVÉE (>120%) — 38.8 T > 30.0 T (29.3% de dépassement) → Informer le responsable. Conduire prudemment.",
+      "[JAUNE] Usure Freins = 75.9 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité. [↑ en_hausse]"
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment.",
+      "Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité."
+    ],
+    "notification": "**Titre** : CRITIQUE Surcharge Élevée\n**État actuel** : 25.27 km / 60.0 km — 42.1% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [ROUGE] SURCHARGE ÉLEVÉE (>120%) — 38.8 T > 30.0 T (29.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n- [JAUNE] Usure Freins = 75.9 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.68092,
+        "lon": -5.63556
+      },
+      "distance_covered_km": 25.27,
+      "total_distance_km": 60.0,
+      "progress_percent": 42.1,
+      "load_tonnes": 38.8,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 96.6,
+      "pression_pneus": 107.4,
+      "consommation_carburant": 27.4,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 4.1,
+      "freins_usure_percent": 75.9,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Usure freins modérée (75.9%) — maintenance à planifier"
+    }
+  },
+  {
+    "cycle": 11,
+    "timestamp": "2026-06-04T13:37:08.241614",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Surcharge Structurelle",
+    "alertes": [
+      "[JAUNE] Température Moteur = 100.6 °C (MAX) → Surveiller — risque de surchauffe [↓ en_baisse]",
+      "[ROUGE] SURCHARGE CRITIQUE (>150%) — 45.2 T > 30.0 T (50.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Surcharge Structurelle\n**État actuel** : 27.11 km / 60.0 km — 45.2% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 100.6 °C (MAX) → Surveiller — risque de surchauffe  \n- [ROUGE] SURCHARGE CRITIQUE (>150%) — 45.2 T > 30.0 T (50.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.6752,
+        "lon": -5.62112
+      },
+      "distance_covered_km": 27.11,
+      "total_distance_km": 60.0,
+      "progress_percent": 45.2,
+      "load_tonnes": 45.2,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 100.6,
+      "pression_pneus": 105.0,
+      "consommation_carburant": 30.2,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 5.75,
+      "freins_usure_percent": 24.7,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 12,
+    "timestamp": "2026-06-04T13:43:08.287177",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Réduire immédiatement à 50 km/h.",
+    "titre": "ATTENTION Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 32.1 T > 30.0 T (7.0% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Surcharge Modérée\n**État actuel** : 32.69 km / 60.0 km — 54.5% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 32.1 T > 30.0 T (7.0% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 50 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.65784,
+        "lon": -5.5773
+      },
+      "distance_covered_km": 32.69,
+      "total_distance_km": 60.0,
+      "progress_percent": 54.5,
+      "load_tonnes": 32.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 90.8,
+      "pression_pneus": 109.4,
+      "consommation_carburant": 27.9,
+      "fuel_level_liters": 399.99,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.74,
+      "freins_usure_percent": 21.3,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 13,
+    "timestamp": "2026-06-04T13:49:38.387409",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Usure Freins",
+    "alertes": [
+      "[JAUNE] Usure Freins = 72.8 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité. [↓ en_baisse]"
+    ],
+    "actions": [
+      "Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité."
+    ],
+    "notification": "**Titre** : ATTENTION Usure Freins\n**État actuel** : 38.94 km / 60.0 km — 64.9% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Usure Freins = 72.8 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.63841,
+        "lon": -5.52823
+      },
+      "distance_covered_km": 38.94,
+      "total_distance_km": 60.0,
+      "progress_percent": 64.9,
+      "load_tonnes": 25.6,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 89.0,
+      "pression_pneus": 108.7,
+      "consommation_carburant": 27.2,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.41,
+      "freins_usure_percent": 72.8,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Usure freins modérée (72.8%) — maintenance à planifier"
+    }
+  },
+  {
+    "cycle": 14,
+    "timestamp": "2026-06-04T13:51:38.436684",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Surcharge Élevée",
+    "alertes": [
+      "[ROUGE] SURCHARGE ÉLEVÉE (>120%) — 41.1 T > 30.0 T (37.0% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Surcharge Élevée\n**État actuel** : 40.67 km / 60.0 km — 67.8% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] SURCHARGE ÉLEVÉE (>120%) — 41.1 T > 30.0 T (37.0% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.633,
+        "lon": -5.51457
+      },
+      "distance_covered_km": 40.67,
+      "total_distance_km": 60.0,
+      "progress_percent": 67.8,
+      "load_tonnes": 41.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 99.9,
+      "pression_pneus": 105.7,
+      "consommation_carburant": 27.6,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 4.11,
+      "freins_usure_percent": 28.5,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 15,
+    "timestamp": "2026-06-04T13:53:08.444867",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Usure Freins",
+    "alertes": [
+      "[JAUNE] Usure Freins = 76.7 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité. [↑ en_hausse]"
+    ],
+    "actions": [
+      "Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité."
+    ],
+    "notification": "**Titre** : ATTENTION Usure Freins\n**État actuel** : 42.02 km / 60.0 km — 70.0% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Usure Freins = 76.7 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.62881,
+        "lon": -5.50398
+      },
+      "distance_covered_km": 42.02,
+      "total_distance_km": 60.0,
+      "progress_percent": 70.0,
+      "load_tonnes": 28.3,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 90.4,
+      "pression_pneus": 107.9,
+      "consommation_carburant": 27.9,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.42,
+      "freins_usure_percent": 76.7,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Usure freins modérée (76.7%) — maintenance à planifier"
+    }
+  },
+  {
+    "cycle": 16,
+    "timestamp": "2026-06-04T14:04:38.683500",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Réduire immédiatement à 50 km/h.",
+    "titre": "ATTENTION Surcharge Modérée & Usure Freins",
+    "alertes": [
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 34.1 T > 30.0 T (13.7% de dépassement) → Informer le responsable. Conduire prudemment.",
+      "[JAUNE] Usure Freins = 73.5 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité. [↓ en_baisse]"
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment.",
+      "Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité."
+    ],
+    "notification": "**Titre** : ATTENTION Surcharge Modérée & Usure Freins\n**État actuel** : 52.82 km / 60.0 km — 88.0% — 2 alerte(s) active(s) : ROUGE=0 JAUNE=2\n**Points critiques** :\n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 34.1 T > 30.0 T (13.7% de dépassement) → Informer le responsable. Conduire prudemment.\n- [JAUNE] Usure Freins = 73.5 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.\n**Actions immédiates** :\n1. Réduire immédiatement à 50 km/h.\n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.\n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {},
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.59523,
+        "lon": -5.41919
+      },
+      "distance_covered_km": 52.82,
+      "total_distance_km": 60.0,
+      "progress_percent": 88.0,
+      "load_tonnes": 34.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 98.3,
+      "pression_pneus": 106.4,
+      "consommation_carburant": 29.0,
+      "fuel_level_liters": 399.97,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.65,
+      "freins_usure_percent": 73.5,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Usure freins modérée (73.5%) — maintenance à planifier"
+    }
+  },
+  {
+    "cycle": 17,
+    "timestamp": "2026-06-04T14:09:08.733650",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Pression Pneus",
+    "alertes": [
+      "[ROUGE] Pression Pneus = 61.4 PSI (CRITIQUE) → Pression critique — risque d'éclatement [→ stable]",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 31.9 T > 30.0 T (6.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Pression critique — risque d'éclatement",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Pression Pneus\n**État actuel** : 56.78 km / 60.0 km — 94.6% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [ROUGE] Pression Pneus = 61.4 PSI (CRITIQUE) → Pression critique — risque d'éclatement  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 31.9 T > 30.0 T (6.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Pression critique — risque d'éclatement\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.58292,
+        "lon": -5.38809
+      },
+      "distance_covered_km": 56.78,
+      "total_distance_km": 60.0,
+      "progress_percent": 94.6,
+      "load_tonnes": 31.9,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 95.5,
+      "pression_pneus": 61.4,
+      "consommation_carburant": 27.4,
+      "fuel_level_liters": 399.95,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.68,
+      "freins_usure_percent": 30.0,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Crevaison progressive détectée (61.4 PSI) — arrêt immédiat"
+    }
+  },
+  {
+    "cycle": 18,
+    "timestamp": "2026-06-04T14:11:08.745911",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Réduire immédiatement à 50 km/h.",
+    "titre": "ATTENTION Température Moteur & Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] Température Moteur = 100.3 °C (MAX) → Surveiller — risque de surchauffe [→ stable]",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.8 T > 30.0 T (12.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur & Surcharge Modérée\n**État actuel** : 58.71 km / 60.0 km — 97.8% — 2 alerte(s) active(s) : ROUGE=0 JAUNE=2  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 100.3 °C (MAX) → Surveiller — risque de surchauffe  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.8 T > 30.0 T (12.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 50 km/h.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.57692,
+        "lon": -5.37295
+      },
+      "distance_covered_km": 58.71,
+      "total_distance_km": 60.0,
+      "progress_percent": 97.8,
+      "load_tonnes": 33.8,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 100.3,
+      "pression_pneus": 106.1,
+      "consommation_carburant": 28.0,
+      "fuel_level_liters": 399.95,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.8,
+      "freins_usure_percent": 31.5,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 19,
+    "timestamp": "2026-06-04T14:13:08.767758",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Température Moteur & Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] Température Moteur = 100.2 °C (MAX) → Surveiller — risque de surchauffe [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.3 T > 30.0 T (17.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur & Surcharge Modérée\n**État actuel** : 60 km / 60 km — 100% — 2 alerte(s) active(s) : ROUGE=0 JAUNE=2  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 100.2 °C (MAX) → Surveiller — risque de surchauffe  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.3 T > 30.0 T (17.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.5729,
+        "lon": -5.3628
+      },
+      "distance_covered_km": 60.0,
+      "total_distance_km": 60.0,
+      "progress_percent": 100.0,
+      "load_tonnes": 35.3,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 100.2,
+      "pression_pneus": 105.9,
+      "consommation_carburant": 27.3,
+      "fuel_level_liters": 399.95,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.68,
+      "freins_usure_percent": 32.3,
+      "anomalie_detectee": false,
+      "description_anomalie": "Trajet terminé avec succès !"
+    }
+  },
+  {
+    "cycle": 20,
+    "timestamp": "2026-06-04T14:15:18.862297",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Température Moteur",
+    "alertes": [
+      "[JAUNE] Température Moteur = 102.5 °C (MAX) → Surveiller — risque de surchauffe [↑ en_hausse] (⏱ Alerte persistante depuis 3 cycle(s))"
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe"
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur\n**État actuel** : 2.01 km / 60.0 km — 3.4% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 102.5 °C (MAX) → Surveiller — risque de surchauffe)  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.75324,
+        "lon": -5.8182
+      },
+      "distance_covered_km": 2.01,
+      "total_distance_km": 60.0,
+      "progress_percent": 3.4,
+      "load_tonnes": 26.4,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 102.5,
+      "pression_pneus": 111.8,
+      "consommation_carburant": 27.3,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.64,
+      "freins_usure_percent": 10.4,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Température moteur élevée (102.5°C) — surchauffe légère"
+    }
+  },
+  {
+    "cycle": 21,
+    "timestamp": "2026-06-04T14:17:18.899141",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Température Moteur & Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] Température Moteur = 102.5 °C (MAX) → Surveiller — risque de surchauffe [→ stable] (⏱ Alerte persistante depuis 4 cycle(s))",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 34.2 T > 30.0 T (14.0% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur & Surcharge Modérée\n**État actuel** : 3.36 km / 60.0 km — 5.6% — 2 alerte(s) active(s) : ROUGE=0 JAUNE=2  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 102.5 °C (MAX) → Surveiller — risque de surchauffe)  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 34.2 T > 30.0 T (14.0% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.74904,
+        "lon": -5.80758
+      },
+      "distance_covered_km": 3.36,
+      "total_distance_km": 60.0,
+      "progress_percent": 5.6,
+      "load_tonnes": 34.2,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 102.5,
+      "pression_pneus": 110.1,
+      "consommation_carburant": 27.0,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 100.0,
+      "niveaux_vibration": 3.52,
+      "freins_usure_percent": 12.6,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Température moteur élevée (102.5°C) — surchauffe légère"
+    }
+  },
+  {
+    "cycle": 22,
+    "timestamp": "2026-06-04T14:19:48.930964",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Surcharge Élevée",
+    "alertes": [
+      "[JAUNE] État Batterie = 22.2 % (MIN) → Batterie faible — vérifier l'alternateur [→ stable]",
+      "[ROUGE] SURCHARGE ÉLEVÉE (>120%) — 40.9 T > 30.0 T (36.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Batterie faible — vérifier l'alternateur",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Surcharge Élevée\n**État actuel** : 5.13 km / 60.0 km — 8.6% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] État Batterie = 22.2 % (MIN) → Batterie faible — vérifier l'alternateur  \n- [ROUGE] SURCHARGE ÉLEVÉE (>120%) — 40.9 T > 30.0 T (36.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.74354,
+        "lon": -5.79371
+      },
+      "distance_covered_km": 5.13,
+      "total_distance_km": 60.0,
+      "progress_percent": 8.6,
+      "load_tonnes": 40.9,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 93.4,
+      "pression_pneus": 106.3,
+      "consommation_carburant": 29.5,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 22.2,
+      "niveaux_vibration": 4.3,
+      "freins_usure_percent": 16.3,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Batterie faible (22.2%) — recharge recommandée prochainement"
+    }
+  },
+  {
+    "cycle": 23,
+    "timestamp": "2026-06-04T14:21:48.934121",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Batterie Faible",
+    "alertes": [
+      "[JAUNE] État Batterie = 22.2 % (MIN) → Batterie faible — vérifier l'alternateur [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))"
+    ],
+    "actions": [
+      "Batterie faible — vérifier l'alternateur"
+    ],
+    "notification": "**Titre** : ATTENTION Batterie Faible\n**État actuel** : 6.96 km / 60.0 km — 11.6% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] État Batterie = 22.2 % (MIN) → Batterie faible — vérifier l'alternateur  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Batterie faible — vérifier l'alternateur\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.73787,
+        "lon": -5.77938
+      },
+      "distance_covered_km": 6.96,
+      "total_distance_km": 60.0,
+      "progress_percent": 11.6,
+      "load_tonnes": 29.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 83.1,
+      "pression_pneus": 111.6,
+      "consommation_carburant": 26.9,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 22.2,
+      "niveaux_vibration": 3.21,
+      "freins_usure_percent": 12.3,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Batterie faible (22.2%) — recharge recommandée prochainement"
+    }
+  },
+  {
+    "cycle": 24,
+    "timestamp": "2026-06-04T14:31:19.131544",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Freins Défectueux",
+    "alertes": [
+      "[ROUGE] Usure Freins = 81.2 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale. [↑ en_hausse]"
+    ],
+    "actions": [
+      "Arrêter le véhicule — freins trop usés, risque de défaillance totale."
+    ],
+    "notification": "**Titre** : CRITIQUE Freins Défectueux\n**État actuel** : 16.13 km / 60.0 km — 26.9% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Usure Freins = 81.2 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le véhicule — freins trop usés, risque de défaillance totale.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.70933,
+        "lon": -5.70732
+      },
+      "distance_covered_km": 16.13,
+      "total_distance_km": 60.0,
+      "progress_percent": 26.9,
+      "load_tonnes": 28.0,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 82.1,
+      "pression_pneus": 109.6,
+      "consommation_carburant": 26.9,
+      "fuel_level_liters": 399.99,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.46,
+      "freins_usure_percent": 81.2,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (81.2%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 25,
+    "timestamp": "2026-06-04T14:33:19.131654",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Freins Défectueux",
+    "alertes": [
+      "[ROUGE] Usure Freins = 81.2 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale. [→ stable]"
+    ],
+    "actions": [
+      "Arrêter le véhicule — freins trop usés, risque de défaillance totale."
+    ],
+    "notification": "**Titre** : CRITIQUE Freins Défectueux\n**État actuel** : 17.75 km / 60.0 km — 29.6% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Usure Freins = 81.2 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le véhicule — freins trop usés, risque de défaillance totale.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.70431,
+        "lon": -5.69463
+      },
+      "distance_covered_km": 17.75,
+      "total_distance_km": 60.0,
+      "progress_percent": 29.6,
+      "load_tonnes": 29.3,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 84.1,
+      "pression_pneus": 111.4,
+      "consommation_carburant": 26.5,
+      "fuel_level_liters": 399.99,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.52,
+      "freins_usure_percent": 81.2,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (81.2%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 26,
+    "timestamp": "2026-06-04T14:35:49.169198",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Réduire immédiatement à 50 km/h.",
+    "titre": "ATTENTION Surcharge Modérée & Usure Freins",
+    "alertes": [
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.8 T > 30.0 T (19.3% de dépassement) → Informer le responsable. Conduire prudemment.",
+      "[JAUNE] Usure Freins = 79.4 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité. [↓ en_baisse]"
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment.",
+      "Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité."
+    ],
+    "notification": "**Titre** : ATTENTION Surcharge Modérée & Usure Freins\n**État actuel** : 20.05 km / 60.0 km — 33.4% — 2 alerte(s) active(s) : ROUGE=0 JAUNE=2  \n**Points critiques** :  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.8 T > 30.0 T (19.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n- [JAUNE] Usure Freins = 79.4 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 50 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.69714,
+        "lon": -5.67652
+      },
+      "distance_covered_km": 20.05,
+      "total_distance_km": 60.0,
+      "progress_percent": 33.4,
+      "load_tonnes": 35.8,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 89.6,
+      "pression_pneus": 108.9,
+      "consommation_carburant": 27.5,
+      "fuel_level_liters": 399.99,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.68,
+      "freins_usure_percent": 79.4,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (79.4%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 27,
+    "timestamp": "2026-06-04T14:37:49.215084",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Usure Freins",
+    "alertes": [
+      "[JAUNE] Usure Freins = 79.4 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité. [→ stable]"
+    ],
+    "actions": [
+      "Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité."
+    ],
+    "notification": "**Titre** : ATTENTION Usure Freins\n**État actuel** : 22.01 km / 60.0 km — 36.7% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Usure Freins = 79.4 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.69106,
+        "lon": -5.66119
+      },
+      "distance_covered_km": 22.01,
+      "total_distance_km": 60.0,
+      "progress_percent": 36.7,
+      "load_tonnes": 26.9,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 83.6,
+      "pression_pneus": 109.3,
+      "consommation_carburant": 26.6,
+      "fuel_level_liters": 399.99,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.5,
+      "freins_usure_percent": 79.4,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (79.4%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 28,
+    "timestamp": "2026-06-04T14:39:49.211366",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Température Moteur",
+    "alertes": [
+      "[ROUGE] Température Moteur = 105.5 °C (MAX) → Arrêter le moteur immédiatement — refroidir 10-15 min [→ stable]",
+      "[ROUGE] SURCHARGE CRITIQUE (>150%) — 47.6 T > 30.0 T (58.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Arrêter le moteur immédiatement — refroidir 10-15 min",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Température Moteur\n**État actuel** : 23.92 km / 60.0 km — 39.9% — 2 alerte(s) active(s) : ROUGE=2 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Température Moteur = 105.5 °C (MAX) → Arrêter le moteur immédiatement — refroidir 10-15 min  \n- [ROUGE] SURCHARGE CRITIQUE (>150%) — 47.6 T > 30.0 T (58.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le moteur immédiatement — refroidir 10-15 min\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.68512,
+        "lon": -5.64617
+      },
+      "distance_covered_km": 23.92,
+      "total_distance_km": 60.0,
+      "progress_percent": 39.9,
+      "load_tonnes": 47.6,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 105.5,
+      "pression_pneus": 104.7,
+      "consommation_carburant": 30.5,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 5.69,
+      "freins_usure_percent": 24.9,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 29,
+    "timestamp": "2026-06-04T14:40:49.212030",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Réduire immédiatement à 50 km/h.",
+    "titre": "ATTENTION Pression Pneus & Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] Pression Pneus = 85.8 PSI (MIN) → Pression basse — vérifier les pneus avant départ [→ stable]",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 34.1 T > 30.0 T (13.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Pression basse — vérifier les pneus avant départ",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Pression Pneus & Surcharge Modérée\n**État actuel** : 24.67 km / 60.0 km — 41.1% — 2 alerte(s) active(s) : ROUGE=0 JAUNE=2  \n**Points critiques** :  \n- [JAUNE] Pression Pneus = 85.8 PSI (MIN) → Pression basse — vérifier les pneus avant départ  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 34.1 T > 30.0 T (13.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 50 km/h.  \n2. Pression basse — vérifier les pneus avant départ\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.68276,
+        "lon": -5.64023
+      },
+      "distance_covered_km": 24.67,
+      "total_distance_km": 60.0,
+      "progress_percent": 41.1,
+      "load_tonnes": 34.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 89.6,
+      "pression_pneus": 85.8,
+      "consommation_carburant": 28.1,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.57,
+      "freins_usure_percent": 20.2,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Pression pneus insuffisante (85.8 PSI) — perte lente détectée"
+    }
+  },
+  {
+    "cycle": 30,
+    "timestamp": "2026-06-04T14:42:49.229466",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Pression Pneus & Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] Pression Pneus = 85.8 PSI (MIN) → Pression basse — vérifier les pneus avant départ [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.5 T > 30.0 T (18.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Pression basse — vérifier les pneus avant départ",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Pression Pneus & Surcharge Modérée\n**État actuel** : 26.45 km / 60.0 km — 44.1% — 2 alerte(s) active(s) : ROUGE=0 JAUNE=2  \n**Points critiques** :  \n- [JAUNE] Pression Pneus = 85.8 PSI (MIN) → Pression basse — vérifier les pneus avant départ  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.5 T > 30.0 T (18.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Pression basse — vérifier les pneus avant départ\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.67723,
+        "lon": -5.62626
+      },
+      "distance_covered_km": 26.45,
+      "total_distance_km": 60.0,
+      "progress_percent": 44.1,
+      "load_tonnes": 35.5,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 93.3,
+      "pression_pneus": 85.8,
+      "consommation_carburant": 27.3,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.03,
+      "freins_usure_percent": 21.4,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Pression pneus insuffisante (85.8 PSI) — perte lente détectée"
+    }
+  },
+  {
+    "cycle": 31,
+    "timestamp": "2026-06-04T14:45:19.306543",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Vibrations",
+    "alertes": [
+      "[JAUNE] Niveaux Vibration = 9.8 mm/s (MAX) → Vibrations anormales — vérifier roues et suspension [→ stable]"
+    ],
+    "actions": [
+      "Vibrations anormales — vérifier roues et suspension"
+    ],
+    "notification": "**Titre** : ATTENTION Vibrations\n**État actuel** : 28.87 km / 60.0 km — 48.1% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Niveaux Vibration = 9.8 mm/s (MAX) → Vibrations anormales — vérifier roues et suspension  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Vibrations anormales — vérifier roues et suspension\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.66972,
+        "lon": -5.6073
+      },
+      "distance_covered_km": 28.87,
+      "total_distance_km": 60.0,
+      "progress_percent": 48.1,
+      "load_tonnes": 27.3,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 86.7,
+      "pression_pneus": 110.7,
+      "consommation_carburant": 26.4,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 9.82,
+      "freins_usure_percent": 19.1,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Vibrations élevées (9.82 mm/s) — possible chaussée dégradée ou amortisseurs"
+    }
+  },
+  {
+    "cycle": 32,
+    "timestamp": "2026-06-04T14:47:19.331411",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Réduire immédiatement à 50 km/h.",
+    "titre": "ATTENTION Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 34.7 T > 30.0 T (15.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Surcharge Modérée\n**État actuel** : 30.55 km / 60.0 km — 50.9% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 34.7 T > 30.0 T (15.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 50 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.6645,
+        "lon": -5.59411
+      },
+      "distance_covered_km": 30.55,
+      "total_distance_km": 60.0,
+      "progress_percent": 50.9,
+      "load_tonnes": 34.7,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 90.3,
+      "pression_pneus": 108.4,
+      "consommation_carburant": 28.0,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.41,
+      "freins_usure_percent": 22.2,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 33,
+    "timestamp": "2026-06-04T14:49:19.329452",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Température Moteur",
+    "alertes": [
+      "[JAUNE] Température Moteur = 101.4 °C (MAX) → Surveiller — risque de surchauffe [↓ en_baisse]"
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe"
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur\n**État actuel** : 32.53 km / 60.0 km — 54.2% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 101.4 °C (MAX) → Surveiller — risque de surchauffe  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.65833,
+        "lon": -5.57853
+      },
+      "distance_covered_km": 32.53,
+      "total_distance_km": 60.0,
+      "progress_percent": 54.2,
+      "load_tonnes": 27.6,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 101.4,
+      "pression_pneus": 108.5,
+      "consommation_carburant": 26.8,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.89,
+      "freins_usure_percent": 20.8,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Température moteur élevée (101.4°C) — surchauffe légère"
+    }
+  },
+  {
+    "cycle": 34,
+    "timestamp": "2026-06-04T14:51:19.349738",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Température Moteur",
+    "alertes": [
+      "[JAUNE] Température Moteur = 101.4 °C (MAX) → Surveiller — risque de surchauffe [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))"
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe"
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur\n**État actuel** : 33.96 km / 60.0 km — 56.6% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 101.4 °C (MAX) → Surveiller — risque de surchauffe  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.65389,
+        "lon": -5.56732
+      },
+      "distance_covered_km": 33.96,
+      "total_distance_km": 60.0,
+      "progress_percent": 56.6,
+      "load_tonnes": 26.7,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 101.4,
+      "pression_pneus": 111.1,
+      "consommation_carburant": 26.8,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 2.76,
+      "freins_usure_percent": 21.7,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Température moteur élevée (101.4°C) — surchauffe légère"
+    }
+  },
+  {
+    "cycle": 35,
+    "timestamp": "2026-06-04T14:54:19.400088",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Surcharge Élevée",
+    "alertes": [
+      "[JAUNE] Température Moteur = 102.8 °C (MAX) → Surveiller — risque de surchauffe [↑ en_hausse] (⏱ Alerte persistante depuis 3 cycle(s))",
+      "[ROUGE] SURCHARGE ÉLEVÉE (>120%) — 41.8 T > 30.0 T (39.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Surcharge Élevée\n**État actuel** : 36.8 km / 60.0 km — 61.3% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 102.8 °C (MAX) → Surveiller — risque de surchauffe)  \n- [ROUGE] SURCHARGE ÉLEVÉE (>120%) — 41.8 T > 30.0 T (39.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.64506,
+        "lon": -5.54501
+      },
+      "distance_covered_km": 36.8,
+      "total_distance_km": 60.0,
+      "progress_percent": 61.3,
+      "load_tonnes": 41.8,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 102.8,
+      "pression_pneus": 104.5,
+      "consommation_carburant": 28.1,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 5.29,
+      "freins_usure_percent": 27.3,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Température moteur élevée (102.8°C) — surchauffe légère"
+    }
+  },
+  {
+    "cycle": 36,
+    "timestamp": "2026-06-04T14:56:19.434808",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Température Moteur",
+    "alertes": [
+      "[JAUNE] Température Moteur = 102.8 °C (MAX) → Surveiller — risque de surchauffe [→ stable] (⏱ Alerte persistante depuis 4 cycle(s))"
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe"
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur\n**État actuel** : 38.06 km / 60.0 km — 63.4% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 102.8 °C (MAX) → Surveiller — risque de surchauffe  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.64114,
+        "lon": -5.53512
+      },
+      "distance_covered_km": 38.06,
+      "total_distance_km": 60.0,
+      "progress_percent": 63.4,
+      "load_tonnes": 28.8,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 102.8,
+      "pression_pneus": 109.3,
+      "consommation_carburant": 25.7,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 2.62,
+      "freins_usure_percent": 23.1,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Température moteur élevée (102.8°C) — surchauffe légère"
+    }
+  },
+  {
+    "cycle": 37,
+    "timestamp": "2026-06-04T15:02:19.495390",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Réduire immédiatement à 50 km/h.",
+    "titre": "ATTENTION Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.1 T > 30.0 T (17.0% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Surcharge Modérée\n**État actuel** : 43.58 km / 60.0 km — 72.6% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 35.1 T > 30.0 T (17.0% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 50 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.62397,
+        "lon": -5.49175
+      },
+      "distance_covered_km": 43.58,
+      "total_distance_km": 60.0,
+      "progress_percent": 72.6,
+      "load_tonnes": 35.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 95.8,
+      "pression_pneus": 106.2,
+      "consommation_carburant": 27.5,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.78,
+      "freins_usure_percent": 26.6,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 38,
+    "timestamp": "2026-06-04T15:06:19.516228",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Surcharge Élevée",
+    "alertes": [
+      "[JAUNE] Température Moteur = 102.0 °C (MAX) → Surveiller — risque de surchauffe [↓ en_baisse]",
+      "[ROUGE] SURCHARGE ÉLEVÉE (>120%) — 39.1 T > 30.0 T (30.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Surcharge Élevée\n**État actuel** : 47.39 km / 60.0 km — 79.0% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 102.0 °C (MAX) → Surveiller — risque de surchauffe  \n- [ROUGE] SURCHARGE ÉLEVÉE (>120%) — 39.1 T > 30.0 T (30.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.61213,
+        "lon": -5.46186
+      },
+      "distance_covered_km": 47.39,
+      "total_distance_km": 60.0,
+      "progress_percent": 79.0,
+      "load_tonnes": 39.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 102.0,
+      "pression_pneus": 106.4,
+      "consommation_carburant": 28.4,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.15,
+      "freins_usure_percent": 29.6,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 39,
+    "timestamp": "2026-06-04T15:07:19.506438",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Pression Pneus",
+    "alertes": [
+      "[ROUGE] Pression Pneus Haute = 131.5 PSI (MAX) → Dégonfler les pneus à la pression nominale — arrêt immédiat. [→ stable]"
+    ],
+    "actions": [
+      "Dégonfler les pneus à la pression nominale — arrêt immédiat."
+    ],
+    "notification": "**Titre** : CRITIQUE Pression Pneus\n**État actuel** : 48.16 km / 60.0 km — 80.3% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Pression Pneus Haute = 131.5 PSI (MAX) → Dégonfler les pneus à la pression nominale — arrêt immédiat.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Dégonfler les pneus à la pression nominale — arrêt immédiat.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.60973,
+        "lon": -5.4558
+      },
+      "distance_covered_km": 48.16,
+      "total_distance_km": 60.0,
+      "progress_percent": 80.3,
+      "load_tonnes": 27.9,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 92.5,
+      "pression_pneus": 131.5,
+      "consommation_carburant": 28.1,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.87,
+      "freins_usure_percent": 25.7,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Surpression pneus (131.5 PSI) — risque d'éclatement par chaleur"
+    }
+  },
+  {
+    "cycle": 40,
+    "timestamp": "2026-06-04T15:09:19.498496",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Pression Pneus",
+    "alertes": [
+      "[ROUGE] Pression Pneus Haute = 131.5 PSI (MAX) → Dégonfler les pneus à la pression nominale — arrêt immédiat. [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))"
+    ],
+    "actions": [
+      "Dégonfler les pneus à la pression nominale — arrêt immédiat."
+    ],
+    "notification": "**Titre** : CRITIQUE Pression Pneus\n**État actuel** : 50.12 km / 60.0 km — 83.5% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Pression Pneus Haute = 131.5 PSI (MAX) → Dégonfler les pneus à la pression nominale — arrêt immédiat.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Dégonfler les pneus à la pression nominale — arrêt immédiat.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.60364,
+        "lon": -5.44043
+      },
+      "distance_covered_km": 50.12,
+      "total_distance_km": 60.0,
+      "progress_percent": 83.5,
+      "load_tonnes": 25.2,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 91.4,
+      "pression_pneus": 131.5,
+      "consommation_carburant": 27.9,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.29,
+      "freins_usure_percent": 26.2,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Surpression pneus (131.5 PSI) — risque d'éclatement par chaleur"
+    }
+  },
+  {
+    "cycle": 41,
+    "timestamp": "2026-06-04T15:12:49.554439",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Freins Défectueux",
+    "alertes": [
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 31.6 T > 30.0 T (5.3% de dépassement) → Informer le responsable. Conduire prudemment.",
+      "[ROUGE] Usure Freins = 80.6 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale. [↑ en_hausse]"
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment.",
+      "Arrêter le véhicule — freins trop usés, risque de défaillance totale."
+    ],
+    "notification": "**Titre** : CRITIQUE Freins Défectueux\n**État actuel** : 53.65 km / 60.0 km — 89.4% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 31.6 T > 30.0 T (5.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n- [ROUGE] Usure Freins = 80.6 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le véhicule — freins trop usés, risque de défaillance totale.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.59265,
+        "lon": -5.41266
+      },
+      "distance_covered_km": 53.65,
+      "total_distance_km": 60.0,
+      "progress_percent": 89.4,
+      "load_tonnes": 31.6,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 96.2,
+      "pression_pneus": 107.8,
+      "consommation_carburant": 26.7,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.08,
+      "freins_usure_percent": 80.6,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (80.6%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 42,
+    "timestamp": "2026-06-04T15:14:49.561433",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Freins Défectueux",
+    "alertes": [
+      "[ROUGE] Usure Freins = 80.6 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale. [→ stable]"
+    ],
+    "actions": [
+      "Arrêter le véhicule — freins trop usés, risque de défaillance totale."
+    ],
+    "notification": "**Titre** : CRITIQUE Freins Défectueux\n**État actuel** : 55.24 km / 60.0 km — 92.1% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Usure Freins = 80.6 % (USURE CRITIQUE (≥80.0%)) → Arrêter le véhicule — freins trop usés, risque de défaillance totale.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le véhicule — freins trop usés, risque de défaillance totale.\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.58769,
+        "lon": -5.40016
+      },
+      "distance_covered_km": 55.24,
+      "total_distance_km": 60.0,
+      "progress_percent": 92.1,
+      "load_tonnes": 28.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 94.1,
+      "pression_pneus": 108.1,
+      "consommation_carburant": 27.6,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.85,
+      "freins_usure_percent": 80.6,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (80.6%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 43,
+    "timestamp": "2026-06-04T15:18:19.696008",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Température Moteur",
+    "alertes": [
+      "[JAUNE] Température Moteur = 103.2 °C (MAX) → Surveiller — risque de surchauffe [↑ en_hausse]"
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe"
+    ],
+    "notification": "**Titre** : ATTENTION Température Moteur\n**État actuel** : 58.34 km / 60.0 km — 97.2% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 103.2 °C (MAX) → Surveiller — risque de surchauffe  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Surveiller — risque de surchauffe\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.57805,
+        "lon": -5.37582
+      },
+      "distance_covered_km": 58.34,
+      "total_distance_km": 60.0,
+      "progress_percent": 97.2,
+      "load_tonnes": 26.6,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 103.2,
+      "pression_pneus": 107.6,
+      "consommation_carburant": 26.2,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.25,
+      "freins_usure_percent": 29.5,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Température moteur élevée (103.2°C) — surchauffe légère"
+    }
+  },
+  {
+    "cycle": 44,
+    "timestamp": "2026-06-04T15:20:19.716094",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.1 T > 30.0 T (10.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Surcharge Modérée\n**État actuel** : 59.64 km / 60.0 km — 99.4% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.1 T > 30.0 T (10.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.57403,
+        "lon": -5.36565
+      },
+      "distance_covered_km": 59.64,
+      "total_distance_km": 60.0,
+      "progress_percent": 99.4,
+      "load_tonnes": 33.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 97.4,
+      "pression_pneus": 105.6,
+      "consommation_carburant": 27.0,
+      "fuel_level_liters": 399.98,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.66,
+      "freins_usure_percent": 31.1,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 45,
+    "timestamp": "2026-06-04T15:21:29.736667",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Batterie Faible",
+    "alertes": [
+      "[JAUNE] État Batterie = 23.1 % (MIN) → Batterie faible — vérifier l'alternateur [↑ en_hausse]"
+    ],
+    "actions": [
+      "Batterie faible — vérifier l'alternateur"
+    ],
+    "notification": "**Titre** : ATTENTION Batterie Faible\n**État actuel** : 0.52 km / 60.0 km — 0.9% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] État Batterie = 23.1 % (MIN) → Batterie faible — vérifier l'alternateur  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Batterie faible — vérifier l'alternateur\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.7579,
+        "lon": -5.82996
+      },
+      "distance_covered_km": 0.52,
+      "total_distance_km": 60.0,
+      "progress_percent": 0.9,
+      "load_tonnes": 25.8,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 78.8,
+      "pression_pneus": 112.5,
+      "consommation_carburant": 26.8,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 23.1,
+      "niveaux_vibration": 3.07,
+      "freins_usure_percent": 9.9,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Batterie vieillissante (23.1%) — capacité réduite — planifier remplacement"
+    }
+  },
+  {
+    "cycle": 46,
+    "timestamp": "2026-06-04T15:27:59.759346",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Pression Pneus",
+    "alertes": [
+      "[ROUGE] Pression Pneus = 53.1 PSI (CRITIQUE) → Pression critique — risque d'éclatement [→ stable]"
+    ],
+    "actions": [
+      "Pression critique — risque d'éclatement"
+    ],
+    "notification": "**Titre** : CRITIQUE Pression Pneus\n**État actuel** : 6.95 km / 60.0 km — 11.6% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Pression Pneus = 53.1 PSI (CRITIQUE) → Pression critique — risque d'éclatement  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Pression critique — risque d'éclatement\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.73789,
+        "lon": -5.77944
+      },
+      "distance_covered_km": 6.95,
+      "total_distance_km": 60.0,
+      "progress_percent": 11.6,
+      "load_tonnes": 28.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 80.7,
+      "pression_pneus": 53.1,
+      "consommation_carburant": 27.6,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.25,
+      "freins_usure_percent": 12.8,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Crevaison progressive détectée (53.1 PSI) — arrêt immédiat"
+    }
+  },
+  {
+    "cycle": 47,
+    "timestamp": "2026-06-04T15:29:59.757507",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Pression Pneus",
+    "alertes": [
+      "[ROUGE] Pression Pneus = 53.1 PSI (CRITIQUE) → Pression critique — risque d'éclatement [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))"
+    ],
+    "actions": [
+      "Pression critique — risque d'éclatement"
+    ],
+    "notification": "**Titre** : CRITIQUE Pression Pneus\n**État actuel** : 8.94 km / 60.0 km — 14.9% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Pression Pneus = 53.1 PSI (CRITIQUE) → Pression critique — risque d'éclatement  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Pression critique — risque d'éclatement\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.7317,
+        "lon": -5.7638
+      },
+      "distance_covered_km": 8.94,
+      "total_distance_km": 60.0,
+      "progress_percent": 14.9,
+      "load_tonnes": 27.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 81.5,
+      "pression_pneus": 53.1,
+      "consommation_carburant": 28.1,
+      "fuel_level_liters": 400.0,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.35,
+      "freins_usure_percent": 12.6,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Crevaison progressive détectée (53.1 PSI) — arrêt immédiat"
+    }
+  },
+  {
+    "cycle": 48,
+    "timestamp": "2026-06-04T15:32:29.789234",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Consommation Carburant",
+    "alertes": [
+      "[JAUNE] Consommation Carburant = 41.0 L/100km (MAX) → Consommation anormale — vérifier injection/filtre [→ stable]"
+    ],
+    "actions": [
+      "Consommation anormale — vérifier injection/filtre"
+    ],
+    "notification": "**Titre** : ATTENTION Consommation Carburant\n**État actuel** : 11.32 km / 60.0 km — 18.9% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Consommation Carburant = 41.0 L/100km (MAX) → Consommation anormale — vérifier injection/filtre  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Consommation anormale — vérifier injection/filtre\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.72429,
+        "lon": -5.74509
+      },
+      "distance_covered_km": 11.32,
+      "total_distance_km": 60.0,
+      "progress_percent": 18.9,
+      "load_tonnes": 28.9,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 81.6,
+      "pression_pneus": 111.7,
+      "consommation_carburant": 41.0,
+      "fuel_level_liters": 399.99,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.61,
+      "freins_usure_percent": 13.6,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Consommation (41.0 L/100km) — filtre à carburant potentiellement bouché"
+    }
+  },
+  {
+    "cycle": 49,
+    "timestamp": "2026-06-04T15:34:29.831126",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Consommation Carburant & Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] Consommation Carburant = 41.0 L/100km (MAX) → Consommation anormale — vérifier injection/filtre [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.2 T > 30.0 T (10.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Consommation anormale — vérifier injection/filtre",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Consommation Carburant & Surcharge Modérée\n**État actuel** : 13.2 km / 60.0 km — 22% — 2 alerte(s) active(s) : ROUGE=0 JAUNE=2  \n**Points critiques** :  \n- [JAUNE] Consommation Carburant = 41.0 L/100km (MAX) → Consommation anormale — vérifier injection/filtre  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.2 T > 30.0 T (10.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Consommation anormale — vérifier injection/filtre\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.71846,
+        "lon": -5.73037
+      },
+      "distance_covered_km": 13.2,
+      "total_distance_km": 60.0,
+      "progress_percent": 22.0,
+      "load_tonnes": 33.2,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 85.6,
+      "pression_pneus": 108.7,
+      "consommation_carburant": 41.0,
+      "fuel_level_liters": 399.95,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.91,
+      "freins_usure_percent": 15.3,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Consommation (41.0 L/100km) — filtre à carburant potentiellement bouché"
+    }
+  },
+  {
+    "cycle": 50,
+    "timestamp": "2026-06-04T15:37:29.896772",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Vibrations",
+    "alertes": [
+      "[ROUGE] Niveaux Vibration = 14.8 mm/s (CRITIQUE) → Vibrations critiques — risque de défaillance [→ stable]",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.7 T > 30.0 T (12.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Vibrations critiques — risque de défaillance",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE Vibrations\n**État actuel** : 16.1 km / 60.0 km — 26.8% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [ROUGE] Niveaux Vibration = 14.8 mm/s (CRITIQUE) → Vibrations critiques — risque de défaillance  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.7 T > 30.0 T (12.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Vibrations critiques — risque de défaillance\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.70943,
+        "lon": -5.70757
+      },
+      "distance_covered_km": 16.1,
+      "total_distance_km": 60.0,
+      "progress_percent": 26.8,
+      "load_tonnes": 33.7,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 85.9,
+      "pression_pneus": 109.6,
+      "consommation_carburant": 28.8,
+      "fuel_level_liters": 399.94,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 14.76,
+      "freins_usure_percent": 16.7,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Vibrations critiques (14.76 mm/s) — roulement ou suspension défaillant"
+    }
+  },
+  {
+    "cycle": 51,
+    "timestamp": "2026-06-04T15:41:59.987098",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Usure Freins",
+    "alertes": [
+      "[JAUNE] Usure Freins = 75.1 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité. [↓ en_baisse]"
+    ],
+    "actions": [
+      "Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité."
+    ],
+    "notification": "**Titre** : ATTENTION Usure Freins\n**État actuel** : 19.98 km / 60.0 km — 33.3% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Usure Freins = 75.1 % (USURE ÉLEVÉE (≥60.0%)) → Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Planifier remplacement des plaquettes sous 48h. Augmenter les distances de sécurité.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.69736,
+        "lon": -5.67707
+      },
+      "distance_covered_km": 19.98,
+      "total_distance_km": 60.0,
+      "progress_percent": 33.3,
+      "load_tonnes": 25.5,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 86.4,
+      "pression_pneus": 111.4,
+      "consommation_carburant": 26.2,
+      "fuel_level_liters": 399.94,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.35,
+      "freins_usure_percent": 75.1,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Freins en surchauffe (75.1%) — descente prolongée détectée"
+    }
+  },
+  {
+    "cycle": 52,
+    "timestamp": "2026-06-04T15:45:01.232181",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Pression Pneus",
+    "alertes": [
+      "[JAUNE] Pression Pneus = 86.3 PSI (MIN) → Pression basse — vérifier les pneus avant départ [→ stable]"
+    ],
+    "actions": [
+      "Pression basse — vérifier les pneus avant départ"
+    ],
+    "notification": "**Titre** : ATTENTION Pression Pneus\n**État actuel** : 22.76 km / 60.0 km — 37.9% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Pression Pneus = 86.3 PSI (MIN) → Pression basse — vérifier les pneus avant départ  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Pression basse — vérifier les pneus avant départ\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.68871,
+        "lon": -5.65523
+      },
+      "distance_covered_km": 22.76,
+      "total_distance_km": 60.0,
+      "progress_percent": 37.9,
+      "load_tonnes": 27.3,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 86.4,
+      "pression_pneus": 86.3,
+      "consommation_carburant": 27.9,
+      "fuel_level_liters": 399.94,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 4.11,
+      "freins_usure_percent": 17.1,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Pression pneus insuffisante (86.3 PSI) — perte lente détectée"
+    }
+  },
+  {
+    "cycle": 53,
+    "timestamp": "2026-06-04T15:47:01.256273",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Pression Pneus",
+    "alertes": [
+      "[JAUNE] Pression Pneus = 86.3 PSI (MIN) → Pression basse — vérifier les pneus avant départ [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))"
+    ],
+    "actions": [
+      "Pression basse — vérifier les pneus avant départ"
+    ],
+    "notification": "**Titre** : ATTENTION Pression Pneus\n**État actuel** : 24.63 km / 60.0 km — 41% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Pression Pneus = 86.3 PSI (MIN) → Pression basse — vérifier les pneus avant départ  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Pression basse — vérifier les pneus avant départ\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.68291,
+        "lon": -5.64059
+      },
+      "distance_covered_km": 24.63,
+      "total_distance_km": 60.0,
+      "progress_percent": 41.0,
+      "load_tonnes": 28.4,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 84.7,
+      "pression_pneus": 86.3,
+      "consommation_carburant": 27.7,
+      "fuel_level_liters": 399.93,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 2.99,
+      "freins_usure_percent": 18.1,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Pression pneus insuffisante (86.3 PSI) — perte lente détectée"
+    }
+  },
+  {
+    "cycle": 54,
+    "timestamp": "2026-06-04T15:49:31.273230",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Consommation Carburant",
+    "alertes": [
+      "[ROUGE] Consommation Carburant = 57.9 L/100km (CRITIQUE) → Consommation critique — diagnostic immédiat requis [→ stable]"
+    ],
+    "actions": [
+      "Consommation critique — diagnostic immédiat requis"
+    ],
+    "notification": "**Titre** : CRITIQUE Consommation Carburant\n**État actuel** : 27.02 km / 60.0 km — 45.0% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Consommation Carburant = 57.9 L/100km (CRITIQUE) → Consommation critique — diagnostic immédiat requis  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Consommation critique — diagnostic immédiat requis\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.67546,
+        "lon": -5.62179
+      },
+      "distance_covered_km": 27.02,
+      "total_distance_km": 60.0,
+      "progress_percent": 45.0,
+      "load_tonnes": 27.1,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 85.2,
+      "pression_pneus": 109.9,
+      "consommation_carburant": 57.9,
+      "fuel_level_liters": 399.92,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.15,
+      "freins_usure_percent": 19.0,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Consommation anormale (57.9 L/100km) — fuite carburant possible"
+    }
+  },
+  {
+    "cycle": 55,
+    "timestamp": "2026-06-04T15:51:31.278214",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Consommation Carburant",
+    "alertes": [
+      "[ROUGE] Consommation Carburant = 57.9 L/100km (CRITIQUE) → Consommation critique — diagnostic immédiat requis [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))"
+    ],
+    "actions": [
+      "Consommation critique — diagnostic immédiat requis"
+    ],
+    "notification": "**Titre** : CRITIQUE Consommation Carburant\n**État actuel** : 28.84 km / 60.0 km — 48.1% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Consommation Carburant = 57.9 L/100km (CRITIQUE) → Consommation critique — diagnostic immédiat requis  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Consommation critique — diagnostic immédiat requis\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.6698,
+        "lon": -5.60748
+      },
+      "distance_covered_km": 28.84,
+      "total_distance_km": 60.0,
+      "progress_percent": 48.1,
+      "load_tonnes": 28.8,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 86.8,
+      "pression_pneus": 109.3,
+      "consommation_carburant": 57.9,
+      "fuel_level_liters": 399.88,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.35,
+      "freins_usure_percent": 20.0,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Consommation anormale (57.9 L/100km) — fuite carburant possible"
+    }
+  },
+  {
+    "cycle": 56,
+    "timestamp": "2026-06-04T15:54:31.278048",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE État Batterie",
+    "alertes": [
+      "[ROUGE] État Batterie = 10.4 % (CRITIQUE) → Batterie critique — risque de panne démarrage [→ stable]"
+    ],
+    "actions": [
+      "Batterie critique — risque de panne démarrage"
+    ],
+    "notification": "**Titre** : CRITIQUE État Batterie\n**État actuel** : 31.65 km / 60.0 km — 52.7% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] État Batterie = 10.4 % (CRITIQUE) → Batterie critique — risque de panne démarrage  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Batterie critique — risque de panne démarrage\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.66107,
+        "lon": -5.58544
+      },
+      "distance_covered_km": 31.65,
+      "total_distance_km": 60.0,
+      "progress_percent": 52.7,
+      "load_tonnes": 26.7,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 86.1,
+      "pression_pneus": 109.1,
+      "consommation_carburant": 27.4,
+      "fuel_level_liters": 399.88,
+      "etat_batterie": 10.4,
+      "niveaux_vibration": 3.32,
+      "freins_usure_percent": 20.7,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Décharge rapide batterie (10.4%) — alternateur ou court-circuit suspect"
+    }
+  },
+  {
+    "cycle": 57,
+    "timestamp": "2026-06-04T15:56:31.286610",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE État Batterie",
+    "alertes": [
+      "[JAUNE] Température Moteur = 101.7 °C (MAX) → Surveiller — risque de surchauffe [↓ en_baisse]",
+      "[ROUGE] État Batterie = 10.4 % (CRITIQUE) → Batterie critique — risque de panne démarrage [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))",
+      "[ROUGE] SURCHARGE ÉLEVÉE (>120%) — 44.2 T > 30.0 T (47.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Surveiller — risque de surchauffe",
+      "Batterie critique — risque de panne démarrage",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE État Batterie\n**État actuel** : 33.63 km / 60.0 km — 56% — 3 alerte(s) active(s) : ROUGE=2 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Température Moteur = 101.7 °C (MAX) → Surveiller — risque de surchauffe  \n- [ROUGE] État Batterie = 10.4 % (CRITIQUE) → Batterie critique — risque de panne démarrage)  \n- [ROUGE] SURCHARGE ÉLEVÉE (>120%) — 44.2 T > 30.0 T (47.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Batterie critique — risque de panne démarrage\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.65492,
+        "lon": -5.56992
+      },
+      "distance_covered_km": 33.63,
+      "total_distance_km": 60.0,
+      "progress_percent": 56.0,
+      "load_tonnes": 44.2,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "rouge",
+      "temperature_moteur": 101.7,
+      "pression_pneus": 102.8,
+      "consommation_carburant": 28.7,
+      "fuel_level_liters": 399.88,
+      "etat_batterie": 10.4,
+      "niveaux_vibration": 5.17,
+      "freins_usure_percent": 26.7,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Décharge rapide batterie (10.4%) — alternateur ou court-circuit suspect"
+    }
+  },
+  {
+    "cycle": 58,
+    "timestamp": "2026-06-04T15:59:31.280311",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 80,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Pression Pneus",
+    "alertes": [
+      "[JAUNE] Pression Pneus = 88.0 PSI (MIN) → Pression basse — vérifier les pneus avant départ [→ stable]"
+    ],
+    "actions": [
+      "Pression basse — vérifier les pneus avant départ"
+    ],
+    "notification": "**Titre** : ATTENTION Pression Pneus\n**État actuel** : 36.2 km / 60.0 km — 60.3% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] Pression Pneus = 88.0 PSI (MIN) → Pression basse — vérifier les pneus avant départ  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Pression basse — vérifier les pneus avant départ\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.64692,
+        "lon": -5.54971
+      },
+      "distance_covered_km": 36.2,
+      "total_distance_km": 60.0,
+      "progress_percent": 60.3,
+      "load_tonnes": 26.7,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 90.3,
+      "pression_pneus": 88.0,
+      "consommation_carburant": 26.4,
+      "fuel_level_liters": 399.87,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.61,
+      "freins_usure_percent": 21.7,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Pression pneus insuffisante (88.0 PSI) — perte lente détectée"
+    }
+  },
+  {
+    "cycle": 59,
+    "timestamp": "2026-06-04T16:03:01.273048",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Batterie Faible & Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] État Batterie = 26.5 % (MIN) → Batterie faible — vérifier l'alternateur [↑ en_hausse]",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 32.0 T > 30.0 T (6.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Batterie faible — vérifier l'alternateur",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Batterie Faible & Surcharge Modérée\n**État actuel** : 39.41 km / 60.0 km — 65.7% — 2 alerte(s) active(s) : ROUGE=0 JAUNE=2  \n**Points critiques** :  \n- [JAUNE] État Batterie = 26.5 % (MIN) → Batterie faible — vérifier l'alternateur  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 32.0 T > 30.0 T (6.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Batterie faible — vérifier l'alternateur\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.63693,
+        "lon": -5.52449
+      },
+      "distance_covered_km": 39.41,
+      "total_distance_km": 60.0,
+      "progress_percent": 65.7,
+      "load_tonnes": 32.0,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 92.9,
+      "pression_pneus": 107.5,
+      "consommation_carburant": 26.5,
+      "fuel_level_liters": 399.87,
+      "etat_batterie": 26.5,
+      "niveaux_vibration": 2.91,
+      "freins_usure_percent": 23.9,
+      "anomalie_detectee": true,
+      "description_anomalie": "⚠️ Batterie vieillissante (26.5%) — capacité réduite — planifier remplacement"
+    }
+  },
+  {
+    "cycle": 60,
+    "timestamp": "2026-06-04T16:06:01.321937",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Température Moteur",
+    "alertes": [
+      "[ROUGE] Température Moteur = 108.0 °C (MAX) → Arrêter le moteur immédiatement — refroidir 10-15 min [→ stable]"
+    ],
+    "actions": [
+      "Arrêter le moteur immédiatement — refroidir 10-15 min"
+    ],
+    "notification": "**Titre** : CRITIQUE Température Moteur\n**État actuel** : 42.09 km / 60.0 km — 70.1% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Température Moteur = 108.0 °C (MAX) → Arrêter le moteur immédiatement — refroidir 10-15 min  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le moteur immédiatement — refroidir 10-15 min\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.6286,
+        "lon": -5.50346
+      },
+      "distance_covered_km": 42.09,
+      "total_distance_km": 60.0,
+      "progress_percent": 70.1,
+      "load_tonnes": 26.2,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 108.0,
+      "pression_pneus": 108.7,
+      "consommation_carburant": 27.4,
+      "fuel_level_liters": 399.87,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.77,
+      "freins_usure_percent": 23.8,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Température moteur critique (108.0°C) — arrêt recommandé"
+    }
+  },
+  {
+    "cycle": 61,
+    "timestamp": "2026-06-04T16:08:01.338698",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Température Moteur",
+    "alertes": [
+      "[ROUGE] Température Moteur = 108.0 °C (MAX) → Arrêter le moteur immédiatement — refroidir 10-15 min [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))"
+    ],
+    "actions": [
+      "Arrêter le moteur immédiatement — refroidir 10-15 min"
+    ],
+    "notification": "**Titre** : CRITIQUE Température Moteur\n**État actuel** : 43.47 km / 60.0 km — 72.4% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Température Moteur = 108.0 °C (MAX) → Arrêter le moteur immédiatement — refroidir 10-15 min  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Arrêter le moteur immédiatement — refroidir 10-15 min\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.62432,
+        "lon": -5.49264
+      },
+      "distance_covered_km": 43.47,
+      "total_distance_km": 60.0,
+      "progress_percent": 72.4,
+      "load_tonnes": 26.6,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 108.0,
+      "pression_pneus": 108.1,
+      "consommation_carburant": 27.6,
+      "fuel_level_liters": 399.87,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.21,
+      "freins_usure_percent": 24.3,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Température moteur critique (108.0°C) — arrêt recommandé"
+    }
+  },
+  {
+    "cycle": 62,
+    "timestamp": "2026-06-04T16:09:31.350012",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE État Batterie",
+    "alertes": [
+      "[ROUGE] État Batterie = 13.3 % (CRITIQUE) → Batterie critique — risque de panne démarrage [→ stable]"
+    ],
+    "actions": [
+      "Batterie critique — risque de panne démarrage"
+    ],
+    "notification": "**Titre** : CRITIQUE État Batterie\n**État actuel** : 44.82 km / 60.0 km — 74.7% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] État Batterie = 13.3 % (CRITIQUE) → Batterie critique — risque de panne démarrage  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Batterie critique — risque de panne démarrage\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.62011,
+        "lon": -5.482
+      },
+      "distance_covered_km": 44.82,
+      "total_distance_km": 60.0,
+      "progress_percent": 74.7,
+      "load_tonnes": 26.0,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 90.6,
+      "pression_pneus": 108.8,
+      "consommation_carburant": 26.9,
+      "fuel_level_liters": 399.87,
+      "etat_batterie": 13.3,
+      "niveaux_vibration": 3.91,
+      "freins_usure_percent": 25.3,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Batterie critique (13.3%) — risque de panne démarrage imminente"
+    }
+  },
+  {
+    "cycle": 63,
+    "timestamp": "2026-06-04T16:11:31.347869",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE État Batterie",
+    "alertes": [
+      "[ROUGE] État Batterie = 13.3 % (CRITIQUE) → Batterie critique — risque de panne démarrage [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))",
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.5 T > 30.0 T (11.7% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Batterie critique — risque de panne démarrage",
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : CRITIQUE État Batterie\n**État actuel** : 46.78 km / 60.0 km — 78% — 2 alerte(s) active(s) : ROUGE=1 JAUNE=1  \n**Points critiques** :  \n- [ROUGE] État Batterie = 13.3 % (CRITIQUE) → Batterie critique — risque de panne démarrage)  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.5 T > 30.0 T (11.7% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Batterie critique — risque de panne démarrage\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.61401,
+        "lon": -5.46662
+      },
+      "distance_covered_km": 46.78,
+      "total_distance_km": 60.0,
+      "progress_percent": 78.0,
+      "load_tonnes": 33.5,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 94.1,
+      "pression_pneus": 107.4,
+      "consommation_carburant": 28.4,
+      "fuel_level_liters": 399.87,
+      "etat_batterie": 13.3,
+      "niveaux_vibration": 3.95,
+      "freins_usure_percent": 27.1,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Batterie critique (13.3%) — risque de panne démarrage imminente"
+    }
+  },
+  {
+    "cycle": 64,
+    "timestamp": "2026-06-04T16:13:31.357878",
+    "severite": "ATTENTION",
+    "statut_final": "REDUIRE VITESSE",
+    "vitesse_max_kmh": 50,
+    "action_vitesse": "Maintenir vitesse actuelle.",
+    "titre": "ATTENTION Surcharge Modérée",
+    "alertes": [
+      "[JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.4 T > 30.0 T (11.3% de dépassement) → Informer le responsable. Conduire prudemment."
+    ],
+    "actions": [
+      "Informer le responsable. Conduire prudemment."
+    ],
+    "notification": "**Titre** : ATTENTION Surcharge Modérée\n**État actuel** : 48.47 km / 60.0 km — 80.8% — 1 alerte(s) active(s) : ROUGE=0 JAUNE=1  \n**Points critiques** :  \n- [JAUNE] SURCHARGE MODÉRÉE (>100%) — 33.4 T > 30.0 T (11.3% de dépassement) → Informer le responsable. Conduire prudemment.  \n**Actions immédiates** :  \n1. Maintenir vitesse actuelle.  \n2. Informer le responsable. Conduire prudemment.\n3. Informer le superviseur de flotte.  \n**Statut final** : REDUIRE VITESSE",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.60875,
+        "lon": -5.45333
+      },
+      "distance_covered_km": 48.47,
+      "total_distance_km": 60.0,
+      "progress_percent": 80.8,
+      "load_tonnes": 33.4,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": true,
+      "surcharge_niveau": "jaune",
+      "temperature_moteur": 94.2,
+      "pression_pneus": 107.7,
+      "consommation_carburant": 26.4,
+      "fuel_level_liters": 399.87,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 3.13,
+      "freins_usure_percent": 27.1,
+      "anomalie_detectee": false,
+      "description_anomalie": "État normal - retour à la normale après alerte"
+    }
+  },
+  {
+    "cycle": 65,
+    "timestamp": "2026-06-04T16:14:31.352399",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Vibrations",
+    "alertes": [
+      "[ROUGE] Niveaux Vibration = 15.7 mm/s (CRITIQUE) → Vibrations critiques — risque de défaillance [→ stable]"
+    ],
+    "actions": [
+      "Vibrations critiques — risque de défaillance"
+    ],
+    "notification": "**Titre** : CRITIQUE Vibrations\n**État actuel** : 49.4 km / 60.0 km — 82.3% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Niveaux Vibration = 15.7 mm/s (CRITIQUE) → Vibrations critiques — risque de défaillance  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Vibrations critiques — risque de défaillance\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.60585,
+        "lon": -5.44601
+      },
+      "distance_covered_km": 49.4,
+      "total_distance_km": 60.0,
+      "progress_percent": 82.3,
+      "load_tonnes": 29.0,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 93.2,
+      "pression_pneus": 107.7,
+      "consommation_carburant": 28.2,
+      "fuel_level_liters": 399.87,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 15.73,
+      "freins_usure_percent": 26.5,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Vibrations excessives moteur (15.73 mm/s) — désaccordement cylindres suspect"
+    }
+  },
+  {
+    "cycle": 66,
+    "timestamp": "2026-06-04T16:16:31.361723",
+    "severite": "CRITIQUE",
+    "statut_final": "ARRET IMMEDIAT",
+    "vitesse_max_kmh": 30,
+    "action_vitesse": "Réduire immédiatement à 30 km/h.",
+    "titre": "CRITIQUE Vibrations",
+    "alertes": [
+      "[ROUGE] Niveaux Vibration = 15.7 mm/s (CRITIQUE) → Vibrations critiques — risque de défaillance [→ stable] (⏱ Alerte persistante depuis 2 cycle(s))"
+    ],
+    "actions": [
+      "Vibrations critiques — risque de défaillance"
+    ],
+    "notification": "**Titre** : CRITIQUE Vibrations\n**État actuel** : 50.97 km / 60.0 km — 84.9% — 1 alerte(s) active(s) : ROUGE=1 JAUNE=0  \n**Points critiques** :  \n- [ROUGE] Niveaux Vibration = 15.7 mm/s (CRITIQUE) → Vibrations critiques — risque de défaillance  \n**Actions immédiates** :  \n1. Réduire immédiatement à 30 km/h.  \n2. Vibrations critiques — risque de défaillance\n3. Informer le superviseur de flotte.  \n**Statut final** : ARRET IMMEDIAT",
+    "validation_status": {
+      "globally_valid": true,
+      "titre_ok": true,
+      "etat_actuel_ok": true,
+      "points_critiques_ok": true,
+      "action1_ok": true,
+      "action2_ok": true,
+      "action3_ok": true,
+      "statut_ok": true,
+      "errors": []
+    },
+    "capteurs": {
+      "truck_id": "Volvo_FH_001",
+      "position": {
+        "lat": 35.60099,
+        "lon": -5.43373
+      },
+      "distance_covered_km": 50.97,
+      "total_distance_km": 60.0,
+      "progress_percent": 84.9,
+      "load_tonnes": 27.2,
+      "charge_max_autorisee_tonnes": 30.0,
+      "surcharge_active": false,
+      "surcharge_niveau": "none",
+      "temperature_moteur": 92.0,
+      "pression_pneus": 109.1,
+      "consommation_carburant": 27.4,
+      "fuel_level_liters": 399.87,
+      "etat_batterie": 70.0,
+      "niveaux_vibration": 15.73,
+      "freins_usure_percent": 27.4,
+      "anomalie_detectee": true,
+      "description_anomalie": "🔴 Vibrations excessives moteur (15.73 mm/s) — désaccordement cylindres suspect"
+    }
+  }
+]
