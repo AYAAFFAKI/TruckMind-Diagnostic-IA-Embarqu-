@@ -39,3 +39,4 @@ main/logs/*.txt
 main/conversations_history.jsonl
 *.mmd
 *.png
+test/simulateur/camion_volvo.json
