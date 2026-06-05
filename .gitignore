@@ -38,6 +38,7 @@ main/logs/*.log
 main/logs/*.txt
 main/conversations_history.json
 *.mmd
-*.png
+test/langgraph_diagnostic.png
+test/langgraph_notification.png
 test/simulateur/camion_volvo.json
 *.log
