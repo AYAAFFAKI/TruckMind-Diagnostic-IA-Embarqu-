@@ -1,0 +1,114 @@
+/* ═══ NOTIFICATIONS TAB STYLES (scoped to #tab-notifications) ═══ */
+
+#tab-notifications {
+    padding: 30px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+#tab-notifications h1 {
+    font-family: 'Rajdhani', sans-serif;
+    color: #e74c3c;
+    text-align: center;
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#tab-notifications .notification-card {
+    background: rgba(15, 23, 42, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #38bdf8;
+    margin-bottom: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    border-left: 4px solid #38bdf8;
+    transition: transform 0.2s ease, border-color 0.3s ease;
+}
+
+#tab-notifications .notification-card:hover {
+    transform: translateX(4px);
+    border-left-color: #0ea5e9;
+}
+
+#tab-notifications .notification-card.critique {
+    border-left-color: #e74c3c;
+    background: rgba(231, 76, 60, 0.05);
+}
+
+#tab-notifications .notification-card.critique:hover {
+    border-left-color: #c0392b;
+}
+
+#tab-notifications .notification-card.attention {
+    border-left-color: #f1c40f;
+    background: rgba(241, 196, 15, 0.05);
+}
+
+#tab-notifications .notification-card.attention:hover {
+    border-left-color: #d4ac0d;
+}
+
+#tab-notifications .notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(30, 41, 59, 0.6);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+#tab-notifications .notif-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+#tab-notifications .notif-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+#tab-notifications .notif-body {
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    color: #cbd5e1;
+}
+
+#tab-notifications .notif-action {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(30, 41, 59, 0.6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #34d399;
+    letter-spacing: 0.5px;
+}
+
+#tab-notifications .notif-action.arret {
+    color: #f87171;
+    font-weight: bold;
+}
+
+#tab-notifications .notif-empty {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    padding: 60px 20px;
+}
+
+@media (max-width: 768px) {
+    #tab-notifications {
+        padding: 16px;
+    }
+}

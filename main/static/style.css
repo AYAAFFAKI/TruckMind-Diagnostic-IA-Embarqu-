@@ -818,3 +818,6 @@ header::after {
   .dash-card.full, .dash-card.half { grid-column: span 1; }
   .welcome-title { font-size: 32px; }
 }
+/* Hide sidebar for full-width tabs */
+body.hide-sidebar .sidebar { display: none !important; }
+body.hide-sidebar .main { width: 100% !important; border-left: none !important; }

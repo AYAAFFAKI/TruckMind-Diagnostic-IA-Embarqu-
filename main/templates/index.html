@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3.4">
 <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/png">
+<link rel="stylesheet" href="{{ url_for('static', filename='simulator.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='notifications.css') }}">
 </head>
 <body>
 
@@ -17,7 +19,7 @@
     <img src="{{ url_for('static', filename='icon.png') }}" alt="TruckMind Logo" class="logo-icon" style="width:36px; height:36px; object-fit:contain;">
     <div>
       <div class="logo-text">TruckMind</div>
-      <div class="logo-ver">v3.0 · LangGraph IA</div>
+      <div class="logo-ver">V2.0 Diagnostic IA</div>
     </div>
   </div>
 
@@ -30,6 +32,12 @@
     </button>
     <button class="nav-tab" data-tab="search"   onclick="switchTab('search')">
       <span class="tab-dot"></span> DTC Search
+    </button>
+    <button class="nav-tab" data-tab="simulator" onclick="switchTab('simulator')" style="display: flex; align-items: center; justify-content: center;">
+      <span class="tab-dot" style="background: #2ecc71;"></span> Simulateur
+    </button>
+    <button class="nav-tab" data-tab="notifications" onclick="switchTab('notifications')" style="display: flex; align-items: center; justify-content: center;">
+      <span class="tab-dot" style="background: #e74c3c;"></span> Notifications
     </button>
   </div>
 
@@ -236,6 +244,105 @@
       </div>
     </div>
 
+  
+    <!-- TAB: SIMULATOR -->
+    <div class="tab-content" id="tab-simulator">
+      <h1>
+        <img src="{{ url_for('static', filename='icon.png') }}" alt="TruckMind Logo" style="width:36px; height:36px; object-fit:contain;">
+        TruckMind Simulateur
+      </h1>
+
+      <div class="sim-controls">
+        <label for="city">Destination :</label>
+        <select id="city">
+          <option value="Tétouan">Tétouan</option>
+          <option value="Casablanca">Casablanca</option>
+          <option value="Rabat">Rabat</option>
+          <option value="Fès">Fès</option>
+          <option value="Marrakech">Marrakech</option>
+          <option value="Agadir">Agadir</option>
+          <option value="Meknès">Meknès</option>
+          <option value="Oujda">Oujda</option>
+          <option value="Kenitra">Kenitra</option>
+        </select>
+        <button class="sim-btn" onclick="startJourney()">DÉMARRER LE TRAJET</button>
+        <button class="sim-btn stop" onclick="stopJourney()">ARRÊTER</button>
+      </div>
+
+      <!-- Status + Progress -->
+      <div style="margin-bottom: 24px;">
+        <div class="sim-card">
+          <div class="sim-card-title">Statut du trajet</div>
+          <div class="sim-card-val" id="sim-status" style="font-size: 18px; color: #e2e8f0;">En attente...</div>
+          <div class="sim-progress-wrap">
+            <img class="sim-truck-icon" id="sim-truck-icon" src="{{ url_for('static', filename='icon.png') }}" alt="truck">
+            <div class="sim-progress-bar">
+              <div class="sim-progress-fill" id="sim-progress"></div>
+            </div>
+            <div class="sim-route-info">
+              <span>Tanger</span>
+              <span id="sim-dest-label">Destination</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensor Dashboard -->
+      <div class="sim-dashboard" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <div class="sim-card">
+          <div class="sim-card-title">Vitesse (km/h)</div>
+          <div class="sim-card-val" id="sim-speed">0.0</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-card-title">Charge (Tonnes)</div>
+          <div class="sim-card-val" id="sim-load">0.0</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-card-title">Distance (km)</div>
+          <div class="sim-card-val" id="sim-distance">0.0</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-card-title">Température Moteur</div>
+          <div class="sim-card-val" id="sim-temp">—</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-card-title">Pression Pneus (PSI)</div>
+          <div class="sim-card-val" id="sim-pression">—</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-card-title">Usure Freins (%)</div>
+          <div class="sim-card-val" id="sim-freins">—</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-card-title">Batterie (%)</div>
+          <div class="sim-card-val" id="sim-batterie">—</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-card-title">Vibrations</div>
+          <div class="sim-card-val" id="sim-vibration">—</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-card-title">Conso (L/100km)</div>
+          <div class="sim-card-val" id="sim-conso">—</div>
+        </div>
+      </div>
+
+      <div class="sim-report-link">
+        <a href="/api/report" target="_blank">📄 Générer le Rapport du dernier trajet</a>
+      </div>
+
+    </div>
+
+    <!-- TAB: NOTIFICATIONS -->
+    <div class="tab-content" id="tab-notifications">
+      <h1>
+        <img src="{{ url_for('static', filename='notification.png') }}" alt="Notifications" style="width:36px; height:36px; object-fit:contain;">
+        Notifications
+      </h1>
+      <div id="notifications-list">
+        <div class="notif-empty">Aucune notification pour le moment. Démarrez un trajet pour recevoir des alertes.</div>
+      </div>
+    </div>
   </main>
 
   <!-- ─── RIGHT SIDEBAR (HISTORY) ────────────────────────────── -->
@@ -252,9 +359,14 @@
   </aside>
 </div>
 
+<!-- ─── AUDIO ──────────────────────────────────────────────────── -->
+<audio id="notification-audio" src="{{ url_for('static', filename='iphone_ringtone.mp3') }}" preload="auto"></audio>
+
 <!-- ─── TOAST ────────────────────────────────────────────────── -->
 <div class="toast" id="toast"></div>
 
 <script src="{{ url_for('static', filename='main.js') }}?v=3.4"></script>
+<script src="{{ url_for('static', filename='simulator.js') }}"></script>
+<script src="{{ url_for('static', filename='notifications.js') }}"></script>
 </body>
 </html>

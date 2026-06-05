@@ -1,10 +1,19 @@
-"""
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import os
+from dotenv import load_dotenv
+_ENV_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+load_dotenv(_ENV_PATH)
+
+""" 
 ╔══════════════════════════════════════════════════════════════════╗
-║  TruckMind — Backend Flask v3.0                                  ║
+║  TruckMind - Backend Flask v2.0                                  ║
 ║  Intelligence Embarquée Camion Volvo FH/FM                       ║
 ║                                                                  ║
 ║  Architecture : Flask + SQLite + ChromaDB + LLM (Groq)           ║
-║  Auteure      : AFFAKI Aya — EST Tétouan — IA DUT 2025-2026      ║
+║  Auteure      : AFFAKI Aya - EST Tetouan - IA DUT 2025-2026      ║
 ╚══════════════════════════════════════════════════════════════════╝
 
 Routes API :
@@ -20,7 +29,6 @@ Routes API :
 """
 
 import os
-from dotenv import load_dotenv
 import re
 import json
 import time
@@ -32,11 +40,12 @@ from functools import lru_cache
 from datetime import datetime
 
 from flask import Flask, request, jsonify, render_template, g
+from flask_cors import CORS
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from groq import Groq
 from langgraph.graph import StateGraph, END
-from dotenv import load_dotenv
 
-load_dotenv()
 
 # ─── Config ──────────────────────────────────────────────────────
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
@@ -45,7 +54,7 @@ KNOW_DIR   = os.path.join(BASE_DIR, "knowledge")
 TMPL_DIR   = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
-# ─── ChromaDB & PDF — chemins fixes ──────────────────────────────
+# ─── ChromaDB & PDF - chemins fixes ──────────────────────────────
 CHROMA_DIR = os.environ.get("CHROMA_DIR", os.path.join(BASE_DIR, "data"))
 
 pdf_env = os.environ.get("PDF_FILES")
@@ -64,7 +73,7 @@ TOP_K     = 9
 
 # ─── Embedding (même config que le notebook) ─────────────────────
 EMBED_MODEL   = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
-TAILLE_CHUNK  = 118   # tokens — max_seq_length=128, marge 10
+TAILLE_CHUNK  = 118   # tokens - max_seq_length=128, marge 10
 CHEVAUCHEMENT = 30    # ~25 % overlap
 BATCH_SIZE    = 64
 
@@ -73,7 +82,7 @@ os.makedirs(CHROMA_DIR, exist_ok=True)
 
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s — %(message)s"
+    format="%(asctime)s [%(levelname)s] %(name)s - %(message)s"
 )
 log = logging.getLogger("truckmind")
 
@@ -85,7 +94,29 @@ app = Flask(
 app.config["JSON_ENSURE_ASCII"] = False
 
 # ═══════════════════════════════════════════════════════════════════
-# CHROMADB PIPELINE — Indexation PDF + Recherche Sémantique
+# SECURITY CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════
+# CORS Protection - Restrict to specific origins in production
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+# Rate Limiting - Prevent API abuse
+limiter = Limiter(
+    app=app,
+    key_func=get_remote_address,
+    default_limits=["200 per day", "50 per hour"]
+)
+
+# Security Headers
+@app.after_request
+def set_security_headers(response):
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+    return response
+
+# ═══════════════════════════════════════════════════════════════════
+# CHROMADB PIPELINE - Indexation PDF + Recherche Sémantique
 # ═══════════════════════════════════════════════════════════════════
 
 # État global du pipeline vectoriel (chargé une seule fois au démarrage)
@@ -140,7 +171,7 @@ def init_chroma_pipeline(force_reindex: bool = False) -> bool:
                 col   = client.get_collection("truck_rag")
                 count = col.count()
                 if count > 0:
-                    log.info(f"ChromaDB : collection existante ({count} chunks) — chargement cache.")
+                    log.info(f"ChromaDB : collection existante ({count} chunks) - chargement cache.")
                     emb = _charger_modele_embedding()
                     _pipeline.update(embed_obj=emb, index_obj=col, ready=True)
                     return True
@@ -213,7 +244,7 @@ def init_chroma_pipeline(force_reindex: bool = False) -> bool:
             )
 
         _pipeline.update(embed_obj=emb, index_obj=col, ready=True)
-        log.info(f"ChromaDB prêt — {len(chunks)} chunks indexés.")
+        log.info(f"ChromaDB prêt - {len(chunks)} chunks indexés.")
         return True
 
     except ImportError as e:
@@ -235,7 +266,7 @@ def rechercher_dans_chroma(question: str, top_k: int = TOP_K) -> Tuple[str, int]
     if not _pipeline["ready"]:
         ok = init_chroma_pipeline()
         if not ok:
-            log.warning("ChromaDB non disponible — recherche vectorielle désactivée.")
+            log.warning("ChromaDB non disponible - recherche vectorielle désactivée.")
             return "", 0
 
     try:
@@ -280,7 +311,7 @@ def close_db(exc=None):
 
 
 # ═══════════════════════════════════════════════════════════════════
-# SQL RETRIEVAL — Routeur intelligent V5
+# SQL RETRIEVAL - Routeur intelligent V5
 # ═══════════════════════════════════════════════════════════════════
 
 MOTS_STATS   = ["combien","nombre","total","taux","pourcentage","%","moyenne",
@@ -467,7 +498,7 @@ def _rechercher_fallback(cursor, question, top_k) -> List[str]:
 
 def rechercher_dans_sql(question: str, top_k: int = TOP_K) -> Tuple[str, int, str]:
     """
-    Routeur intelligent V5 — retourne (contexte, nb_résultats, type_requête)
+    Routeur intelligent V5 - retourne (contexte, nb_résultats, type_requête)
     """
     db = get_db()
     cursor = db.cursor()
@@ -524,7 +555,7 @@ def rechercher_dans_sql(question: str, top_k: int = TOP_K) -> Tuple[str, int, st
 
 
 # ═══════════════════════════════════════════════════════════════════
-# LLM INTEGRATION — Groq (Qwen3-32b) ou compatible OpenAI
+# LLM INTEGRATION - Groq (Qwen3-32b) ou compatible OpenAI
 # ═══════════════════════════════════════════════════════════════════
 
 SYSTEM_PROMPT = """
@@ -651,7 +682,7 @@ USER_TEMPLATE = """
 
 
 # ═══════════════════════════════════════════════════════════════════
-# LANGGRAPH AGENT — Pipeline RAG (Router → SQL → Vector → Analyser → LLM)
+# LANGGRAPH AGENT - Pipeline RAG (Router → SQL → Vector → Analyser → LLM)
 # ═══════════════════════════════════════════════════════════════════
 
 class EtatDiagnostic(TypedDict):
@@ -667,7 +698,7 @@ class EtatDiagnostic(TypedDict):
     nb_vector:           int
 
 
-# ── Nœud 1 — Router : classifie le type de requête ───────────────
+# ── Nœud 1 - Router : classifie le type de requête ───────────────
 def noeud_router(etat: EtatDiagnostic) -> EtatDiagnostic:
     q = etat["question"].lower()
 
@@ -704,14 +735,14 @@ def noeud_router(etat: EtatDiagnostic) -> EtatDiagnostic:
     return {**etat, "type_requete": type_req, "besoin_vector": besoin_vector}
 
 
-# ── Nœud 2 — SQL ─────────────────────────────────────────────────
+# ── Nœud 2 - SQL ─────────────────────────────────────────────────
 def noeud_sql(etat: EtatDiagnostic) -> EtatDiagnostic:
     contexte, n, _ = rechercher_dans_sql(etat["question"], TOP_K)
     log.info(f"SQL → {n} résultats")
     return {**etat, "resultat_sql": contexte or "Aucune donnée SQL pertinente.", "nb_sql": n}
 
 
-# ── Nœud 3 — Vector (conditionnel) ───────────────────────────────
+# ── Nœud 3 - Vector (conditionnel) ───────────────────────────────
 def noeud_vector(etat: EtatDiagnostic) -> EtatDiagnostic:
     contexte, n = rechercher_dans_chroma(etat["question"], TOP_K)
     log.info(f"ChromaDB → {n} chunks")
@@ -727,7 +758,7 @@ def condition_vector(etat: EtatDiagnostic) -> Literal["vector", "skip_vector"]:
     return "vector" if etat["besoin_vector"] else "skip_vector"
 
 
-# ── Nœud 4 — Analyser (construction du prompt) ───────────────────
+# ── Nœud 4 - Analyser (construction du prompt) ───────────────────
 def noeud_analyser(etat: EtatDiagnostic) -> EtatDiagnostic:
     prompt = USER_TEMPLATE.format(
         resultat_sql=etat.get("resultat_sql", "Aucune donnée SQL"),
@@ -738,7 +769,7 @@ def noeud_analyser(etat: EtatDiagnostic) -> EtatDiagnostic:
     return {**etat, "prompt_utilisateur": prompt}
 
 
-# ── Nœud 5 — LLM (Groq) ─────────────────────────────────────────
+# ── Nœud 5 - LLM (Groq) ─────────────────────────────────────────
 def noeud_llm(etat: EtatDiagnostic) -> EtatDiagnostic:
     if not GROQ_KEY:
         answer = _generate_demo_response(etat["question"], etat.get("resultat_sql", ""))
@@ -812,7 +843,7 @@ log.info("LangGraph Agent compilé: router → sql → [vector | skip_vector] �
 
 
 def poser_question(question: str, historique: str = "") -> dict:
-    """Interface principale — invoque le pipeline LangGraph complet."""
+    """Interface principale - invoque le pipeline LangGraph complet."""
     etat_initial: EtatDiagnostic = {
         "question":           question,
         "historique":         historique,
@@ -828,7 +859,7 @@ def poser_question(question: str, historique: str = "") -> dict:
     return agent_truck.invoke(etat_initial)
 
 def _generate_demo_response(question: str, context: str) -> str:
-    """Structured response without LLM — based on SQL context analysis."""
+    """Structured response without LLM - based on SQL context analysis."""
     q = question.lower()
     lines = context.split("\n")
 
@@ -859,19 +890,19 @@ def _generate_demo_response(question: str, context: str) -> str:
         vid = f"V{v_match.group(1)}"
         for line in lines:
             if f"Véhicule {vid}" in line:
-                return (f"**🚛 Rapport Véhicule {vid}**\n\n```\n{line}\n```\n\n"
+                return (f"**[TruckMind] Rapport Véhicule {vid}**\n\n```\n{line}\n```\n\n"
                        f"⚠️ Action recommandée : Vérifier le score prédictif et l'état des freins avant toute mise en circulation.")
 
     # Default
-    return (f"**🤖 TruckMind — Mode Démo**\n\n"
+    return (f"**🤖 TruckMind - Mode Démo**\n\n"
            f"Données récupérées depuis la base SQLite :\n\n"
            f"```\n{context[:400]}\n```\n\n"
            f"⚠️ Action recommandée : Configurez GROQ_API_KEY pour des réponses complètes du LLM.\n\n"
-           f"*Système opérationnel — RAG fonctionnel*")
+           f"*Système opérationnel - RAG fonctionnel*")
 
 
 # ── Gestion de l'historique (JSON Persistant) ───────────────────────────
-HISTORY_FILE = os.path.join(os.path.dirname(__file__), "conversations_history.json")
+HISTORY_FILE = os.environ.get("CONVERSATIONS_HISTORY_PATH", os.path.join(os.path.dirname(__file__), "conversations_history.json"))
 MAX_MESSAGES_PER_CONV = 10  # Limite stricte par conversation
 
 @app.route("/api/history", methods=["GET"])
@@ -887,6 +918,7 @@ def get_history():
         return jsonify([])
 
 @app.route("/api/history", methods=["POST"])
+@limiter.limit("100 per minute")
 def save_history():
     """Sauvegarde l'historique dans le fichier JSON.
     Applique la limite de MAX_MESSAGES_PER_CONV messages par conversation côté serveur.
@@ -974,12 +1006,19 @@ def api_status():
         return jsonify({"ready": False, "error": str(e), "db_path": DB_PATH}), 503
 
 @app.route("/api/chat", methods=["POST"])
+@limiter.limit("30 per minute")
 def api_chat():
     data = request.get_json(force=True)
     question = (data.get("question") or "").strip()
     historique = (data.get("historique") or "").strip()
+    
+    # Input validation
     if not question:
         return jsonify({"error": "Question vide"}), 400
+    if len(question) > 5000:
+        return jsonify({"error": "Question trop longue (max 5000 caractères)"}), 400
+    if len(historique) > 10000:
+        return jsonify({"error": "Historique trop long (max 10000 caractères)"}), 400
 
     t0 = time.time()
     try:
@@ -1241,6 +1280,100 @@ def api_top_risk():
 
 
 # ═══════════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════════
+# SIMULATOR & NOTIFICATIONS ROUTES
+# ═══════════════════════════════════════════════════════════════════
+import atexit
+from main.services.simulator_service import simulator
+from main.services.history_service import get_truck_history, clear_truck_history
+from main.services.report_service import generate_trip_report_html
+# ─── Nettoyage automatique des notifications à l'arrêt ET au démarrage ──
+def _cleanup_on_shutdown():
+    from main.services.notification_service import reset_memory
+    log.info("🛑 Arrêt du serveur — suppression de toutes les notifications...")
+    clear_truck_history()
+    reset_memory()
+    log.info("✅ Notifications supprimées.")
+
+atexit.register(_cleanup_on_shutdown)
+
+
+clear_truck_history()
+from main.services.notification_service import reset_memory
+reset_memory()
+log.info("🚀 Démarrage du serveur : Notifications précédentes effacées.")
+
+@app.route("/simulator")
+def simulator_page():
+    return render_template("simulator.html")
+
+@app.route("/notifications")
+def notifications_page():
+    return render_template("notifications.html")
+
+@app.route("/api/simulator/start", methods=["POST"])
+@limiter.limit("20 per minute")
+def start_simulator():
+    data = request.get_json(force=True, silent=True) or {}
+    city = data.get("destination", "Tetouan")
+    
+    # Input validation
+    if not city or not isinstance(city, str):
+        return jsonify({"error": "Destination invalide"}), 400
+    if len(city) > 50:
+        return jsonify({"error": "Nom de ville trop long"}), 400
+    simulator.set_destination(city)
+    # ✅ Effacer les notifications précédentes avant chaque nouveau trajet
+    clear_truck_history()
+    from main.services.notification_service import reset_memory
+    reset_memory()
+    log.info("🔔 Notifications précédentes effacées — nouveau trajet démarré.")
+    simulator.start_journey()
+    return jsonify({"status": "success", "message": f"Trajet vers {city} démarré"})
+
+@app.route("/api/simulator/stop", methods=["POST"])
+@limiter.limit("20 per minute")
+def stop_simulator():
+    simulator.stop_journey()
+    return jsonify({"status": "success", "message": "Trajet arrêté"})
+
+@app.route("/api/simulator/status")
+def get_simulator_status():
+    return jsonify(simulator.get_data())
+
+@app.route("/api/report")
+def get_trip_report():
+    history = get_truck_history()
+    html = generate_trip_report_html(history)
+    return html
+
+@app.route("/api/notifications")
+def get_notifications():
+    history = get_truck_history()
+    return jsonify(history[-20:] if history else [])
+
+def background_simulation_loop():
+    import time
+    from main.services.notification_service import traiter_notification
+    log.info("Démarrage de la boucle de simulation...")
+    while True:
+        try:
+            if simulator.is_running:
+                # ✅ استدعاء traiter_notification فقط عند وجود تغيير فعلي في البيانات
+                nouvelle_anomalie = simulator.step()
+                # ✅ تقييم حالة الشاحنة دائماً (نظام القواعد هو من يقرر إذا كان هناك خطر أم لا)
+                # notification_service لديه آلية داخلية للتحقق من necessite_notification
+                traiter_notification(simulator.get_data())
+            time.sleep(2) # تقليل التأخير من 5 إلى 2 ثانية لاستجابة أسرع
+        except Exception as e:
+            log.error(f"Erreur simulation: {e}")
+            time.sleep(2)
+
+import threading
+sim_thread = threading.Thread(target=background_simulation_loop, daemon=True)
+sim_thread.start()
+
+# ═══════════════════════════════════════════════════════════════════
 # ERROR HANDLERS
 # ═══════════════════════════════════════════════════════════════════
 
@@ -1259,6 +1392,7 @@ def server_error(e):
 
 if __name__ == "__main__":
     import sys
+    import atexit
     port = int(os.environ.get("PORT", 5000))
     debug = "--debug" in sys.argv or os.environ.get("FLASK_DEBUG", "0") == "1"
 
@@ -1266,20 +1400,32 @@ if __name__ == "__main__":
     log.info("Initialisation du pipeline ChromaDB...")
     init_chroma_pipeline()
 
-    print(f"""
-======================================================
-  🚛 TruckMind Backend v3.0 (LangGraph)               
-  Auteure : AFFAKI Aya — EST Tétouan — IA DUT         
-======================================================
-  DB Path : {DB_PATH[:45]:<45} 
-  LLM     : {LLM_MODEL:<45} 
-  Mode    : {'GROQ API' if GROQ_KEY else 'DÉMO (sans clé API)':<45} 
-  Pipeline: {'LangGraph (Router->SQL->Vector->LLM)':<45} 
-  Port    : {port:<45} 
-======================================================
+    # Nettoyer les notifications RAM à la fermeture (mémoire court terme)
+    def cleanup_notifications_ram():
+        try:
+            notifications_path = os.path.join(BASE_DIR, "services", "notifications_ram.json")
+            if os.path.exists(notifications_path):
+                os.remove(notifications_path)
+                log.info("✅ Notifications RAM supprimées à la fermeture")
+        except Exception as e:
+            log.warning(f"⚠️ Erreur suppression notifications RAM: {e}")
 
-  -> http://localhost:{port}/
-  -> API : http://localhost:{port}/api/status
-""".encode('utf-8', 'ignore').decode('utf-8'))
+    atexit.register(cleanup_notifications_ram)
+
+    print(f"""
+        ======================================================
+        [TruckMind] TruckMind Backend                                
+        Auteure : AFFAKI Aya - EST Tetouan - IA DUT         
+        ======================================================
+        DB Path : {DB_PATH[:45]:<45} 
+        LLM     : {LLM_MODEL:<45} 
+        Mode    : {'GROQ API' if GROQ_KEY else 'DEMO (sans cle API)':<45} 
+        Pipeline: {'Router->SQL->Vector->LLM':<45} 
+        Port    : {port:<45} 
+        ======================================================
+
+        -> http://localhost:{port}/
+        -> API : http://localhost:{port}/api/status
+        """.encode('utf-8', 'ignore').decode('utf-8'))
 
     app.run(host="0.0.0.0", port=port, debug=debug)

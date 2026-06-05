@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════
-   TruckMind Frontend — main.js v3.1 (LangGraph + Memory + History)
+   TruckMind Frontend — main.js v2.0 (LangGraph + Memory + History)
    Auteure : AFFAKI Aya — EST Tétouan — IA DUT 2025-2026
 ═══════════════════════════════════════════════════════════════════ */
 
@@ -263,8 +263,24 @@ function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
   $(`tab-${tab}`).classList.add('active');
-  document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+  const navBtn = document.querySelector(`[data-tab="${tab}"]`);
+  if(navBtn) navBtn.classList.add('active');
   if (tab === 'dashboard' && STATE.stats) renderDashboard(STATE.stats);
+  
+  if (tab === 'simulator' || tab === 'notifications') {
+      document.body.classList.add('hide-sidebar');
+  } else {
+      document.body.classList.remove('hide-sidebar');
+  }
+  
+  // Stop audio when switching to notifications tab
+  if (tab === 'notifications') {
+      const audio = document.getElementById('notification-audio');
+      if (audio) {
+          audio.pause();
+          audio.currentTime = 0;
+      }
+  }
 }
 
 // ── Markdown renderer ─────────────────────────────────────────────

@@ -1,15 +1,20 @@
 [
   {
     "id": 1780432739092,
-    "preview": "Explique le code DTC P0100 et donne les …",
-    "timestamp": "02/06/2026 21:38:59",
     "messages": [
       {
-        "q": "Explique le code DTC P0100 et donne les actions de diagnostic recommandées.",
         "a": "**DTC Diagnostic:**  \n- **Code:** P0100  \n- **Symptôme:** Circuit de débit massique d'air Dysfonctionnement  \n- **Système:** Admission  \n- **Pièce:** Débitmètre MAF (Mass Air Flow)  \n- **Gravité:** Moyenne  \n\n**Explication:**  \nLe code P0100 indique une défaillance dans le circuit du débitmètre de masse d'air (MAF). Ce capteur mesure la quantité d'air entrant dans le moteur pour ajuster le mélange air-carburant. Une défaillance peut entraîner des problèmes de performance, une consommation de carburant anormale, ou des difficultés de démarrage.  \n\n---\n\n**Actions de diagnostic recommandées:**  \n1. **Vérifier le capteur MAF:**  \n   - Inspecter le capteur pour détecter des signes de contamination (poussière, saletés) ou de dommages physiques.  \n   - Nettoyer le capteur avec un nettoyant dédié aux capteurs MAF (ne pas utiliser de solvants agressifs).  \n\n2. **Tester le circuit électrique:**  \n   - Vérifier les connexions électriques du capteur (fils, connecteurs) pour des courts-circuits, des résistances élevées, ou des connexions lâches.  \n   - Utiliser un multimètre pour mesurer la tension d'alimentation du capteur (généralement 5 V) et sa sortie analogique (0,1–4,5 V selon le débit d'air).  \n\n3. **Analyser les données en temps réel:**  \n   - Utiliser un scanneur OBD-II pour surveiller la valeur du débit d'air (en grammes par seconde) et comparer avec les valeurs attendues pour le régime moteur actuel.  \n\n4. **Vérifier les fuites d'air:**  \n   - Inspecter le système d'admission (tuyaux, joints) pour des fuites pouvant perturber la mesure du MAF.  \n\n5. **Remplacer le capteur si nécessaire:**  \n   - Si le capteur est endommagé ou ne répond pas aux spécifications, le remplacer par un modèle compatible.  \n\n---\n\n**⚠️ Action recommandée:**  \n- Commencer par nettoyer le capteur MAF. Si le code persiste après nettoyage, procéder aux tests électriques et remplacer le capteur si nécessaire.  \n- Vérifier également les logiciels de diagnostic du véhicule pour des mises à jour ou des paramètres spécifiques au modèle Volvo FH/FM.",
+        "q": "Explique le code DTC P0100 et donne les actions de diagnostic recommandées.",
         "time": "02/06/2026 21:38:59"
+      },
+      {
+        "q": "Explique le code DTC C1100 et donne les actions de diagnostic recommandées.",
+        "a": "**DTC Diagnostic:**  \n- **Code:** C1100  \n- **Symptôme:** ABS Pompe Interrupteur Circuit Défaillance  \n- **Système:** Freinage ABS  \n- **Pièce:** Système freinage  \n- **Gravité:** Haute  \n\n**Explication:**  \nLe code C1100 indique une défaillance dans le circuit électrique de l'interrupteur de la pompe ABS. La pompe ABS est essentielle pour réguler la pression des freins lors d'une activation du système antiblocage. Une défaillance dans ce circuit peut empêcher le fonctionnement correct de l'ABS, augmentant le risque de blocage des roues lors d'un freinage d'urgence.  \n\n**Actions de diagnostic recommandées:**  \n1. **Vérifier l'interrupteur de la pompe ABS** : Tester la continuité électrique et la tension d'alimentation à l'aide d'un multimètre.  \n2. **Inspecter les câbles et connecteurs** : Rechercher des dommages mécaniques, des courts-circuits ou des connexions desserrées dans le circuit.  \n3. **Scanner les codes associés** : Utiliser un outil OBD-II pour identifier d'autres codes liés au système ABS (ex. C1101, C1102).  \n4. **Tester le module ABS** : Vérifier si le module de commande ABS reçoit correctement les signaux de l'interrupteur.  \n5. **Remplacer l'interrupteur si nécessaire** : Si l'interrupteur est défectueux, le remplacer conformément aux normes Volvo (réf. T0008525).  \n\n**⚠️ Action recommandée:**  \nNe pas conduire le véhicule en l'état. Désactiver temporairement le TCS via le menu de configuration (écran de bord) si la pompe ABS est inopérante, mais uniquement pour un déplacement immédiat vers un atelier. Réparer ou remplacer l'interrupteur de la pompe ABS sans délai.",
+        "time": "02/06/2026 22:19:25"
       }
-    ]
+    ],
+    "preview": "Explique le code DTC P0100 et donne les …",
+    "timestamp": "02/06/2026 22:19:25"
   },
   {
     "id": 1780431957201,
