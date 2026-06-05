@@ -1,12 +1,3 @@
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-import os
-from dotenv import load_dotenv
-_ENV_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
-load_dotenv(_ENV_PATH)
-
 """ 
 ╔══════════════════════════════════════════════════════════════════╗
 ║  TruckMind - Backend Flask v2.0                                  ║
@@ -45,6 +36,15 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from groq import Groq
 from langgraph.graph import StateGraph, END
+
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import os
+from dotenv import load_dotenv
+_ENV_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+load_dotenv(_ENV_PATH)
 
 
 # ─── Config ──────────────────────────────────────────────────────
@@ -103,7 +103,7 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 limiter = Limiter(
     app=app,
     key_func=get_remote_address,
-    default_limits=["200 per day", "50 per hour"]
+    default_limits=["1000000 per day", "2500000 per hour"]
 )
 
 # Security Headers
@@ -1285,23 +1285,23 @@ def api_top_risk():
 # ═══════════════════════════════════════════════════════════════════
 import atexit
 from main.services.simulator_service import simulator
-from main.services.history_service import get_truck_history, clear_truck_history
+from main.services.history_service import clear_notifications_ram, get_truck_history 
 from main.services.report_service import generate_trip_report_html
-# ─── Nettoyage automatique des notifications à l'arrêt ET au démarrage ──
+from main.services.notification_service import reset_memory
+# ─── Nettoyage automatique à l'arrêt ──
 def _cleanup_on_shutdown():
-    from main.services.notification_service import reset_memory
-    log.info("🛑 Arrêt du serveur — suppression de toutes les notifications...")
-    clear_truck_history()
+    log.info("🛑 Arrêt du serveur — suppression des notifications temporaires...")
+    clear_notifications_ram()   # ← AJOUTER LES PARENTHÈSES
     reset_memory()
-    log.info("✅ Notifications supprimées.")
+    log.info("✅ Notifications temporaires supprimées.")
 
 atexit.register(_cleanup_on_shutdown)
 
-
-clear_truck_history()
-from main.services.notification_service import reset_memory
+# Au démarrage
+clear_notifications_ram()
 reset_memory()
-log.info("🚀 Démarrage du serveur : Notifications précédentes effacées.")
+log.info("🚀 Démarrage du serveur : mémoire temporaire réinitialisée.")
+
 
 @app.route("/simulator")
 def simulator_page():
@@ -1323,8 +1323,10 @@ def start_simulator():
     if len(city) > 50:
         return jsonify({"error": "Nom de ville trop long"}), 400
     simulator.set_destination(city)
-    # ✅ Effacer les notifications précédentes avant chaque nouveau trajet
-    clear_truck_history()
+    # Effacer seulement les notifications du dernier trajet (RAM)
+    from main.services.history_service import clear_notifications_ram
+    clear_notifications_ram()
+    #Réinitialiser la mémoire des compteurs d'alertes (LangGraph)
     from main.services.notification_service import reset_memory
     reset_memory()
     log.info("🔔 Notifications précédentes effacées — nouveau trajet démarré.")
@@ -1341,16 +1343,20 @@ def stop_simulator():
 def get_simulator_status():
     return jsonify(simulator.get_data())
 
+# Remplacer l’import et l’appel
+from main.services.history_service import get_notifications_ram   # au lieu de get_truck_history
+
 @app.route("/api/report")
 def get_trip_report():
-    history = get_truck_history()
-    html = generate_trip_report_html(history)
+    notifications = get_notifications_ram()   # ← notifications du trajet en cours
+    html = generate_trip_report_html(notifications)
     return html
 
 @app.route("/api/notifications")
 def get_notifications():
-    history = get_truck_history()
-    return jsonify(history[-20:] if history else [])
+    from main.services.history_service import get_notifications_ram
+    notifications = get_notifications_ram()
+    return jsonify(notifications[-20:] if notifications else [])
 
 def background_simulation_loop():
     import time
@@ -1359,15 +1365,12 @@ def background_simulation_loop():
     while True:
         try:
             if simulator.is_running:
-                # ✅ استدعاء traiter_notification فقط عند وجود تغيير فعلي في البيانات
-                nouvelle_anomalie = simulator.step()
-                # ✅ تقييم حالة الشاحنة دائماً (نظام القواعد هو من يقرر إذا كان هناك خطر أم لا)
-                # notification_service لديه آلية داخلية للتحقق من necessite_notification
+                nouvelle_anomalie = simulator.step(time_delta_sec=30)  
                 traiter_notification(simulator.get_data())
-            time.sleep(2) # تقليل التأخير من 5 إلى 2 ثانية لاستجابة أسرع
+            time.sleep(30)
         except Exception as e:
             log.error(f"Erreur simulation: {e}")
-            time.sleep(2)
+            time.sleep(30)
 
 import threading
 sim_thread = threading.Thread(target=background_simulation_loop, daemon=True)

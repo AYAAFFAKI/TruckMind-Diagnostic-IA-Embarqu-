@@ -1,33 +1,45 @@
 from datetime import datetime
-import json
 
 def generate_trip_report_html(history_data: list) -> str:
     if not history_data:
         return "<h2>Aucune donnée de trajet disponible pour générer un rapport.</h2>"
-        
-    last_entry = history_data[-1]
-    truck_id = last_entry.get("capteurs", {}).get("truck_id", "Volvo_FH_001")
+
+    # Récupérer un ID de camion (par défaut ou depuis 'donnees_camion' si présent)
+    truck_id = "Volvo FH"
+    for entry in history_data:
+        if "truck_id" in entry:
+            truck_id = entry["truck_id"]
+            break
+        elif "donnees_camion" in entry and isinstance(entry["donnees_camion"], dict):
+            truck_id = entry["donnees_camion"].get("truck_id", "Volvo FH")
+            break
+
     date_str = datetime.now().strftime("%d/%m/%Y %H:%M")
-    
-    total_alerts = sum(1 for entry in history_data if entry.get("alertes"))
-    critical_alerts = sum(1 for entry in history_data if entry.get("severite") == "CRITIQUE")
-    
+    total_alerts = len(history_data)
+    critical_alerts = sum(1 for e in history_data if e.get("severite") == "CRITIQUE")
+
     rows = ""
     for entry in history_data:
-        t = entry.get("timestamp", "").split("T")[-1][:8]
+        ts = entry.get("timestamp", "")
+        if "T" in ts:
+            time_str = ts.split("T")[1][:8]
+        else:
+            time_str = ts[:8] if len(ts) >= 8 else ""
+
         sev = entry.get("severite", "NORMAL")
         color = "#e74c3c" if sev == "CRITIQUE" else "#f1c40f" if sev == "ATTENTION" else "#2ecc71"
+
         rows += f"""
         <tr>
-            <td>{entry.get("cycle")}</td>
-            <td>{t}</td>
+            <td>{entry.get("cycle", "")}</td>
+            <td>{time_str}</td>
             <td style="color: {color}; font-weight: bold;">{sev}</td>
             <td>{entry.get("titre", "Normal")}</td>
             <td>{entry.get("statut_final", "CONTINUER")}</td>
             <td>{entry.get("action_vitesse", "")}</td>
         </tr>
         """
-        
+
     html = f"""
     <!DOCTYPE html>
     <html lang="fr">
@@ -57,39 +69,16 @@ def generate_trip_report_html(history_data: list) -> str:
                 <strong>Date :</strong> {date_str}
             </div>
         </div>
-        
         <div class="summary-cards">
-            <div class="card">
-                <div class="val">{len(history_data)}</div>
-                <div>Cycles Analysés</div>
-            </div>
-            <div class="card">
-                <div class="val">{total_alerts}</div>
-                <div>Alertes Totales</div>
-            </div>
-            <div class="card">
-                <div class="val" style="color: #e74c3c;">{critical_alerts}</div>
-                <div>Incidents Critiques</div>
-            </div>
+            <div class="card"><div class="val">{len(history_data)}</div><div>Cycles Analysés</div></div>
+            <div class="card"><div class="val">{total_alerts}</div><div>Alertes Totales</div></div>
+            <div class="card"><div class="val" style="color: #e74c3c;">{critical_alerts}</div><div>Incidents Critiques</div></div>
         </div>
-        
         <h3>Historique des événements</h3>
         <table>
-            <thead>
-                <tr>
-                    <th>Cycle</th>
-                    <th>Heure</th>
-                    <th>Sévérité</th>
-                    <th>Événement</th>
-                    <th>Statut Recommandé</th>
-                    <th>Vitesse</th>
-                </tr>
-            </thead>
-            <tbody>
-                {rows}
-            </tbody>
+            <thead><tr><th>Cycle</th><th>Heure</th><th>Sévérité</th><th>Événement</th><th>Statut Recommandé</th><th>Action vitesse</th></tr></thead>
+            <tbody>{rows}</tbody>
         </table>
-        
         <button class="btn-print" onclick="window.print()">🖨️ Imprimer en PDF</button>
     </body>
     </html>

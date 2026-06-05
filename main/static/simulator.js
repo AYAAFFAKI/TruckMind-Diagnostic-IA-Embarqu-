@@ -131,5 +131,5 @@ function fetchSimStatus() {
         .catch(e => console.error("Erreur status:", e));
 }
 
-// Poll every 2 seconds
-setInterval(fetchSimStatus, 2000);
+// Poll every 5 seconds
+setInterval(fetchSimStatus, 5000);

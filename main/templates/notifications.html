@@ -10,14 +10,18 @@
 
 <div class="container">
     <a href="/" class="nav-back">← Retour au Chat</a>
-    <h1><img src="{{ url_for('static', filename='notification.png') }}" alt="Notifications Icon" style="width:36px; height:36px; object-fit:contain; vertical-align: bottom; margin-right: 10px;"> Notifications</h1>
-    
+    <h1>
+        <img src="{{ url_for('static', filename='notification.png') }}" alt="Notifications Icon" style="width:36px; height:36px; object-fit:contain; vertical-align: bottom; margin-right: 10px;">
+        Notifications
+    </h1>
+
     <div id="notifications-list">
-        <div style="text-align: center; color: #94a3b8;">Chargement des notifications...</div>
+        <div class="notif-empty">Aucune notification pour le moment. Démarrez un trajet pour recevoir des alertes.</div>
     </div>
 </div>
 
-<script src="{{ url_for('static', filename='notifications.js') }}"></script>
+<audio id="notification-audio" src="{{ url_for('static', filename='iphone_ringtone.mp3') }}" preload="auto"></audio>
 
+<script src="{{ url_for('static', filename='notifications.js') }}"></script>
 </body>
 </html>

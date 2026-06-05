@@ -1,5 +1,63 @@
 [
   {
+    "id": 1780692389178,
+    "preview": "Quel est l'état du véhicule V3095 et que…",
+    "timestamp": "05/06/2026 21:48:22",
+    "messages": [
+      {
+        "q": "Quel est l'état du véhicule V3095 et quelles actions sont requises ?",
+        "a": "**État du véhicule V3095 :**  \n- **Score prédictif :** 0.9973 (🔴 CRITIQUE) → ARRÊT IMMÉDIAT requis.  \n- **Freins :** État \"mauvais\" → inspection immédiate nécessaire.  \n- **Température huile :** 127.3°C → dépasse la limite critique de 125°C (voyant ROUGE).  \n- **DTC actif :** ABS Outlet Vanne Coil Rear Circuit Défaillance (haute) → système de freinage compromis.  \n- **Pression pneus :** 105.7 PSI → vérifier la conformité avec les spécifications du manuel (non fournie ici).  \n\n---\n\n**Actions requises :**  \n1. **ARRÊT IMMÉDIAT** du véhicule (score > 0.8).  \n2. **Vérifier la température de l'huile** :  \n   - Refroidir le moteur et inspecter pour fuites ou surcharge.  \n   - Vérifier le niveau d'huile (51.84% indiqué, seuil critique non spécifié ici).  \n3. **Diagnostiquer le DTC ABS** :  \n   - Réparer ou remplacer la vanne de sortie arrière défectueuse.  \n   - Réinitialiser le code après correction.  \n4. **Inspection des freins** :  \n   - Contrôler l'usure des disques/patins et la pression hydraulique.  \n   - Remplacer les composants défectueux.  \n5. **Vérifier la pression des pneus** :  \n   - Comparer avec les valeurs recommandées dans le manuel (généralement 100–110 PSI pour les poids lourds).  \n\n⚠️ **Action recommandée :** Ne pas redémarrer le véhicule avant d'avoir résolu les alertes critiques (température huile, score prédictif, DTC ABS). Contacter un atelier Volvo agréé pour une intervention urgente.",
+        "time": "05/06/2026 21:46:29"
+      },
+      {
+        "q": "Quel est l'état du véhicule V1804 et quelles actions sont requises ?",
+        "a": "**État du véhicule V1804 :**  \n- **Score prédictif :** 0.9511 (🔴 CRITIQUE) → ARRÊT IMMÉDIAT requis.  \n- **Freins :** État \"mauvais\" → inspection immédiate nécessaire.  \n- **Température réfrigérant :** 114.2°C → dépasse la limite critique de 101°C (voyant ROUGE).  \n- **DTC actif :** ABS Outlet Vanne Coil Rear Circuit Défaillance (haute) → système de freinage compromis.  \n- **Pression pneus :** 120.6 PSI → vérifier la conformité avec les spécifications du manuel (non fournie ici).  \n\n---\n\n**Actions requises :**  \n1. **ARRÊT IMMÉDIAT** du moteur pour éviter la surchauffe critique (température réfrigérant > 101°C).  \n2. **Inspection du système de freinage** :  \n   - Vérifier l'ABS (DTC indique une défaillance de la vanne arrière).  \n   - Réparer ou remplacer les composants défectueux.  \n3. **Contrôle de la température réfrigérant** :  \n   - Vérifier le niveau et l'état du liquide de refroidissement.  \n   - Inspecter le radiateur, la pompe à eau et les circuits pour détection de fuites.  \n4. **Vérification de l'état des freins** :  \n   - Contrôler l'épaisseur des disques, l'état des plaquettes et la pression hydraulique.  \n5. **Surveillance de la pression des pneus** :  \n   - Ajuster si nécessaire selon les spécifications du constructeur (généralement 100–110 PSI pour les Volvo FH/FM).  \n\n⚠️ **Action recommandée :** Ne pas redémarrer le véhicule avant d'avoir résolu la surchauffe et la défaillance de l'ABS. Transporter en remorque si nécessaire.",
+        "time": "05/06/2026 21:47:22"
+      },
+      {
+        "q": "Explique le code DTC C1100 et donne les actions de diagnostic recommandées.",
+        "a": "**DTC C1100 : Diagnostic et Actions Recommandées**  \n- **Code :** C1100  \n- **Symptôme :** Défaillance du circuit de l'interrupteur de la pompe ABS  \n- **Système concerné :** Freinage ABS (Antiblocage des roues)  \n- **Pièce défectueuse :** Circuit électrique de l'interrupteur de la pompe ABS  \n- **Gravité :** Haute (risque de perte de contrôle en freinage d'urgence)  \n\n---\n\n### **Actions de diagnostic recommandées**  \n1. **Vérifier l'interrupteur de la pompe ABS**  \n   - Localiser l'interrupteur (réf. manuel : *C0002368*, composant 17 ou 18) et inspecter les connexions électriques pour détecter des courts-circuits, des câbles endommagés ou des contacts oxydés.  \n   - Tester la continuité du circuit avec un multimètre.  \n\n2. **Scanner les codes associés**  \n   - Utiliser un outil OBD-II pour lire d'autres DTC liés au système ABS (ex. C1101, C1102) qui pourraient indiquer des pannes secondaires.  \n\n3. **Inspecter le module ABS**  \n   - Vérifier si le module de contrôle ABS (ABS ECU) reçoit correctement le signal de l'interrupteur. Un défaut du module peut imiter une défaillance du circuit.  \n\n4. **Tester la pompe ABS**  \n   - Activer la pompe manuellement (si possible) pour confirmer qu'elle fonctionne. Un dysfonctionnement mécanique de la pompe peut déclencher ce code.  \n\n5. **Références manuelles**  \n   - Consulter le schéma électrique *C0002368* pour identifier les câbles et fusibles associés au circuit ABS.  \n   - Vérifier les spécifications de tension/résistance dans le manuel technique (pages 32–34).  \n\n---\n\n### **⚠️ Action recommandée**  \n- **Ne pas conduire le véhicule** tant que le système ABS n'est pas réparé.  \n- **Remplacer ou réparer l'interrupteur de la pompe ABS** si défectueux.  \n- **Réinitialiser le code** après réparation et effectuer un test de route pour confirmer la résolution.  \n\n*Note : Ce DTC peut affecter la sécurité en cas de freinage d'urgence. Une intervention immédiate est impérative.*",
+        "time": "05/06/2026 21:48:22"
+      }
+    ]
+  },
+  {
+    "id": 1780692161231,
+    "preview": "Explique le code DTC P0100 et donne les …",
+    "timestamp": "05/06/2026 21:42:41",
+    "messages": [
+      {
+        "q": "Explique le code DTC P0100 et donne les actions de diagnostic recommandées.",
+        "a": "**DTC Diagnostic:**  \n- **Code:** P0100  \n- **Symptôme:** Circuit de débit massique d'air (MAF) — Dysfonctionnement  \n- **Système:** Admission  \n- **Pièce:** Débitmètre MAF  \n- **Gravité:** Moyenne  \n- **Action:** Vérifier le capteur MAF et le circuit électrique  \n\n**Actions de diagnostic recommandées:**  \n1. **Inspection visuelle:**  \n   - Vérifier les câbles et connecteurs du capteur MAF pour détecter des dommages, des courts-circuits ou des connexions lâches.  \n   - Nettoyer le capteur MAF avec un nettoyant spécifique (éviter les solvants agressifs).  \n\n2. **Test électrique:**  \n   - Mesurer la tension d'alimentation du capteur MAF (généralement 5 V) et la résistance interne.  \n   - Vérifier la sortie du capteur (signal variable en fonction du débit d'air) avec un oscilloscope ou un multimètre.  \n\n3. **Vérification des codes associés:**  \n   - Rechercher des codes liés (ex: P0101, P0102) pour identifier des dysfonctionnements complémentaires.  \n\n4. **Essai routier:**  \n   - Observer le comportement du moteur (tirage irrégulier, manque de puissance) et comparer les valeurs du MAF avec les plages normales (environ 0,5–4,5 V selon le modèle).  \n\n5. **Remplacement éventuel:**  \n   - Si le capteur est défectueux, le remplacer conformément au manuel Volvo FH/FM (réf. C0001869 pour les schémas électriques).  \n\n⚠️ **Action recommandée:** Effectuer les tests électriques et visuels immédiatement pour éviter une dégradation du système d'admission. Si le capteur est sale ou endommagé, nettoyer ou remplacer.",
+        "time": "05/06/2026 21:42:41"
+      }
+    ]
+  },
+  {
+    "id": 1780684820907,
+    "messages": [
+      {
+        "a": "### Réponse\n\n**Taux d'anomalies de la flotte :**  \n- **45.52%** des 3 618 véhicules enregistrés présentent des anomalies (1 647 véhicules).  \n\n### Détails :\n- **Véhicules avec anomalies** : 1 647  \n- **Véhicules sans anomalies** : 1 971  \n- **Répartition critique** : 9.67% des véhicules ont un score_predictif > 0.8 (ARRÊT IMMÉDIAT requis).  \n\n⚠️ **Action recommandée** : Prioriser l'inspection et l'entretien des 1 647 véhicules signalés pour corriger les anomalies, en commençant par ceux avec un score_predictif > 0.8.",
+        "q": "Taux d'anomalies de la flotte",
+        "time": "05/06/2026 19:40:20"
+      }
+    ],
+    "preview": "Taux d'anomalies de la flotte",
+    "timestamp": "05/06/2026 19:40:20"
+  },
+  {
+    "id": 1780679643496,
+    "messages": [
+      {
+        "a": "**DTC Diagnostic:**  \n- **Code:** C1139  \n- **Symptôme:** Défaut du capteur de vitesse de roue (manque de dents sur l'anneau tonal central)  \n- **Système:** Transmission  \n- **Pièce:** Capteur de vitesse de roue  \n- **Gravité:** Haute  \n\n**Explication:**  \nLe code C1139 indique un défaut dans le système de détection de la vitesse de roue, causé par un anneau tonal (composant magnétique associé au capteur) manquant une ou plusieurs dents. Cela perturbe le signal envoyé au module de transmission ou au système TCS (Contrôle de Traction), affectant la gestion de la traction et la sécurité en conditions glissantes.  \n\n---\n\n**Actions de diagnostic recommandées:**  \n1. **Inspection visuelle:**  \n   - Vérifier l'anneau tonal (sur l'essieu ou la roue concernée) pour détecter des dents manquantes, des dommages mécaniques ou des déformations.  \n   - Contrôler le capteur de vitesse de roue pour des signes de décalage, de corrosion ou de dommages physiques.  \n\n2. **Vérification électrique:**  \n   - Tester la continuité et l'isolation des câbles du capteur.  \n   - Mesurer la tension d'alimentation et le signal du capteur avec un oscilloscope pour confirmer un signal irrégulier (manque de dents).  \n\n3. **Fonctionnement du TCS:**  \n   - Activer/désactiver le TCS via le menu de configuration de l'affichage (comme indiqué dans le manuel) pour observer si le système réagit correctement.  \n   - Vérifier les logs du TCS pour des erreurs associées (ex: patinage anormal des roues).  \n\n4. **Essai routier:**  \n   - Conduire à faible vitesse (<40 km/h) pour observer si le TCS freine les roues de traction (comportement attendu en cas de patinage).  \n   - À vitesse élevée (>40 km/h), vérifier que le TCS réduit uniquement le couple moteur.  \n\n5. **Réinitialisation et test:**  \n   - Effacer le code DTC après réparation.  \n   - Répéter l'essai pour confirmer la résolution du problème.  \n\n---\n\n**⚠️ Action recommandée:**  \n- Remplacer l'anneau tonal ou le capteur de vitesse de roue défectueux.  \n- Si le TCS est désactivé, suivre la procédure de réinitialisation décrite dans le manuel (menu Configuration → Sélectionner → Désactiver/TCS).  \n- Ne pas négliger ce défaut : un signal incorrect peut entraîner une perte de contrôle en conditions glissantes.",
+        "q": "Explique le code DTC C1139 et donne les actions de diagnostic recommandées.",
+        "time": "05/06/2026 18:14:03"
+      }
+    ],
+    "preview": "Explique le code DTC C1139 et donne les …",
+    "timestamp": "05/06/2026 18:14:03"
+  },
+  {
     "id": 1780432739092,
     "messages": [
       {
@@ -8,8 +66,8 @@
         "time": "02/06/2026 21:38:59"
       },
       {
-        "q": "Explique le code DTC C1100 et donne les actions de diagnostic recommandées.",
         "a": "**DTC Diagnostic:**  \n- **Code:** C1100  \n- **Symptôme:** ABS Pompe Interrupteur Circuit Défaillance  \n- **Système:** Freinage ABS  \n- **Pièce:** Système freinage  \n- **Gravité:** Haute  \n\n**Explication:**  \nLe code C1100 indique une défaillance dans le circuit électrique de l'interrupteur de la pompe ABS. La pompe ABS est essentielle pour réguler la pression des freins lors d'une activation du système antiblocage. Une défaillance dans ce circuit peut empêcher le fonctionnement correct de l'ABS, augmentant le risque de blocage des roues lors d'un freinage d'urgence.  \n\n**Actions de diagnostic recommandées:**  \n1. **Vérifier l'interrupteur de la pompe ABS** : Tester la continuité électrique et la tension d'alimentation à l'aide d'un multimètre.  \n2. **Inspecter les câbles et connecteurs** : Rechercher des dommages mécaniques, des courts-circuits ou des connexions desserrées dans le circuit.  \n3. **Scanner les codes associés** : Utiliser un outil OBD-II pour identifier d'autres codes liés au système ABS (ex. C1101, C1102).  \n4. **Tester le module ABS** : Vérifier si le module de commande ABS reçoit correctement les signaux de l'interrupteur.  \n5. **Remplacer l'interrupteur si nécessaire** : Si l'interrupteur est défectueux, le remplacer conformément aux normes Volvo (réf. T0008525).  \n\n**⚠️ Action recommandée:**  \nNe pas conduire le véhicule en l'état. Désactiver temporairement le TCS via le menu de configuration (écran de bord) si la pompe ABS est inopérante, mais uniquement pour un déplacement immédiat vers un atelier. Réparer ou remplacer l'interrupteur de la pompe ABS sans délai.",
+        "q": "Explique le code DTC C1100 et donne les actions de diagnostic recommandées.",
         "time": "02/06/2026 22:19:25"
       }
     ],

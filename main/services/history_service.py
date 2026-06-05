@@ -5,15 +5,16 @@ Module centralisé pour la persistance et l'analyse
 de l'historique des alertes et notifications.
 
 Fonctions exposées :
-  get_truck_history()          → Liste complète
-  save_entry(entry)            → Ajouter une entrée
-  clear_truck_history()        → Vider l'historique
-  get_last_entry()             → Dernière entrée
-  get_entries_by_severite()    → Filtrer par CRITIQUE / ATTENTION / NORMAL
-  get_stats_summary()          → Statistiques pour le Dashboard
-  get_recent_alerts(n)         → N dernières alertes réelles
-  purge_old_entries(max_keep)  → Limiter la taille du fichier
-  sync_reset_memory()          → Vider historique + mémoire LangGraph
+  get_truck_history()          → Liste complète (historique permanent)
+  save_entry(entry)            → Ajouter une entrée (permanent + RAM)
+  get_last_entry()             → Dernière entrée permanente
+  get_entries_by_severite()    → Filtrer par CRITIQUE / ATTENTION / NORMAL (depuis RAM)
+  get_stats_summary()          → Statistiques pour le Dashboard (depuis RAM)
+  get_recent_alerts(n)         → N dernières alertes réelles (depuis RAM)
+  purge_old_entries(max_keep)  → Limiter la taille du fichier permanent (optionnel)
+  purge_old_notifications()    → Limiter la taille des notifications RAM
+  sync_reset_memory()          → Réinitialiser UNIQUEMENT les données temporaires (RAM + LangGraph)
+  clear_notifications_ram()    → Vider les notifications RAM (utilisé au début d'un trajet)
 """
 
 import json
@@ -22,24 +23,30 @@ import threading
 from datetime import datetime
 from typing import List, Optional
 
+from dotenv import load_dotenv
+
+_ENV_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+load_dotenv(_ENV_PATH)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # ══════════════════════════════════════════════════════════════════
 # CHEMINS DES FICHIERS
 # ══════════════════════════════════════════════════════════════════
-# Mémoire long terme (données système uniquement)
+# Mémoire long terme (données système uniquement) – NE JAMAIS VIDER
 HISTORY_PATH = os.environ.get(
     "TRUCK_HISTORY_PATH",
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "truck_history.json")
+    os.path.join(BASE_DIR, "truck_history.json")
 )
 
 # Mémoire court terme (RAM) - notifications temporaires
 NOTIFICATIONS_RAM_PATH = os.environ.get(
     "NOTIFICATIONS_RAM_PATH",
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "notifications_ram.json")
+    os.path.join(BASE_DIR, "notifications_ram.json")
 )
 
 # ══════════════════════════════════════════════════════════════════
 # VERROU THREAD-SAFETY
-# Protège les lectures/écritures simultanées (Flask + monitoring)
 # ══════════════════════════════════════════════════════════════════
 _lock = threading.Lock()
 
@@ -129,7 +136,7 @@ def save_entry(entry: dict) -> bool:
             if "timestamp" not in entry or not entry["timestamp"]:
                 entry["timestamp"] = datetime.now().isoformat()
 
-            # Sauvegarder les données système (long terme)
+            # Sauvegarder les données système (long terme) – PERMANENT
             system_entry = {
                 "cycle": entry.get("cycle"),
                 "timestamp": entry.get("timestamp"),
@@ -175,29 +182,14 @@ def save_entry(entry: dict) -> bool:
             return False
 
 
-def clear_truck_history() -> bool:
-    """
-    Vide l'historique système JSON.
-    Retourne True si succès.
-    """
-    os.makedirs(os.path.dirname(HISTORY_PATH), exist_ok=True)
-    with _lock:
-        try:
-            with open(HISTORY_PATH, "w", encoding="utf-8") as f:
-                json.dump([], f)
-            return True
-        except Exception as e:
-            print(f"[TruckMemory] Erreur clear_truck_history: {e}")
-            return False
-
-
 def clear_notifications_ram() -> bool:
     """
     Vide les notifications RAM (mémoire court terme).
     Retourne True si succès.
+    Utilisé au début d'un nouveau trajet et à l'arrêt du serveur.
     """
     with _lock:
-        try:
+        try:    
             with open(NOTIFICATIONS_RAM_PATH, "w", encoding="utf-8") as f:
                 json.dump([], f)
             return True
@@ -210,6 +202,7 @@ def purge_old_entries(max_keep: int = 200) -> int:
     """
     Garde uniquement les `max_keep` entrées système les plus récentes.
     Retourne le nombre d'entrées supprimées.
+    À n'utiliser que si l'utilisateur le souhaite explicitement.
     """
     with _lock:
         try:
@@ -268,35 +261,34 @@ def purge_old_notifications(max_keep: int = 50) -> int:
 
 def sync_reset_memory() -> bool:
     """
-    Réinitialise À LA FOIS :
-      1. L'historique système JSON (truck_history.json)
-      2. Les notifications RAM (notifications_ram.json)
-      3. La mémoire persistante de la Cellule 11
+    Réinitialise UNIQUEMENT les données temporaires :
+      1. Les notifications RAM (notifications_ram.json)
+      2. La mémoire persistante de la Cellule 11
          (_alertes_compteur + _historique_valeurs)
 
-    À appeler au début de chaque nouvelle rchv.
+    L'historique permanent (truck_history.json) n'est PAS touché.
+    À appeler au début de chaque nouveau trajet.
     Retourne True si les opérations ont réussi.
     """
-    json_ok = clear_truck_history()
     ram_ok = clear_notifications_ram()
 
     # Import tardif pour éviter les imports circulaires
     try:
-        from main.notification_agent_fixed import reset_memory
+        from main.services.notification_service import reset_memory
         reset_memory()
         langgraph_ok = True
     except ImportError:
         try:
             # Fallback : module dans le même dossier
-            from notification_agent_fixed import reset_memory
+            from notification_service import reset_memory
             reset_memory()
             langgraph_ok = True
         except ImportError:
             print("[TruckMemory] ⚠️  reset_memory() non trouvé — mémoire LangGraph non réinitialisée")
             langgraph_ok = False
 
-    print(f"[TruckMemory] sync_reset_memory → Système={'✅' if json_ok else '❌'} | RAM={'✅' if ram_ok else '❌'} | LangGraph={'✅' if langgraph_ok else '⚠️'}")
-    return json_ok and ram_ok and langgraph_ok
+    print(f"[TruckMemory] sync_reset_memory → RAM={'✅' if ram_ok else '❌'} | LangGraph={'✅' if langgraph_ok else '⚠️'} (historique permanent conservé)")
+    return ram_ok and langgraph_ok
 
 
 # ══════════════════════════════════════════════════════════════════

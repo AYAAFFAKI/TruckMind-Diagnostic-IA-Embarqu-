@@ -1,5 +1,5 @@
 """
-main_simulator_fixed.py — TruckMind Simulator (Version Corrigée)
+main_simulator_fixed.py — TruckMind Simulator (Version Corrigée v2)
 =================================================================
 Corrections appliquées vs version originale :
   ✅ FIX 1 : CHARGE_MAX_TONNES stocké en instance var (plus de dépendance global)
@@ -10,6 +10,10 @@ Corrections appliquées vs version originale :
   ✅ FIX 6 : position sérialisée en string "lat=X, lon=Y" pour le LLM
   ✅ FIX 7 : update_load() ne change plus la charge pendant une anomalie active
   ✅ FIX 8 : SEUIL_FREINS cohérent avec la Cellule 11 (JAUNE=60, ROUGE=80)
+  ✅ FIX 9 : SimulatorService.step() accepte time_delta_sec et le transmet à TruckState.step()
+  ✅ FIX 10: TRAVEL_TIMES_HOURS utilisé correctement — la durée du trajet = temps réel de la ville
+             La distance simulée = travel_hours * vitesse_moyenne_estimée (80 km/h)
+             Le champ estimated_duration_hours est exposé dans to_dict() pour l'UI
 """
 
 import asyncio
@@ -22,13 +26,16 @@ from datetime import datetime, timedelta
 # ===== Constantes du trajet (Valeurs par défaut) =====
 # ✅ FIX : Ces constantes ne sont plus modifiées par SimulatorService
 # Chaque instance TruckState stocke ses propres valeurs
-DEFAULT_TOTAL_DISTANCE_KM = 60.0
+DEFAULT_TOTAL_DISTANCE_KM = 80.0   # Tanger → Tétouan (80 km route)
 START_LAT, START_LON = 35.7595, -5.8340
 DEFAULT_END_LAT   = 35.5729
 DEFAULT_END_LON   = -5.3628
 
-JOURNEY_DURATION_HOURS = 1.0
-UPDATE_INTERVAL_SEC    = 30
+# Vitesse moyenne estimée sur routes marocaines (km/h)
+# Utilisée pour convertir les heures de voyage en distance simulée
+AVG_ROAD_SPEED_KMH = 80.0
+
+UPDATE_INTERVAL_SEC    = 60
 WRITE_INTERVAL_SEC     = 120
 
 # ══════════════════════════════════════════════════════════════════
@@ -63,8 +70,8 @@ SEUIL_CHARGE_ROUGE  =  38.0
 # ══════════════════════════════════════════════════════════════════
 # DURÉES DES ANOMALIES (en nombre de steps de 30s)
 # ══════════════════════════════════════════════════════════════════
-ANOMALIE_DUREE_MIN = 4   # minimum 4 steps = 120s (1 cycle complet de lecture)
-ANOMALIE_DUREE_MAX = 8   # maximum 8 steps = 240s (2 cycles de lecture)
+ANOMALIE_DUREE_MIN = 6   # minimum 6 steps = 360s (6 cycles de lecture)
+ANOMALIE_DUREE_MAX = 12  # maximum 12 steps = 720s (12 cycles de lecture)
 
 
 # ══════════════════════════════════════════════════════════════════
@@ -78,28 +85,28 @@ ANOMALIE_SCENARIOS = {
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(101, 104), 1),
         "description_fn": lambda v: f"⚠️ Température moteur élevée ({v}°C) — surchauffe légère",
-        "probabilite": 0.015,
+        "probabilite": 0.005,
     },
     "temp_surchauffe_critique": {
         "type": "temp",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(106, 115), 1),
         "description_fn": lambda v: f"🔴 Température moteur critique ({v}°C) — arrêt recommandé",
-        "probabilite": 0.012,
+        "probabilite": 0.004,
     },
     "temp_thermostat_defaillant": {
         "type": "temp",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(118, 130), 1),
         "description_fn": lambda v: f"🔴 Thermostat défaillant — température moteur ({v}°C) incontrôlée",
-        "probabilite": 0.005,
+        "probabilite": 0.001,
     },
     "temp_radiateur_bouche": {
         "type": "temp",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(103, 108), 1),
         "description_fn": lambda v: f"⚠️ Possible radiateur bouché — temp ({v}°C) — vérifier circuit refroidissement",
-        "probabilite": 0.008,
+        "probabilite": 0.002,
     },
 
     # ────── PRESSION PNEUS ──────────────────────────────────────
@@ -108,28 +115,28 @@ ANOMALIE_SCENARIOS = {
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(80, 89), 1),
         "description_fn": lambda v: f"⚠️ Pression pneus insuffisante ({v} PSI) — perte lente détectée",
-        "probabilite": 0.012,
+        "probabilite": 0.004,
     },
     "pneu_pression_critique": {
         "type": "pneu",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(60, 74), 1),
         "description_fn": lambda v: f"🔴 Pression pneus critique ({v} PSI) — risque d'éclatement",
-        "probabilite": 0.007,
+        "probabilite": 0.002,
     },
     "pneu_surpression": {
         "type": "pneu",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(126, 138), 1),
         "description_fn": lambda v: f"⚠️ Surpression pneus ({v} PSI) — risque d'éclatement par chaleur",
-        "probabilite": 0.006,
+        "probabilite": 0.001,
     },
     "pneu_crevason_progressive": {
         "type": "pneu",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(45, 65), 1),
         "description_fn": lambda v: f"🔴 Crevaison progressive détectée ({v} PSI) — arrêt immédiat",
-        "probabilite": 0.005,
+        "probabilite": 0.001,
     },
 
     # ────── FREINS ──────────────────────────────────────────────
@@ -139,21 +146,21 @@ ANOMALIE_SCENARIOS = {
         # ✅ FIX 8 : Valeurs alignées avec SEUIL_FREINS_JAUNE=60
         "valeur_fn": lambda: round(random.uniform(61, 79), 1),
         "description_fn": lambda v: f"⚠️ Usure freins modérée ({v}%) — maintenance à planifier",
-        "probabilite": 0.012,
+        "probabilite": 0.004,
     },
     "freins_usure_critique": {
         "type": "freins",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(81, 90), 1),
         "description_fn": lambda v: f"🔴 Freins très usés ({v}%) — remplacement urgent des plaquettes",
-        "probabilite": 0.008,
+        "probabilite": 0.002,
     },
     "freins_defaillance_totale": {
         "type": "freins",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(91, 99), 1),
         "description_fn": lambda v: f"🔴 DÉFAILLANCE FREINS ({v}%) — ARRÊT D'URGENCE requis",
-        "probabilite": 0.004,
+        "probabilite": 0.001,
     },
     "freins_surchauffe": {
         "type": "freins",
@@ -161,7 +168,7 @@ ANOMALIE_SCENARIOS = {
         # ✅ FIX 8 : Début à 61% (au-dessus du seuil JAUNE=60)
         "valeur_fn": lambda: round(random.uniform(61, 79), 1),
         "description_fn": lambda v: f"⚠️ Freins en surchauffe ({v}%) — descente prolongée détectée",
-        "probabilite": 0.007,
+        "probabilite": 0.002,
     },
 
     # ────── BATTERIE ────────────────────────────────────────────
@@ -170,28 +177,28 @@ ANOMALIE_SCENARIOS = {
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(20, 29), 1),
         "description_fn": lambda v: f"⚠️ Batterie faible ({v}%) — recharge recommandée prochainement",
-        "probabilite": 0.010,
+        "probabilite": 0.003,
     },
     "batterie_critique": {
         "type": "batterie",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(8, 14), 1),
         "description_fn": lambda v: f"🔴 Batterie critique ({v}%) — risque de panne démarrage imminente",
-        "probabilite": 0.007,
+        "probabilite": 0.002,
     },
     "batterie_decharge_rapide": {
         "type": "batterie",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(5, 12), 1),
         "description_fn": lambda v: f"🔴 Décharge rapide batterie ({v}%) — alternateur ou court-circuit suspect",
-        "probabilite": 0.005,
+        "probabilite": 0.001,
     },
     "batterie_vieillissement": {
         "type": "batterie",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(22, 28), 1),
         "description_fn": lambda v: f"⚠️ Batterie vieillissante ({v}%) — capacité réduite — planifier remplacement",
-        "probabilite": 0.008,
+        "probabilite": 0.002,
     },
 
     # ────── VIBRATIONS ──────────────────────────────────────────
@@ -200,28 +207,28 @@ ANOMALIE_SCENARIOS = {
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(8.0, 11.5), 2),
         "description_fn": lambda v: f"⚠️ Vibrations anormales ({v} mm/s) — vérifier équilibrage roues",
-        "probabilite": 0.010,
+        "probabilite": 0.003,
     },
     "vibrations_critiques": {
         "type": "vibrations",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(12.0, 17.0), 2),
         "description_fn": lambda v: f"🔴 Vibrations critiques ({v} mm/s) — roulement ou suspension défaillant",
-        "probabilite": 0.007,
+        "probabilite": 0.002,
     },
     "vibrations_moteur_desaccorde": {
         "type": "vibrations",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(14.0, 20.0), 2),
         "description_fn": lambda v: f"🔴 Vibrations excessives moteur ({v} mm/s) — désaccordement cylindres suspect",
-        "probabilite": 0.004,
+        "probabilite": 0.001,
     },
     "vibrations_chaussee_degradee": {
         "type": "vibrations",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(9.0, 13.0), 2),
         "description_fn": lambda v: f"⚠️ Vibrations élevées ({v} mm/s) — possible chaussée dégradée ou amortisseurs",
-        "probabilite": 0.008,
+        "probabilite": 0.002,
     },
 
     # ────── CONSOMMATION CARBURANT ──────────────────────────────
@@ -230,28 +237,28 @@ ANOMALIE_SCENARIOS = {
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(36, 44), 1),
         "description_fn": lambda v: f"⚠️ Consommation élevée ({v} L/100km) — vérifier filtre air / charge",
-        "probabilite": 0.008,
+        "probabilite": 0.002,
     },
     "conso_excessive": {
         "type": "conso",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(45, 55), 1),
         "description_fn": lambda v: f"🔴 Consommation excessive ({v} L/100km) — injection ou turbo défaillant",
-        "probabilite": 0.005,
+        "probabilite": 0.001,
     },
     "conso_fuite_carburant": {
         "type": "conso",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(50, 65), 1),
         "description_fn": lambda v: f"🔴 Consommation anormale ({v} L/100km) — fuite carburant possible",
-        "probabilite": 0.003,
+        "probabilite": 0.001,
     },
     "conso_filtre_bouche": {
         "type": "conso",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(37, 43), 1),
         "description_fn": lambda v: f"⚠️ Consommation ({v} L/100km) — filtre à carburant potentiellement bouché",
-        "probabilite": 0.006,
+        "probabilite": 0.001,
     },
 
     # ────── QUALITÉ HUILE ───────────────────────────────────────────
@@ -260,28 +267,28 @@ ANOMALIE_SCENARIOS = {
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(55, 69), 1),
         "description_fn": lambda v: f"⚠️ Qualité huile faible ({v}%) — changement recommandé prochainement",
-        "probabilite": 0.010,
+        "probabilite": 0.003,
     },
     "huile_critique": {
         "type": "huile",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(15, 45), 1),
         "description_fn": lambda v: f"🔴 Qualité huile critique ({v}%) — risque d'usure moteur, changement immédiat requis",
-        "probabilite": 0.007,
+        "probabilite": 0.002,
     },
     "huile_contamination": {
         "type": "huile",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(10, 35), 1),
         "description_fn": lambda v: f"🔴 Contamination huile détectée ({v}%) — présence possible de carburant ou eau",
-        "probabilite": 0.005,
+        "probabilite": 0.001,
     },
     "huile_vieillissement": {
         "type": "huile",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(60, 74), 1),
         "description_fn": lambda v: f"⚠️ Huile vieillissante ({v}%) — planifier changement sous 500 km",
-        "probabilite": 0.008,
+        "probabilite": 0.002,
     },
 }
 
@@ -303,18 +310,24 @@ MOROCCAN_CITIES = {
 }
 
 # ══════════════════════════════════════════════════════════════════
-# TEMPS DE VOYAGE RÉALISTES (depuis Tanger)
+# ✅ FIX 10 : TRAVEL_TIMES_HOURS — temps de trajet réels depuis Tanger
+# Ces valeurs définissent la DURÉE RÉELLE du trajet (en heures).
+# La distance simulée = travel_hours * AVG_ROAD_SPEED_KMH
+# Ce qui donne une simulation cohérente avec la durée du trajet réel.
+#
+# Exemple : Tanger → Agadir = 8h → distance simulée = 8 * 80 = 640 km
+# Le simulateur avance à ~80 km/h et met bien ~8h pour finir le trajet.
 # ══════════════════════════════════════════════════════════════════
 TRAVEL_TIMES_HOURS = {
-    "Tétouan": 1.0,
-    "Fès": 4.0,
+    "Tétouan":    1.0,
+    "Fès":        4.0,
     "Casablanca": 5.0,
-    "Rabat": 3.0,
-    "Marrakech": 6.0,
-    "Agadir": 8.0,
-    "Meknès": 4.0,
-    "Oujda": 11.0,
-    "Kenitra": 3.0,
+    "Rabat":      3.0,
+    "Marrakech":  6.0,
+    "Agadir":     8.0,
+    "Meknès":     4.0,
+    "Oujda":      11.0,
+    "Kenitra":    3.0,
 }
 
 
@@ -334,16 +347,24 @@ class TruckState:
     """
     ✅ FIX 1 + 2 : Toutes les constantes de trajet sont des attributs
     d'instance — plus aucune dépendance aux variables globales mutables.
+
+    ✅ FIX 10 : travel_hours stocké en instance pour exposer la durée
+    estimée réelle dans to_dict() (champ estimated_duration_hours).
     """
 
     def __init__(self, end_lat=DEFAULT_END_LAT, end_lon=DEFAULT_END_LON,
                  total_distance_km=DEFAULT_TOTAL_DISTANCE_KM,
-                 charge_max_tonnes=CHARGE_MAX_TONNES):
+                 charge_max_tonnes=CHARGE_MAX_TONNES,
+                 travel_hours=1.0,
+                 destination_city="Tétouan"):
         # ✅ FIX 2 : Stocker les paramètres de trajet en instance
         self._end_lat          = end_lat
         self._end_lon          = end_lon
         self._total_distance   = total_distance_km
         self._charge_max       = charge_max_tonnes
+        # ✅ FIX 10 : stocker la durée réelle du trajet
+        self._travel_hours     = travel_hours
+        self._destination_city = destination_city
         self.reset_journey()
 
     def reset_journey(self):
@@ -414,7 +435,6 @@ class TruckState:
     # ── Charge dynamique ─────────────────────────────────────────
     def update_load(self):
         # ✅ FIX 7 : Ne pas changer la charge pendant une anomalie active
-        # (évite d'invalider les calculs de surcharge en cours)
         if self._anomalie_steps_left > 0:
             return
 
@@ -598,7 +618,6 @@ class TruckState:
             self.freins_defectueux = (self.freins_usure_percent >= SEUIL_FREINS_ROUGE)
 
         if self._anomalie_type != "huile":
-            # Qualité huile diminue progressivement avec le temps et la charge
             base_huile = 85.0 - progress * 15.0 - max(0, load - 30.0) * 0.3
             self.qualite_huile = round(max(0.0, base_huile + random.uniform(-1, 1)), 1)
 
@@ -645,13 +664,19 @@ class TruckState:
 
     def to_dict(self):
         """
-        ✅ FIX 2 : Utilise self._total_distance (pas le global TOTAL_DISTANCE_KM)
+        ✅ FIX 2 : Utilise self._total_distance (pas le global)
         ✅ FIX 6 : position est une STRING "lat=X, lon=Y" → lisible par le LLM
-        ✅ FIX 1 : charge_max_autorisee_tonnes = self._charge_max (cohérent avec Cellule 11)
+        ✅ FIX 1 : charge_max_autorisee_tonnes = self._charge_max
         ✅ FIX 5 : is_finished exposé clairement
+        ✅ FIX 10: estimated_duration_hours exposé pour l'UI
+                   + destination_city pour affichage
         """
         dist   = self._total_distance if self._total_distance > 0 else 1
         prog   = round((self.distance_covered_km / dist) * 100, 1)
+
+        # ✅ FIX 10 : Calcul ETA basé sur la durée réelle du trajet
+        elapsed_hours    = self.elapsed_sec / 3600.0
+        remaining_hours  = max(0.0, self._travel_hours - elapsed_hours)
 
         return {
             "truck_id":                    self.truck_id,
@@ -663,7 +688,7 @@ class TruckState:
             "position":                    self.get_position_str(),
 
             "distance_covered_km":         round(self.distance_covered_km, 2),
-            "total_distance_km":           self._total_distance,   # ✅ FIX 2
+            "total_distance_km":           self._total_distance,
             "progress_percent":            prog,
             "current_speed_kmh":           round(self.current_speed_kmh, 2),
             "avg_speed_kmh":               self.avg_speed_kmh,
@@ -671,7 +696,14 @@ class TruckState:
             "elapsed_time_formatted":      self.format_time(self.elapsed_sec),
             "estimated_arrival_time":      self.calculate_eta(),
 
-            # ✅ FIX 1 : Utilise self._charge_max — valeur = 30.0, cohérent avec Cellule 11
+            # ✅ FIX 10 : Informations de durée réelle du trajet
+            "destination_city":            self._destination_city,
+            "estimated_duration_hours":    self._travel_hours,
+            "estimated_duration_formatted": self._format_duration(self._travel_hours),
+            "remaining_time_hours":        round(remaining_hours, 2),
+            "remaining_time_formatted":    self._format_duration(remaining_hours),
+
+            # ✅ FIX 1 : Utilise self._charge_max — valeur = 30.0
             "load_tonnes":                 self.load_tonnes,
             "charge_max_autorisee_tonnes": self._charge_max,
             "surcharge_active":            self.load_tonnes > self._charge_max,
@@ -687,8 +719,7 @@ class TruckState:
             "etat_batterie":               round(self.batterie_percent, 1),
             "niveaux_vibration":           round(self.vibrations_level, 2),
             "freins_usure_percent":        round(self.freins_usure_percent, 1),
-            # ✅ Ajout pour compatibilité avec notification_service.py
-            "score_predictif":             0.0,  # Simulé - peut être calculé selon la logique métier
+            "score_predictif":             0.0,
             "qualite_huile":               round(self.qualite_huile, 1),
 
             # Drapeaux d'alerte
@@ -718,6 +749,19 @@ class TruckState:
         s = seconds % 60
         return f"{int(h):02d}:{int(m):02d}:{int(s):02d}"
 
+    @staticmethod
+    def _format_duration(hours: float) -> str:
+        """Formate une durée en heures → '2h 30min' ou '45min'"""
+        total_min = int(round(hours * 60))
+        h = total_min // 60
+        m = total_min % 60
+        if h > 0 and m > 0:
+            return f"{h}h {m:02d}min"
+        elif h > 0:
+            return f"{h}h"
+        else:
+            return f"{m}min"
+
     def calculate_eta(self):
         if self.current_speed_kmh <= 0 or self.is_finished:
             return "Arrivé à destination"
@@ -728,52 +772,86 @@ class TruckState:
 
 # ══════════════════════════════════════════════════════════════════
 # SimulatorService
-# ✅ FIX 4 : Ne modifie PLUS les variables globales END_LAT/END_LON/TOTAL_DISTANCE_KM
-# Crée une nouvelle instance TruckState avec les bons paramètres
+# ✅ FIX 4 : Ne modifie PLUS les variables globales
+# ✅ FIX 9 : step() accepte time_delta_sec et le transmet à TruckState.step()
+# ✅ FIX 10: start_journey() utilise TRAVEL_TIMES_HOURS pour calculer
+#            la distance simulée ET stocker la durée réelle du trajet
 # ══════════════════════════════════════════════════════════════════
 class SimulatorService:
     def __init__(self):
         self.destination_city = "Tétouan"
         self.is_running       = False
-        # ✅ FIX 4 : Créer TruckState avec les paramètres de destination
-        end_lat, end_lon = MOROCCAN_CITIES["Tétouan"]
-        # Utiliser le temps de voyage réaliste au lieu de la distance haversine
+        # Initialisation avec les paramètres de Tétouan
         travel_hours = TRAVEL_TIMES_HOURS.get("Tétouan", 1.0)
-        # Estimer la distance routière (environ 80 km/h de vitesse moyenne sur les routes marocaines)
-        total_dist = travel_hours * 80
-        self.truck_state = TruckState(end_lat=end_lat, end_lon=end_lon,
-                                      total_distance_km=total_dist)
-
-    def set_destination(self, city: str):
-        """✅ FIX 4 : Pas de mutation de globals — stocke les paramètres localement."""
-        if city in MOROCCAN_CITIES:
-            self.destination_city = city
-
-    def start_journey(self):
-        """✅ FIX 4 : Crée un nouveau TruckState avec les bons paramètres."""
-        end_lat, end_lon = MOROCCAN_CITIES[self.destination_city]
-        # Utiliser le temps de voyage réaliste au lieu de la distance haversine
-        travel_hours = TRAVEL_TIMES_HOURS.get(self.destination_city, 1.0)
-        # Estimer la distance routière (environ 80 km/h de vitesse moyenne sur les routes marocaines)
-        total_dist = travel_hours * 80
+        total_dist   = travel_hours * AVG_ROAD_SPEED_KMH
+        end_lat, end_lon = MOROCCAN_CITIES["Tétouan"]
         self.truck_state = TruckState(
             end_lat=end_lat,
             end_lon=end_lon,
             total_distance_km=total_dist,
-            charge_max_tonnes=CHARGE_MAX_TONNES,  # ✅ FIX 1 : 30.0
+            travel_hours=travel_hours,
+            destination_city="Tétouan",
+        )
+
+    def set_destination(self, city: str):
+        """✅ FIX 4 : Pas de mutation de globals — stocke la ville localement."""
+        if city in MOROCCAN_CITIES:
+            self.destination_city = city
+
+    def start_journey(self):
+        """
+        ✅ FIX 10 : Utilise TRAVEL_TIMES_HOURS pour définir la durée réelle.
+        La distance simulée = travel_hours * AVG_ROAD_SPEED_KMH
+        Ainsi, si le camion roule à ~80 km/h en moyenne, il mettra exactement
+        travel_hours heures pour couvrir total_distance_km km, ce qui correspond
+        au temps de trajet réel de la ville de destination.
+
+        Exemple :
+          Tanger → Agadir : travel_hours = 8h
+          total_distance_km = 8 * 80 = 640 km
+          Le simulateur avance à ~80 km/h → finit le trajet en ~8h réelles
+        """
+        end_lat, end_lon = MOROCCAN_CITIES.get(
+            self.destination_city,
+            MOROCCAN_CITIES["Tétouan"]
+        )
+        # ✅ FIX 10 : Récupérer la durée réelle depuis TRAVEL_TIMES_HOURS
+        travel_hours = TRAVEL_TIMES_HOURS.get(self.destination_city, 1.0)
+
+        # ✅ FIX 10 : Distance simulée = durée réelle × vitesse moyenne
+        # Cela garantit que la progression dans la simulation correspond
+        # au temps de trajet réel de la ville choisie.
+        total_dist = travel_hours * AVG_ROAD_SPEED_KMH
+
+        self.truck_state = TruckState(
+            end_lat=end_lat,
+            end_lon=end_lon,
+            total_distance_km=total_dist,
+            charge_max_tonnes=CHARGE_MAX_TONNES,
+            travel_hours=travel_hours,
+            destination_city=self.destination_city,
         )
         self.truck_state.start_engine()
         self.is_running = True
-        print(f"🚛 Départ Tanger → {self.destination_city} | Distance : {total_dist:.1f} km | Durée estimée : {travel_hours}h")
+        print(
+            f"🚛 Départ Tanger → {self.destination_city} "
+            f"| Distance simulée : {total_dist:.0f} km "
+            f"| Durée estimée : {TruckState._format_duration(travel_hours)}"
+        )
 
     def stop_journey(self):
         self.is_running = False
 
-    def step(self):
-        """✅ FIX 4 : Délègue directement à truck_state — plus de mutation globale."""
+    def step(self, time_delta_sec=30) -> bool:
+        """
+        ✅ FIX 9 : Accepte time_delta_sec et le transmet à TruckState.step().
+        C'était la cause principale de l'erreur :
+          "SimulatorService.step() got an unexpected keyword argument 'time_delta_sec'"
+        Le paramètre est maintenant déclaré ici et délégué correctement.
+        """
         if not self.is_running:
             return False
-        nouvelle_anomalie = self.truck_state.step(time_delta_sec=30)
+        nouvelle_anomalie = self.truck_state.step(time_delta_sec=time_delta_sec)
         if self.truck_state.is_finished:
             self.is_running = False
         return nouvelle_anomalie

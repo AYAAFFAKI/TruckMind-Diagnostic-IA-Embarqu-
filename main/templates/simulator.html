@@ -1,60 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>TruckMind - Simulateur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Space+Grotesk:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='simulator.css') }}">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>TruckMind - Simulateur</title>
+        <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Space+Grotesk:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='simulator.css') }}">
+    </head>
+    <body>
 
-<div class="container">
-    <a href="/" class="nav-back">← Retour au Chat</a>
-    <h1><img src="{{ url_for('static', filename='icon.png') }}" alt="TruckMind Logo" style="width:36px; height:36px; object-fit:contain; vertical-align: bottom; margin-right: 10px;"> TruckMind Simulateur</h1>
-    
-    <div class="controls">
-        <label for="city">Destination :</label>
-        <select id="city">
-            <option value="Tétouan">Tétouan</option>
-            <option value="Casablanca">Casablanca</option>
-            <option value="Rabat">Rabat</option>
-            <option value="Fès">Fès</option>
-            <option value="Marrakech">Marrakech</option>
-            <option value="Agadir">Agadir</option>
-            <option value="Meknès">Meknès</option>
-            <option value="Oujda">Oujda</option>
-            <option value="Kenitra">Kenitra</option>
-        </select>
-        <button onclick="startJourney()">DÉMARRER LE TRAJET</button>
-        <button class="stop" onclick="stopJourney()">ARRÊTER</button>
+    <div class="container">
+        <a href="/" class="nav-back">← Retour au Chat</a>
+        <h1>
+            <img src="{{ url_for('static', filename='icon.png') }}" alt="TruckMind Logo" style="width:36px; height:36px; object-fit:contain; vertical-align: bottom; margin-right: 10px;">
+            TruckMind Simulateur
+        </h1>
+
+        <div class="sim-controls">
+            <label for="city">Destination :</label>
+            <select id="city">
+                <option value="Tétouan">Tétouan</option>
+                <option value="Casablanca">Casablanca</option>
+                <option value="Rabat">Rabat</option>
+                <option value="Fès">Fès</option>
+                <option value="Marrakech">Marrakech</option>
+                <option value="Agadir">Agadir</option>
+                <option value="Meknès">Meknès</option>
+                <option value="Oujda">Oujda</option>
+                <option value="Kenitra">Kenitra</option>
+            </select>
+            <button class="sim-btn" onclick="startJourney()">DÉMARRER LE TRAJET</button>
+            <button class="sim-btn stop" onclick="stopJourney()">ARRÊTER</button>
+        </div>
+
+        <!-- Statut + Progress -->
+        <div style="margin-bottom: 24px;">
+            <div class="sim-card">
+                <div class="sim-card-title">Statut du trajet</div>
+                <div class="sim-card-val" id="sim-status" style="font-size: 18px; color: #e2e8f0;">En attente...</div>
+                <div class="sim-progress-wrap">
+                    <img class="sim-truck-icon" id="sim-truck-icon"
+                        src="{{ url_for('static', filename='icon.png') }}" alt="truck">
+                    <div class="sim-progress-bar">
+                        <div class="sim-progress-fill" id="sim-progress"></div>
+                    </div>
+                    <div class="sim-route-info">
+                        <span>Tanger</span>
+                        <span id="sim-dest-label">Destination</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capteurs -->
+        <div class="sim-dashboard">
+            <div class="sim-card">
+                <div class="sim-card-title">Vitesse (km/h)</div>
+                <div class="sim-card-val" id="sim-speed">0.0</div>
+            </div>
+            <div class="sim-card">
+                <div class="sim-card-title">Charge (Tonnes)</div>
+                <div class="sim-card-val" id="sim-load">0.0</div>
+            </div>
+            <div class="sim-card">
+                <div class="sim-card-title">Distance (km)</div>
+                <div class="sim-card-val" id="sim-distance">0.0</div>
+            </div>
+            <div class="sim-card">
+                <div class="sim-card-title">Température Moteur</div>
+                <div class="sim-card-val" id="sim-temp">—</div>
+            </div>
+            <div class="sim-card">
+                <div class="sim-card-title">Pression Pneus (PSI)</div>
+                <div class="sim-card-val" id="sim-pression">—</div>
+            </div>
+            <div class="sim-card">
+                <div class="sim-card-title">Usure Freins (%)</div>
+                <div class="sim-card-val" id="sim-freins">—</div>
+            </div>
+            <div class="sim-card">
+                <div class="sim-card-title">Batterie (%)</div>
+                <div class="sim-card-val" id="sim-batterie">—</div>
+            </div>
+            <div class="sim-card">
+                <div class="sim-card-title">Vibrations</div>
+                <div class="sim-card-val" id="sim-vibration">—</div>
+            </div>
+            <div class="sim-card">
+                <div class="sim-card-title">Conso (L/100km)</div>
+                <div class="sim-card-val" id="sim-conso">—</div>
+            </div>
+        </div>
+
+        <div class="sim-report-link">
+            <a href="/api/report" target="_blank">📄 Générer le Rapport du dernier trajet</a>
+        </div>
     </div>
 
-    <div class="dashboard">
-        <div class="card">
-            <div class="card-title">Statut</div>
-            <div class="card-val" id="status" style="font-size: 18px; color: #e2e8f0;">En attente...</div>
-            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-        </div>
-        <div class="card">
-            <div class="card-title">Vitesse (km/h)</div>
-            <div class="card-val" id="speed">0.0</div>
-        </div>
-        <div class="card">
-            <div class="card-title">Charge (Tonnes)</div>
-            <div class="card-val" id="load">0.0</div>
-        </div>
-        <div class="card">
-            <div class="card-title">Distance (km)</div>
-            <div class="card-val" id="distance">0.0</div>
-        </div>
-    </div>
-    
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="/api/v2/report" target="_blank" style="color: #38bdf8; text-decoration: underline;">📄 Générer le Rapport PDF du dernier trajet</a>
-    </div>
-</div>
-
-<script src="{{ url_for('static', filename='simulator.js') }}"></script>
-
-</body>
+    <script src="{{ url_for('static', filename='simulator.js') }}"></script>
+    </body>
 </html>

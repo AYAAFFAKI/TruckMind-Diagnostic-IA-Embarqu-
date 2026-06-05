@@ -8,6 +8,7 @@ Corrections appliquées vs version originale :
   ✅ FIX 4 : reset_memory() appelé automatiquement à chaque nouvelle rchv
   ✅ FIX 5 : SEUIL_FREINS_JAUNE = 60.0 (cohérent avec simulateur)
   ✅ FIX 6 : Titre_genere fallback explicite si alertes vides
+  ✅ FIX 7 : Dédoublonnage des notifications dans noeud_sauvegarde
   ✅ Tous les correctifs V15 conservés (Action2, backslash, validation, etc.)
 """
 
@@ -58,11 +59,27 @@ FALLBACK_MODEL    = "llama-3.1-8b-instant"
 _alertes_compteur:   dict = {}
 _historique_valeurs: dict = {}
 _last_truck_id:      str  = ""   # ✅ FIX 4 : Détecter changement de rchv
+_last_llm_call_time: float = 0.0  # Timestamp of last LLM call
+LLM_COOLDOWN_SEC: int = 30  # Minimum seconds between LLM calls
+
+# ══ AJOUT : Mémoire pour éviter les doublons de sauvegarde ══
+_last_saved_notification = {
+    "timestamp": 0.0,
+    "titre": "",
+    "severite": "",
+    "alertes_cle": ""
+}
 
 def reset_memory():
-    global _alertes_compteur, _historique_valeurs, _last_truck_id
+    global _alertes_compteur, _historique_valeurs, _last_truck_id, _last_saved_notification
     _alertes_compteur.clear()
     _historique_valeurs.clear()
+    _last_saved_notification = {
+        "timestamp": 0.0,
+        "titre": "",
+        "severite": "",
+        "alertes_cle": ""
+    }
     logger.info("🧹 Mémoire des capteurs réinitialisée.")
 
 import sqlite3
@@ -225,7 +242,9 @@ def calculer_vitesse_recommandee(charge: float, charge_max: float, has_rouge: bo
     elif ratio > 1.00: return 50
     return 80
 
-def calculer_action_vitesse(vitesse_actuelle, vitesse_max: int) -> str:
+def calculer_action_vitesse(vitesse_actuelle, vitesse_max: int, has_rouge: bool = False) -> str:
+    if has_rouge or vitesse_max == 0:
+        return "Ralentir immédiatement jusqu'à l'arrêt complet du véhicule."
     try:
         v = float(vitesse_actuelle)
     except (TypeError, ValueError):
@@ -233,7 +252,6 @@ def calculer_action_vitesse(vitesse_actuelle, vitesse_max: int) -> str:
     if v > vitesse_max:
         return f"Réduire immédiatement à {vitesse_max} km/h."
     return "Maintenir vitesse actuelle."
-
 # ══════════════════════════════════════════════════════════════════
 # 7 ─ GÉNÉRATION DE TITRE
 # ══════════════════════════════════════════════════════════════════
@@ -705,6 +723,7 @@ FORMAT (copie exacte, sans ajout) :
 # 13 ─ NŒUD C : LLM
 # ══════════════════════════════════════════════════════════════════
 def noeud_llm_notif(etat: EtatNotification) -> EtatNotification:
+    global _last_llm_call_time
     alertes_reelles = _has_alertes_reelles(etat["alertes"])
 
     if not etat["necessite_notification"] and not alertes_reelles:
@@ -713,6 +732,13 @@ def noeud_llm_notif(etat: EtatNotification) -> EtatNotification:
     if alertes_reelles and not etat["necessite_notification"]:
         logger.warning("⚠️  Guard : forçage necessite_notification=True")
         etat = {**etat, "necessite_notification": True}
+
+    # Check cooldown before making LLM call
+    current_time = time.time()
+    time_since_last_call = current_time - _last_llm_call_time
+    if time_since_last_call < LLM_COOLDOWN_SEC:
+        logger.info(f"⏸️  Cooldown actif ({time_since_last_call:.1f}s < {LLM_COOLDOWN_SEC}s) — utilisation fallback mécanique")
+        return generer_notification_mecanique(etat)
 
     data           = etat["donnees_camion"]
     alertes        = etat["alertes"]
@@ -793,6 +819,7 @@ def noeud_llm_notif(etat: EtatNotification) -> EtatNotification:
                 stream=False,
             )
             notification = completion.choices[0].message.content.strip()
+            _last_llm_call_time = time.time()  # Update timestamp after successful LLM call
             break
         except Exception as e:
             logger.warning(f"⚠️  Tentative {retry_num} : {str(e)[:80]}")
@@ -884,58 +911,75 @@ def generer_notification_mecanique(etat: EtatNotification) -> EtatNotification:
     return {**etat, "notification": notification, "statut_final": statut, "validation_status": {}}
 
 # ══════════════════════════════════════════════════════════════════
-# 15 ─ NŒUD D : SAUVEGARDE
+# 15 ─ NŒUD D : SAUVEGARDE (VERSION CORRIGÉE - ÉVITE LES DOUBLONS)
 # ══════════════════════════════════════════════════════════════════
 def noeud_sauvegarde(etat: EtatNotification) -> EtatNotification:
+    global _last_saved_notification
+
     if not etat["necessite_notification"] and not _has_alertes_reelles(etat["alertes"]):
         return etat
 
-    history_path = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-        "data", "truck_history.json"
+    # Chemin identique à history_service.NOTIFICATIONS_RAM_PATH
+    notifications_ram_path = os.environ.get(
+        "NOTIFICATIONS_RAM_PATH",
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "services", "notifications_ram.json")
     )
-    history = []
-    if os.path.exists(history_path):
+
+    # Construire une clé simplifiée pour comparer le contenu des alertes
+    alertes_cle = "|".join(sorted(etat["alertes"]))  # Tri pour normaliser l'ordre
+
+    now_time = time.time()
+    last_time = _last_saved_notification.get("timestamp", 0)
+    # Vérifier si c'est un doublon récent (moins de 10 secondes)
+    if (now_time - last_time) < 10.0 and \
+       _last_saved_notification.get("titre") == etat["titre_genere"] and \
+       _last_saved_notification.get("severite") == etat["severite"] and \
+       _last_saved_notification.get("alertes_cle") == alertes_cle:
+        logger.info("⏩ Notification ignorée (doublon récent) - sauvegarde évitée")
+        return etat
+
+    # Lire l'existant
+    notifications = []
+    if os.path.exists(notifications_ram_path):
         try:
-            with open(history_path, "r", encoding="utf-8") as f:
-                history = json.load(f)
-        except Exception as e:
-            logger.warning(f"⚠️  Lecture history échouée: {e}")
+            with open(notifications_ram_path, "r", encoding="utf-8") as f:
+                notifications = json.load(f)
+        except:
+            pass
 
-    titre_propre = nettoyer_titre(etat["titre_genere"])
-
+    # Construire l'entrée (sans les capteurs, juste la notification)
     entry = {
-        "cycle":             len(history) + 1,
+        "cycle":             len(notifications) + 1,
         "timestamp":         etat["donnees_camion"].get("timestamp"),
         "severite":          etat["severite"],
         "statut_final":      etat["statut_final"],
         "vitesse_max_kmh":   etat["vitesse_recommandee_kmh"],
         "action_vitesse":    etat["action_vitesse_texte"],
-        "titre":             titre_propre,
+        "titre":             nettoyer_titre(etat["titre_genere"]),
         "alertes":           etat["alertes"],
         "actions":           etat["actions_recommandees"],
         "notification":      etat["notification"],
         "validation_status": etat.get("validation_status", {}),
-        "capteurs": {
-            k: etat["donnees_camion"].get(k)
-            for k in [
-                "truck_id", "position", "distance_covered_km", "total_distance_km",
-                "progress_percent", "load_tonnes", "charge_max_autorisee_tonnes",
-                "surcharge_active", "surcharge_niveau", "temperature_moteur",
-                "pression_pneus", "consommation_carburant", "fuel_level_liters",
-                "etat_batterie", "niveaux_vibration", "freins_usure_percent",
-                "anomalie_detectee", "description_anomalie",
-            ]
-        },
     }
 
-    history.append(entry)
+    notifications.append(entry)
+
+    # Écrire
     try:
-        with open(history_path, "w", encoding="utf-8") as f:
-            json.dump(history, f, ensure_ascii=False, indent=2)
-        logger.info(f"💾 Sauvegardé → entrée #{entry['cycle']}")
+        os.makedirs(os.path.dirname(notifications_ram_path), exist_ok=True)
+        with open(notifications_ram_path, "w", encoding="utf-8") as f:
+            json.dump(notifications, f, ensure_ascii=False, indent=2)
+        logger.info(f"💾 Notification sauvegardée dans RAM → #{entry['cycle']}")
+
+        # Mettre à jour la mémoire du dernier doublon
+        _last_saved_notification = {
+            "timestamp": now_time,
+            "titre": etat["titre_genere"],
+            "severite": etat["severite"],
+            "alertes_cle": alertes_cle
+        }
     except Exception as e:
-        logger.error(f"❌ Erreur sauvegarde: {e}")
+        logger.error(f"❌ Erreur sauvegarde RAM: {e}")
 
     return etat
 
@@ -959,7 +1003,7 @@ agent_notification = construire_graphe_notification()
 logger.info("✅ Agent Notification compilé (version corrigée)")
 logger.info(f"   Modèle principal : {LLM_MODEL}")
 logger.info(f"   Modèle fallback  : {FALLBACK_MODEL}")
-logger.info("   Correctifs actifs : is_finished guard / charge_max=30 / position string / reset_memory auto")
+logger.info("   Correctifs actifs : is_finished guard / charge_max=30 / position string / reset_memory auto / dédoublonnage notif")
 
 # ══════════════════════════════════════════════════════════════════
 # 17 ─ FONCTION PRINCIPALE
