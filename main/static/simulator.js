@@ -15,15 +15,15 @@ function startJourney() {
         body: JSON.stringify({destination: city})
     }).then(r => r.json()).then(data => {
         const statusEl = document.getElementById('sim-status');
-        if (statusEl) statusEl.textContent = '🚛 Trajet démarré vers ' + city;
+        if (statusEl) statusEl.textContent = ' Trajet démarré vers ' + city;
         
-        // ✅ Réinitialiser le compteur de notifications côté client
+        //  Réinitialiser le compteur de notifications côté client
         // pour que les nouvelles notifications déclenchent le son correctement
         if (typeof notifLastCount !== 'undefined') {
             notifLastCount = 0;
         }
         
-        // ✅ Vider l'affichage des notifications si la page est visible
+        //  Vider l'affichage des notifications si la page est visible
         const notifContainer = document.getElementById('notifications-list');
         if (notifContainer) {
             notifContainer.innerHTML = '<div class="notif-empty">Nouveau trajet démarré. En attente d\'alertes...</div>';
@@ -35,7 +35,7 @@ function stopJourney() {
     fetch('/api/simulator/stop', { method: 'POST' })
         .then(r => r.json()).then(data => {
             const statusEl = document.getElementById('sim-status');
-            if (statusEl) statusEl.textContent = '⛔ Trajet arrêté';
+            if (statusEl) statusEl.textContent = ' Trajet arrêté';
         }).catch(e => console.error('Erreur arrêt:', e));
 }
 

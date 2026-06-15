@@ -1,23 +1,19 @@
-""" 
-╔══════════════════════════════════════════════════════════════════╗
-║  TruckMind - Backend Flask v2.0                                  ║
-║  Intelligence Embarquée Camion Volvo FH/FM                       ║
-║                                                                  ║
-║  Architecture : Flask + SQLite + ChromaDB + LLM (Groq)           ║
-║  Auteure      : AFFAKI Aya - EST Tetouan - IA DUT 2025-2026      ║
-╚══════════════════════════════════════════════════════════════════╝
+# TruckMind - Backend Flask v2.0
+# Intelligence Embarquee Camion Volvo FH/FM
+#
+# Architecture : Flask + SQLite + ChromaDB + LLM (Groq)
+# Auteure      : AFFAKI Aya - EST Tetouan - IA DUT 2025-2026
 
-Routes API :
-  GET  /                    → Frontend HTML
-  GET  /api/status          → Statut du système
-  POST /api/chat            → Requête RAG (SQL + ChromaDB) → LLM
-  GET  /api/fleet/stats     → Statistiques globales flotte
-  GET  /api/fleet/alerts    → Alertes actives (ROUGE/JAUNE)
-  GET  /api/vehicle/<id>    → Données véhicule spécifique
-  GET  /api/dtc/<code>      → Diagnostic DTC
-  GET  /api/thresholds      → Seuils techniques
-  GET  /api/knowledge/search?q= → Recherche dans la base DTC
-"""
+# Routes API :
+#   GET  /                    -> Frontend HTML
+#   GET  /api/status          -> Statut du systeme
+#   POST /api/chat            -> Requete RAG (SQL + ChromaDB) -> LLM
+#   GET  /api/fleet/stats     -> Statistiques globales flotte
+#   GET  /api/fleet/alerts    -> Alertes actives (ROUGE/JAUNE)
+#   GET  /api/vehicle/<id>    -> Donnees vehicule specifique
+#   GET  /api/dtc/<code>      -> Diagnostic DTC
+#   GET  /api/thresholds      -> Seuils techniques
+#   GET  /api/knowledge/search?q= -> Recherche dans la base DTC
 
 import os
 import re
@@ -47,14 +43,14 @@ _ENV_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file_
 load_dotenv(_ENV_PATH)
 
 
-# ─── Config ──────────────────────────────────────────────────────
+# --- Config ---------------------------------------------------------
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
 KNOW_DIR   = os.path.join(BASE_DIR, "knowledge")
 TMPL_DIR   = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
-# ─── ChromaDB & PDF - chemins fixes ──────────────────────────────
+# --- ChromaDB & PDF - chemins fixes ---------------------------------
 CHROMA_DIR = os.environ.get("CHROMA_DIR", os.path.join(BASE_DIR, "data"))
 
 pdf_env = os.environ.get("PDF_FILES")
@@ -63,15 +59,15 @@ if pdf_env:
 else:
     PDF_FILES = [os.path.join(PROJECT_ROOT, "uploads", "rapport_Manuel.pdf")]
 
-# ─── SQLite ───────────────────────────────────────────────────────
+# --- SQLite ----------------------------------------------------------
 DB_PATH   = os.path.join(KNOW_DIR, "truck_diagnostic.db")
 
-# ─── LLM ─────────────────────────────────────────────────────────
+# --- LLM ------------------------------------------------------------
 LLM_MODEL = os.environ.get("LLM_MODEL", "qwen/qwen3-32b")
 GROQ_KEY  = os.environ.get("GROQ_API_KEY", "")
 TOP_K     = 9
 
-# ─── Embedding (même config que le notebook) ─────────────────────
+# --- Embedding (meme config que le notebook) ------------------------
 EMBED_MODEL   = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
 TAILLE_CHUNK  = 118   # tokens - max_seq_length=128, marge 10
 CHEVAUCHEMENT = 30    # ~25 % overlap
@@ -93,9 +89,9 @@ app = Flask(
 )
 app.config["JSON_ENSURE_ASCII"] = False
 
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 # SECURITY CONFIGURATION
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 # CORS Protection - Restrict to specific origins in production
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -115,23 +111,23 @@ def set_security_headers(response):
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
     return response
 
-# ═══════════════════════════════════════════════════════════════════
-# CHROMADB PIPELINE - Indexation PDF + Recherche Sémantique
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
+# CHROMADB PIPELINE - Indexation PDF + Recherche Semantique
+# ====================================================================
 
-# État global du pipeline vectoriel (chargé une seule fois au démarrage)
+# Etat global du pipeline vectoriel (charge une seule fois au demarrage)
 _pipeline: Dict[str, Any] = {"embed_obj": None, "index_obj": None, "ready": False}
 
 
 def _get_prefix(filename: str) -> str:
-    """Génère un préfixe d'ID court depuis le nom de fichier."""
+    """Genere un prefixe d'ID court depuis le nom de fichier."""
     base = os.path.splitext(os.path.basename(filename))[0]
     base = re.sub(r"[^a-zA-Z0-9]", "_", base).lower()
     return "manuel" if "manuel" in base else base
 
 
 def _charger_modele_embedding():
-    """Charge le modèle HuggingFace (lazy, une seule fois)."""
+    """Charge le modele HuggingFace (lazy, une seule fois)."""
     try:
         from langchain_community.embeddings import HuggingFaceEmbeddings
     except ImportError:
@@ -142,16 +138,16 @@ def _charger_modele_embedding():
         model_name=EMBED_MODEL,
         model_kwargs={"device": "cpu"}
     )
-    log.info("Modèle embedding prêt.")
+    log.info("Modele embedding pret.")
     return emb
 
 
 def init_chroma_pipeline(force_reindex: bool = False) -> bool:
     """
     Initialise le pipeline ChromaDB :
-      - Si la collection existe et n'est pas vide → chargement depuis cache
-      - Sinon → chunking PDF + calcul embeddings + indexation
-    Retourne True si le pipeline est prêt.
+      - Si la collection existe et n'est pas vide -> chargement depuis cache
+      - Sinon -> chunking PDF + calcul embeddings + indexation
+    Retourne True si le pipeline est pret.
     """
     global _pipeline
 
@@ -165,7 +161,7 @@ def init_chroma_pipeline(force_reindex: bool = False) -> bool:
 
         client = chromadb.PersistentClient(path=CHROMA_DIR)
 
-        # ── Tentative de chargement depuis cache ─────────────────
+        # --- Tentative de chargement depuis cache --------------------
         if not force_reindex:
             try:
                 col   = client.get_collection("truck_rag")
@@ -176,12 +172,12 @@ def init_chroma_pipeline(force_reindex: bool = False) -> bool:
                     _pipeline.update(embed_obj=emb, index_obj=col, ready=True)
                     return True
             except Exception:
-                pass  # collection absente → on réindexe
+                pass  # collection absente -> on reindexe
 
-        # ── Chargement des PDFs ──────────────────────────────────
+        # --- Chargement des PDFs -------------------------------------
         valid_pdfs = [f for f in PDF_FILES if os.path.exists(f)]
         if not valid_pdfs:
-            log.warning(f"Aucun PDF valide trouvé parmi : {PDF_FILES}")
+            log.warning(f"Aucun PDF valide trouve parmi : {PDF_FILES}")
             return False
 
         all_docs = []
@@ -192,22 +188,22 @@ def init_chroma_pipeline(force_reindex: bool = False) -> bool:
             for doc in docs:
                 doc.metadata["source_file"] = os.path.basename(pdf_path)
             all_docs.extend(docs)
-            log.info(f"  → {len(docs)} pages chargées")
+            log.info(f"  -> {len(docs)} pages chargees")
 
         if not all_docs:
-            log.error("Aucune page chargée depuis les PDFs.")
+            log.error("Aucune page chargee depuis les PDFs.")
             return False
 
-        # ── Chunking ─────────────────────────────────────────────
+        # --- Chunking ------------------------------------------------
         splitter = SentenceTransformersTokenTextSplitter(
             model_name=EMBED_MODEL,
             chunk_size=TAILLE_CHUNK,
             chunk_overlap=CHEVAUCHEMENT
         )
         chunks = splitter.split_documents(all_docs)
-        log.info(f"Chunking : {len(all_docs)} pages → {len(chunks)} chunks")
+        log.info(f"Chunking : {len(all_docs)} pages -> {len(chunks)} chunks")
 
-        # ── Construction des listes ids / textes / métadonnées ───
+        # --- Construction des listes ids / textes / metadonnees -----
         ids_list, texts_list, metadata_list = [], [], []
         compteurs: Dict[str, int] = {}
         for chunk in chunks:
@@ -221,13 +217,13 @@ def init_chroma_pipeline(force_reindex: bool = False) -> bool:
             texts_list.append(chunk.page_content)
             metadata_list.append(meta)
 
-        # ── Embeddings ────────────────────────────────────────────
+        # --- Embeddings ----------------------------------------------
         emb  = _charger_modele_embedding()
-        log.info(f"Calcul embeddings pour {len(texts_list)} chunks…")
+        log.info(f"Calcul embeddings pour {len(texts_list)} chunks...")
         vecs = emb.embed_documents(texts_list)
-        log.info("Embeddings calculés.")
+        log.info("Embeddings calcules.")
 
-        # ── Indexation ChromaDB ───────────────────────────────────
+        # --- Indexation ChromaDB -------------------------------------
         try:
             client.delete_collection("truck_rag")
         except Exception:
@@ -244,11 +240,11 @@ def init_chroma_pipeline(force_reindex: bool = False) -> bool:
             )
 
         _pipeline.update(embed_obj=emb, index_obj=col, ready=True)
-        log.info(f"ChromaDB prêt - {len(chunks)} chunks indexés.")
+        log.info(f"ChromaDB pret - {len(chunks)} chunks indexes.")
         return True
 
     except ImportError as e:
-        log.error(f"Dépendance manquante pour ChromaDB/LangChain : {e}")
+        log.error(f"Dependance manquante pour ChromaDB/LangChain : {e}")
         return False
     except Exception as e:
         log.error(f"Erreur init ChromaDB : {e}", exc_info=True)
@@ -257,16 +253,16 @@ def init_chroma_pipeline(force_reindex: bool = False) -> bool:
 
 def rechercher_dans_chroma(question: str, top_k: int = TOP_K) -> Tuple[str, int]:
     """
-    Recherche sémantique dans ChromaDB.
+    Recherche semantique dans ChromaDB.
     Retourne (contexte_texte, nombre_chunks).
-    Si le pipeline n'est pas prêt, retourne ("", 0) sans planter.
+    Si le pipeline n'est pas pret, retourne ("", 0) sans planter.
     """
     global _pipeline
 
     if not _pipeline["ready"]:
         ok = init_chroma_pipeline()
         if not ok:
-            log.warning("ChromaDB non disponible - recherche vectorielle désactivée.")
+            log.warning("ChromaDB non disponible - recherche vectorielle desactivee.")
             return "", 0
 
     try:
@@ -284,16 +280,16 @@ def rechercher_dans_chroma(question: str, top_k: int = TOP_K) -> Tuple[str, int]
         log.error(f"Erreur recherche ChromaDB : {e}")
         return "", 0
 
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 # DATABASE LAYER
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 
 def get_db() -> sqlite3.Connection:
     """Thread-safe SQLite connection via Flask's g object."""
     if "db" not in g:
         if not os.path.exists(DB_PATH):
             raise RuntimeError(
-                f"Base de données introuvable : {DB_PATH}\n"
+                f"Base de donnees introuvable : {DB_PATH}\n"
                 "Lancez d'abord : python setup_db.py"
             )
         conn = sqlite3.connect(DB_PATH, check_same_thread=False)
@@ -310,16 +306,16 @@ def close_db(exc=None):
         db.close()
 
 
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 # SQL RETRIEVAL - Routeur intelligent V5
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 
 MOTS_STATS   = ["combien","nombre","total","taux","pourcentage","%","moyenne",
-                "moyen","maximum","minimum","max","min","étendue","distribution",
-                "répartition","fréquence","proportion","statistique","count","avg","sum"]
+                "moyen","maximum","minimum","max","min","etendue","distribution",
+                "repartition","frequence","proportion","statistique","count","avg","sum"]
 MOTS_SEUILS  = ["seuil","threshold","limite","alerte","critique","pression",
-                "température","vibration","batterie","carburant","huile","pneu"]
-MOTS_ALERTES = ["alerte","dépassement","rouge","jaune","arrêt immédiat",
+                "temperature","vibration","batterie","carburant","huile","pneu"]
+MOTS_ALERTES = ["alerte","depassement","rouge","jaune","arret immediat",
                 "surveillance","warning"]
 
 def extraire_codes_dtc(texte: str) -> List[str]:
@@ -328,11 +324,11 @@ def extraire_codes_dtc(texte: str) -> List[str]:
 
 def extraire_vehicule_id(texte: str) -> List[str]:
     ids = []
-    ids_v = re.findall(r'\b(?:véhicule|vehicle|camion|truck|id)?[\s:\-#]*(V\d{1,4})\b',
+    ids_v = re.findall(r'\b(?:vehicule|vehicle|camion|truck|id)?[\s:\-#]*(V\d{1,4})\b',
                        texte, flags=re.IGNORECASE)
     ids += [f"V{int(v[1:]):04d}" for v in ids_v]
     if not ids:
-        ids_num = re.findall(r'\b(?:véhicule|vehicle|camion|truck|id)[\s:\-#](\d{1,4})\b',
+        ids_num = re.findall(r'\b(?:vehicule|vehicle|camion|truck|id)[\s:\-#](\d{1,4})\b',
                              texte, flags=re.IGNORECASE)
         ids += [f"V{int(n):04d}" for n in ids_num]
     if not ids:
@@ -357,8 +353,8 @@ def _rechercher_dtc(cursor, codes, top_k):
             """, (f"%{code}%", f"%{code}%", top_k))
             rows = cursor.fetchall()
         for r in rows:
-            lignes.append(f"[DTC] Code: {r[0]} | Symptôme: {r[1]} | "
-                         f"Système: {r[2]} | Pièce: {r[3]} | Gravité: {r[4]}")
+            lignes.append(f"[DTC] Code: {r[0]} | Symptome: {r[1]} | "
+                         f"Systeme: {r[2]} | Piece: {r[3]} | Gravite: {r[4]}")
     return lignes
 
 def _get_fleet_stats(cursor) -> str:
@@ -385,11 +381,11 @@ def _get_fleet_stats(cursor) -> str:
     taux_e = round(nb_entretien/total*100,2) if total else 0
     taux_c = round(nb_crit/total*100,2)      if total else 0
     return (f"### FLEET_STATS ({total} enregistrements)\n"
-            f"  ⚠️  score_predictif : 0.0=faible → 1.0=critique | ARRÊT si >0.8\n"
-            f"  • Score   : Moy={avg_s} | Min={min_s} | Max={max_s} | Critiques: {nb_crit} ({taux_c}%)\n"
-            f"  • Anomalies      : {nb_anomalies}/{total} ({taux_a}%)\n"
-            f"  • Entretien      : {nb_entretien}/{total} ({taux_e}%)\n"
-            f"  • Qualité huile  : Moy={avg_h} | Min={min_h} | Max={max_h}\n"
+            f"  WARNING: score_predictif : 0.0=faible -> 1.0=critique | ARRET si >0.8\n"
+            f"  - Score   : Moy={avg_s} | Min={min_s} | Max={max_s} | Critiques: {nb_crit} ({taux_c}%)\n"
+            f"  - Anomalies      : {nb_anomalies}/{total} ({taux_a}%)\n"
+            f"  - Entretien      : {nb_entretien}/{total} ({taux_e}%)\n"
+            f"  - Qualite huile  : Moy={avg_h} | Min={min_h} | Max={max_h}\n"
             f"### FIN FLEET_STATS")
 
 def _rechercher_stats_detaillees(cursor) -> List[str]:
@@ -420,10 +416,10 @@ def _rechercher_par_vehicule(cursor, ids, top_k) -> List[str]:
         """, (vid, top_k))
         for r in cursor.fetchall():
             score = r[5]
-            risque = ("🔴 CRITIQUE" if score and score > 0.8 else
-                      "🟠 ÉLEVÉ"   if score and score > 0.5 else
-                      "🟡 MODÉRÉ"  if score and score > 0.2 else "🟢 FAIBLE")
-            ligne = (f"[Véhicule {r[0]}] {r[1]} | {r[2]} | Freins: {r[3]} "
+            risque = ("ROUGE CRITIQUE" if score and score > 0.8 else
+                      "ORANGE ELEVE"   if score and score > 0.5 else
+                      "JAUNE MODERE"  if score and score > 0.2 else "VERT FAIBLE")
+            ligne = (f"[Vehicule {r[0]}] {r[1]} | {r[2]} | Freins: {r[3]} "
                     f"| Huile: {r[4]} | Score: {score} ({risque}) "
                     f"| Temp: {r[6]}°C | Pneus: {r[7]} PSI")
             if r[8]:
@@ -446,7 +442,7 @@ def _rechercher_seuils(cursor, question, top_k) -> List[str]:
             """, (param,))
             for r in cursor.fetchall():
                 lignes.append(f"[Seuil] {r[0]} | Min: {r[1]} | Max: {r[2]} "
-                             f"| Critique: {r[3]} {r[4]} | {r[5]} → {r[6]} | Action: {r[7]}")
+                             f"| Critique: {r[3]} {r[4]} | {r[5]} -> {r[6]} | Action: {r[7]}")
     else:
         cursor.execute("""
             SELECT parametre, valeur_min, valeur_max, valeur_critique,
@@ -469,8 +465,8 @@ def _rechercher_alertes(cursor, top_k) -> List[str]:
         ORDER BY ma.id DESC LIMIT ?
     """, (top_k,))
     for r in cursor.fetchall():
-        lignes.append(f"[Alerte {r[2]}] Véhicule {r[0]} | {r[1]}: {r[3]} {r[6]} "
-                     f"({r[4]}) → {r[5]}")
+        lignes.append(f"[Alerte {r[2]}] Vehicule {r[0]} | {r[1]}: {r[3]} {r[6]} "
+                     f"({r[4]}) -> {r[5]}")
     return lignes
 
 def _rechercher_fallback(cursor, question, top_k) -> List[str]:
@@ -489,22 +485,22 @@ def _rechercher_fallback(cursor, question, top_k) -> List[str]:
     lignes = []
     for r in cursor.fetchall():
         score = r[5]
-        risque = ("🔴 CRITIQUE" if score and score > 0.8 else
-                  "🟠 ÉLEVÉ"   if score and score > 0.5 else
-                  "🟡 MODÉRÉ"  if score and score > 0.2 else "🟢 FAIBLE")
-        lignes.append(f"[Maintenance] Véhicule {r[0]} | {r[1]} | {r[2]} "
+        risque = ("ROUGE CRITIQUE" if score and score > 0.8 else
+                  "ORANGE ELEVE"   if score and score > 0.5 else
+                  "JAUNE MODERE"  if score and score > 0.2 else "VERT FAIBLE")
+        lignes.append(f"[Maintenance] Vehicule {r[0]} | {r[1]} | {r[2]} "
                      f"| Freins: {r[3]} | Score: {score} ({risque})")
     return lignes
 
 def rechercher_dans_sql(question: str, top_k: int = TOP_K) -> Tuple[str, int, str]:
     """
-    Routeur intelligent V5 - retourne (contexte, nb_résultats, type_requête)
+    Routeur intelligent V5 - retourne (contexte, nb_resultats, type_requete)
     """
     db = get_db()
     cursor = db.cursor()
     lignes = []
     strategie = []
-    type_req  = "général"
+    type_req  = "general"
 
     codes_dtc = extraire_codes_dtc(question)
     if codes_dtc:
@@ -530,33 +526,33 @@ def rechercher_dans_sql(question: str, top_k: int = TOP_K) -> Tuple[str, int, st
     if any(mot in q_lower for mot in MOTS_SEUILS):
         lignes += _rechercher_seuils(cursor, question, top_k)
         strategie.append("D:SEUILS")
-        if type_req == "général":
+        if type_req == "general":
             type_req = "seuils"
 
     if any(mot in q_lower for mot in MOTS_ALERTES):
         lignes += _rechercher_alertes(cursor, top_k)
         strategie.append("E:ALERTES")
-        if type_req == "général":
+        if type_req == "general":
             type_req = "alertes"
 
     if not strategie:
         lignes += _rechercher_fallback(cursor, question, top_k)
         strategie.append("F:FALLBACK")
 
-    # Dédoublonnage
+    # Dedoublonnage
     seen, final = set(), []
     for l in lignes:
         if l not in seen:
             seen.add(l)
             final.append(l)
 
-    log.info(f"SQL [{', '.join(strategie)}] → {len(final)} résultats")
+    log.info(f"SQL [{', '.join(strategie)}] -> {len(final)} resultats")
     return "\n\n---\n\n".join(final), len(final), type_req
 
 
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 # LLM INTEGRATION - Groq (Qwen3-32b) ou compatible OpenAI
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 
 SYSTEM_PROMPT = """
     You are TruckMind — an expert onboard diagnostic intelligence embedded
@@ -581,54 +577,54 @@ SYSTEM_PROMPT = """
     5. **ChromaDB**                    — Technical manual chunks : specs, procedures,
                                         torque values, EURO norms
 
-    ### ⚠️ CRITICAL — score_predictif Scale:
-    - Scale : 0.0 = very low risk  →  1.0 = critical risk  (NOT 0–100)
-    - ARRÊT IMMÉDIAT if score_predictif > 0.8
-    - ÉLEVÉ          if score_predictif > 0.5
-    - MODÉRÉ         if score_predictif > 0.2
-    - FAIBLE         if score_predictif ≤ 0.2
+    ### WARNING — score_predictif Scale:
+    - Scale : 0.0 = very low risk  ->  1.0 = critical risk  (NOT 0-100)
+    - ARRET IMMEDIAT if score_predictif > 0.8
+    - ELEVE          if score_predictif > 0.5
+    - MODERE         if score_predictif > 0.2
+    - FAIBLE         if score_predictif <= 0.2
     - NEVER interpret score_predictif as a percentage out of 100.
 
-    ### ⚠️ CRITICAL — Embedded Technical Thresholds (Volvo FH/FM manual):
-    COOLANT TEMPERATURE (réfrigérant) — page 11 & 19:
-    • 80–100°C  → Normal operating range
-    • 100°C     → Lampe JAUNE — système proche surchauffe, surveiller
-    • 101°C     → Lampe ROUGE — réduire couple moteur progressivement
+    ### WARNING — Embedded Technical Thresholds (Volvo FH/FM manual):
+    COOLANT TEMPERATURE (refrigerant) — page 11 & 19:
+    - 80-100°C  -> Normal operating range
+    - 100°C     -> Lampe JAUNE — systeme proche surchauffe, surveiller
+    - 101°C     -> Lampe ROUGE — reduire couple moteur progressivement
     OIL TEMPERATURE — page 19-20:
-    • 123°C     → Lampe JAUNE supplémentaire
-    • 125°C     → Lampe ROUGE — ARRÊT IMMÉDIAT, réduire couple
+    - 123°C     -> Lampe JAUNE supplementaire
+    - 125°C     -> Lampe ROUGE — ARRET IMMEDIAT, reduire couple
     OIL PRESSURE — page 11:
-    • Normal : 3–5.5 bars (300–550 kPa) moteur chaud
-    • Si voyant allumé → ARRÊT IMMÉDIAT, déconnecter moteur
+    - Normal : 3-5.5 bars (300-550 kPa) moteur chaud
+    - Si voyant allume -> ARRET IMMEDIAT, deconnecter moteur
     TCS SYSTEM — page 32:
-    • At speeds < 40 km/h → TCS acts as automatic differential brake (brakes drive wheels)
-    • At speeds > 40 km/h → TCS only reduces engine torque (no wheel braking)
+    - At speeds < 40 km/h -> TCS acts as automatic differential brake (brakes drive wheels)
+    - At speeds > 40 km/h -> TCS only reduces engine torque (no wheel braking)
     CABIN TILT SAFETY — page 77:
-    • Before tilting: remove all loose objects inside cabin (risk of breaking windshield)
-    • Required checks: parking brake ON, neutral gear, doors closed, clutch reservoir cap closed
-    • NEVER work under or pass in front of a partially tilted cabin
+    - Before tilting: remove all loose objects inside cabin (risk of breaking windshield)
+    - Required checks: parking brake ON, neutral gear, doors closed, clutch reservoir cap closed
+    - NEVER work under or pass in front of a partially tilted cabin
     IDLE SPEED — page 25:
-    • Normal range: 550–650 tr/min (factory default: 600 tr/min)
+    - Normal range: 550-650 tr/min (factory default: 600 tr/min)
 
     ### Reasoning Process (follow silently before answering):
     Step 1 — IDENTIFY query type:
-            • DTC code?           → read ###DONNÉES_SQL [DTC] blocks
-            • Vehicle specific?   → read ###DONNÉES_SQL [Véhicule] blocks
-            • Threshold/alert?    → read ###DONNÉES_SQL [Seuil] and [Alerte] blocks
-            • Statistical?        → read ###FLEET_STATS block
-            • General maintenance?→ read ###DONNÉES_SQL [Maintenance] blocks
-    Step 2 — READ ###DONNÉES_SQL (structured SQLite data — all relevant blocks)
+            - DTC code?           -> read ###DONNEES_SQL [DTC] blocks
+            - Vehicle specific?   -> read ###DONNEES_SQL [Vehicule] blocks
+            - Threshold/alert?    -> read ###DONNEES_SQL [Seuil] and [Alerte] blocks
+            - Statistical?        -> read ###FLEET_STATS block
+            - General maintenance?-> read ###DONNEES_SQL [Maintenance] blocks
+    Step 2 — READ ###DONNEES_SQL (structured SQLite data — all relevant blocks)
     Step 3 — READ ###EXTRAITS_MANUEL (ChromaDB semantic chunks)
     Step 4 — CROSS-REFERENCE both — do they confirm or contradict each other?
     Step 5 — SYNTHESIZE:
-            - Direct answer        → use it.
-            - Statistical question → use FLEET_STATS values directly (AVG/MIN/MAX provided).
+            - Direct answer        -> use it.
+            - Statistical question -> use FLEET_STATS values directly (AVG/MIN/MAX provided).
             Never refuse a statistical question if FLEET_STATS is available.
-            IMPORTANT: score_predictif THEORETICAL range = [0.0 – 1.0] always.
+            IMPORTANT: score_predictif THEORETICAL range = [0.0 - 1.0] always.
             Observed data min/max may differ, but the SCALE is always 0 to 1.
             When asked about "range" or "plage", state BOTH theoretical range AND observed values.
-            - Threshold question   → list ALL thresholds for the parameter as a table.
-            - Alert question       → list vehicles with ROUGE alerts first.
+            - Threshold question   -> list ALL thresholds for the parameter as a table.
+            - Alert question       -> list vehicles with ROUGE alerts first.
     Step 6 — FLAG only if ALL sources return truly empty results.
 
     ### Rules:
@@ -637,24 +633,24 @@ SYSTEM_PROMPT = """
     - Use EXACT technical terms from documents.
     - DUAL CONDITIONS: When maintenance intervals are given as "X km OR Y months",
     ALWAYS state BOTH values and specify: "whichever comes first".
-    ❌ WRONG: "change oil every 30 000 km"
-    ✅ RIGHT:  "change oil every 30 000 km OR 12 months — whichever comes first"
+    WRONG: "change oil every 30 000 km"
+    RIGHT:  "change oil every 30 000 km OR 12 months — whichever comes first"
     - READING THRESHOLDS TABLE: Multiple rows for the same parameter = DIFFERENT alert levels.
     ALWAYS list ALL rows. Never collapse two rows into one — they are distinct alarm levels.
-    Example for "Température Moteur":
+    Example for "Temperature Moteur":
         | 100°C | JAUNE | SURVEILLANCE | surveiller — proche surchauffe |
-        | 101°C | ROUGE | ARRÊT        | réduire couple progressivement |
+        | 101°C | ROUGE | ARRET        | reduire couple progressivement |
     - FLEET vs VEHICLE rule:
     FLEET_STATS = global averages only (all 3618 records).
-    For a specific vehicle_id query → use ONLY that vehicle's rows from [Véhicule] blocks.
+    For a specific vehicle_id query -> use ONLY that vehicle's rows from [Vehicule] blocks.
     NEVER mix fleet averages into a single-vehicle answer.
-    - ARRÊT IMMÉDIAT when: score_predictif > 0.8  OR  lampe = 'ROUGE'
+    - ARRET IMMEDIAT when: score_predictif > 0.8  OR  lampe = 'ROUGE'
     - NEVER say "information non disponible" unless ALL sources return empty.
-    If no direct answer, infer from related fields and state: "Déduit des données disponibles."
+    If no direct answer, infer from related fields and state: "Deduit des donnees disponibles."
     - No invented specs. No hallucinated codes or dates.
 
     ### Output Format:
-    - Emergency alerts (ROUGE / ARRÊT IMMÉDIAT) go FIRST.
+    - Emergency alerts (ROUGE / ARRET IMMEDIAT) go FIRST.
     - **DTC Diagnostic:**     code + description + severity + system + part + action
     - **Maintenance Report:** vehicle_id + date + brake state + oil + score (with risk label)
     - **Threshold Table:**    parameter + min + max + critical + unit + lamp + action
@@ -662,12 +658,12 @@ SYSTEM_PROMPT = """
     - **Technical Spec:**     exact values with units from manual
     - Bullet points for lists; plain text for explanations.
     - Max 5 bullet points per section.
-    - Always end with: ⚠️ Action recommandée: [action]
+    - Always end with: WARNING Action recommandee: [action]
 """
 
 USER_TEMPLATE = """
     ###Contexte
-    DONNÉES_SQL:
+    DONNEES_SQL:
     {resultat_sql}
 
     EXTRAITS_MANUEL:
@@ -681,9 +677,9 @@ USER_TEMPLATE = """
 """
 
 
-# ═══════════════════════════════════════════════════════════════════
-# LANGGRAPH AGENT - Pipeline RAG (Router → SQL → Vector → Analyser → LLM)
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
+# LANGGRAPH AGENT - Pipeline RAG (Router -> SQL -> Vector -> Analyser -> LLM)
+# ====================================================================
 
 class EtatDiagnostic(TypedDict):
     question:            str
@@ -698,7 +694,7 @@ class EtatDiagnostic(TypedDict):
     nb_vector:           int
 
 
-# ── Nœud 1 - Router : classifie le type de requête ───────────────
+# --- Noeud 1 - Router : classifie le type de requete -----------------
 def noeud_router(etat: EtatDiagnostic) -> EtatDiagnostic:
     q = etat["question"].lower()
 
@@ -707,50 +703,50 @@ def noeud_router(etat: EtatDiagnostic) -> EtatDiagnostic:
     elif any(kw in q for kw in [
         "combien", "nombre", "total", "taux", "pourcentage",
         "moyenne", "maximum", "minimum", "statistique",
-        "répartition", "distribution", "count", "avg"
+        "repartition", "distribution", "count", "avg"
     ]):
         type_req, besoin_vector = "stats", False
     elif re.search(r'\bV\d{1,4}\b', q, flags=re.IGNORECASE):
         type_req, besoin_vector = "vehicule", False
     elif any(kw in q for kw in [
         "seuil", "threshold", "limite", "valeur critique",
-        "pression pneu", "température moteur", "qualité huile",
-        "état batterie", "vibration", "consommation"
+        "pression pneu", "temperature moteur", "qualite huile",
+        "etat batterie", "vibration", "consommation"
     ]):
         type_req, besoin_vector = "seuils", True
     elif any(kw in q for kw in [
-        "alerte", "alarme", "rouge", "jaune", "arrêt immédiat",
-        "surveillance", "dépassement", "warning", "critique"
+        "alerte", "alarme", "rouge", "jaune", "arret immediat",
+        "surveillance", "depassement", "warning", "critique"
     ]):
         type_req, besoin_vector = "alertes", False
     elif any(kw in q for kw in [
-        "manuel", "volvo", "procédure", "couple", "tachymètre",
-        "turbo", "démarrage", "euro", "norme", "conduite", "km"
+        "manuel", "volvo", "procedure", "couple", "tachymetre",
+        "turbo", "demarrage", "euro", "norme", "conduite", "km"
     ]):
         type_req, besoin_vector = "technique", True
     else:
-        type_req, besoin_vector = "général", True
+        type_req, besoin_vector = "general", True
 
-    log.info(f"Router → type: '{type_req}' | vector: {besoin_vector}")
+    log.info(f"Router -> type: '{type_req}' | vector: {besoin_vector}")
     return {**etat, "type_requete": type_req, "besoin_vector": besoin_vector}
 
 
-# ── Nœud 2 - SQL ─────────────────────────────────────────────────
+# --- Noeud 2 - SQL ----------------------------------------------------
 def noeud_sql(etat: EtatDiagnostic) -> EtatDiagnostic:
     contexte, n, _ = rechercher_dans_sql(etat["question"], TOP_K)
-    log.info(f"SQL → {n} résultats")
-    return {**etat, "resultat_sql": contexte or "Aucune donnée SQL pertinente.", "nb_sql": n}
+    log.info(f"SQL -> {n} resultats")
+    return {**etat, "resultat_sql": contexte or "Aucune donnee SQL pertinente.", "nb_sql": n}
 
 
-# ── Nœud 3 - Vector (conditionnel) ───────────────────────────────
+# --- Noeud 3 - Vector (conditionnel) ---------------------------------
 def noeud_vector(etat: EtatDiagnostic) -> EtatDiagnostic:
     contexte, n = rechercher_dans_chroma(etat["question"], TOP_K)
-    log.info(f"ChromaDB → {n} chunks")
-    return {**etat, "resultat_vectoriel": contexte or "Aucun extrait technique trouvé.", "nb_vector": n}
+    log.info(f"ChromaDB -> {n} chunks")
+    return {**etat, "resultat_vectoriel": contexte or "Aucun extrait technique trouve.", "nb_vector": n}
 
 
 def noeud_skip_vector(etat: EtatDiagnostic) -> EtatDiagnostic:
-    log.info("ChromaDB ignoré (non nécessaire pour ce type)")
+    log.info("ChromaDB ignore (non necessaire pour ce type)")
     return {**etat, "resultat_vectoriel": "", "nb_vector": 0}
 
 
@@ -758,10 +754,10 @@ def condition_vector(etat: EtatDiagnostic) -> Literal["vector", "skip_vector"]:
     return "vector" if etat["besoin_vector"] else "skip_vector"
 
 
-# ── Nœud 4 - Analyser (construction du prompt) ───────────────────
+# --- Noeud 4 - Analyser (construction du prompt) --------------------
 def noeud_analyser(etat: EtatDiagnostic) -> EtatDiagnostic:
     prompt = USER_TEMPLATE.format(
-        resultat_sql=etat.get("resultat_sql", "Aucune donnée SQL"),
+        resultat_sql=etat.get("resultat_sql", "Aucune donnee SQL"),
         resultat_vectoriel=etat.get("resultat_vectoriel", "Aucun extrait technique"),
         historique=etat.get("historique", "Aucun historique"),
         question=etat.get("question", "Quel est le diagnostic ?")
@@ -769,7 +765,7 @@ def noeud_analyser(etat: EtatDiagnostic) -> EtatDiagnostic:
     return {**etat, "prompt_utilisateur": prompt}
 
 
-# ── Nœud 5 - LLM (Groq) ─────────────────────────────────────────
+# --- Noeud 5 - LLM (Groq) -------------------------------------------
 def noeud_llm(etat: EtatDiagnostic) -> EtatDiagnostic:
     if not GROQ_KEY:
         answer = _generate_demo_response(etat["question"], etat.get("resultat_sql", ""))
@@ -798,7 +794,7 @@ def noeud_llm(etat: EtatDiagnostic) -> EtatDiagnostic:
 
         # Strip <think> blocks if present (Qwen3 reasoning)
         reponse = re.sub(r"<think>.*?</think>", "", reponse, flags=re.DOTALL).strip()
-        log.info(f"LLM → {len(reponse)} caractères générés")
+        log.info(f"LLM -> {len(reponse)} caracteres generes")
         return {**etat, "reponse_llm": reponse}
 
     except Exception as e:
@@ -807,7 +803,7 @@ def noeud_llm(etat: EtatDiagnostic) -> EtatDiagnostic:
         return {**etat, "reponse_llm": answer}
 
 
-# ── Construction du graphe LangGraph ──────────────────────────────
+# --- Construction du graphe LangGraph --------------------------------
 def construire_graphe():
     graphe = StateGraph(EtatDiagnostic)
 
@@ -839,7 +835,7 @@ def construire_graphe():
 
 
 agent_truck = construire_graphe()
-log.info("LangGraph Agent compilé: router → sql → [vector | skip_vector] → analyser → llm")
+log.info("LangGraph Agent compile: router -> sql -> [vector | skip_vector] -> analyser -> llm")
 
 
 def poser_question(question: str, historique: str = "") -> dict:
@@ -870,44 +866,44 @@ def _generate_demo_response(question: str, context: str) -> str:
         for line in lines:
             if f"Code: {code}" in line:
                 parts = dict(p.split(": ", 1) for p in line.replace("[DTC] ", "").split(" | ") if ": " in p)
-                return (f"**🔧 Diagnostic DTC : {code}**\n\n"
-                       f"- **Symptôme** : {parts.get('Symptôme','N/A')}\n"
-                       f"- **Système** : {parts.get('Système','N/A')}\n"
-                       f"- **Pièce** : {parts.get('Pièce','N/A')}\n"
-                       f"- **Gravité** : {parts.get('Gravité','N/A')}\n\n"
-                       f"⚠️ Action recommandée : Inspecter le composant indiqué et consulter un technicien agréé Volvo.")
+                return (f"**DIAGNOSTIC DTC : {code}**\n\n"
+                       f"- **Symptome** : {parts.get('Symptome','N/A')}\n"
+                       f"- **Systeme** : {parts.get('Systeme','N/A')}\n"
+                       f"- **Piece** : {parts.get('Piece','N/A')}\n"
+                       f"- **Gravite** : {parts.get('Gravite','N/A')}\n\n"
+                       f"WARNING Action recommandee : Inspecter le composant indique et consulter un technicien agree Volvo.")
 
     # Stats
     if any(w in q for w in ["combien","taux","pourcentage","statistique"]):
         for line in lines:
             if "FLEET_STATS" in line and "enregistrements" in line:
-                return (f"**📊 Statistiques de la flotte**\n\n{context[:600]}\n\n"
-                       f"⚠️ Action recommandée : Prioriser les véhicules avec score_predictif > 0.8 pour maintenance immédiate.")
+                return (f"**STATISTIQUES DE LA FLOTTE**\n\n{context[:600]}\n\n"
+                       f"WARNING Action recommandee : Prioriser les vehicules avec score_predictif > 0.8 pour maintenance immediate.")
 
     # Vehicle
     v_match = re.search(r'V(\d{4})', question, re.IGNORECASE)
     if v_match:
         vid = f"V{v_match.group(1)}"
         for line in lines:
-            if f"Véhicule {vid}" in line:
-                return (f"**[TruckMind] Rapport Véhicule {vid}**\n\n```\n{line}\n```\n\n"
-                       f"⚠️ Action recommandée : Vérifier le score prédictif et l'état des freins avant toute mise en circulation.")
+            if f"Vehicule {vid}" in line:
+                return (f"**[TruckMind] Rapport Vehicule {vid}**\n\n```\n{line}\n```\n\n"
+                       f"WARNING Action recommandee : Verifier le score predictif et l'etat des freins avant toute mise en circulation.")
 
     # Default
-    return (f"**🤖 TruckMind - Mode Démo**\n\n"
-           f"Données récupérées depuis la base SQLite :\n\n"
+    return (f"**TruckMind - Mode Demo**\n\n"
+           f"Donnees recuperees depuis la base SQLite :\n\n"
            f"```\n{context[:400]}\n```\n\n"
-           f"⚠️ Action recommandée : Configurez GROQ_API_KEY pour des réponses complètes du LLM.\n\n"
-           f"*Système opérationnel - RAG fonctionnel*")
+           f"WARNING Action recommandee : Configurez GROQ_API_KEY pour des reponses completes du LLM.\n\n"
+           f"*Systeme operationnel - RAG fonctionnel*")
 
 
-# ── Gestion de l'historique (JSON Persistant) ───────────────────────────
+# --- Gestion de l'historique (JSON Persistant) ----------------------
 HISTORY_FILE = os.environ.get("CONVERSATIONS_HISTORY_PATH", os.path.join(os.path.dirname(__file__), "conversations_history.json"))
 MAX_MESSAGES_PER_CONV = 10  # Limite stricte par conversation
 
 @app.route("/api/history", methods=["GET"])
 def get_history():
-    """Charge l'historique depuis le fichier JSON (persistant entre les redémarrages)."""
+    """Charge l'historique depuis le fichier JSON (persistant entre les redemarrages)."""
     if not os.path.exists(HISTORY_FILE):
         return jsonify([])
     try:
@@ -921,12 +917,12 @@ def get_history():
 @limiter.limit("100 per minute")
 def save_history():
     """Sauvegarde l'historique dans le fichier JSON.
-    Applique la limite de MAX_MESSAGES_PER_CONV messages par conversation côté serveur.
-    Le fichier est préservé entre les redémarrages (PAS de reset au démarrage).
+    Applique la limite de MAX_MESSAGES_PER_CONV messages par conversation cote serveur.
+    Le fichier est preserve entre les redemarrages (PAS de reset au demarrage).
     """
     try:
         data = request.get_json(force=True)
-        # Appliquer la limite côté serveur (sécurité)
+        # Appliquer la limite cote serveur (securite)
         if isinstance(data, list):
             for conv in data:
                 if isinstance(conv.get("messages"), list):
@@ -941,7 +937,7 @@ def save_history():
 
 @app.route("/api/history/count/<int:conv_id>", methods=["GET"])
 def get_conversation_message_count(conv_id: int):
-    """Retourne le nombre de messages dans une conversation spécifique."""
+    """Retourne le nombre de messages dans une conversation specifique."""
     if not os.path.exists(HISTORY_FILE):
         return jsonify({"count": 0, "limit": MAX_MESSAGES_PER_CONV, "locked": False})
     try:
@@ -959,9 +955,9 @@ def get_conversation_message_count(conv_id: int):
         return jsonify({"count": 0, "limit": MAX_MESSAGES_PER_CONV, "locked": False})
 
 
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 # ROUTES API
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 
 @app.route("/")
 def index():
@@ -1016,9 +1012,9 @@ def api_chat():
     if not question:
         return jsonify({"error": "Question vide"}), 400
     if len(question) > 5000:
-        return jsonify({"error": "Question trop longue (max 5000 caractères)"}), 400
+        return jsonify({"error": "Question trop longue (max 5000 caracteres)"}), 400
     if len(historique) > 10000:
-        return jsonify({"error": "Historique trop long (max 10000 caractères)"}), 400
+        return jsonify({"error": "Historique trop long (max 10000 caracteres)"}), 400
 
     t0 = time.time()
     try:
@@ -1155,14 +1151,14 @@ def api_vehicle(vehicule_id: str):
         rows = [dict(r) for r in cur.fetchall()]
 
         if not rows:
-            return jsonify({"error": f"Véhicule {vehicule_id} introuvable"}), 404
+            return jsonify({"error": f"Vehicule {vehicule_id} introuvable"}), 404
 
         # Compute risk level
         for r in rows:
             s = r.get("score_predictif") or 0
             r["niveau_risque"] = ("CRITIQUE" if s > 0.8 else
-                                  "ÉLEVÉ"    if s > 0.5 else
-                                  "MODÉRÉ"   if s > 0.2 else "FAIBLE")
+                                  "ELEVE"    if s > 0.5 else
+                                  "MODERE"   if s > 0.2 else "FAIBLE")
 
         return jsonify({
             "vehicule_id": vehicule_id,
@@ -1223,7 +1219,7 @@ def api_knowledge_search():
         q = request.args.get("q", "").strip()
         limit = min(int(request.args.get("limit", 10)), 50)
         if not q:
-            return jsonify({"error": "Paramètre 'q' requis"}), 400
+            return jsonify({"error": "Parametre 'q' requis"}), 400
 
         db = get_db()
         cur = db.cursor()
@@ -1271,36 +1267,35 @@ def api_top_risk():
             row = dict(r)
             s = row["score_max"] or 0
             row["niveau_risque"] = ("CRITIQUE" if s > 0.8 else
-                                    "ÉLEVÉ"    if s > 0.5 else
-                                    "MODÉRÉ"   if s > 0.2 else "FAIBLE")
+                                    "ELEVE"    if s > 0.5 else
+                                    "MODERE"   if s > 0.2 else "FAIBLE")
             vehicles.append(row)
         return jsonify({"vehicles": vehicles})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
-# ═══════════════════════════════════════════════════════════════════
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 # SIMULATOR & NOTIFICATIONS ROUTES
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 import atexit
 from main.services.simulator_service import simulator
 from main.services.history_service import clear_notifications_ram, get_truck_history 
 from main.services.report_service import generate_trip_report_html
 from main.services.notification_service import reset_memory
-# ─── Nettoyage automatique à l'arrêt ──
+# --- Nettoyage automatique a l'arret ---
 def _cleanup_on_shutdown():
-    log.info("🛑 Arrêt du serveur — suppression des notifications temporaires...")
-    clear_notifications_ram()   # ← AJOUTER LES PARENTHÈSES
+    log.info("Arret du serveur — suppression des notifications temporaires...")
+    clear_notifications_ram()   # <- AJOUTER LES PARENTHESES
     reset_memory()
-    log.info("✅ Notifications temporaires supprimées.")
+    log.info("Notifications temporaires supprimees.")
 
 atexit.register(_cleanup_on_shutdown)
 
-# Au démarrage
+# Au demarrage
 clear_notifications_ram()
 reset_memory()
-log.info("🚀 Démarrage du serveur : mémoire temporaire réinitialisée.")
+log.info("Demarrage du serveur : memoire temporaire reinitialisee.")
 
 
 @app.route("/simulator")
@@ -1326,29 +1321,29 @@ def start_simulator():
     # Effacer seulement les notifications du dernier trajet (RAM)
     from main.services.history_service import clear_notifications_ram
     clear_notifications_ram()
-    #Réinitialiser la mémoire des compteurs d'alertes (LangGraph)
+    #Reinitialiser la memoire des compteurs d'alertes (LangGraph)
     from main.services.notification_service import reset_memory
     reset_memory()
-    log.info("🔔 Notifications précédentes effacées — nouveau trajet démarré.")
+    log.info("Notifications precedentes effacees — nouveau trajet demarre.")
     simulator.start_journey()
-    return jsonify({"status": "success", "message": f"Trajet vers {city} démarré"})
+    return jsonify({"status": "success", "message": f"Trajet vers {city} demarre"})
 
 @app.route("/api/simulator/stop", methods=["POST"])
 @limiter.limit("20 per minute")
 def stop_simulator():
     simulator.stop_journey()
-    return jsonify({"status": "success", "message": "Trajet arrêté"})
+    return jsonify({"status": "success", "message": "Trajet arrete"})
 
 @app.route("/api/simulator/status")
 def get_simulator_status():
     return jsonify(simulator.get_data())
 
-# Remplacer l’import et l’appel
+# Remplacer l'import et l'appel
 from main.services.history_service import get_notifications_ram   # au lieu de get_truck_history
 
 @app.route("/api/report")
 def get_trip_report():
-    notifications = get_notifications_ram()   # ← notifications du trajet en cours
+    notifications = get_notifications_ram()   # <- notifications du trajet en cours
     html = generate_trip_report_html(notifications)
     return html
 
@@ -1361,7 +1356,7 @@ def get_notifications():
 def background_simulation_loop():
     import time
     from main.services.notification_service import traiter_notification
-    log.info("Démarrage de la boucle de simulation...")
+    log.info("Demarrage de la boucle de simulation...")
     while True:
         try:
             if simulator.is_running:
@@ -1376,9 +1371,9 @@ import threading
 sim_thread = threading.Thread(target=background_simulation_loop, daemon=True)
 sim_thread.start()
 
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 # ERROR HANDLERS
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 
 @app.errorhandler(404)
 def not_found(e):
@@ -1389,9 +1384,9 @@ def server_error(e):
     return jsonify({"error": "Erreur serveur interne", "code": 500}), 500
 
 
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 # ENTRY POINT
-# ═══════════════════════════════════════════════════════════════════
+# ====================================================================
 
 if __name__ == "__main__":
     import sys
@@ -1403,15 +1398,15 @@ if __name__ == "__main__":
     log.info("Initialisation du pipeline ChromaDB...")
     init_chroma_pipeline()
 
-    # Nettoyer les notifications RAM à la fermeture (mémoire court terme)
+    # Nettoyer les notifications RAM a la fermeture (memoire court terme)
     def cleanup_notifications_ram():
         try:
             notifications_path = os.path.join(BASE_DIR, "services", "notifications_ram.json")
             if os.path.exists(notifications_path):
                 os.remove(notifications_path)
-                log.info("✅ Notifications RAM supprimées à la fermeture")
+                log.info("Notifications RAM supprimees a la fermeture")
         except Exception as e:
-            log.warning(f"⚠️ Erreur suppression notifications RAM: {e}")
+            log.warning(f"Erreur suppression notifications RAM: {e}")
 
     atexit.register(cleanup_notifications_ram)
 
@@ -1429,6 +1424,6 @@ if __name__ == "__main__":
 
         -> http://localhost:{port}/
         -> API : http://localhost:{port}/api/status
-        """.encode('utf-8', 'ignore').decode('utf-8'))
+        """)
 
     app.run(host="0.0.0.0", port=port, debug=debug)

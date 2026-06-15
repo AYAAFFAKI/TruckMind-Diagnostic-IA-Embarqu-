@@ -19,7 +19,7 @@ db_path = os.path.join(db_dir, "truck_diagnostic.db")
 conn = sqlite3.connect(db_path)
 conn.execute("PRAGMA foreign_keys = ON")
 cursor = conn.cursor()
-print(f"✅ Base de données connectée à : {db_path}")
+print(f" Base de données connectée à : {db_path}")
 
 # ============================================================
 # CRÉATION DES TABLES
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS maintenance_alerts (
 )
 """)
 
-print("✅ 4 tables créées avec relations FK.")
+print(" 4 tables créées avec relations FK.")
 
 # ============================================================
 # REMPLISSAGE DE LA TABLE thresholds
@@ -172,7 +172,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 """, thresholds_data)
 
 nb_thresholds = cursor.execute("SELECT COUNT(*) FROM thresholds").fetchone()[0]
-print(f"✅ Table thresholds : {nb_thresholds} seuils techniques (sans doublons).")
+print(f" Table thresholds : {nb_thresholds} seuils techniques (sans doublons).")
 
 # ============================================================
 # FONCTIONS UTILITAIRES
@@ -327,17 +327,17 @@ def assign_dtc(row, idx):
 # ============================================================
 
 try:
-    codes_df = pd.read_csv(r"C:\Users\ayaaf\OneDrive\Belgeler\truck_rag_sys\uploads_sans_clean\codes_erreur.csv")
-    print(f"✅ codes_erreur.csv chargé — {len(codes_df)} codes.")
+    codes_df = pd.read_csv(r"C:\Users\ayaaf\OneDrive\Belgeler\truck_rag_sys\uploads\codes_erreur.csv")
+    print(f" codes_erreur.csv chargé — {len(codes_df)} codes.")
 except Exception as e:
-    print("❌ Erreur codes_erreur.csv :", e)
+    print(" Erreur codes_erreur.csv :", e)
     codes_df = pd.DataFrame()
 
 try:
-    maintenance_df = pd.read_csv(r"C:\Users\ayaaf\OneDrive\Belgeler\truck_rag_sys\uploads_sans_clean\histoire_de_maintenance.csv")
-    print(f"✅ histoire_de_maintenance.csv chargé — {len(maintenance_df)} lignes.")
+    maintenance_df = pd.read_csv(r"C:\Users\ayaaf\OneDrive\Belgeler\truck_rag_sys\uploads\histoire_de_maintenance.csv")
+    print(f" histoire_de_maintenance.csv chargé — {len(maintenance_df)} lignes.")
 except Exception as e:
-    print("❌ Erreur histoire_de_maintenance.csv :", e)
+    print(" Erreur histoire_de_maintenance.csv :", e)
     maintenance_df = pd.DataFrame()
 
 # ============================================================
@@ -355,7 +355,7 @@ for _, row in codes_df.iterrows():
     VALUES (?, ?, ?, ?, ?)
     """, (dtc, description, systeme, piece, gravite))
 
-print(f"✅ Table knowledge remplie — {len(codes_df)} codes OBD insérés.")
+print(f" Table knowledge remplie — {len(codes_df)} codes OBD insérés.")
 
 # ============================================================
 # REMPLISSAGE : TABLE maintenance + maintenance_alerts
@@ -456,22 +456,22 @@ for idx, row in maintenance_df.iterrows():
         "Niveaux_Vibration":        niveaux_vibration,
     })
 
-print(f"✅ Table maintenance remplie :")
+print(f" Table maintenance remplie :")
 print(f"   ├─ {nb_avec_dtc} enregistrements AVEC DTC")
 print(f"   └─ {nb_sans_dtc} enregistrements SANS DTC")
-print(f"✅ Table maintenance_alerts : {nb_alerts} alertes générées.")
+print(f" Table maintenance_alerts : {nb_alerts} alertes générées.")
 conn.commit()
-print("✅ Données sauvegardées.")
+print(" Données sauvegardées.")
 
 # ============================================================
 # VÉRIFICATIONS & STATISTIQUES
 # ============================================================
 
 print("\n" + "="*60)
-print("📊 VÉRIFICATIONS DES RELATIONS")
+print(" VÉRIFICATIONS DES RELATIONS")
 print("="*60)
 
-print("\n🔗 JOIN maintenance ↔ knowledge (5 premiers) :")
+print("\n JOIN maintenance ↔ knowledge (5 premiers) :")
 df_check = pd.read_sql_query("""
     SELECT m.vehicule_id, m.dtc, m.action, m.etat_freins,
            k.symptome, k.systeme, k.gravite
@@ -481,7 +481,7 @@ df_check = pd.read_sql_query("""
 """, conn)
 print(df_check.to_string())
 
-print("\n🔗 JOIN maintenance ↔ thresholds via maintenance_alerts (5 premiers) :")
+print("\n JOIN maintenance ↔ thresholds via maintenance_alerts (5 premiers) :")
 df_alerts = pd.read_sql_query("""
     SELECT m.vehicule_id, m.date,
            t.parametre, t.unite, t.niveau_alerte, t.lampe,
@@ -495,7 +495,7 @@ df_alerts = pd.read_sql_query("""
 """, conn)
 print(df_alerts.to_string())
 
-print("\n📈 Alertes par paramètre (TOP 10) :")
+print("\n Alertes par paramètre (TOP 10) :")
 df_stats_alerts = pd.read_sql_query("""
     SELECT t.parametre, t.niveau_alerte, t.lampe,
            COUNT(*) AS nb_alertes
@@ -507,7 +507,7 @@ df_stats_alerts = pd.read_sql_query("""
 """, conn)
 print(df_stats_alerts.to_string())
 
-print("\n🚨 TOP 10 véhicules avec le plus d'alertes ROUGE :")
+print("\n TOP 10 véhicules avec le plus d'alertes ROUGE :")
 df_critiques = pd.read_sql_query("""
     SELECT m.vehicule_id,
            COUNT(*) AS nb_alertes_critiques,
@@ -522,7 +522,7 @@ df_critiques = pd.read_sql_query("""
 """, conn)
 print(df_critiques.to_string())
 
-print("\n📈 TOP 10 DTC les plus fréquents :")
+print("\n  TOP 10 DTC les plus fréquents :")
 df_dtc_stats = pd.read_sql_query("""
     SELECT m.action AS type_entretien, m.dtc,
            COUNT(*) AS nb_occurrences, k.gravite
@@ -539,23 +539,23 @@ print(df_dtc_stats.to_string())
 # ============================================================
 
 def query_dtc(code):
-    print(f"\n🔎 Recherche DTC : {code}")
+    print(f"\n Recherche DTC : {code}")
     print("=" * 40)
     cursor.execute("SELECT * FROM knowledge WHERE dtc = ?", (code,))
     k = cursor.fetchone()
     if k:
-        print("📘 DIAGNOSTIC")
+        print(" DIAGNOSTIC")
         print(f"  DTC      : {k[0]}")
         print(f"  Symptôme : {k[1]}")
         print(f"  Système  : {k[2]}")
         print(f"  Pièce    : {k[3]}")
         print(f"  Gravité  : {k[4]}")
     else:
-        print("❌ Aucun diagnostic trouvé.")
+        print(" Aucun diagnostic trouvé.")
 
 
 def query_dtc_avancee(code):
-    print(f"\n🔎 Recherche DTC avec historique : {code}")
+    print(f"\n Recherche DTC avec historique : {code}")
     print("=" * 50)
     df = pd.read_sql_query("""
         SELECT k.dtc, k.symptome, k.systeme, k.piece, k.gravite,
@@ -568,10 +568,10 @@ def query_dtc_avancee(code):
         ORDER BY m.date DESC
     """, conn, params=(code,))
     if df.empty:
-        print("❌ Aucune information trouvée pour ce DTC.")
+        print(" Aucune information trouvée pour ce DTC.")
         return
     first = df.iloc[0]
-    print("📘 DIAGNOSTIC")
+    print(" DIAGNOSTIC")
     print(f"  DTC      : {first['dtc']}")
     print(f"  Symptôme : {first['symptome']}")
     print(f"  Système  : {first['systeme']}")
@@ -588,7 +588,7 @@ def query_dtc_avancee(code):
 
 
 def query_vehicle(vehicule_id):
-    print(f"\n🚛 Historique véhicule : {vehicule_id}")
+    print(f"\n Historique véhicule : {vehicule_id}")
     print("=" * 50)
     df = pd.read_sql_query("""
         SELECT m.id, m.date, m.action, m.etat_freins, m.dtc,
@@ -604,17 +604,17 @@ def query_vehicle(vehicule_id):
     """, conn, params=(str(vehicule_id),))
 
     if df.empty:
-        print("ℹ Aucun historique trouvé.")
+        print(" Aucun historique trouvé.")
         return
 
-    print(f"🛠 {len(df)} interventions trouvées\n")
+    print(f" {len(df)} interventions trouvées\n")
     for _, r in df.iterrows():
-        print(f"  📅 {r['date']} | {r['action']}")
+        print(f"   {r['date']} | {r['action']}")
         print(f"     Freins        : {r['etat_freins']}")
         print(f"     Score         : {r['score_predictif']:.2f}")
         print(f"     Temp. moteur  : {r['temperature_moteur']}°C  |  Pression pneus: {r['pression_pneus']} PSI")
         if r['dtc']:
-            print(f"     ⚠️  DTC        : {r['dtc']} — {r['symptome']}")
+            print(f"     DTC        : {r['dtc']} — {r['symptome']}")
             print(f"     Système       : {r['systeme']} | Gravité : {r['gravite']}")
 
         df_alts = pd.read_sql_query("""
@@ -628,15 +628,15 @@ def query_vehicle(vehicule_id):
         if not df_alts.empty:
             for _, a in df_alts.iterrows():
                 lampe = a['lampe'] if a['lampe'] else "─"
-                print(f"     🔔 [{lampe}] {a['parametre']} = {a['valeur_mesuree']} {a['unite']} "
+                print(f"     [{lampe}] {a['parametre']} = {a['valeur_mesuree']} {a['unite']} "
                       f"({a['depassement']}) → {a['action']}")
         else:
-            print(f"     ✅ Aucun dépassement de seuil détecté")
+            print(f"      Aucun dépassement de seuil détecté")
         print("     " + "─" * 44)
 
 
 def query_thresholds(parametre=None):
-    print(f"\n📋 Seuils techniques {'— ' + parametre if parametre else '(tous)'}")
+    print(f"\n Seuils techniques {'— ' + parametre if parametre else '(tous)'}")
     print("=" * 60)
     if parametre:
         df = pd.read_sql_query("""
@@ -677,7 +677,7 @@ def get_fleet_stats_header():
 
     header = f"""
 ### FLEET_STATS — Statistiques globales (base complète : {s[4]} enregistrements)
-  ⚠️  ÉCHELLE score_predictif : 0.0 = faible risque → 1.0 = risque critique
+    ÉCHELLE score_predictif : 0.0 = faible risque → 1.0 = risque critique
   • Score prédictif   : Moyenne={s[0]:.3f} | Min={s[1]:.3f} | Max={s[2]:.3f} | Critiques (>0.8): {s[3]} ({100*s[3]/s[4]:.1f}%)
   • Anomalies         : {s[5]}/{s[4]} ({100*s[5]/s[4]:.1f}%)
   • Entretien nécess. : {s[6]}/{s[4]} ({100*s[6]/s[4]:.1f}%)
@@ -698,7 +698,7 @@ def get_fleet_stats_header():
 # ============================================================
 
 print("\n" + "="*60)
-print("🧪 TESTS DES FONCTIONS")
+print(" TESTS DES FONCTIONS")
 print("="*60)
 
 query_dtc("P0301")
@@ -706,8 +706,8 @@ query_dtc_avancee("P0301")
 query_vehicle(1)
 query_thresholds("Pression Pneus")
 
-print("\n📋 FLEET STATS HEADER :")
+print("\n  FLEET STATS HEADER :")
 print(get_fleet_stats_header())
 
 conn.close()
-print("\n✅ Connexion SQLite fermée.")
+print("\n  Connexion SQLite fermée.")

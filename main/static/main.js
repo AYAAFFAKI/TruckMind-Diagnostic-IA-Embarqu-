@@ -21,7 +21,7 @@ const MAX_MESSAGES = 10;
 function lockInput() {
   const input   = $('chat-input');
   const sendBtn = $('send-btn');
-  if (input)   { input.disabled = true; input.placeholder = '🔒 Limite de 10 messages atteinte — démarrez une nouvelle conversation'; }
+  if (input)   { input.disabled = true; input.placeholder = ' Limite de 10 messages atteinte — démarrez une nouvelle conversation'; }
   if (sendBtn) { sendBtn.disabled = true; }
   // Show a permanent notice below the input area
   const existing = $('limit-notice');
@@ -29,7 +29,7 @@ function lockInput() {
     const notice = document.createElement('div');
     notice.id = 'limit-notice';
     notice.style.cssText = 'text-align:center;font-size:11px;color:var(--accent);padding:6px 0;font-family:var(--mono);letter-spacing:.05em';
-    notice.textContent = '⛔ Limite de 10 messages atteinte — Démarrez une nouvelle conversation';
+    notice.textContent = ' Limite de 10 messages atteinte — Démarrez une nouvelle conversation';
     const inputArea = input?.parentElement;
     if (inputArea) inputArea.appendChild(notice);
   }
@@ -114,7 +114,7 @@ function addToHistory(question, answer) {
   const conv = history.find(h => h.id === currentConversationId);
   if (conv && conv.messages.length >= MAX_MESSAGES) {
     lockInput();
-    toast(`🔒 Limite de ${MAX_MESSAGES} messages atteinte — nouvelle conversation requise`, 'inf', 4000);
+    toast(` Limite de ${MAX_MESSAGES} messages atteinte — nouvelle conversation requise`, 'inf', 4000);
   }
 
   saveHistory(history);
@@ -210,12 +210,12 @@ function startNewConversation() {
       <div class="welcome-title">TruckMind<br>Intelligence</div>
       <div class="welcome-sub">Diagnostic embarqué IA • 3 071 codes DTC • 3 618 enregistrements de maintenance • Alertes temps réel</div>
       <div class="chips-grid">
-        <div class="chip" onclick="chipSend(this)">🔧 Que signifie P0118 ?</div>
-        <div class="chip" onclick="chipSend(this)">📊 Taux d'anomalies de la flotte</div>
-        <div class="chip" onclick="chipSend(this)">🚛 État du véhicule V0042</div>
-        <div class="chip" onclick="chipSend(this)">⚡ Seuils température moteur</div>
-        <div class="chip" onclick="chipSend(this)">🚨 Véhicules en alerte rouge</div>
-        <div class="chip" onclick="chipSend(this)">🛢️ Qualité huile moyenne</div>
+        <div class="chip" onclick="chipSend(this)"> Que signifie P0118 ?</div>
+        <div class="chip" onclick="chipSend(this)"> Taux d'anomalies de la flotte</div>
+        <div class="chip" onclick="chipSend(this)"> État du véhicule V0042</div>
+        <div class="chip" onclick="chipSend(this)"> Seuils température moteur</div>
+        <div class="chip" onclick="chipSend(this)"> Véhicules en alerte rouge</div>
+        <div class="chip" onclick="chipSend(this)"> Qualité huile moyenne</div>
       </div>
       <div class="welcome-meta">ENTRÉE — envoyer &nbsp;·&nbsp; SHIFT+ENTRÉE — nouvelle ligne &nbsp;·&nbsp; /dtc P0301 — recherche directe</div>
     </div>`;
@@ -439,7 +439,7 @@ async function sendMessage() {
     $('typing')?.remove();
 
     if (data.error) {
-      addMessage('bot', `⚠️ <strong>Erreur :</strong> ${data.error}`);
+      addMessage('bot', ` <strong>Erreur :</strong> ${data.error}`);
     } else {
       addMessage('bot', md(data.answer), {
         sql_results: data.sources?.sql_results,
@@ -458,7 +458,7 @@ async function sendMessage() {
     }
   } catch (e) {
     $('typing')?.remove();
-    addMessage('bot', `⚠️ Erreur de connexion : ${e.message}`);
+    addMessage('bot', ` Erreur de connexion : ${e.message}`);
     toast('Connexion perdue', 'err');
   }
 
@@ -574,7 +574,7 @@ async function loadAlerts() {
 
     list.innerHTML = STATE.alerts.map(a => `
       <div class="alert-item rouge" onclick="askAboutVehicle('${a.vehicule_id}')">
-        <div class="ai-lamp">🔴</div>
+        <div class="ai-lamp"></div>
         <div class="ai-body">
           <div class="ai-vid">${a.vehicule_id}</div>
           <div class="ai-param">${a.parametre}</div>
@@ -772,7 +772,7 @@ async function searchDTC(queryOverride) {
   } catch (e) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-icon">⚠️</div>
+        <div class="empty-icon"></div>
         <div class="empty-text">Erreur : ${e.message}</div>
       </div>`;
   }

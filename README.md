@@ -13,11 +13,11 @@
 
 ---
 
-## 📖 Description
+##  Description
 
 TruckMind est un système de diagnostic embarqué (Diagnostic IA Embarqué) spécialement conçu pour les camions Volvo FH/FM. Le système s'appuie sur la technologie **RAG (Retrieval-Augmented Generation)** pour fusionner des données structurées (SQL) issues des capteurs et des journaux de maintenance, avec des données non structurées (ChromaDB) provenant des manuels techniques, afin de fournir des analyses précises via un puissant moteur d'intelligence artificielle.
 
-### 🎯 Objectifs Principaux
+###  Objectifs Principaux
 
 - **Diagnostic Proactif :** Anticiper les pannes avant qu'elles ne surviennent grâce à l'analyse prédictive
 - **Maintenance Intelligente :** Optimiser les interventions de maintenance en fonction de l'état réel des véhicules
@@ -26,7 +26,7 @@ TruckMind est un système de diagnostic embarqué (Diagnostic IA Embarqué) spé
 
 ---
 
-## 👤 Auteur
+##  Auteur
 
 **Auteure :** AYA AFFAKI  
 **Établissement :** École Supérieure de Technologie de Tétouan (ESTT)  
@@ -35,43 +35,43 @@ TruckMind est un système de diagnostic embarqué (Diagnostic IA Embarqué) spé
 
 ---
 
-## 🚀 Fonctionnalités Principales
+##  Fonctionnalités Principales
 
-### 🤖 Agent Intelligent (LangGraph Agent)
+###  Agent Intelligent (LangGraph Agent)
 - **Routeur Intelligent :** Classifie automatiquement les requêtes (statistiques, codes d'erreur, questions générales)
 - **Recherche Multi-Sources :** Redirige vers des recherches SQL ou vectorielles dans les documents PDF
 - **Pipeline RAG Avancé :** Fusionne les données structurées et non structurées pour des réponses précises
 
-### 📊 Tableau de Bord de la Flotte (Dashboard)
+###  Tableau de Bord de la Flotte (Dashboard)
 - **Suivi en Temps Réel :** Interface interactive pour suivre l'état des camions
 - **Indicateurs Clés :** État des freins, qualité de l'huile, température moteur
 - **Score Prédictif :** Prévision des risques basée sur l'historique de maintenance
 - **Visualisation des Alertes :** Affichage des alertes actives (ROUGE/JAUNE/VERT)
 
-### 🔍 Recherche de Codes d'Erreur (DTC Search)
+###  Recherche de Codes d'Erreur (DTC Search)
 - **Base de Données Complète :** Plus de 3 000 codes OBD-II
 - **Diagnostic Précis :** Identification des symptômes, systèmes, pièces et gravité
 - **Recommandations :** Actions techniques suggérées pour chaque code
 
-### ⚠️ Système d'Alertes Dynamique
+###  Système d'Alertes Dynamique
 - **Alertes en Temps Réel :** Basées sur le dépassement de seuils critiques
 - **Seuils Configurables :** Température moteur, pression pneus, qualité huile, batterie, etc.
 - **Niveaux de Gravité :** ROUGE (critique), JAUNE (attention), VERT (normal)
 - **Actions Recommandées :** Instructions spécifiques pour chaque type d'alerte
 
-### 📝 Historique des Conversations
+###  Historique des Conversations
 - **Persistance des Données :** Sauvegarde de l'historique des conversations
 - **Contexte Maintenu :** Amélioration des réponses grâce à l'historique
 - **Analyse des Tendances :** Suivi de l'évolution des problèmes
 
-### 🧪 Simulateur de Camion
+###  Simulateur de Camion
 - **Simulation de Scénarios :** Test du système avec des données simulées
 - **Génération de Données :** Création de trajets avec différents paramètres
 - **Validation des Alertes :** Vérification du système d'alertes en conditions contrôlées
 
 ---
 
-## 🛠️ Technologies Utilisées
+##  Technologies Utilisées
 
 ### Backend
 - **Python 3.8+** : Langage principal
@@ -98,7 +98,7 @@ TruckMind est un système de diagnostic embarqué (Diagnostic IA Embarqué) spé
 
 ---
 
-## 📁 Structure du Projet
+##  Structure du Projet
 
 ```text
 truck_rag_sys/
@@ -142,7 +142,7 @@ truck_rag_sys/
 
 ---
 
-## ⚙️ Installation et Exécution
+##  Installation et Exécution
 
 ### Prérequis
 
@@ -189,7 +189,7 @@ TRUCK_HISTORY_PATH=./main/services/truck_history.json
 NOTIFICATIONS_RAM_PATH=./main/services/notifications_ram.json
 ```
 
-**⚠️ IMPORTANT :** Obtenez votre clé API Groq gratuitement sur : https://console.groq.com/keys
+** IMPORTANT :** Obtenez votre clé API Groq gratuitement sur : https://console.groq.com/keys
 
 ### 4. Initialiser la Base de Données
 
@@ -215,7 +215,7 @@ Ouvrez votre navigateur web à l'adresse : `http://127.0.0.1:5000`
 
 ---
 
-## 📖 Utilisation
+## Utilisation
 
 ### Interface Principale
 
@@ -245,7 +245,7 @@ Ouvrez votre navigateur web à l'adresse : `http://127.0.0.1:5000`
 
 ---
 
-## 🔒 Sécurité et Confidentialité
+##  Sécurité et Confidentialité
 
 ### Variables d'Environnement
 
@@ -267,7 +267,7 @@ Les fichiers suivants contiennent des données sensibles et ne sont pas versionn
 
 ---
 
-## 🧪 Tests et Évaluation
+##  Tests et Évaluation
 
 ### Exécuter les Tests
 
@@ -281,19 +281,19 @@ Le notebook `test/truck_diagnostic_evaluation.ipynb` contient des évaluations d
 
 ---
 
-## 🤝 Contribution
+##  Contribution
 
 Ce projet est un projet académique. Pour toute question ou suggestion, veuillez contacter l'auteure.
 
 ---
 
-## 📄 Licence
+##  Licence
 
 Ce projet est développé dans un cadre académique. Veuillez contacter l'auteure pour toute utilisation commerciale.
 
 ---
 
-## 🙏 Remerciements
+##  Remerciements
 
 - **Smart Automation Technologies** : Entreprise d'accueil pour le stage
 - **École Supérieure de Technologie de Tétouan (ESTT)** : Établissement de formation
@@ -302,7 +302,7 @@ Ce projet est développé dans un cadre académique. Veuillez contacter l'auteur
 
 ---
 
-## 📞 Contact
+##  Contact
 
 **Aya Affaki**  
 Étudiante en Intelligence Artificielle (DUT 2025-2026)  
@@ -314,6 +314,6 @@ Ce projet est développé dans un cadre académique. Veuillez contacter l'auteur
 
 *Ce projet académique a été conçu et développé dans le cadre d'un stage chez Smart Automation Technologies, axé sur les applications de l'IA pour le diagnostic proactif dans le secteur du transport.*
 
-**🚚 TruckMind — L'Intelligence au Service du Transport Intelligent 🚚**
+** TruckMind — L'Intelligence au Service du Transport Intelligent **
 
 </div>

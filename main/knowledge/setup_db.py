@@ -1,12 +1,10 @@
 """
-╔══════════════════════════════════════════════════════════════════╗
-║  TruckMind — setup_db.py                                         ║
-║  Initialisation de la base SQLite3 depuis les fichiers CSV       ║
-║                                                                  ║
-║  Usage : python setup_db.py [--csv-dir /chemin/vers/csvs]        ║
-║                                                                  ║
-║  Auteure : AFFAKI Aya — EST Tétouan — IA DUT 2025-2026           ║
-╚══════════════════════════════════════════════════════════════════╝
+TruckMind — setup_db.py
+Initialisation de la base SQLite3 depuis les fichiers CSV
+
+Usage : python setup_db.py [--csv-dir /chemin/vers/csvs]
+
+Auteure : AFFAKI Aya — EST Tetouan — IA DUT 2025-2026
 """
 
 import os
@@ -17,20 +15,20 @@ import hashlib
 import argparse
 import pandas as pd
 
-# ─── Paths ───────────────────────────────────────────────────────
+# --- Paths --------------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH  = os.path.join(BASE_DIR, "truck_diagnostic.db")
 
-# ─── Chemins fixes ───────────────────────────────────────────────
+# --- Chemins fixes ------------------------------------------------
 CSV_CODES_FIXE = r"C:\Users\ayaaf\OneDrive\Belgeler\truck_rag_sys\uploads\codes_erreur.csv"
 CSV_MAINT_FIXE = r"C:\Users\ayaaf\OneDrive\Belgeler\truck_rag_sys\uploads\histoire_de_maintenance.csv"
 
-# ─── Arguments ───────────────────────────────────────────────────
-parser = argparse.ArgumentParser(description="TruckMind — Configuration de la base de données")
-parser.add_argument("--csv-dir",   default=None,           help="Répertoire des fichiers CSV (non utilisé, chemins fixes)")
+# --- Arguments ----------------------------------------------------
+parser = argparse.ArgumentParser(description="TruckMind — Configuration de la base de donnees")
+parser.add_argument("--csv-dir",   default=None,           help="Repertoire des fichiers CSV (non utilise, chemins fixes)")
 parser.add_argument("--codes-csv", default=CSV_CODES_FIXE, help="Chemin vers codes_erreur.csv")
 parser.add_argument("--maint-csv", default=CSV_MAINT_FIXE, help="Chemin vers histoire_de_maintenance.csv")
-parser.add_argument("--force",     action="store_true",    help="Recréer la base de données même si elle existe")
+parser.add_argument("--force",     action="store_true",    help="Recreer la base de donnees meme si elle existe")
 args = parser.parse_args()
 
 CSV_CODES = args.codes_csv
@@ -54,8 +52,8 @@ def check_existing_db():
             if n > 0:
                 cur.execute("SELECT COUNT(*) FROM maintenance")
                 m = cur.fetchone()[0]
-                print(f"✅ Base existante trouvée : {n} DTC, {m} maintenances")
-                print(f"   Utilisez --force pour recréer.")
+                print(f"Base existante trouvee : {n} DTC, {m} maintenances")
+                print(f"   Utilisez --force pour recreer.")
                 conn.close()
                 return True
         except Exception:
@@ -64,7 +62,7 @@ def check_existing_db():
     return False
 
 
-# ─── Helper functions ─────────────────────────────────────────────
+# --- Helper functions ---------------------------------------------
 def safe_get(row, col, default=None):
     if col in row.index and pd.notna(row[col]):
         return row[col]
@@ -86,18 +84,18 @@ def detect_piece(desc):
     if "capteur" in d:                       return "capteur"
     if "injecteur" in d or "inject" in d:    return "injecteur"
     if "bobine" in d:                        return "bobine"
-    if "raté" in d or "misfire" in d:        return "bougie / bobine"
+    if "rate" in d or "misfire" in d:        return "bougie / bobine"
     if "catalyt" in d:                       return "catalyseur"
     if "egr" in d:                           return "vanne EGR"
     if "turbo" in d or "boost" in d:         return "turbocompresseur"
     if "throttle" in d or "papillon" in d:   return "papillon des gaz"
-    if "débit" in d or "massique" in d:      return "débitmètre MAF"
+    if "debit" in d or "massique" in d:      return "debitmetre MAF"
     if "pression" in d:                      return "capteur pression MAP"
-    if "température" in d or "coolant" in d: return "sonde température"
-    if "carburant" in d or "fuel" in d:      return "système carburant"
-    if "abs" in d or "frein" in d:           return "système freinage"
-    if "batterie" in d or "battery" in d:    return "alimentation électrique"
-    return "composant générique"
+    if "temperature" in d or "coolant" in d: return "sonde temperature"
+    if "carburant" in d or "fuel" in d:      return "systeme carburant"
+    if "abs" in d or "frein" in d:           return "systeme freinage"
+    if "batterie" in d or "battery" in d:    return "alimentation electrique"
+    return "composant generique"
 
 def detect_gravite(code):
     c = str(code)
@@ -109,7 +107,7 @@ def detect_gravite(code):
     return "faible"
 
 DTC_MAP = {
-    "révision du moteur": {
+    "revision du moteur": {
         "bon":     ["P0300","P0301","P0302","P0303","P0304"],
         "moyen":   ["P0300","P0301","P0302","P0506","P0507"],
         "mauvais": ["P0300","P0301","P0302","P0500","P0501"],
@@ -127,68 +125,68 @@ DTC_MAP = {
 }
 
 def assign_dtc(row, idx):
-    anomalie = int(safe_get(row, "Anomalies_Détectées", 0))
+    anomalie = int(safe_get(row, "Anomalies_Detectees", 0))
     if anomalie == 0:
         return None
-    t = str(safe_get(row, "Type_Entretien", "révision du moteur")).strip().lower()
-    f = str(safe_get(row, "État_Freins", "bon")).strip().lower()
-    key      = next((k for k in DTC_MAP if k in t), "révision du moteur")
+    t = str(safe_get(row, "Type_Entretien", "revision du moteur")).strip().lower()
+    f = str(safe_get(row, "Etat_Freins", "bon")).strip().lower()
+    key      = next((k for k in DTC_MAP if k in t), "revision du moteur")
     etat_key = f if f in DTC_MAP[key] else "bon"
     cands    = DTC_MAP[key][etat_key]
-    vid      = str(safe_get(row, "Identifiant_Véhicule", 0))
+    vid      = str(safe_get(row, "Identifiant_Vehicule", 0))
     h        = int(hashlib.md5(f"{vid}_{idx}".encode()).hexdigest(), 16)
     return cands[h % len(cands)]
 
 
-# ─── Threshold data ───────────────────────────────────────────────
+# --- Threshold data -----------------------------------------------
 THRESHOLDS = [
-    ("Température Moteur",            "temperature_moteur",    None,  100.0, None,  "°C",      "JAUNE", "SURVEILLANCE",   "Surveiller — risque de surchauffe",                                  "Manuel Volvo FH/FM p.5"),
-    ("Température Moteur",            "temperature_moteur",    None,  105.0, None,  "°C",      "ROUGE", "ARRÊT IMMÉDIAT", "Arrêter le moteur immédiatement — refroidir 10-15 min",               "Manuel Volvo FH/FM p.24"),
+    ("Temperature Moteur",            "temperature_moteur",    None,  100.0, None,  "°C",      "JAUNE", "SURVEILLANCE",   "Surveiller — risque de surchauffe",                                  "Manuel Volvo FH/FM p.5"),
+    ("Temperature Moteur",            "temperature_moteur",    None,  105.0, None,  "°C",      "ROUGE", "ARRET IMMEDIAT", "Arreter le moteur immediatement — refroidir 10-15 min",               "Manuel Volvo FH/FM p.24"),
     ("Pression Pneus",                "pression_pneus",        100.0, 120.0, None,  "PSI",     "VERT",  "NORMAL",         "Pression dans la plage normale (100–120 PSI)",                        "Norme poids-lourd Volvo FH/FM"),
-    ("Pression Pneus",                "pression_pneus",         90.0, None,  None,  "PSI",     "JAUNE", "SURVEILLANCE",   "Pression basse — vérifier les pneus avant départ",                   "Norme poids-lourd Volvo FH/FM"),
-    ("Pression Pneus",                "pression_pneus",         None, None,   75.0, "PSI",     "ROUGE", "ARRÊT IMMÉDIAT", "Pression critique — risque d'éclatement",                             "Norme poids-lourd Volvo FH/FM"),
-    ("Pression Pneus Haute",          "pression_pneus",         None, 125.0, None,  "PSI",     "ROUGE", "ARRÊT IMMÉDIAT", "Surpression — risque d'éclatement à chaud",                          "Norme poids-lourd Volvo FH/FM"),
-    ("Qualité Huile",                 "qualite_huile",           40.0, None,  None,  "%",       "JAUNE", "SURVEILLANCE",   "Huile dégradée — planifier vidange sous 30 jours",                   "Manuel Volvo FH/FM p.1"),
-    ("Qualité Huile",                 "qualite_huile",           None, None,   20.0, "%",       "ROUGE", "ARRÊT IMMÉDIAT", "Huile très dégradée — vidange immédiate obligatoire",                 "Manuel Volvo FH/FM p.1"),
-    ("État Batterie",                 "etat_batterie",           30.0, None,  None,  "%",       "JAUNE", "SURVEILLANCE",   "Batterie faible — vérifier l'alternateur",                            "Manuel Volvo FH/FM p.84"),
-    ("État Batterie",                 "etat_batterie",           None, None,   15.0, "%",       "ROUGE", "ARRÊT IMMÉDIAT", "Batterie critique — risque de panne démarrage",                       "Manuel Volvo FH/FM p.84"),
-    ("Consommation Carburant",        "consommation_carburant",  None,  35.0, None,  "L/100km", "JAUNE", "SURVEILLANCE",   "Consommation anormale — vérifier injection/filtre",                  "Manuel Volvo FH/FM p.1"),
-    ("Consommation Carburant",        "consommation_carburant",  None, None,   45.0, "L/100km", "ROUGE", "ARRÊT IMMÉDIAT", "Consommation critique — diagnostic immédiat requis",                  "Manuel Volvo FH/FM p.1"),
-    ("Niveaux Vibration",             "niveaux_vibration",       None,   8.0, None,  "mm/s",    "JAUNE", "SURVEILLANCE",   "Vibrations anormales — vérifier roues et suspension",                "Diagnostic standard Volvo"),
-    ("Niveaux Vibration",             "niveaux_vibration",       None, None,   12.0, "mm/s",    "ROUGE", "ARRÊT IMMÉDIAT", "Vibrations critiques — risque de défaillance",                       "Diagnostic standard Volvo"),
-    ("Score Prédictif",               "score_predictif",         None,   0.5, None,  "score",   "JAUNE", "SURVEILLANCE",   "Risque modéré — planifier entretien sous 15 jours",                  "Modèle prédictif TruckMind"),
-    ("Score Prédictif",               "score_predictif",         None, None,    0.8, "score",   "ROUGE", "ARRÊT IMMÉDIAT", "Risque critique — entretien immédiat obligatoire",                    "Modèle prédictif TruckMind"),
-    ("Régime Ralenti",                None,                     550.0, 650.0, None,  "tr/min",  "VERT",  "NORMAL",         "Régime de ralenti normal entre 550 et 650 tr/min",                   "Manuel Volvo FH/FM p.25"),
-    ("Pression Frein Stationnement",  None,                       5.0, None,  None,  "bar",     "ROUGE", "ARRÊT IMMÉDIAT", "Pression insuffisante — appuyer valve verrouillage",                  "Manuel Volvo FH/FM p.33"),
-    ("Intervalle Vidange Huile (km)", None,                      None, None, 30000., "km",      "JAUNE", "SURVEILLANCE",   "Vidange tous les 30 000 km OU 12 mois — la première échéance prime",  "Manuel Volvo FH/FM p.1"),
-    ("Intervalle Vidange Huile (mois)", None,                    None, None,   12.0, "mois",    "JAUNE", "SURVEILLANCE",   "Vidange tous les 12 mois OU 30 000 km — la première échéance prime",  "Manuel Volvo FH/FM p.1"),
+    ("Pression Pneus",                "pression_pneus",         90.0, None,  None,  "PSI",     "JAUNE", "SURVEILLANCE",   "Pression basse — verifier les pneus avant depart",                   "Norme poids-lourd Volvo FH/FM"),
+    ("Pression Pneus",                "pression_pneus",         None, None,   75.0, "PSI",     "ROUGE", "ARRET IMMEDIAT", "Pression critique — risque d'eclatement",                             "Norme poids-lourd Volvo FH/FM"),
+    ("Pression Pneus Haute",          "pression_pneus",         None, 125.0, None,  "PSI",     "ROUGE", "ARRET IMMEDIAT", "Surpression — risque d'eclatement a chaud",                          "Norme poids-lourd Volvo FH/FM"),
+    ("Qualite Huile",                 "qualite_huile",           40.0, None,  None,  "%",       "JAUNE", "SURVEILLANCE",   "Huile degradee — planifier vidange sous 30 jours",                   "Manuel Volvo FH/FM p.1"),
+    ("Qualite Huile",                 "qualite_huile",           None, None,   20.0, "%",       "ROUGE", "ARRET IMMEDIAT", "Huile tres degradee — vidange immediate obligatoire",                 "Manuel Volvo FH/FM p.1"),
+    ("Etat Batterie",                 "etat_batterie",           30.0, None,  None,  "%",       "JAUNE", "SURVEILLANCE",   "Batterie faible — verifier l'alternateur",                            "Manuel Volvo FH/FM p.84"),
+    ("Etat Batterie",                 "etat_batterie",           None, None,   15.0, "%",       "ROUGE", "ARRET IMMEDIAT", "Batterie critique — risque de panne demarrage",                       "Manuel Volvo FH/FM p.84"),
+    ("Consommation Carburant",        "consommation_carburant",  None,  35.0, None,  "L/100km", "JAUNE", "SURVEILLANCE",   "Consommation anormale — verifier injection/filtre",                  "Manuel Volvo FH/FM p.1"),
+    ("Consommation Carburant",        "consommation_carburant",  None, None,   45.0, "L/100km", "ROUGE", "ARRET IMMEDIAT", "Consommation critique — diagnostic immediat requis",                  "Manuel Volvo FH/FM p.1"),
+    ("Niveaux Vibration",             "niveaux_vibration",       None,   8.0, None,  "mm/s",    "JAUNE", "SURVEILLANCE",   "Vibrations anormales — verifier roues et suspension",                "Diagnostic standard Volvo"),
+    ("Niveaux Vibration",             "niveaux_vibration",       None, None,   12.0, "mm/s",    "ROUGE", "ARRET IMMEDIAT", "Vibrations critiques — risque de defaillance",                       "Diagnostic standard Volvo"),
+    ("Score Predictif",               "score_predictif",         None,   0.5, None,  "score",   "JAUNE", "SURVEILLANCE",   "Risque modere — planifier entretien sous 15 jours",                  "Modele predictif TruckMind"),
+    ("Score Predictif",               "score_predictif",         None, None,    0.8, "score",   "ROUGE", "ARRET IMMEDIAT", "Risque critique — entretien immediat obligatoire",                    "Modele predictif TruckMind"),
+    ("Regime Ralenti",                None,                     550.0, 650.0, None,  "tr/min",  "VERT",  "NORMAL",         "Regime de ralenti normal entre 550 et 650 tr/min",                   "Manuel Volvo FH/FM p.25"),
+    ("Pression Frein Stationnement",  None,                       5.0, None,  None,  "bar",     "ROUGE", "ARRET IMMEDIAT", "Pression insuffisante — appuyer valve verrouillage",                  "Manuel Volvo FH/FM p.33"),
+    ("Intervalle Vidange Huile (km)", None,                      None, None, 30000., "km",      "JAUNE", "SURVEILLANCE",   "Vidange tous les 30 000 km OU 12 mois — la premiere echeance prime",  "Manuel Volvo FH/FM p.1"),
+    ("Intervalle Vidange Huile (mois)", None,                    None, None,   12.0, "mois",    "JAUNE", "SURVEILLANCE",   "Vidange tous les 12 mois OU 30 000 km — la premiere echeance prime",  "Manuel Volvo FH/FM p.1"),
 ]
 
 
-# ─── Main setup ───────────────────────────────────────────────────
+# --- Main setup ---------------------------------------------------
 def main():
     print("""
-╔══════════════════════════════════════════════════════╗
-║  🚛 TruckMind — Database Setup v2.0                  ║
-║  Auteure : AFFAKI Aya — EST Tétouan — IA DUT         ║
-╚══════════════════════════════════════════════════════╝
+======================================================
+  TruckMind — Database Setup v2.0
+  Auteure : AFFAKI Aya — EST Tetouan — IA DUT
+======================================================
 """)
 
     if check_existing_db():
         sys.exit(0)
 
-    # ── Validate CSV files ─────────────────────────────────────────
+    # -- Validate CSV files -----------------------------------------
     for path, name in [(CSV_CODES, "codes_erreur.csv"), (CSV_MAINT, "histoire_de_maintenance.csv")]:
         if not os.path.exists(path):
-            print(f"❌ Fichier introuvable : {path}")
-            print(f"   Spécifiez le chemin avec --codes-csv / --maint-csv")
+            print(f"Fichier introuvable : {path}")
+            print(f"   Specifiez le chemin avec --codes-csv / --maint-csv")
             sys.exit(1)
 
-    # ── Connect & create tables ────────────────────────────────────
-    print(f"📁 Base de données : {DB_PATH}")
+    # -- Connect & create tables ------------------------------------
+    print(f"Base de donnees : {DB_PATH}")
     if os.path.exists(DB_PATH) and args.force:
         os.remove(DB_PATH)
-        print("🗑️  Base existante supprimée (--force)")
+        print("Base existante supprimee (--force)")
 
     conn = sqlite3.connect(DB_PATH)
     conn.execute("PRAGMA foreign_keys = ON")
@@ -223,7 +221,7 @@ def main():
     )""")
 
     # Table : maintenance
-    # ✅ id = TEXT PRIMARY KEY (ex: V0001) — pas d'AUTOINCREMENT
+    # id = TEXT PRIMARY KEY (ex: V0001) — pas d'AUTOINCREMENT
     cur.execute("""
     CREATE TABLE IF NOT EXISTS maintenance (
         id                     TEXT PRIMARY KEY,
@@ -245,7 +243,7 @@ def main():
     )""")
 
     # Table : maintenance_alerts
-    # ✅ maintenance_id = TEXT pour correspondre à maintenance.id
+    # maintenance_id = TEXT pour correspondre a maintenance.id
     cur.execute("""
     CREATE TABLE IF NOT EXISTS maintenance_alerts (
         id               INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -262,9 +260,9 @@ def main():
     cur.execute("CREATE INDEX IF NOT EXISTS idx_maint_dtc      ON maintenance(dtc)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_maint_score    ON maintenance(score_predictif DESC)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_alerts_maint   ON maintenance_alerts(maintenance_id)")
-    print("✅ Tables & index créés")
+    print("Tables & index crees")
 
-    # ── Fill thresholds ────────────────────────────────────────────
+    # -- Fill thresholds --------------------------------------------
     cur.executemany("""
     INSERT OR IGNORE INTO thresholds
         (parametre, colonne_csv, valeur_min, valeur_max, valeur_critique,
@@ -272,10 +270,10 @@ def main():
     VALUES (?,?,?,?,?,?,?,?,?,?)
     """, THRESHOLDS)
     nb_t = cur.execute("SELECT COUNT(*) FROM thresholds").fetchone()[0]
-    print(f"✅ Thresholds : {nb_t} seuils insérés")
+    print(f"Thresholds : {nb_t} seuils inseres")
 
-    # ── Fill knowledge ─────────────────────────────────────────────
-    print(f"📂 Chargement : {CSV_CODES}")
+    # -- Fill knowledge ---------------------------------------------
+    print(f"Chargement : {CSV_CODES}")
     codes_df = pd.read_csv(CSV_CODES)
     for _, row in codes_df.iterrows():
         dtc  = safe_get(row, "Code", "UNKNOWN")
@@ -283,10 +281,10 @@ def main():
         cur.execute("INSERT OR REPLACE INTO knowledge VALUES (?,?,?,?,?)",
                     (dtc, desc, detect_system(desc), detect_piece(desc), detect_gravite(str(dtc))))
     nb_k = cur.execute("SELECT COUNT(*) FROM knowledge").fetchone()[0]
-    print(f"✅ Knowledge : {nb_k} codes DTC insérés")
+    print(f"Knowledge : {nb_k} codes DTC inseres")
 
-    # ── Fill maintenance ───────────────────────────────────────────
-    print(f"📂 Chargement : {CSV_MAINT}")
+    # -- Fill maintenance -------------------------------------------
+    print(f"Chargement : {CSV_MAINT}")
     maint_df = pd.read_csv(CSV_MAINT)
 
     # Pre-load thresholds with csv columns
@@ -297,28 +295,28 @@ def main():
     BATCH = 200
 
     for idx, row in maint_df.iterrows():
-        # ✅ Lecture de l'id depuis le CSV (ex: V0001)
-        row_id = str(safe_get(row, "Identifiant_Véhicule", f"ROW_{idx}"))
+        # Lecture de l'id depuis le CSV (ex: V0001)
+        row_id = str(safe_get(row, "Identifiant_Vehicule", f"ROW_{idx}"))
 
         vid            = row_id
         date           = safe_get(row, "Date_Dernier_Entretien", "")
         action         = safe_get(row, "Type_Entretien", "maintenance")
-        etat_freins    = safe_get(row, "État_Freins", "inconnu")
-        qualite_huile  = safe_get(row, "Qualité_Huile", None)
-        anomalie       = int(safe_get(row, "Anomalies_Détectées", 0))
-        entretien      = int(safe_get(row, "Entretien_Nécessaire", 0))
-        score          = safe_get(row, "Score_Prédictif", 0)
-        temp           = safe_get(row, "Température_Moteur", None)
+        etat_freins    = safe_get(row, "Etat_Freins", "inconnu")
+        qualite_huile  = safe_get(row, "Qualite_Huile", None)
+        anomalie       = int(safe_get(row, "Anomalies_Detectees", 0))
+        entretien      = int(safe_get(row, "Entretien_Necessaire", 0))
+        score          = safe_get(row, "Score_Predictif", 0)
+        temp           = safe_get(row, "Temperature_Moteur", None)
         pneus          = safe_get(row, "Pression_Pneus", None)
         carbu          = safe_get(row, "Consommation_Carburant", None)
-        batt           = safe_get(row, "État_Batterie", None)
+        batt           = safe_get(row, "Etat_Batterie", None)
         vibr           = safe_get(row, "Niveaux_Vibration", None)
 
         dtc = assign_dtc(row, idx)
         if dtc: nb_dtc   += 1
         else:   nb_nodtc += 1
 
-        # ✅ id inclus dans l'INSERT
+        # id inclus dans l'INSERT
         cur.execute("""
         INSERT OR IGNORE INTO maintenance
             (id, vehicule_id, dtc, date, action, etat_freins, qualite_huile,
@@ -358,19 +356,19 @@ def main():
 
         if idx % BATCH == 0:
             conn.commit()
-            print(f"  ↳ {idx}/{len(maint_df)} lignes traitées...", end="\r")
+            print(f"  -> {idx}/{len(maint_df)} lignes traitees...", end="\r")
 
     conn.commit()
     nb_m = cur.execute("SELECT COUNT(*) FROM maintenance").fetchone()[0]
-    print(f"\n✅ Maintenance : {nb_m} enregistrements ({nb_dtc} avec DTC, {nb_nodtc} sans)")
-    print(f"✅ Alerts      : {nb_alerts} dépassements de seuil détectés")
+    print(f"\nMaintenance : {nb_m} enregistrements ({nb_dtc} avec DTC, {nb_nodtc} sans)")
+    print(f"Alerts      : {nb_alerts} depassements de seuil detectes")
 
     conn.close()
     print(f"""
-╔══════════════════════════════════════════════════════╗
-║  Base de données créée avec succès!                  ║
-║  Chemin : {DB_PATH[:43]:<43}                         ║
-╚══════════════════════════════════════════════════════╝
+======================================================
+  Base de donnees creee avec succes!
+  Chemin : {DB_PATH[:43]:<43}
+======================================================
 
   Lancez maintenant : python app.py
 """)

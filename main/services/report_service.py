@@ -2,9 +2,9 @@ from datetime import datetime
 
 def generate_trip_report_html(history_data: list) -> str:
     if not history_data:
-        return "<h2>Aucune donnée de trajet disponible pour générer un rapport.</h2>"
+        return "<h2>Aucune donnee de trajet disponible pour generer un rapport.</h2>"
 
-    # Récupérer un ID de camion (par défaut ou depuis 'donnees_camion' si présent)
+    # Recuperer un ID de camion (par defaut ou depuis 'donnees_camion' si present)
     truck_id = "Volvo FH"
     for entry in history_data:
         if "truck_id" in entry:
@@ -63,23 +63,23 @@ def generate_trip_report_html(history_data: list) -> str:
     </head>
     <body>
         <div class="header">
-            <div class="logo">🚛 TruckMind Report</div>
+            <div class="logo">TruckMind Report</div>
             <div>
-                <strong>Véhicule :</strong> {truck_id}<br>
+                <strong>Vehicule :</strong> {truck_id}<br>
                 <strong>Date :</strong> {date_str}
             </div>
         </div>
         <div class="summary-cards">
-            <div class="card"><div class="val">{len(history_data)}</div><div>Cycles Analysés</div></div>
+            <div class="card"><div class="val">{len(history_data)}</div><div>Cycles Analyses</div></div>
             <div class="card"><div class="val">{total_alerts}</div><div>Alertes Totales</div></div>
             <div class="card"><div class="val" style="color: #e74c3c;">{critical_alerts}</div><div>Incidents Critiques</div></div>
         </div>
-        <h3>Historique des événements</h3>
+        <h3>Historique des evenements</h3>
         <table>
-            <thead><tr><th>Cycle</th><th>Heure</th><th>Sévérité</th><th>Événement</th><th>Statut Recommandé</th><th>Action vitesse</th></tr></thead>
+            <thead><tr><th>Cycle</th><th>Heure</th><th>Severite</th><th>Evenement</th><th>Statut Recommande</th><th>Action vitesse</th></tr></thead>
             <tbody>{rows}</tbody>
         </table>
-        <button class="btn-print" onclick="window.print()">🖨️ Imprimer en PDF</button>
+        <button class="btn-print" onclick="window.print()">Imprimer en PDF</button>
     </body>
     </html>
     """

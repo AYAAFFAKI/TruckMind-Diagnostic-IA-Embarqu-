@@ -8,7 +8,7 @@ let lastNotificationTime = 0;          // Timestamp du dernier son joué
 // ─── Joue le son uniquement pour les alertes critiques ou attention ───
 function playNotificationSound(severite) {
     if (severite !== 'CRITIQUE' && severite !== 'ATTENTION') {
-        console.log("🔇 Son ignoré : sévérité =", severite);
+        console.log(" Son ignoré : sévérité =", severite);
         return;
     }
     const audio = document.getElementById('notification-audio');
@@ -51,7 +51,7 @@ function fetchNotifications() {
             if (data.length > notifLastCount && latestId !== lastPlayedNotificationId) {
                 // Ignorer si la même clé est revenue dans les 5 dernières secondes (évite les doublons)
                 if (currentKey === lastNotificationKey && (now - lastNotificationTime) < 5000) {
-                    console.log("🔁 Notification ignorée (répétition rapide)");
+                    console.log(" Notification ignorée (répétition rapide)");
                 } else {
                     playNotificationSound(latestNotification.severite);
                     lastPlayedNotificationId = latestId;

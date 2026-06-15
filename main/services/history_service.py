@@ -1,20 +1,20 @@
 """
-truck_memory.py — Gestionnaire de Mémoire TruckMind
+truck_memory.py — Gestionnaire de Memoire TruckMind
 =====================================================
-Module centralisé pour la persistance et l'analyse
+Module centralise pour la persistance et l'analyse
 de l'historique des alertes et notifications.
 
-Fonctions exposées :
-  get_truck_history()          → Liste complète (historique permanent)
-  save_entry(entry)            → Ajouter une entrée (permanent + RAM)
-  get_last_entry()             → Dernière entrée permanente
-  get_entries_by_severite()    → Filtrer par CRITIQUE / ATTENTION / NORMAL (depuis RAM)
-  get_stats_summary()          → Statistiques pour le Dashboard (depuis RAM)
-  get_recent_alerts(n)         → N dernières alertes réelles (depuis RAM)
-  purge_old_entries(max_keep)  → Limiter la taille du fichier permanent (optionnel)
-  purge_old_notifications()    → Limiter la taille des notifications RAM
-  sync_reset_memory()          → Réinitialiser UNIQUEMENT les données temporaires (RAM + LangGraph)
-  clear_notifications_ram()    → Vider les notifications RAM (utilisé au début d'un trajet)
+Fonctions exposees :
+  get_truck_history()          -> Liste complete (historique permanent)
+  save_entry(entry)            -> Ajouter une entree (permanent + RAM)
+  get_last_entry()             -> Derniere entree permanente
+  get_entries_by_severite()    -> Filtrer par CRITIQUE / ATTENTION / NORMAL (depuis RAM)
+  get_stats_summary()          -> Statistiques pour le Dashboard (depuis RAM)
+  get_recent_alerts(n)         -> N dernieres alertes reelles (depuis RAM)
+  purge_old_entries(max_keep)  -> Limiter la taille du fichier permanent (optionnel)
+  purge_old_notifications()    -> Limiter la taille des notifications RAM
+  sync_reset_memory()          -> Reinitialiser UNIQUEMENT les donnees temporaires (RAM + LangGraph)
+  clear_notifications_ram()    -> Vider les notifications RAM (utilise au debut d'un trajet)
 """
 
 import json
@@ -30,32 +30,32 @@ load_dotenv(_ENV_PATH)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# ══════════════════════════════════════════════════════════════════
+# ==================================================================
 # CHEMINS DES FICHIERS
-# ══════════════════════════════════════════════════════════════════
-# Mémoire long terme (données système uniquement) – NE JAMAIS VIDER
+# ==================================================================
+# Memoire long terme (donnees systeme uniquement) – NE JAMAIS VIDER
 HISTORY_PATH = os.environ.get(
     "TRUCK_HISTORY_PATH",
     os.path.join(BASE_DIR, "truck_history.json")
 )
 
-# Mémoire court terme (RAM) - notifications temporaires
+# Memoire court terme (RAM) - notifications temporaires
 NOTIFICATIONS_RAM_PATH = os.environ.get(
     "NOTIFICATIONS_RAM_PATH",
     os.path.join(BASE_DIR, "notifications_ram.json")
 )
 
-# ══════════════════════════════════════════════════════════════════
+# ==================================================================
 # VERROU THREAD-SAFETY
-# ══════════════════════════════════════════════════════════════════
+# ==================================================================
 _lock = threading.Lock()
 
-# ══════════════════════════════════════════════════════════════════
+# ==================================================================
 # LECTURE
-# ══════════════════════════════════════════════════════════════════
+# ==================================================================
 
 def get_truck_history() -> List[dict]:
-    """Retourne l'historique système complet (données capteurs uniquement). Liste vide si fichier absent."""
+    """Retourne l'historique systeme complet (donnees capteurs uniquement). Liste vide si fichier absent."""
     if not os.path.exists(HISTORY_PATH):
         return []
     with _lock:
@@ -79,20 +79,20 @@ def get_notifications_ram() -> List[dict]:
 
 
 def get_last_entry() -> Optional[dict]:
-    """Retourne la dernière entrée système sauvegardée, ou None."""
+    """Retourne la derniere entree systeme sauvegardee, ou None."""
     history = get_truck_history()
     return history[-1] if history else None
 
 
 def get_last_notification() -> Optional[dict]:
-    """Retourne la dernière notification sauvegardée, ou None."""
+    """Retourne la derniere notification sauvegardee, ou None."""
     notifications = get_notifications_ram()
     return notifications[-1] if notifications else None
 
 
 def get_recent_alerts(n: int = 10) -> List[dict]:
     """
-    Retourne les N dernières notifications qui contiennent
+    Retourne les N dernieres notifications qui contiennent
     au moins une alerte ROUGE ou JAUNE (depuis la RAM).
     """
     notifications = get_notifications_ram()
@@ -105,7 +105,7 @@ def get_recent_alerts(n: int = 10) -> List[dict]:
 
 def get_entries_by_severite(severite: str) -> List[dict]:
     """
-    Filtre les notifications par niveau de sévérité.
+    Filtre les notifications par niveau de severite.
     severite : "CRITIQUE" | "ATTENTION" | "NORMAL"
     """
     return [
@@ -114,20 +114,20 @@ def get_entries_by_severite(severite: str) -> List[dict]:
     ]
 
 
-# ══════════════════════════════════════════════════════════════════
-# ÉCRITURE
-# ══════════════════════════════════════════════════════════════════
+# ==================================================================
+# ECRITURE
+# ==================================================================
 
 def save_entry(entry: dict) -> bool:
     """
-    Ajoute une entrée à l'historique de façon thread-safe.
-    Sépare les données système (long terme) des notifications (court terme).
-    Retourne True si succès, False sinon.
+    Ajoute une entree a l'historique de façon thread-safe.
+    Separe les donnees systeme (long terme) des notifications (court terme).
+    Retourne True si succes, False sinon.
     """
     os.makedirs(os.path.dirname(HISTORY_PATH), exist_ok=True)
     with _lock:
         try:
-            # Numéro de cycle auto si absent
+            # Numero de cycle auto si absent
             if "cycle" not in entry:
                 history = get_truck_history()
                 entry["cycle"] = len(history) + 1
@@ -136,7 +136,7 @@ def save_entry(entry: dict) -> bool:
             if "timestamp" not in entry or not entry["timestamp"]:
                 entry["timestamp"] = datetime.now().isoformat()
 
-            # Sauvegarder les données système (long terme) – PERMANENT
+            # Sauvegarder les donnees systeme (long terme) – PERMANENT
             system_entry = {
                 "cycle": entry.get("cycle"),
                 "timestamp": entry.get("timestamp"),
@@ -184,9 +184,9 @@ def save_entry(entry: dict) -> bool:
 
 def clear_notifications_ram() -> bool:
     """
-    Vide les notifications RAM (mémoire court terme).
-    Retourne True si succès.
-    Utilisé au début d'un nouveau trajet et à l'arrêt du serveur.
+    Vide les notifications RAM (memoire court terme).
+    Retourne True si succes.
+    Utilise au debut d'un nouveau trajet et a l'arret du serveur.
     """
     with _lock:
         try:    
@@ -200,9 +200,9 @@ def clear_notifications_ram() -> bool:
 
 def purge_old_entries(max_keep: int = 200) -> int:
     """
-    Garde uniquement les `max_keep` entrées système les plus récentes.
-    Retourne le nombre d'entrées supprimées.
-    À n'utiliser que si l'utilisateur le souhaite explicitement.
+    Garde uniquement les `max_keep` entrees systeme les plus recentes.
+    Retourne le nombre d'entrees supprimees.
+    A n'utiliser que si l'utilisateur le souhaite explicitement.
     """
     with _lock:
         try:
@@ -220,7 +220,7 @@ def purge_old_entries(max_keep: int = 200) -> int:
             with open(HISTORY_PATH, "w", encoding="utf-8") as f:
                 json.dump(history, f, ensure_ascii=False, indent=2)
 
-            print(f"[TruckMemory] Purge système : {supprimees} entrée(s) supprimée(s)")
+            print(f"[TruckMemory] Purge systeme : {supprimees} entree(s) supprimee(s)")
             return supprimees
         except Exception as e:
             print(f"[TruckMemory] Erreur purge: {e}")
@@ -229,8 +229,8 @@ def purge_old_entries(max_keep: int = 200) -> int:
 
 def purge_old_notifications(max_keep: int = 50) -> int:
     """
-    Garde uniquement les `max_keep` notifications les plus récentes (RAM).
-    Retourne le nombre d'entrées supprimées.
+    Garde uniquement les `max_keep` notifications les plus recentes (RAM).
+    Retourne le nombre d'entrees supprimees.
     """
     with _lock:
         try:
@@ -248,71 +248,71 @@ def purge_old_notifications(max_keep: int = 50) -> int:
             with open(NOTIFICATIONS_RAM_PATH, "w", encoding="utf-8") as f:
                 json.dump(notifications, f, ensure_ascii=False, indent=2)
 
-            print(f"[TruckMemory] Purge notifications RAM : {supprimees} entrée(s) supprimée(s)")
+            print(f"[TruckMemory] Purge notifications RAM : {supprimees} entree(s) supprimee(s)")
             return supprimees
         except Exception as e:
             print(f"[TruckMemory] Erreur purge notifications: {e}")
             return 0
 
 
-# ══════════════════════════════════════════════════════════════════
-# SYNCHRONISATION AVEC LA MÉMOIRE LANGGRAPH (Cellule 11)
-# ══════════════════════════════════════════════════════════════════
+# ==================================================================
+# SYNCHRONISATION AVEC LA MEMOIRE LANGGRAPH (Cellule 11)
+# ==================================================================
 
 def sync_reset_memory() -> bool:
     """
-    Réinitialise UNIQUEMENT les données temporaires :
+    Reinitialise UNIQUEMENT les donnees temporaires :
       1. Les notifications RAM (notifications_ram.json)
-      2. La mémoire persistante de la Cellule 11
+      2. La memoire persistante de la Cellule 11
          (_alertes_compteur + _historique_valeurs)
 
-    L'historique permanent (truck_history.json) n'est PAS touché.
-    À appeler au début de chaque nouveau trajet.
-    Retourne True si les opérations ont réussi.
+    L'historique permanent (truck_history.json) n'est PAS touche.
+    A appeler au debut de chaque nouveau trajet.
+    Retourne True si les operations ont reussi.
     """
     ram_ok = clear_notifications_ram()
 
-    # Import tardif pour éviter les imports circulaires
+    # Import tardif pour eviter les imports circulaires
     try:
         from main.services.notification_service import reset_memory
         reset_memory()
         langgraph_ok = True
     except ImportError:
         try:
-            # Fallback : module dans le même dossier
+            # Fallback : module dans le meme dossier
             from notification_service import reset_memory
             reset_memory()
             langgraph_ok = True
         except ImportError:
-            print("[TruckMemory] ⚠️  reset_memory() non trouvé — mémoire LangGraph non réinitialisée")
+            print("[TruckMemory] [WARNING] reset_memory() non trouve — memoire LangGraph non reinitialisee")
             langgraph_ok = False
 
-    print(f"[TruckMemory] sync_reset_memory → RAM={'✅' if ram_ok else '❌'} | LangGraph={'✅' if langgraph_ok else '⚠️'} (historique permanent conservé)")
+    print(f"[TruckMemory] sync_reset_memory -> RAM={'[OK]' if ram_ok else '[FAIL]'} | LangGraph={'[OK]' if langgraph_ok else '[WARNING]'} (historique permanent conserve)")
     return ram_ok and langgraph_ok
 
 
-# ══════════════════════════════════════════════════════════════════
+# ==================================================================
 # STATISTIQUES POUR LE DASHBOARD
-# ══════════════════════════════════════════════════════════════════
+# ==================================================================
 
 def get_stats_summary() -> dict:
     """
-    Calcule les statistiques globales à partir des notifications RAM.
-    Utilisé par /api/fleet/stats et le Dashboard.
+    Calcule les statistiques globales a partir des notifications RAM.
+    Utilise par /api/fleet/stats et le Dashboard.
 
     Retourne :
     {
         "total_cycles"       : int,
-        "total_alertes"      : int,   ← CRITIQUE + ATTENTION
+        "total_alertes"      : int,   <- CRITIQUE + ATTENTION
         "critiques"          : int,
         "attentions"         : int,
         "normaux"            : int,
         "arrets_immediats"   : int,
         "reductions_vitesse" : int,
-        "validation_rate"    : float, ← % notifications valides
+        "validation_rate"    : float, <- % notifications valides
         "last_timestamp"     : str | None,
-        "capteurs_touches"   : dict,  ← {type: count}
-        "alertes_recentes"   : list,  ← 5 dernières
+        "capteurs_touches"   : dict,  <- {type: count}
+        "alertes_recentes"   : list,  <- 5 dernieres
     }
     """
     notifications = get_notifications_ram()
@@ -349,10 +349,10 @@ def get_stats_summary() -> dict:
     else:
         validation_rate = 0.0
 
-    # Comptage des types de capteurs touchés
+    # Comptage des types de capteurs touches
     capteurs_touches: dict = {}
     MOTS_CAPTEURS = {
-        "température": "temperature",
+        "temperature": "temperature",
         "temperature": "temperature",
         "pression":    "pression_pneus",
         "frein":       "freins",
@@ -370,7 +370,7 @@ def get_stats_summary() -> dict:
                     capteurs_touches[cle] = capteurs_touches.get(cle, 0) + 1
                     break  # Un seul type par alerte
 
-    # 5 dernières alertes réelles (pour le widget Dashboard)
+    # 5 dernieres alertes reelles (pour le widget Dashboard)
     alertes_recentes = []
     for entry in reversed(notifications):
         if entry.get("severite") in ("CRITIQUE", "ATTENTION"):

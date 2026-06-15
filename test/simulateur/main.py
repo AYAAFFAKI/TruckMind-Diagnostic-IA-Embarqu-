@@ -71,28 +71,28 @@ ANOMALIE_SCENARIOS = {
         "type": "temp",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(101, 104), 1),
-        "description_fn": lambda v: f"⚠️ Température moteur élevée ({v}°C) — surchauffe légère",
+        "description_fn": lambda v: f" Température moteur élevée ({v}°C) — surchauffe légère",
         "probabilite": 0.015,
     },
     "temp_surchauffe_critique": {
         "type": "temp",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(106, 115), 1),
-        "description_fn": lambda v: f"🔴 Température moteur critique ({v}°C) — arrêt recommandé",
+        "description_fn": lambda v: f" Température moteur critique ({v}°C) — arrêt recommandé",
         "probabilite": 0.012,
     },
     "temp_thermostat_defaillant": {
         "type": "temp",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(118, 130), 1),
-        "description_fn": lambda v: f"🔴 Thermostat défaillant — température moteur ({v}°C) incontrôlée",
+        "description_fn": lambda v: f" Thermostat défaillant — température moteur ({v}°C) incontrôlée",
         "probabilite": 0.005,
     },
     "temp_radiateur_bouche": {
         "type": "temp",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(103, 108), 1),
-        "description_fn": lambda v: f"⚠️ Possible radiateur bouché — temp ({v}°C) — vérifier circuit refroidissement",
+        "description_fn": lambda v: f" Possible radiateur bouché — temp ({v}°C) — vérifier circuit refroidissement",
         "probabilite": 0.008,
     },
 
@@ -101,28 +101,28 @@ ANOMALIE_SCENARIOS = {
         "type": "pneu",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(80, 89), 1),
-        "description_fn": lambda v: f"⚠️ Pression pneus insuffisante ({v} PSI) — perte lente détectée",
+        "description_fn": lambda v: f" Pression pneus insuffisante ({v} PSI) — perte lente détectée",
         "probabilite": 0.012,
     },
     "pneu_pression_critique": {
         "type": "pneu",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(60, 74), 1),
-        "description_fn": lambda v: f"🔴 Pression pneus critique ({v} PSI) — risque d'éclatement",
+        "description_fn": lambda v: f" Pression pneus critique ({v} PSI) — risque d'éclatement",
         "probabilite": 0.007,
     },
     "pneu_surpression": {
         "type": "pneu",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(126, 138), 1),
-        "description_fn": lambda v: f"⚠️ Surpression pneus ({v} PSI) — risque d'éclatement par chaleur",
+        "description_fn": lambda v: f" Surpression pneus ({v} PSI) — risque d'éclatement par chaleur",
         "probabilite": 0.006,
     },
     "pneu_crevason_progressive": {
         "type": "pneu",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(45, 65), 1),
-        "description_fn": lambda v: f"🔴 Crevaison progressive détectée ({v} PSI) — arrêt immédiat",
+        "description_fn": lambda v: f" Crevaison progressive détectée ({v} PSI) — arrêt immédiat",
         "probabilite": 0.005,
     },
 
@@ -131,21 +131,21 @@ ANOMALIE_SCENARIOS = {
         "type": "freins",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(71, 79), 1),
-        "description_fn": lambda v: f"⚠️ Usure freins modérée ({v}%) — maintenance à planifier",
+        "description_fn": lambda v: f" Usure freins modérée ({v}%) — maintenance à planifier",
         "probabilite": 0.012,
     },
     "freins_usure_critique": {
         "type": "freins",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(81, 90), 1),
-        "description_fn": lambda v: f"🔴 Freins très usés ({v}%) — remplacement urgent des plaquettes",
+        "description_fn": lambda v: f" Freins très usés ({v}%) — remplacement urgent des plaquettes",
         "probabilite": 0.008,
     },
     "freins_defaillance_totale": {
         "type": "freins",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(91, 99), 1),
-        "description_fn": lambda v: f"🔴 DÉFAILLANCE FREINS ({v}%) — ARRÊT D'URGENCE requis",
+        "description_fn": lambda v: f" DÉFAILLANCE FREINS ({v}%) — ARRÊT D'URGENCE requis",
         "probabilite": 0.004,
     },
     "freins_surchauffe": {
@@ -168,21 +168,21 @@ ANOMALIE_SCENARIOS = {
         "type": "batterie",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(8, 14), 1),
-        "description_fn": lambda v: f"🔴 Batterie critique ({v}%) — risque de panne démarrage imminente",
+        "description_fn": lambda v: f" Batterie critique ({v}%) — risque de panne démarrage imminente",
         "probabilite": 0.007,
     },
     "batterie_decharge_rapide": {
         "type": "batterie",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(5, 12), 1),
-        "description_fn": lambda v: f"🔴 Décharge rapide batterie ({v}%) — alternateur ou court-circuit suspect",
+        "description_fn": lambda v: f" Décharge rapide batterie ({v}%) — alternateur ou court-circuit suspect",
         "probabilite": 0.005,
     },
     "batterie_vieillissement": {
         "type": "batterie",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(22, 28), 1),
-        "description_fn": lambda v: f"⚠️ Batterie vieillissante ({v}%) — capacité réduite — planifier remplacement",
+        "description_fn": lambda v: f" Batterie vieillissante ({v}%) — capacité réduite — planifier remplacement",
         "probabilite": 0.008,
     },
 
@@ -191,28 +191,28 @@ ANOMALIE_SCENARIOS = {
         "type": "vibrations",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(8.0, 11.5), 2),
-        "description_fn": lambda v: f"⚠️ Vibrations anormales ({v} mm/s) — vérifier équilibrage roues",
+        "description_fn": lambda v: f" Vibrations anormales ({v} mm/s) — vérifier équilibrage roues",
         "probabilite": 0.010,
     },
     "vibrations_critiques": {
         "type": "vibrations",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(12.0, 17.0), 2),
-        "description_fn": lambda v: f"🔴 Vibrations critiques ({v} mm/s) — roulement ou suspension défaillant",
+        "description_fn": lambda v: f" Vibrations critiques ({v} mm/s) — roulement ou suspension défaillant",
         "probabilite": 0.007,
     },
     "vibrations_moteur_desaccorde": {
         "type": "vibrations",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(14.0, 20.0), 2),
-        "description_fn": lambda v: f"🔴 Vibrations excessives moteur ({v} mm/s) — désaccordement cylindres suspect",
+        "description_fn": lambda v: f" Vibrations excessives moteur ({v} mm/s) — désaccordement cylindres suspect",
         "probabilite": 0.004,
     },
     "vibrations_chaussee_degradee": {
         "type": "vibrations",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(9.0, 13.0), 2),
-        "description_fn": lambda v: f"⚠️ Vibrations élevées ({v} mm/s) — possible chaussée dégradée ou amortisseurs",
+        "description_fn": lambda v: f" Vibrations élevées ({v} mm/s) — possible chaussée dégradée ou amortisseurs",
         "probabilite": 0.008,
     },
 
@@ -221,28 +221,28 @@ ANOMALIE_SCENARIOS = {
         "type": "conso",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(36, 44), 1),
-        "description_fn": lambda v: f"⚠️ Consommation élevée ({v} L/100km) — vérifier filtre air / charge",
+        "description_fn": lambda v: f" Consommation élevée ({v} L/100km) — vérifier filtre air / charge",
         "probabilite": 0.008,
     },
     "conso_excessive": {
         "type": "conso",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(45, 55), 1),
-        "description_fn": lambda v: f"🔴 Consommation excessive ({v} L/100km) — injection ou turbo défaillant",
+        "description_fn": lambda v: f" Consommation excessive ({v} L/100km) — injection ou turbo défaillant",
         "probabilite": 0.005,
     },
     "conso_fuite_carburant": {
         "type": "conso",
         "niveau": "rouge",
         "valeur_fn": lambda: round(random.uniform(50, 65), 1),
-        "description_fn": lambda v: f"🔴 Consommation anormale ({v} L/100km) — fuite carburant possible",
+        "description_fn": lambda v: f" Consommation anormale ({v} L/100km) — fuite carburant possible",
         "probabilite": 0.003,
     },
     "conso_filtre_bouche": {
         "type": "conso",
         "niveau": "jaune",
         "valeur_fn": lambda: round(random.uniform(37, 43), 1),
-        "description_fn": lambda v: f"⚠️ Consommation ({v} L/100km) — filtre à carburant potentiellement bouché",
+        "description_fn": lambda v: f" Consommation ({v} L/100km) — filtre à carburant potentiellement bouché",
         "probabilite": 0.006,
     },
 }
@@ -348,7 +348,7 @@ class TruckState:
                 self._anomalie_type     = None
                 self._anomalie_scenario = None
                 self._anomalie_valeur   = None
-                print(f"  🟢 Anomalie terminée → retour à la normale")
+                print(f"   Anomalie terminée → retour à la normale")
             return False
 
         # ── B. Tirage probabiliste dans le catalogue ───────────────
@@ -390,9 +390,9 @@ class TruckState:
         self._anomalie_valeur         = valeur
         self._anomalie_steps_left     = duree
 
-        print(f"  🔴 NOUVELLE anomalie [{cle_sc}] : {sc['type']} = {valeur} "
+        print(f"  NOUVELLE anomalie [{cle_sc}] : {sc['type']} = {valeur} "
               f"| niveau : {sc['niveau']} | durée : {duree} steps = {duree * 30}s")
-        print(f"  📝 → Écriture JSON immédiate pour garantir visibilité Agent")
+        print(f"  Écriture JSON immédiate pour garantir visibilité Agent")
 
         return True
 
@@ -599,7 +599,7 @@ class TruckState:
             "charge_seuil_rouge":          SEUIL_CHARGE_ROUGE,
             "fuel_level_liters":           round(self.fuel_level_liters, 2),
 
-            # ⬇️  Clés renommées pour correspondre à la table thresholds ⬇️
+            #   Clés renommées pour correspondre à la table thresholds 
             "consommation_carburant":      round(self.consommation_l_100km, 2),
             "temperature_moteur":          round(self.temperature_moteur_c, 1),
             "pression_pneus":              round(self.pression_pneus_psi, 1),
@@ -655,20 +655,20 @@ def ecrire_json():
         anomalie_info = ""
         if truck_state._anomalie_type:
             anomalie_info = (
-                f"| 🔴 [{truck_state._anomalie_scenario}] "
+                f"|  [{truck_state._anomalie_scenario}] "
                 f"({truck_state._anomalie_steps_left} steps = "
                 f"{truck_state._anomalie_steps_left * 30}s)"
             )
 
         print(
-            f"✅ [{datetime.now().strftime('%H:%M:%S')}] JSON mis à jour "
+            f" [{datetime.now().strftime('%H:%M:%S')}] JSON mis à jour "
             f"| {emoji} Charge : {truck_state.load_tonnes} T "
             f"| Temp : {truck_state.temperature_moteur_c}°C "
             f"| Freins : {truck_state.freins_usure_percent}% "
             f"{anomalie_info}"
         )
     except Exception as e:
-        print(f"❌ Erreur écriture JSON : {e}")
+        print(f" Erreur écriture JSON : {e}")
 
 
 async def background_simulation():
@@ -682,7 +682,7 @@ async def background_simulation():
             steps_depuis_ecriture += 1
 
             if nouvelle_anomalie:
-                print("  ⚡ ÉCRITURE JSON IMMÉDIATE (nouvelle anomalie détectée)")
+                print("   ÉCRITURE JSON IMMÉDIATE (nouvelle anomalie détectée)")
                 ecrire_json()
                 steps_depuis_ecriture = 0
 
@@ -694,12 +694,12 @@ async def background_simulation():
                 print("✓ Trajet terminé ! Redémarrage dans 10 s...")
                 await asyncio.sleep(10)
                 truck_state.reset_journey()
-                print("🚀 Nouveau trajet démarré !")
+                print(" Nouveau trajet démarré !")
 
             await asyncio.sleep(UPDATE_INTERVAL_SEC)
 
         except Exception as e:
-            print(f"❌ Erreur simulation : {e}")
+            print(f" Erreur simulation : {e}")
             await asyncio.sleep(5)
 
 
@@ -716,19 +716,19 @@ async def startup_event():
     total_proba = sum(sc["probabilite"] for sc in ANOMALIE_SCENARIOS.values())
 
     print("=" * 80)
-    print("🚛  TruckMind — Simulation Réaliste Volvo FH  (main.py v4)")
+    print("  TruckMind — Simulation Réaliste Volvo FH  (main.py v4)")
     print("=" * 80)
     print(f"📍 Trajet       : Tanger → Tétouan ({TOTAL_DISTANCE_KM} km)")
-    print(f"📁 JSON         : {JSON_FILE_PATH}")
-    print(f"🔄 Écriture     : toutes les {WRITE_INTERVAL_SEC} s + IMMÉDIATE si anomalie")
+    print(f" JSON         : {JSON_FILE_PATH}")
+    print(f" Écriture     : toutes les {WRITE_INTERVAL_SEC} s + IMMÉDIATE si anomalie")
     print("")
-    print("📊 SCÉNARIOS DE CHARGE :")
-    print("   🟢 70% → Charge normale (25-29 T)")
-    print("   🟡 20% → Surcharge modérée (31-37 T)")
-    print("   🔴  8% → Surcharge critique (38-42 T)")
-    print("   🔴  2% → Urgence (43-48 T)")
+    print(" SCÉNARIOS DE CHARGE :")
+    print("    70% → Charge normale (25-29 T)")
+    print("    20% → Surcharge modérée (31-37 T)")
+    print("     8% → Surcharge critique (38-42 T)")
+    print("     2% → Urgence (43-48 T)")
     print("")
-    print(f"🚨 CATALOGUE D'ANOMALIES ({len(ANOMALIE_SCENARIOS)} scénarios | "
+    print(f" CATALOGUE D'ANOMALIES ({len(ANOMALIE_SCENARIOS)} scénarios | "
           f"proba totale : {total_proba*100:.1f}% par step)")
     print("")
 
@@ -737,26 +737,11 @@ async def startup_event():
         t = sc["type"]
         categories.setdefault(t, []).append((cle, sc))
 
-    icones = {
-        "temp":      "🌡️ TEMPÉRATURE MOTEUR",
-        "pneu":      "🛞 PRESSION PNEUS",
-        "freins":    "🛑 FREINS",
-        "batterie":  "🔋 BATTERIE",
-        "vibrations":"📳 VIBRATIONS",
-        "conso":     "⛽ CONSOMMATION",
-    }
-
-    for type_key, scenarios in categories.items():
-        print(f"  {icones.get(type_key, type_key)} :")
-        for cle, sc in scenarios:
-            print(f"      [{sc['niveau'].upper():5s}] {sc['probabilite']*100:.1f}% → {cle}")
-        print("")
-
-    print(f"🔁 Durée anomalie : {ANOMALIE_DUREE_MIN}–{ANOMALIE_DUREE_MAX} steps "
+    print(f" Durée anomalie : {ANOMALIE_DUREE_MIN}–{ANOMALIE_DUREE_MAX} steps "
           f"({ANOMALIE_DUREE_MIN*30}–{ANOMALIE_DUREE_MAX*30} s)")
-    print("   📝 Écriture JSON IMMÉDIATE à chaque nouvelle anomalie")
+    print("   Écriture JSON IMMÉDIATE à chaque nouvelle anomalie")
     print("")
-    print("🌐 Dashboard   : http://localhost:8000/")
+    print(" Dashboard   : http://localhost:8000/")
     print("=" * 80)
     asyncio.create_task(background_simulation())
 
@@ -772,7 +757,7 @@ async def event_generator():
                 yield f"data: {json.dumps(truck_state.to_dict(), ensure_ascii=False)}\n\n"
             await asyncio.sleep(1)
         except Exception as e:
-            print(f"❌ Erreur SSE : {e}")
+            print(f" Erreur SSE : {e}")
             break
 
 
