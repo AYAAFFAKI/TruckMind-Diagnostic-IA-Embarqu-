@@ -13,7 +13,7 @@
 
 ---
 
-## ⚠️ Statut du Projet / حالة المشروع
+## ⚠️ Statut du Projet 
 
 **Ce projet a été développé dans le cadre d'un projet académique (stage). Toute modification ou mise à jour effectuée après le 18/07/2026 ne fait pas partie du projet académique initial, mais résulte de la décision de l'auteure de poursuivre le développement du projet en dehors de ce cadre.**
 
