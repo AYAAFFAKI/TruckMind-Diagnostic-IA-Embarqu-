@@ -13,6 +13,12 @@
 
 ---
 
+## ⚠️ Statut du Projet / حالة المشروع
+
+**Ce projet a été développé dans le cadre d'un projet académique (stage). Toute modification ou mise à jour effectuée après le 18/07/2026 ne fait pas partie du projet académique initial, mais résulte de la décision de l'auteure de poursuivre le développement du projet en dehors de ce cadre.**
+
+---
+
 ##  Description
 
 TruckMind est un système de diagnostic embarqué (Diagnostic IA Embarqué) spécialement conçu pour les camions Volvo FH/FM. Le système s'appuie sur la technologie **RAG (Retrieval-Augmented Generation)** pour fusionner des données structurées (SQL) issues des capteurs et des journaux de maintenance, avec des données non structurées (ChromaDB) provenant des manuels techniques, afin de fournir des analyses précises via un puissant moteur d'intelligence artificielle.
