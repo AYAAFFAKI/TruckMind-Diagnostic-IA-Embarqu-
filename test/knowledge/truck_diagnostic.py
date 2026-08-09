@@ -1,21 +1,21 @@
 # ============================================================
-# Projet : AI Truck Diagnostic Database — VERSION 9.4
-# Correction par rapport à V9.3 :
-#   → detect_gravite() V9.3 forçait TOUS les codes issus d'un
-#     capteur "critique" à gravite="haute" (sur-correction : perte
-#     totale de la distinction moyenne/haute, 100% des codes du
-#     top 10 devenaient "haute", ce qui n'est pas plus informatif
-#     que l'ancien système figé).
-#   → V9.4 distingue deux familles de capteurs :
-#       - ESCALADE_HAUTE (risque sécurité immédiat : température,
-#         vibration → accident/incendie possible) → gravite="haute"
-#       - ESCALADE_MOYENNE (risque mécanique/économique sans danger
-#         immédiat : huile, carburant, batterie, pneus) → gravite
-#         relevée à "moyenne" au minimum, mais reste "haute" si le
-#         préfixe du code l'indiquait déjà (ex: P03xx = raté
-#         d'allumage, toujours haute peu importe le capteur)
-#   → Ceci restaure un vrai dégradé faible/moyenne/haute cohérent
-#     avec maintenance_alerts, au lieu d'un aplatissement à "haute"
+# Projet : AI Truck Diagnostic Database — VERSION 9.5
+# Correction par rapport à V9.4 :
+#   → Le CSV truckmind_dataset_complet.csv contient des colonnes
+#     qui étaient collectées lors de la génération (Employe_ID,
+#     Employe_Nom, Departement, Poste, Trajet_ID, Niveau_Risque,
+#     Historique_Pannes, Facteur_Age) mais QUI N'ÉTAIENT PAS
+#     EXPLOITÉES par le script V9.4 (perte d'information).
+#   → V9.5 ajoute :
+#       1. Table employes (référentiel Finance/Logistique, 25
+#          employés) + FK employe_id dans trips
+#       2. trips.trajet_id_externe : conserve le Trajet_ID
+#          original du CSV pour traçabilité
+#       3. maintenance.niveau_risque + maintenance.historique_pannes
+#          : deux colonnes CSV utiles au RAG, désormais stockées
+#       4. vehicules.facteur_age : colonne CSV désormais stockée
+#       5. query_vehicle_full() affiche le nom du responsable
+#          Finance/Logistique par trajet
 # Auteure : AFFAKI Aya — EST Tétouan
 # ============================================================
 
@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS vehicules (
     heures_utilisation    INTEGER,
     capacite_charge_t     REAL,
     categorie_age         TEXT,
+    facteur_age           REAL,
     valeur_achat_mad      REAL,
     valeur_actuelle_mad   REAL
 )
@@ -61,6 +62,15 @@ CREATE TABLE IF NOT EXISTS chauffeurs (
     permis_date_expiration   TEXT,
     salaire_base_mensuel_mad REAL,
     prime_activite_mad       REAL
+)
+""")
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS employes (
+    employe_id    TEXT PRIMARY KEY,
+    nom           TEXT,
+    departement   TEXT,
+    poste         TEXT
 )
 """)
 
@@ -114,6 +124,8 @@ CREATE TABLE IF NOT EXISTS maintenance (
     anomalie_detectee      INTEGER,
     entretien_necessaire   INTEGER,
     score_predictif        REAL,
+    niveau_risque          TEXT,
+    historique_pannes      INTEGER,
     temperature_moteur     REAL,
     pression_pneus         REAL,
     consommation_carburant REAL,
@@ -139,8 +151,10 @@ CREATE TABLE IF NOT EXISTS maintenance_alerts (
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS trips (
     id                       INTEGER PRIMARY KEY AUTOINCREMENT,
+    trajet_id_externe        TEXT,
     vehicule_id              TEXT,
     chauffeur_id             TEXT,
+    employe_id               TEXT,
     route_id                 INTEGER,
     date                     TEXT,
     charge_reelle_t          REAL,
@@ -157,6 +171,7 @@ CREATE TABLE IF NOT EXISTS trips (
     impact_efficacite        REAL,
     FOREIGN KEY (vehicule_id)  REFERENCES vehicules(vehicule_id),
     FOREIGN KEY (chauffeur_id) REFERENCES chauffeurs(chauffeur_id),
+    FOREIGN KEY (employe_id)   REFERENCES employes(employe_id),
     FOREIGN KEY (route_id)     REFERENCES routes(route_id)
 )
 """)
@@ -175,7 +190,7 @@ CREATE TABLE IF NOT EXISTS fleet_costs (
 )
 """)
 
-print(" 9 tables créées avec relations FK.")
+print(" 9 tables créées (dont employes) avec relations FK.")
 
 # ============================================================
 # REMPLISSAGE DE LA TABLE thresholds
@@ -344,30 +359,14 @@ def detect_piece(description):
     else:                                                          return "composant générique"
 
 # ============================================================
-# V9.4 — GRAVITÉ AVEC DÉGRADÉ FAIBLE / MOYENNE / HAUTE
+# V9.4/V9.5 — GRAVITÉ AVEC DÉGRADÉ FAIBLE / MOYENNE / HAUTE
+# (logique inchangée par rapport à V9.4, toujours valide)
 # ============================================================
 
-# Capteurs à risque SÉCURITAIRE immédiat (accident, incendie possible
-# en cas de conduite prolongée en état critique) → gravité "haute"
-# quel que soit le préfixe du code.
 ESCALADE_HAUTE = {"temperature_moteur", "niveaux_vibration"}
-
-# Capteurs à risque mécanique/économique mais SANS danger immédiat
-# pour la sécurité (panne progressive, surcoût, usure) → la gravité
-# est relevée à "moyenne" au minimum, mais reste "haute" si le code
-# lui-même l'indiquait déjà (ex : P03xx = raté d'allumage moteur).
 ESCALADE_MOYENNE = {"qualite_huile", "consommation_carburant", "etat_batterie", "pression_pneus"}
 
 def detect_gravite(code, sensors_of_code=None):
-    """
-    V9.4 : dégradé faible/moyenne/haute cohérent avec le domaine du
-    capteur d'origine, SANS aplatir tous les codes à "haute" comme
-    en V9.3 (sur-correction). Deux familles de capteurs :
-      - ESCALADE_HAUTE  → toujours "haute" (risque sécurité immédiat)
-      - ESCALADE_MOYENNE → "moyenne" au minimum, "haute" seulement si
-        le préfixe du code l'indiquait déjà
-    """
-    # Gravité de base, uniquement à partir du préfixe du code (V8/V9.1)
     if code.startswith("P03"):   base = "haute"
     elif code.startswith("C1"):  base = "haute"
     elif code.startswith("P05"): base = "moyenne"
@@ -382,8 +381,6 @@ def detect_gravite(code, sensors_of_code=None):
         return "haute"
 
     if sensors_of_code & ESCALADE_MOYENNE:
-        # ne descend jamais en dessous de "moyenne", mais ne force
-        # pas "haute" si le code ne l'indiquait pas déjà
         return "haute" if base == "haute" else "moyenne"
 
     return base
@@ -466,7 +463,7 @@ def preview_dtc_pools(codes_df, dtc_pools, sample_size=10):
         for _, row in codes_df.iterrows()
     }
     print("\n" + "=" * 70)
-    print(" APERÇU DES POOLS DTC PAR CAPTEUR (V9.4)")
+    print(" APERÇU DES POOLS DTC PAR CAPTEUR (V9.5)")
     print("=" * 70)
     for sensor, pool in dtc_pools.items():
         print(f"\n--- {sensor} ({len(pool)} codes) ---")
@@ -568,7 +565,7 @@ except Exception as e:
 dtc_pools = build_dtc_pools(codes_df)
 dtc_to_sensors = build_dtc_to_sensors(dtc_pools)
 
-print(" Pools DTC par capteur (V9.4) :")
+print(" Pools DTC par capteur (V9.5) :")
 for sensor, pool in dtc_pools.items():
     print(f"   ├─ {sensor:24s} : {len(pool)} codes candidats")
 
@@ -592,7 +589,7 @@ for _, row in codes_df.iterrows():
 print(f" Table knowledge remplie — {len(codes_df)} codes OBD insérés.")
 
 # ============================================================
-# PASSE 1 — tables de référence (vehicules / chauffeurs / routes)
+# PASSE 1 — tables de référence (vehicules / chauffeurs / employes / routes)
 # ============================================================
 
 nb_vehicules = 0
@@ -601,14 +598,15 @@ for _, row in maintenance_df.iterrows():
     cursor.execute("""
     INSERT OR IGNORE INTO vehicules
         (vehicule_id, annee_fabrication, heures_utilisation, capacite_charge_t,
-         categorie_age, valeur_achat_mad, valeur_actuelle_mad)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+         categorie_age, facteur_age, valeur_achat_mad, valeur_actuelle_mad)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         vehicule_id,
         safe_get(row, "Année_Fabrication", None),
         safe_get(row, "Heures_Utilisation", None),
         safe_get(row, "Capacité_Charge", None),
         safe_get(row, "Categorie_Age", None),
+        safe_get(row, "Facteur_Age", None),
         safe_get(row, "Valeur_Achat_MAD", None),
         safe_get(row, "Valeur_Actuelle_MAD", None),
     ))
@@ -639,6 +637,24 @@ for _, row in maintenance_df.iterrows():
     nb_chauffeurs += cursor.rowcount
 
 print(f" Table chauffeurs remplie — {nb_chauffeurs} chauffeurs insérés.")
+
+nb_employes = 0
+for _, row in maintenance_df.iterrows():
+    employe_id = safe_get(row, "Employe_ID", None)
+    if employe_id is None:
+        continue
+    cursor.execute("""
+    INSERT OR IGNORE INTO employes (employe_id, nom, departement, poste)
+    VALUES (?, ?, ?, ?)
+    """, (
+        employe_id,
+        safe_get(row, "Employe_Nom", None),
+        safe_get(row, "Departement", None),
+        safe_get(row, "Poste", None),
+    ))
+    nb_employes += cursor.rowcount
+
+print(f" Table employes remplie — {nb_employes} employés Finance/Logistique insérés.")
 
 nb_routes = 0
 for _, row in maintenance_df.iterrows():
@@ -689,6 +705,8 @@ for idx, row in maintenance_df.iterrows():
     anomalie_detectee      = safe_get(row, "Anomalies_Détectées", 0)
     entretien_necessaire   = safe_get(row, "Entretien_Nécessaire", 0)
     score_predictif        = safe_get(row, "Score_Prédictif", 0)
+    niveau_risque          = safe_get(row, "Niveau_Risque", None)
+    historique_pannes      = safe_get(row, "Historique_Pannes", None)
     temperature_moteur     = safe_get(row, "Température_Moteur", None)
     pression_pneus         = safe_get(row, "Pression_Pneus", None)
     consommation_carburant = safe_get(row, "Consommation_Carburant", None)
@@ -703,12 +721,14 @@ for idx, row in maintenance_df.iterrows():
     INSERT INTO maintenance
     (vehicule_id, dtc, date, action, etat_freins, qualite_huile,
      anomalie_detectee, entretien_necessaire, score_predictif,
+     niveau_risque, historique_pannes,
      temperature_moteur, pression_pneus, consommation_carburant,
      etat_batterie, niveaux_vibration)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (vehicule_id, dtc, date, action, etat_freins,
           qualite_huile, anomalie_detectee, entretien_necessaire,
-          score_predictif, temperature_moteur, pression_pneus,
+          score_predictif, niveau_risque, historique_pannes,
+          temperature_moteur, pression_pneus,
           consommation_carburant, etat_batterie, niveaux_vibration))
 
     maintenance_id = cursor.lastrowid
@@ -751,20 +771,22 @@ for idx, row in maintenance_df.iterrows():
             """, (maintenance_id, t_id, valeur, depassement))
             nb_alerts += 1
 
-    chauffeur_id = safe_get(row, "Chauffeur_ID", None)
-    route_nom    = safe_get(row, "Route_Nom", None)
-    route_id     = route_id_map.get(route_nom) if route_nom else None
+    chauffeur_id      = safe_get(row, "Chauffeur_ID", None)
+    employe_id        = safe_get(row, "Employe_ID", None)
+    trajet_id_externe = safe_get(row, "Trajet_ID", None)
+    route_nom         = safe_get(row, "Route_Nom", None)
+    route_id          = route_id_map.get(route_nom) if route_nom else None
 
     cursor.execute("""
     INSERT INTO trips
-        (vehicule_id, chauffeur_id, route_id, date, charge_reelle_t,
-         type_marchandise, facteur_marchandise, marchandise_dangereuse,
+        (trajet_id_externe, vehicule_id, chauffeur_id, employe_id, route_id, date,
+         charge_reelle_t, type_marchandise, facteur_marchandise, marchandise_dangereuse,
          conditions_meteo, conditions_route, delais_livraison_h,
          distance_estimee_km, carburant_estime_litres, cout_carburant_mad,
          revenu_estime_mad, impact_efficacite)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
-        vehicule_id, chauffeur_id, route_id, date,
+        trajet_id_externe, vehicule_id, chauffeur_id, employe_id, route_id, date,
         safe_get(row, "Charge_Réelle", None),
         safe_get(row, "Type_Marchandise", None),
         safe_get(row, "Facteur_Marchandise", None),
@@ -801,7 +823,7 @@ print(f" Table maintenance remplie :")
 print(f"   ├─ {nb_avec_dtc} enregistrements AVEC DTC")
 print(f"   └─ {nb_sans_dtc} enregistrements SANS DTC")
 print(f" Table maintenance_alerts : {nb_alerts} alertes générées (NORMAL exclu).")
-print(f" Table trips : {nb_trips} trajets insérés.")
+print(f" Table trips : {nb_trips} trajets insérés (avec trajet_id_externe et employe_id).")
 print(f" Table fleet_costs : {nb_costs} enregistrements de coûts insérés.")
 
 conn.commit()
@@ -837,14 +859,16 @@ df_alerts = pd.read_sql_query("""
 """, conn)
 print(df_alerts.to_string())
 
-print("\n JOIN trips ↔ vehicules ↔ chauffeurs ↔ routes (5 premiers) :")
+print("\n JOIN trips ↔ vehicules ↔ chauffeurs ↔ employes ↔ routes (5 premiers) :")
 df_trips = pd.read_sql_query("""
-    SELECT tr.vehicule_id, v.categorie_age, c.nom AS chauffeur,
+    SELECT tr.trajet_id_externe, tr.vehicule_id, v.categorie_age,
+           c.nom AS chauffeur, e.nom AS responsable_logistique, e.departement,
            r.route_nom, r.type_itineraire, tr.type_marchandise,
            tr.revenu_estime_mad
     FROM trips tr
     JOIN vehicules  v ON tr.vehicule_id  = v.vehicule_id
     LEFT JOIN chauffeurs c ON tr.chauffeur_id = c.chauffeur_id
+    LEFT JOIN employes   e ON tr.employe_id   = e.employe_id
     LEFT JOIN routes     r ON tr.route_id     = r.route_id
     LIMIT 5
 """, conn)
@@ -884,14 +908,13 @@ df_dtc_stats = pd.read_sql_query("""
 """, conn)
 print(df_dtc_stats.to_string())
 
-# V9.4 — répartition globale des gravités (pour valider le dégradé)
 df_gravite_stats = pd.read_sql_query("""
     SELECT gravite, COUNT(*) AS nb_codes
     FROM knowledge
     GROUP BY gravite
     ORDER BY nb_codes DESC
 """, conn)
-print("\n Répartition des gravités dans knowledge (V9.4) :")
+print("\n Répartition des gravités dans knowledge (V9.5) :")
 print(df_gravite_stats.to_string())
 
 # ============================================================
@@ -926,7 +949,8 @@ def query_vehicle_full(vehicule_id):
     print(v.to_string(index=False))
 
     m = pd.read_sql_query("""
-        SELECT date, action, dtc, score_predictif, temperature_moteur, pression_pneus
+        SELECT date, action, dtc, score_predictif, niveau_risque,
+               historique_pannes, temperature_moteur, pression_pneus
         FROM maintenance WHERE vehicule_id = ? ORDER BY date DESC
     """, conn, params=(vehicule_id,))
     print(f"\n MAINTENANCE ({len(m)}) :")
@@ -943,10 +967,12 @@ def query_vehicle_full(vehicule_id):
     print(al.to_string(index=False))
 
     t = pd.read_sql_query("""
-        SELECT tr.date, c.nom AS chauffeur, r.route_nom, tr.type_marchandise,
+        SELECT tr.trajet_id_externe, tr.date, c.nom AS chauffeur,
+               e.nom AS responsable_logistique, r.route_nom, tr.type_marchandise,
                tr.revenu_estime_mad, tr.cout_carburant_mad
         FROM trips tr
         LEFT JOIN chauffeurs c ON tr.chauffeur_id = c.chauffeur_id
+        LEFT JOIN employes   e ON tr.employe_id   = e.employe_id
         LEFT JOIN routes     r ON tr.route_id     = r.route_id
         WHERE tr.vehicule_id = ?
     """, conn, params=(vehicule_id,))
