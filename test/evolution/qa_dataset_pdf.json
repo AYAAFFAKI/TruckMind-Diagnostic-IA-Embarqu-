@@ -1,14 +1,7 @@
 {
-  "dataset_name": "truck_llm_evaluation_set_v3",
-  "description": "Jeu de questions-réponses de test pour le RAG/agent TruckMind, généré après la refonte et l'amélioration de la base truckmind_v2.db (V9.5) et des documents PDF associés. Couvre les 4 domaines (maintenance, finance, logistique, documentaire) ainsi que des questions cross-domaines combinant plusieurs sources, avec des formulations variées (directes, indirectes, techniciens, gestion). Les réponses suivent le style et les règles du prompt système TruckMind (chiffres directs, 1-3 phrases, listes à puces uniquement pour les énumérations exhaustives, mention ARRÊT IMMÉDIAT uniquement si réellement justifiée).",
-  "sources": [
-    "truckmind_v2.db (tables: vehicules, chauffeurs, employes, routes, knowledge, thresholds, maintenance, maintenance_alerts, trips, fleet_costs)",
-    "rapport_Manuel.pdf (Manuel Volvo FH/FM)",
-    "Amortissement_Materiel_Transport_Maroc.pdf",
-    "Couts_Exploitation_Transport_Routier_Maroc.pdf",
-    "Politique_Gestion_Flotte_TruckMind.pdf",
-    "Reglementation_Transport_Routier_Maroc.pdf"
-  ],
+  "dataset_name": "truck_llm_evaluation_set_v3_corrige",
+  "description": "Même jeu de 378 questions que truck_llm_evaluation_set_v3 (mêmes questions, mêmes entités), dont les réponses ont été recalculées contre truckmind_v2.db et relues contre les PDF. Seules les réponses erronées ou incohérentes ont été corrigées ; les questions chiffrées dont une valeur ne correspondait pas à la base ont été alignées sur la base. Les dates relatives (permis expirés) sont évaluées au 2026-10-21.",
+  "reference_date": "2026-10-21",
   "categories": {
     "maintenance": 162,
     "finance": 69,
@@ -17,11 +10,19 @@
     "cross-domain": 30
   },
   "difficulty_levels": {
-    "moyen": 158,
-    "facile": 169,
+    "moyen": 159,
+    "facile": 168,
     "difficile": 51
   },
-  "system_prompt_reference": "Voir SYSTEM_PROMPT TruckMind (domaines cloisonnés, score_predictif 0-1, ARRÊT IMMÉDIAT si score>0.8/lampe ROUGE/coolant>101-105°C/oil_temp>=125°C, style 1-3 phrases sans puces sauf énumération exhaustive).",
+  "total_questions": 378,
+  "sources": [
+    "truckmind_v2.db",
+    "rapport_Manuel.pdf",
+    "Amortissement_Materiel_Transport_Maroc.pdf",
+    "Couts_Exploitation_Transport_Routier_Maroc.pdf",
+    "Politique_Gestion_Flotte_TruckMind.pdf",
+    "Reglementation_Transport_Routier_Maroc.pdf"
+  ],
   "questions_answers": [
     {
       "category": "maintenance",
@@ -77,7 +78,7 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Que signifie le code DTC C1283 dans la base de connaissances de TruckMind ?",
       "answer": "Le code C1283 correspond à « Interrupteur Test Signal Défaillance », sur le système moteur, concernant la pièce interrupteur. Sa gravité est classée comme haute.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
@@ -91,14 +92,14 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "À quel système du véhicule appartient le code P0138 ?",
       "answer": "Le code P0138 appartient au système moteur et correspond au symptôme « Circuit capteur O2 Tension faible (Banc 1 Capteur 2) ».",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Quelle est la gravité associée au code B1671 dans la base TruckMind ?",
       "answer": "Le code B1671 est classé en gravité moyenne, il concerne le système moteur (pièce : régulateur tension).",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
@@ -112,28 +113,28 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "C'est quoi le problème avec le code erreur P0603 ?",
       "answer": "Le code P0603 signale « Module de contrôle Programming Erreur » au niveau du système moteur (pièce concernée : module de contrôle), gravité faible.",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Le code P1811 est-il grave ?",
       "answer": "Le code P1811 (Transmission 4-Wheel Drive High Indicator Court-circuit To Batterie, système moteur, pièce capteur vitesse) est classé en gravité faible.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Que signifie le code DTC C1868 dans la base de connaissances de TruckMind ?",
       "answer": "Le code C1868 correspond à « Air Suspension Rear Inflator Solénoïde Output Circuit Short To Masse », sur le système admission, concernant la pièce solénoïde. Sa gravité est classée comme haute.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Un technicien lit le code B2401 sur le diagnostic. Quelle pièce est concernée et quel est le niveau de gravité ?",
       "answer": "Le code B2401 concerne la pièce « système audio » du système moteur, avec un niveau de gravité faible.",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
@@ -147,14 +148,14 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Quelle est la gravité associée au code C1249 dans la base TruckMind ?",
       "answer": "Le code C1249 est classé en gravité haute, il concerne le système freinage ABS (pièce : vanne).",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Peux-tu me donner le détail complet (symptôme, système, pièce, gravité) du code B1213 ?",
       "answer": "Le code B1213 : symptôme « Anti-Theft Number of Programmed Keys Is Below Minimum », système moteur, pièce système antivol, gravité faible.",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
@@ -168,7 +169,7 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Le code P0741 est-il grave ?",
       "answer": "Le code P0741 (Convertisseur de couple Clutch Circuit Malfuction, système moteur, pièce convertisseur de couple) est classé en gravité faible.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
@@ -224,7 +225,7 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Que signifie le code DTC B1377 dans la base de connaissances de TruckMind ?",
       "answer": "Le code B1377 correspond à « Oil Change Lamp Circuit Défaillance », sur le système moteur, concernant la pièce composant électrique. Sa gravité est classée comme moyenne.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
@@ -238,14 +239,14 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "À quel système du véhicule appartient le code U1169 ?",
       "answer": "Le code U1169 appartient au système moteur et correspond au symptôme « SCP (J1850) Invalid or Missing Données for Primary Id ».",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Quelle est la gravité associée au code B1898 dans la base TruckMind ?",
       "answer": "Le code B1898 est classé en gravité faible, il concerne le système moteur (pièce : composant électrique).",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
@@ -259,28 +260,28 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "C'est quoi le problème avec le code erreur P1182 ?",
       "answer": "Le code P1182 signale « Cam Calibration Défaut » au niveau du système moteur (pièce concernée : distribution moteur), gravité faible.",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Le code P0100 est-il grave ?",
       "answer": "Le code P0100 (Circuit de débit massique d'air Dysfonctionnement, système admission, pièce débitmètre MAF) est classé en gravité moyenne.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Que signifie le code DTC B2214 dans la base de connaissances de TruckMind ?",
       "answer": "Le code B2214 correspond à « Window Passenger Front Up Interrupteur Court-circuit à la batterie », sur le système moteur, concernant la pièce lève-vitre / toit. Sa gravité est classée comme faible.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Un technicien lit le code B2227 sur le diagnostic. Quelle pièce est concernée et quel est le niveau de gravité ?",
       "answer": "Le code B2227 concerne la pièce « capteur » du système moteur, avec un niveau de gravité faible.",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
@@ -294,14 +295,14 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Quelle est la gravité associée au code B2312 dans la base TruckMind ?",
       "answer": "Le code B2312 est classé en gravité faible, il concerne le système moteur (pièce : rétroviseur).",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Peux-tu me donner le détail complet (symptôme, système, pièce, gravité) du code B1269 ?",
       "answer": "Le code B1269 : symptôme « Servo Moteur Potentiometer Defrost Circuit ouvert », système moteur, pièce composant électrique, gravité faible.",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
@@ -315,7 +316,7 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Le code B2179 est-il grave ?",
       "answer": "Le code B2179 (Front Wiper Select Interrupteur \"A\" Court-circuit à la masse, système moteur, pièce interrupteur) est classé en gravité faible.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
@@ -371,7 +372,7 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Que signifie le code DTC P1293 dans la base de connaissances de TruckMind ?",
       "answer": "Le code P1293 correspond à « Cylindre Head Temp Capteur Out Of Self Test Range », sur le système refroidissement, concernant la pièce capteur. Sa gravité est classée comme faible.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
@@ -385,14 +386,14 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "À quel système du véhicule appartient le code B2111 ?",
       "answer": "Le code B2111 appartient au système moteur et correspond au symptôme « All Door Lock Input Court-circuit à la masse ».",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Quelle est la gravité associée au code B2301 dans la base TruckMind ?",
       "answer": "Le code B2301 est classé en gravité faible, il concerne le système moteur (pièce : siège).",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
@@ -406,28 +407,28 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "C'est quoi le problème avec le code erreur P0372 ?",
       "answer": "Le code P0372 signale « Calage Référence High Resolution Signal A Too Many Pulses » au niveau du système moteur (pièce concernée : distribution moteur), gravité haute.",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Le code B1580 est-il grave ?",
       "answer": "Le code B1580 (Dim Panel Increase Input Circuit ouvert, système moteur, pièce composant électrique) est classé en gravité faible.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Que signifie le code DTC P1177 dans la base de connaissances de TruckMind ?",
       "answer": "Le code P1177 correspond à « Rotor Contrôle Défaut », sur le système moteur, concernant la pièce distribution moteur. Sa gravité est classée comme faible.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Un technicien lit le code B1529 sur le diagnostic. Quelle pièce est concernée et quel est le niveau de gravité ?",
       "answer": "Le code B1529 concerne la pièce « interrupteur » du système moteur, avec un niveau de gravité faible.",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "maintenance",
@@ -441,7 +442,7 @@
       "source_file": "truckmind_v2.db (table knowledge)",
       "question": "Quelle est la gravité associée au code B1963 dans la base TruckMind ?",
       "answer": "Le code B1963 est classé en gravité faible, il concerne le système moteur (pièce : composant électrique).",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "maintenance",
@@ -454,7 +455,7 @@
       "category": "maintenance",
       "source_file": "truckmind_v2.db (tables maintenance, thresholds)",
       "question": "Quel est le seuil de surveillance et le seuil critique pour la pression des pneus, et où se situe le véhicule V0750 lors de l'entretien du 2024-04-13 ?",
-      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI. Avec 118.0 PSI, le véhicule V0750 se situe dans la plage normale.",
+      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI (pression basse) ; la plage normale est de 100 à 120 PSI, avec un seuil critique de surpression au-dessus de 125 PSI. Avec 118.0 PSI, le véhicule V0750 se situe dans la plage normale.",
       "difficulty": "moyen"
     },
     {
@@ -475,14 +476,14 @@
       "category": "maintenance",
       "source_file": "truckmind_v2.db (tables maintenance, thresholds)",
       "question": "Quel est le seuil de surveillance et le seuil critique pour la pression des pneus, et où se situe le véhicule V0430 lors de l'entretien du 2023-07-27 ?",
-      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI. Avec 118.9 PSI, le véhicule V0430 se situe dans la plage normale.",
+      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI (pression basse) ; la plage normale est de 100 à 120 PSI, avec un seuil critique de surpression au-dessus de 125 PSI. Avec 118.9 PSI, le véhicule V0430 se situe dans la plage normale.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (tables maintenance, thresholds)",
       "question": "Le véhicule V0589 affiche 106.4 PSI pour la pression des pneus lors du contrôle du 2023-11-16. Est-ce normal ?",
-      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI. Avec 106.4 PSI, le véhicule V0589 se situe dans la plage normale.",
+      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI (pression basse) ; la plage normale est de 100 à 120 PSI, avec un seuil critique de surpression au-dessus de 125 PSI. Avec 106.4 PSI, le véhicule V0589 se situe dans la plage normale.",
       "difficulty": "moyen"
     },
     {
@@ -538,7 +539,7 @@
       "category": "maintenance",
       "source_file": "truckmind_v2.db (tables maintenance, thresholds)",
       "question": "Le véhicule V0533 affiche 120.6 PSI pour la pression des pneus lors du contrôle du 2023-03-16. Est-ce normal ?",
-      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI. Avec 120.6 PSI, le véhicule V0533 se situe dans la plage normale.",
+      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI (pression basse) ; la plage normale est de 100 à 120 PSI, avec un seuil critique de surpression au-dessus de 125 PSI. Avec 120.6 PSI, le véhicule V0533 est au-dessus de la plage normale (100-120 PSI) sans atteindre le seuil critique de 125 PSI : à surveiller.",
       "difficulty": "moyen"
     },
     {
@@ -601,7 +602,7 @@
       "category": "maintenance",
       "source_file": "truckmind_v2.db (tables maintenance, thresholds)",
       "question": "Le véhicule V0603 affiche 115.9 PSI pour la pression des pneus lors du contrôle du 2024-04-27. Est-ce normal ?",
-      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI. Avec 115.9 PSI, le véhicule V0603 se situe dans la plage normale.",
+      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI (pression basse) ; la plage normale est de 100 à 120 PSI, avec un seuil critique de surpression au-dessus de 125 PSI. Avec 115.9 PSI, le véhicule V0603 se situe dans la plage normale.",
       "difficulty": "moyen"
     },
     {
@@ -706,14 +707,14 @@
       "category": "maintenance",
       "source_file": "truckmind_v2.db (tables maintenance, thresholds)",
       "question": "Le véhicule V0843 affiche 127.7 PSI pour la pression des pneus lors du contrôle du 2023-12-28. Est-ce normal ?",
-      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI. Avec 127.7 PSI, le véhicule V0843 se situe dans la plage normale.",
+      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI (pression basse) ; la plage normale est de 100 à 120 PSI, avec un seuil critique de surpression au-dessus de 125 PSI. Avec 127.7 PSI, le véhicule V0843 est en surpression critique.\n⚠️ Action recommandée : arrêt immédiat et intervention obligatoire.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (tables maintenance, thresholds)",
       "question": "Le véhicule V0412 affiche 102.9 PSI pour la pression des pneus lors du contrôle du 2023-11-23. Est-ce normal ?",
-      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI. Avec 102.9 PSI, le véhicule V0412 se situe dans la plage normale.",
+      "answer": "Le seuil de surveillance est fixé à 90 PSI et le seuil critique à 75 PSI (pression basse) ; la plage normale est de 100 à 120 PSI, avec un seuil critique de surpression au-dessus de 125 PSI. Avec 102.9 PSI, le véhicule V0412 se situe dans la plage normale.",
       "difficulty": "moyen"
     },
     {
@@ -762,259 +763,259 @@
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0974 lors de l'entretien du 2024-02-11 ?",
-      "answer": "Le score prédictif du véhicule V0974 pour l'entretien du 2024-02-11 est de 0.73, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0974 pour l'entretien du 2024-02-11 est de 0.73, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0750 lors de l'entretien du 2024-04-13 ?",
-      "answer": "Le score prédictif du véhicule V0750 pour l'entretien du 2024-04-13 est de 0.66, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0750 pour l'entretien du 2024-04-13 est de 0.66, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0532 lors de l'entretien du 2024-02-22 ?",
-      "answer": "Le score prédictif du véhicule V0532 pour l'entretien du 2024-02-22 est de 0.26, ce qui correspond à un niveau MODÉRÉ. La base TruckMind classe ce niveau de risque comme « Faible ».",
+      "answer": "Le score prédictif du véhicule V0532 pour l'entretien du 2024-02-22 est de 0.26, niveau de risque « Faible » dans la base TruckMind.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0878 lors de l'entretien du 2024-05-02 ?",
-      "answer": "Le score prédictif du véhicule V0878 pour l'entretien du 2024-05-02 est de 0.90, ce qui correspond à un niveau ARRÊT IMMÉDIAT. La base TruckMind classe ce niveau de risque comme « Critique ».\n⚠️ Action recommandée : entretien immédiat obligatoire.",
+      "answer": "Le score prédictif du véhicule V0878 pour l'entretien du 2024-05-02 est de 0.90, niveau de risque « Critique » dans la base TruckMind.\n⚠️ Score supérieur à 0.8 : ARRÊT IMMÉDIAT, entretien immédiat obligatoire.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0430 lors de l'entretien du 2023-07-27 ?",
-      "answer": "Le score prédictif du véhicule V0430 pour l'entretien du 2023-07-27 est de 0.19, ce qui correspond à un niveau FAIBLE. La base TruckMind classe ce niveau de risque comme « Faible ».",
+      "answer": "Le score prédictif du véhicule V0430 pour l'entretien du 2023-07-27 est de 0.19, niveau de risque « Faible » dans la base TruckMind.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0589 lors de l'entretien du 2023-11-16 ?",
-      "answer": "Le score prédictif du véhicule V0589 pour l'entretien du 2023-11-16 est de 0.81, ce qui correspond à un niveau ARRÊT IMMÉDIAT. La base TruckMind classe ce niveau de risque comme « Critique ».\n⚠️ Action recommandée : entretien immédiat obligatoire.",
+      "answer": "Le score prédictif du véhicule V0589 pour l'entretien du 2023-11-16 est de 0.81, niveau de risque « Critique » dans la base TruckMind.\n⚠️ Score supérieur à 0.8 : ARRÊT IMMÉDIAT, entretien immédiat obligatoire.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0213 lors de l'entretien du 2023-12-30 ?",
-      "answer": "Le score prédictif du véhicule V0213 pour l'entretien du 2023-12-30 est de 0.44, ce qui correspond à un niveau MODÉRÉ. La base TruckMind classe ce niveau de risque comme « Modéré ».",
+      "answer": "Le score prédictif du véhicule V0213 pour l'entretien du 2023-12-30 est de 0.44, niveau de risque « Modéré » dans la base TruckMind.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0897 lors de l'entretien du 2023-04-26 ?",
-      "answer": "Le score prédictif du véhicule V0897 pour l'entretien du 2023-04-26 est de 0.73, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0897 pour l'entretien du 2023-04-26 est de 0.73, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0443 lors de l'entretien du 2024-04-29 ?",
-      "answer": "Le score prédictif du véhicule V0443 pour l'entretien du 2024-04-29 est de 0.70, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0443 pour l'entretien du 2024-04-29 est de 0.70, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0919 lors de l'entretien du 2023-02-21 ?",
-      "answer": "Le score prédictif du véhicule V0919 pour l'entretien du 2023-02-21 est de 0.56, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0919 pour l'entretien du 2023-02-21 est de 0.56, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0689 lors de l'entretien du 2023-04-28 ?",
-      "answer": "Le score prédictif du véhicule V0689 pour l'entretien du 2023-04-28 est de 0.59, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0689 pour l'entretien du 2023-04-28 est de 0.59, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0373 lors de l'entretien du 2024-03-21 ?",
-      "answer": "Le score prédictif du véhicule V0373 pour l'entretien du 2024-03-21 est de 0.62, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0373 pour l'entretien du 2024-03-21 est de 0.62, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0156 lors de l'entretien du 2023-01-11 ?",
-      "answer": "Le score prédictif du véhicule V0156 pour l'entretien du 2023-01-11 est de 0.61, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0156 pour l'entretien du 2023-01-11 est de 0.61, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0533 lors de l'entretien du 2023-03-16 ?",
-      "answer": "Le score prédictif du véhicule V0533 pour l'entretien du 2023-03-16 est de 0.42, ce qui correspond à un niveau MODÉRÉ. La base TruckMind classe ce niveau de risque comme « Modéré ».",
+      "answer": "Le score prédictif du véhicule V0533 pour l'entretien du 2023-03-16 est de 0.42, niveau de risque « Modéré » dans la base TruckMind.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0725 lors de l'entretien du 2023-01-18 ?",
-      "answer": "Le score prédictif du véhicule V0725 pour l'entretien du 2023-01-18 est de 0.68, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0725 pour l'entretien du 2023-01-18 est de 0.68, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0466 lors de l'entretien du 2023-05-10 ?",
-      "answer": "Le score prédictif du véhicule V0466 pour l'entretien du 2023-05-10 est de 0.39, ce qui correspond à un niveau MODÉRÉ. La base TruckMind classe ce niveau de risque comme « Modéré ».",
+      "answer": "Le score prédictif du véhicule V0466 pour l'entretien du 2023-05-10 est de 0.39, niveau de risque « Modéré » dans la base TruckMind.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0710 lors de l'entretien du 2023-03-13 ?",
-      "answer": "Le score prédictif du véhicule V0710 pour l'entretien du 2023-03-13 est de 0.74, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0710 pour l'entretien du 2023-03-13 est de 0.74, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0429 lors de l'entretien du 2024-01-29 ?",
-      "answer": "Le score prédictif du véhicule V0429 pour l'entretien du 2024-01-29 est de 0.80, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Critique ».",
+      "answer": "Le score prédictif du véhicule V0429 pour l'entretien du 2024-01-29 est de 0.80, niveau de risque « Critique » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours. Il reste sous le seuil d'arrêt immédiat de 0.8.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0437 lors de l'entretien du 2024-03-09 ?",
-      "answer": "Le score prédictif du véhicule V0437 pour l'entretien du 2024-03-09 est de 0.62, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0437 pour l'entretien du 2024-03-09 est de 0.62, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0068 lors de l'entretien du 2024-02-07 ?",
-      "answer": "Le score prédictif du véhicule V0068 pour l'entretien du 2024-02-07 est de 0.51, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Modéré ».",
+      "answer": "Le score prédictif du véhicule V0068 pour l'entretien du 2024-02-07 est de 0.51, niveau de risque « Modéré » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0883 lors de l'entretien du 2023-12-03 ?",
-      "answer": "Le score prédictif du véhicule V0883 pour l'entretien du 2023-12-03 est de 0.44, ce qui correspond à un niveau MODÉRÉ. La base TruckMind classe ce niveau de risque comme « Modéré ».",
+      "answer": "Le score prédictif du véhicule V0883 pour l'entretien du 2023-12-03 est de 0.44, niveau de risque « Modéré » dans la base TruckMind.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0914 lors de l'entretien du 2024-06-21 ?",
-      "answer": "Le score prédictif du véhicule V0914 pour l'entretien du 2024-06-21 est de 0.57, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0914 pour l'entretien du 2024-06-21 est de 0.57, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0603 lors de l'entretien du 2024-04-27 ?",
-      "answer": "Le score prédictif du véhicule V0603 pour l'entretien du 2024-04-27 est de 0.54, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Modéré ».",
+      "answer": "Le score prédictif du véhicule V0603 pour l'entretien du 2024-04-27 est de 0.54, niveau de risque « Modéré » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0594 lors de l'entretien du 2023-07-02 ?",
-      "answer": "Le score prédictif du véhicule V0594 pour l'entretien du 2023-07-02 est de 0.54, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Modéré ».",
+      "answer": "Le score prédictif du véhicule V0594 pour l'entretien du 2023-07-02 est de 0.54, niveau de risque « Modéré » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Quel est le score prédictif et le niveau de risque du véhicule V0138 lors de l'entretien du 2023-10-14 ?",
-      "answer": "Le score prédictif du véhicule V0138 pour l'entretien du 2023-10-14 est de 0.66, ce qui correspond à un niveau ÉLEVÉ. La base TruckMind classe ce niveau de risque comme « Élevé ».",
+      "answer": "Le score prédictif du véhicule V0138 pour l'entretien du 2023-10-14 est de 0.66, niveau de risque « Élevé » dans la base TruckMind. Score au-dessus du seuil de surveillance de 0.5 : planifier l'entretien sous 15 jours.",
       "difficulty": "moyen"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0604 présente les valeurs suivantes lors du contrôle du 2023-01-12 : température moteur 120.4°C, score prédictif 0.6442. Quelle est la situation ?",
-      "answer": "Le véhicule V0604 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 120.4°C (supérieure au seuil d'arrêt total de 105°C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0604 est en situation d'ARRÊT IMMÉDIAT : température moteur de 120.4 °C (supérieure au seuil d'arrêt de 105 °C) et consommation de 50.3 L/100km (seuil critique 45).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0743 présente les valeurs suivantes lors du contrôle du 2024-06-23 : température moteur 111.8°C, score prédictif 0.7981. Quelle est la situation ?",
-      "answer": "Le véhicule V0743 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 111.8°C (supérieure au seuil d'arrêt total de 105°C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0743 est en situation d'ARRÊT IMMÉDIAT : température moteur de 111.8 °C (supérieure au seuil d'arrêt de 105 °C) et consommation de 55.0 L/100km (seuil critique 45).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0350 présente les valeurs suivantes lors du contrôle du 2024-04-24 : température moteur 113.2°C, score prédictif 0.8937. Quelle est la situation ?",
-      "answer": "Le véhicule V0350 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 113.2°C (supérieure au seuil d'arrêt total de 105°C) et un score prédictif de 0.89 (ARRÊT IMMÉDIAT).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0350 est en situation d'ARRÊT IMMÉDIAT : température moteur de 113.2 °C (supérieure au seuil d'arrêt de 105 °C), score prédictif de 0.89 (supérieur au seuil de 0.8), consommation de 53.0 L/100km (seuil critique 45) et vibrations de 12.0 mm/s (seuil critique 12).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0161 présente les valeurs suivantes lors du contrôle du 2023-05-09 : température moteur 124.9°C, score prédictif 0.8308. Quelle est la situation ?",
-      "answer": "Le véhicule V0161 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 124.9°C (supérieure au seuil d'arrêt total de 105°C) et un score prédictif de 0.83 (ARRÊT IMMÉDIAT).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0161 est en situation d'ARRÊT IMMÉDIAT : température moteur de 124.9 °C (supérieure au seuil d'arrêt de 105 °C), score prédictif de 0.83 (supérieur au seuil de 0.8) et consommation de 49.1 L/100km (seuil critique 45).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0383 présente les valeurs suivantes lors du contrôle du 2023-12-27 : température moteur 105.2°C, score prédictif 0.7062. Quelle est la situation ?",
-      "answer": "Le véhicule V0383 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 105.2°C (supérieure au seuil d'arrêt total de 105°C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0383 est en situation d'ARRÊT IMMÉDIAT : température moteur de 105.2 °C (supérieure au seuil d'arrêt de 105 °C) et consommation de 55.0 L/100km (seuil critique 45).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0234 présente les valeurs suivantes lors du contrôle du 2023-11-25 : température moteur 110.1°C, score prédictif 0.7953. Quelle est la situation ?",
-      "answer": "Le véhicule V0234 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 110.1°C (supérieure au seuil d'arrêt total de 105°C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0234 est en situation d'ARRÊT IMMÉDIAT : température moteur de 110.1 °C (supérieure au seuil d'arrêt de 105 °C) et consommation de 54.4 L/100km (seuil critique 45).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0601 présente les valeurs suivantes lors du contrôle du 2023-08-24 : température moteur 111.6°C, score prédictif 0.5019. Quelle est la situation ?",
-      "answer": "Le véhicule V0601 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 111.6°C (supérieure au seuil d'arrêt total de 105°C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0601 est en situation d'ARRÊT IMMÉDIAT : température moteur de 111.6 °C (supérieure au seuil d'arrêt de 105 °C) et consommation de 45.1 L/100km (seuil critique 45).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0060 présente les valeurs suivantes lors du contrôle du 2024-05-12 : température moteur 105.8°C, score prédictif 0.6501. Quelle est la situation ?",
-      "answer": "Le véhicule V0060 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 105.8°C (supérieure au seuil d'arrêt total de 105°C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0060 est en situation d'ARRÊT IMMÉDIAT : température moteur de 105.8 °C (supérieure au seuil d'arrêt de 105 °C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0594 présente les valeurs suivantes lors du contrôle du 2023-07-02 : température moteur 107.8°C, score prédictif 0.5445. Quelle est la situation ?",
-      "answer": "Le véhicule V0594 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 107.8°C (supérieure au seuil d'arrêt total de 105°C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0594 est en situation d'ARRÊT IMMÉDIAT : température moteur de 107.8 °C (supérieure au seuil d'arrêt de 105 °C) et consommation de 55.0 L/100km (seuil critique 45).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0126 présente les valeurs suivantes lors du contrôle du 2024-03-04 : température moteur 113.2°C, score prédictif 0.6726. Quelle est la situation ?",
-      "answer": "Le véhicule V0126 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 113.2°C (supérieure au seuil d'arrêt total de 105°C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0126 est en situation d'ARRÊT IMMÉDIAT : température moteur de 113.2 °C (supérieure au seuil d'arrêt de 105 °C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0257 présente les valeurs suivantes lors du contrôle du 2023-09-01 : température moteur 120.3°C, score prédictif 0.9027. Quelle est la situation ?",
-      "answer": "Le véhicule V0257 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 120.3°C (supérieure au seuil d'arrêt total de 105°C) et un score prédictif de 0.90 (ARRÊT IMMÉDIAT).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0257 est en situation d'ARRÊT IMMÉDIAT : température moteur de 120.3 °C (supérieure au seuil d'arrêt de 105 °C), score prédictif de 0.90 (supérieur au seuil de 0.8), pression des pneus de 127.3 PSI (supérieure à 125 PSI) et consommation de 50.0 L/100km (seuil critique 45).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
       "category": "maintenance",
       "source_file": "truckmind_v2.db (table maintenance)",
       "question": "Le véhicule V0891 présente les valeurs suivantes lors du contrôle du 2023-10-30 : température moteur 110.5°C, score prédictif 0.6523. Quelle est la situation ?",
-      "answer": "Le véhicule V0891 est en situation d'ARRÊT IMMÉDIAT : une température moteur de 110.5°C (supérieure au seuil d'arrêt total de 105°C).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
+      "answer": "Le véhicule V0891 est en situation d'ARRÊT IMMÉDIAT : température moteur de 110.5 °C (supérieure au seuil d'arrêt de 105 °C) et consommation de 55.0 L/100km (seuil critique 45).\n⚠️ Action recommandée : arrêter le véhicule immédiatement et procéder à une inspection avant toute remise en circulation.",
       "difficulty": "difficile"
     },
     {
@@ -1161,245 +1162,245 @@
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût total de carburant du véhicule V0097 ?",
-      "answer": "Le coût total de carburant du véhicule V0097 s'élève à 1 738 904 MAD sur la période enregistrée dans fleet_costs.",
+      "answer": "Le coût total de carburant du véhicule V0097 s'élève à 1 772 978 MAD (somme des 2 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quelle est la rentabilité nette du véhicule V0602 ?",
-      "answer": "La rentabilité nette du véhicule V0602 est de 2 066 461 MAD, pour une valeur d'achat de 1 038 774 MAD et une valeur actuelle de 847 640 MAD.",
+      "answer": "La rentabilité nette cumulée du véhicule V0602 est de 3 316 594 MAD (somme des 2 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Combien d'heures d'immobilisation pour entretien le véhicule V0011 a-t-il cumulé ?",
-      "answer": "Le véhicule V0011 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien de 252 MAD.",
+      "answer": "Le véhicule V0011 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien total de 1 151 MAD (somme des 5 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût d'entretien du véhicule V0920 et sa rentabilité nette associée ?",
-      "answer": "Le coût d'entretien du véhicule V0920 est de 370 MAD, pour une rentabilité nette de 955 526 MAD.",
+      "answer": "Le coût d'entretien total du véhicule V0920 est de 1 725 MAD, pour une rentabilité nette cumulée de 1 541 258 MAD (somme des 5 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût total de carburant du véhicule V0102 ?",
-      "answer": "Le coût total de carburant du véhicule V0102 s'élève à 2 070 462 MAD sur la période enregistrée dans fleet_costs.",
+      "answer": "Le coût total de carburant du véhicule V0102 s'élève à 7 327 013 MAD (somme des 6 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quelle est la rentabilité nette du véhicule V0956 ?",
-      "answer": "La rentabilité nette du véhicule V0956 est de 118 663 MAD, pour une valeur d'achat de 1 075 362 MAD et une valeur actuelle de 1 067 548 MAD.",
+      "answer": "La rentabilité nette cumulée du véhicule V0956 est de 2 966 204 MAD (somme des 5 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Combien d'heures d'immobilisation pour entretien le véhicule V0034 a-t-il cumulé ?",
-      "answer": "Le véhicule V0034 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien de 331 MAD.",
+      "answer": "Le véhicule V0034 a cumulé 7.4 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien total de 1 377 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût d'entretien du véhicule V0422 et sa rentabilité nette associée ?",
-      "answer": "Le coût d'entretien du véhicule V0422 est de 343 MAD, pour une rentabilité nette de 1 562 455 MAD.",
+      "answer": "Le coût d'entretien total du véhicule V0422 est de 343 MAD, pour une rentabilité nette cumulée de 1 562 455 MAD (1 seul événement enregistré dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût total de carburant du véhicule V0377 ?",
-      "answer": "Le coût total de carburant du véhicule V0377 s'élève à 1 176 560 MAD sur la période enregistrée dans fleet_costs.",
+      "answer": "Le coût total de carburant du véhicule V0377 s'élève à 1 404 291 MAD (somme des 3 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quelle est la rentabilité nette du véhicule V0231 ?",
-      "answer": "La rentabilité nette du véhicule V0231 est de 1 404 572 MAD, pour une valeur d'achat de 1 101 251 MAD et une valeur actuelle de 1 022 769 MAD.",
+      "answer": "La rentabilité nette cumulée du véhicule V0231 est de 2 510 985 MAD (somme des 2 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Combien d'heures d'immobilisation pour entretien le véhicule V0743 a-t-il cumulé ?",
-      "answer": "Le véhicule V0743 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien de 467 MAD.",
+      "answer": "Le véhicule V0743 a cumulé 7.7 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien total de 6 877 MAD (somme des 5 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût d'entretien du véhicule V0447 et sa rentabilité nette associée ?",
-      "answer": "Le coût d'entretien du véhicule V0447 est de 5 969 MAD, pour une rentabilité nette de 572 264 MAD.",
+      "answer": "Le coût d'entretien total du véhicule V0447 est de 17 404 MAD, pour une rentabilité nette cumulée de 1 540 484 MAD (somme des 3 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût total de carburant du véhicule V0959 ?",
-      "answer": "Le coût total de carburant du véhicule V0959 s'élève à 422 569 MAD sur la période enregistrée dans fleet_costs.",
+      "answer": "Le coût total de carburant du véhicule V0959 s'élève à 813 971 MAD (somme des 3 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quelle est la rentabilité nette du véhicule V0496 ?",
-      "answer": "La rentabilité nette du véhicule V0496 est de 4 773 770 MAD, pour une valeur d'achat de 959 990 MAD et une valeur actuelle de 810 328 MAD.",
+      "answer": "La rentabilité nette cumulée du véhicule V0496 est de 8 607 709 MAD (somme des 5 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Combien d'heures d'immobilisation pour entretien le véhicule V0869 a-t-il cumulé ?",
-      "answer": "Le véhicule V0869 a cumulé 16.8 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien de 179 MAD.",
+      "answer": "Le véhicule V0869 a cumulé 60.8 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien total de 5 979 MAD (somme des 6 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût d'entretien du véhicule V0769 et sa rentabilité nette associée ?",
-      "answer": "Le coût d'entretien du véhicule V0769 est de 146 MAD, pour une rentabilité nette de 30 725 MAD.",
+      "answer": "Le coût d'entretien total du véhicule V0769 est de 9 189 MAD, pour une rentabilité nette cumulée de 9 265 995 MAD (somme des 6 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût total de carburant du véhicule V0604 ?",
-      "answer": "Le coût total de carburant du véhicule V0604 s'élève à 5 425 120 MAD sur la période enregistrée dans fleet_costs.",
+      "answer": "Le coût total de carburant du véhicule V0604 s'élève à 6 009 678 MAD (somme des 3 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quelle est la rentabilité nette du véhicule V0359 ?",
-      "answer": "La rentabilité nette du véhicule V0359 est de 256 594 MAD, pour une valeur d'achat de 1 243 105 MAD et une valeur actuelle de 1 192 345 MAD.",
+      "answer": "La rentabilité nette cumulée du véhicule V0359 est de 256 594 MAD (1 seul événement enregistré dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Combien d'heures d'immobilisation pour entretien le véhicule V0738 a-t-il cumulé ?",
-      "answer": "Le véhicule V0738 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien de 310 MAD.",
+      "answer": "Le véhicule V0738 a cumulé 6.3 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien total de 10 492 MAD (somme des 5 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût d'entretien du véhicule V0523 et sa rentabilité nette associée ?",
-      "answer": "Le coût d'entretien du véhicule V0523 est de 124 MAD, pour une rentabilité nette de 370 218 MAD.",
+      "answer": "Le coût d'entretien total du véhicule V0523 est de 862 MAD, pour une rentabilité nette cumulée de 7 620 882 MAD (somme des 5 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût total de carburant du véhicule V0765 ?",
-      "answer": "Le coût total de carburant du véhicule V0765 s'élève à 2 593 214 MAD sur la période enregistrée dans fleet_costs.",
+      "answer": "Le coût total de carburant du véhicule V0765 s'élève à 11 825 218 MAD (somme des 5 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quelle est la rentabilité nette du véhicule V0580 ?",
-      "answer": "La rentabilité nette du véhicule V0580 est de 1 311 577 MAD, pour une valeur d'achat de 1 056 625 MAD et une valeur actuelle de 871 786 MAD.",
+      "answer": "La rentabilité nette cumulée du véhicule V0580 est de 2 037 432 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Combien d'heures d'immobilisation pour entretien le véhicule V0448 a-t-il cumulé ?",
-      "answer": "Le véhicule V0448 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien de 331 MAD.",
+      "answer": "Le véhicule V0448 a cumulé 16.6 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien total de 4 197 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût d'entretien du véhicule V0404 et sa rentabilité nette associée ?",
-      "answer": "Le coût d'entretien du véhicule V0404 est de 342 MAD, pour une rentabilité nette de 114 743 MAD.",
+      "answer": "Le coût d'entretien total du véhicule V0404 est de 2 803 MAD, pour une rentabilité nette cumulée de 4 168 604 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût total de carburant du véhicule V0818 ?",
-      "answer": "Le coût total de carburant du véhicule V0818 s'élève à 2 785 238 MAD sur la période enregistrée dans fleet_costs.",
+      "answer": "Le coût total de carburant du véhicule V0818 s'élève à 4 707 430 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quelle est la rentabilité nette du véhicule V0190 ?",
-      "answer": "La rentabilité nette du véhicule V0190 est de 431 076 MAD, pour une valeur d'achat de 1 020 895 MAD et une valeur actuelle de 910 434 MAD.",
+      "answer": "La rentabilité nette cumulée du véhicule V0190 est de 431 076 MAD (1 seul événement enregistré dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Combien d'heures d'immobilisation pour entretien le véhicule V0338 a-t-il cumulé ?",
-      "answer": "Le véhicule V0338 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien de 112 MAD.",
+      "answer": "Le véhicule V0338 a cumulé 1.4 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien total de 1 224 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût d'entretien du véhicule V0061 et sa rentabilité nette associée ?",
-      "answer": "Le coût d'entretien du véhicule V0061 est de 293 MAD, pour une rentabilité nette de 620 291 MAD.",
+      "answer": "Le coût d'entretien total du véhicule V0061 est de 5 518 MAD, pour une rentabilité nette cumulée de 8 436 645 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût total de carburant du véhicule V0761 ?",
-      "answer": "Le coût total de carburant du véhicule V0761 s'élève à 4 958 978 MAD sur la période enregistrée dans fleet_costs.",
+      "answer": "Le coût total de carburant du véhicule V0761 s'élève à 9 079 309 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quelle est la rentabilité nette du véhicule V0963 ?",
-      "answer": "La rentabilité nette du véhicule V0963 est de 3 986 875 MAD, pour une valeur d'achat de 1 256 813 MAD et une valeur actuelle de 940 473 MAD.",
+      "answer": "La rentabilité nette cumulée du véhicule V0963 est de 18 400 008 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Combien d'heures d'immobilisation pour entretien le véhicule V0758 a-t-il cumulé ?",
-      "answer": "Le véhicule V0758 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien de 3 704 MAD.",
+      "answer": "Le véhicule V0758 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien total de 7 245 MAD (somme des 5 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût d'entretien du véhicule V0328 et sa rentabilité nette associée ?",
-      "answer": "Le coût d'entretien du véhicule V0328 est de 4 708 MAD, pour une rentabilité nette de 161 646 MAD.",
+      "answer": "Le coût d'entretien total du véhicule V0328 est de 5 297 MAD, pour une rentabilité nette cumulée de 1 840 192 MAD (somme des 4 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quel est le coût total de carburant du véhicule V0527 ?",
-      "answer": "Le coût total de carburant du véhicule V0527 s'élève à 74 424 MAD sur la période enregistrée dans fleet_costs.",
+      "answer": "Le coût total de carburant du véhicule V0527 s'élève à 4 633 770 MAD (somme des 6 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Quelle est la rentabilité nette du véhicule V0903 ?",
-      "answer": "La rentabilité nette du véhicule V0903 est de 121 893 MAD, pour une valeur d'achat de 1 256 898 MAD et une valeur actuelle de 1 248 770 MAD.",
+      "answer": "La rentabilité nette cumulée du véhicule V0903 est de 3 323 087 MAD (somme des 3 événements enregistrés dans fleet_costs).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs)",
       "question": "Combien d'heures d'immobilisation pour entretien le véhicule V0130 a-t-il cumulé ?",
-      "answer": "Le véhicule V0130 a cumulé 0.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien de 149 MAD.",
+      "answer": "Le véhicule V0130 a cumulé 1.0 heures de temps d'arrêt lié à l'entretien, pour un coût d'entretien total de 623 MAD (somme des 2 événements enregistrés dans fleet_costs).",
       "difficulty": "facile"
     },
     {
@@ -1616,28 +1617,28 @@
       "category": "finance",
       "source_file": "truckmind_v2.db (table fleet_costs, agrégat flotte)",
       "question": "Quelle est la rentabilité nette moyenne de l'ensemble de la flotte ?",
-      "answer": "Sur l'ensemble de la flotte enregistrée dans fleet_costs, la rentabilité nette moyenne par véhicule est de 1 161 913 MAD, avec un minimum de -2 276 221 MAD et un maximum de 24 771 560 MAD.",
+      "answer": "Sur l'ensemble de la flotte enregistrée dans fleet_costs, la rentabilité nette cumulée moyenne par véhicule est de 4 203 802 MAD (minimum -2 276 221 MAD, maximum 39 222 197 MAD) ; par événement, elle est de 1 161 913 MAD (de -2 276 221 à 24 771 560 MAD).",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
-      "source_file": "truckmind_v2.db (table fleet_costs)",
+      "source_file": "truckmind_v2.db (table fleet_costs, agrégat flotte)",
       "question": "Quels sont les 3 véhicules les plus rentables de la flotte ?",
-      "answer": "Les 3 véhicules les plus rentables de la flotte, classés par rentabilité nette décroissante, sont :\n- V0296 : 24 771 560 MAD\n- V0062 : 18 564 475 MAD\n- V0814 : 18 012 731 MAD",
+      "answer": "Les 3 véhicules les plus rentables de la flotte, classés par rentabilité nette cumulée décroissante, sont :\n- V0776 : 39 222 197 MAD\n- V0803 : 38 971 822 MAD\n- V0636 : 32 009 562 MAD",
       "difficulty": "moyen"
     },
     {
       "category": "finance",
-      "source_file": "truckmind_v2.db (table fleet_costs)",
+      "source_file": "truckmind_v2.db (table fleet_costs, agrégat flotte)",
       "question": "Quels véhicules affichent la rentabilité nette la plus faible ?",
-      "answer": "Les 3 véhicules à la rentabilité nette la plus faible sont :\n- V0455 : -2 276 221 MAD\n- V0021 : -2 268 078 MAD\n- V0792 : -1 919 858 MAD",
+      "answer": "Les 3 véhicules à la rentabilité nette cumulée la plus faible sont :\n- V0455 : -2 276 221 MAD\n- V0021 : -1 940 775 MAD\n- V0285 : -1 230 482 MAD",
       "difficulty": "difficile"
     },
     {
       "category": "finance",
-      "source_file": "truckmind_v2.db (table fleet_costs)",
+      "source_file": "truckmind_v2.db (table fleet_costs, agrégat flotte)",
       "question": "Quel véhicule de la flotte a le coût de carburant total le plus élevé ?",
-      "answer": "Le véhicule V0678 affiche le coût de carburant total le plus élevé de la flotte, avec 16 632 950 MAD.",
+      "answer": "Le véhicule V0509 affiche le coût de carburant total le plus élevé de la flotte, avec 19 483 333 MAD (cumul de ses événements).",
       "difficulty": "moyen"
     },
     {
@@ -1665,7 +1666,7 @@
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Dans quelles conditions météo et routières s'est déroulé le trajet T00462 ?",
-      "answer": "Le trajet T00462 s'est déroulé par conditions météo « clair » sur un itinéraire de type « rural », pour un délai de livraison de 30.0 heures.",
+      "answer": "Le trajet T00462 s'est déroulé par conditions météo « clair » sur une route de type « rural », pour un délai de livraison de 30.0 heures.",
       "difficulty": "facile"
     },
     {
@@ -1673,7 +1674,7 @@
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel trajet a effectué le véhicule V0391 le 2023-12-28, et quel chauffeur était au volant ?",
       "answer": "Le 2023-12-28, le véhicule V0391 a effectué le trajet Sefrou - Boulemane, conduit par Khalid Kabbaj, avec un chargement de Produits chimiques (21.2 t).",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
@@ -1687,28 +1688,28 @@
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel a été le revenu estimé et le coût de carburant du trajet T00267 (véhicule V0798) ?",
       "answer": "Le trajet T00267 du véhicule V0798 a généré un revenu estimé de 1 134 363 MAD pour un coût de carburant de 890 947 MAD.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Dans quelles conditions météo et routières s'est déroulé le trajet T00131 ?",
-      "answer": "Le trajet T00131 s'est déroulé par conditions météo « clair » sur un itinéraire de type « urbain », pour un délai de livraison de 33.9 heures.",
-      "difficulty": "moyen"
+      "answer": "Le trajet T00131 s'est déroulé par conditions météo « clair » sur une route de type « urbain », pour un délai de livraison de 33.9 heures.",
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel trajet a effectué le véhicule V0087 le 2024-05-31, et quel chauffeur était au volant ?",
       "answer": "Le 2024-05-31, le véhicule V0087 a effectué le trajet Tanger - Rabat, conduit par Aziz Belhaj, avec un chargement de Denrées en vrac (céréales) (26.8 t).",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel type de marchandise a été transporté lors du trajet T00525 et le chargement était-il dangereux ?",
       "answer": "Le trajet T00525 a transporté « Matériaux de construction » (20.8 t) ; ce chargement n'est pas classé comme marchandise dangereuse.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "logistique",
@@ -1721,8 +1722,8 @@
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Dans quelles conditions météo et routières s'est déroulé le trajet T02865 ?",
-      "answer": "Le trajet T02865 s'est déroulé par conditions météo « neigeux » sur un itinéraire de type « rural », pour un délai de livraison de 30.0 heures.",
-      "difficulty": "moyen"
+      "answer": "Le trajet T02865 s'est déroulé par conditions météo « neigeux » sur une route de type « rural », pour un délai de livraison de 30.0 heures.",
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
@@ -1749,7 +1750,7 @@
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Dans quelles conditions météo et routières s'est déroulé le trajet T02857 ?",
-      "answer": "Le trajet T02857 s'est déroulé par conditions météo « pluvieux » sur un itinéraire de type « rural », pour un délai de livraison de 133.7 heures.",
+      "answer": "Le trajet T02857 s'est déroulé par conditions météo « pluvieux » sur une route de type « rural », pour un délai de livraison de 133.7 heures.",
       "difficulty": "facile"
     },
     {
@@ -1757,7 +1758,7 @@
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel trajet a effectué le véhicule V0532 le 2023-01-16, et quel chauffeur était au volant ?",
       "answer": "Le 2023-01-16, le véhicule V0532 a effectué le trajet Essaouira - Chichaoua, conduit par Younes Hajji, avec un chargement de Marchandises générales (19.9 t).",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
@@ -1771,28 +1772,28 @@
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel a été le revenu estimé et le coût de carburant du trajet T00699 (véhicule V0838) ?",
       "answer": "Le trajet T00699 du véhicule V0838 a généré un revenu estimé de 988 007 MAD pour un coût de carburant de 331 223 MAD.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Dans quelles conditions météo et routières s'est déroulé le trajet T02933 ?",
-      "answer": "Le trajet T02933 s'est déroulé par conditions météo « clair » sur un itinéraire de type « rural », pour un délai de livraison de 149.2 heures.",
-      "difficulty": "moyen"
+      "answer": "Le trajet T02933 s'est déroulé par conditions météo « clair » sur une route de type « rural », pour un délai de livraison de 149.2 heures.",
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel trajet a effectué le véhicule V0434 le 2024-05-20, et quel chauffeur était au volant ?",
       "answer": "Le 2024-05-20, le véhicule V0434 a effectué le trajet Rabat - Fès, conduit par Zakaria Berrada, avec un chargement de Métaux et produits sidérurgiques (25.1 t).",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel type de marchandise a été transporté lors du trajet T00722 et le chargement était-il dangereux ?",
       "answer": "Le trajet T00722 a transporté « Bois et matériaux forestiers » (21.9 t) ; ce chargement n'est pas classé comme marchandise dangereuse.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "logistique",
@@ -1805,8 +1806,8 @@
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Dans quelles conditions météo et routières s'est déroulé le trajet T02160 ?",
-      "answer": "Le trajet T02160 s'est déroulé par conditions météo « clair » sur un itinéraire de type « rural », pour un délai de livraison de 30.0 heures.",
-      "difficulty": "moyen"
+      "answer": "Le trajet T02160 s'est déroulé par conditions météo « clair » sur une route de type « rural », pour un délai de livraison de 30.0 heures.",
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
@@ -1833,7 +1834,7 @@
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Dans quelles conditions météo et routières s'est déroulé le trajet T02843 ?",
-      "answer": "Le trajet T02843 s'est déroulé par conditions météo « clair » sur un itinéraire de type « autoroute », pour un délai de livraison de 140.9 heures.",
+      "answer": "Le trajet T02843 s'est déroulé par conditions météo « clair » sur une route de type « autoroute », pour un délai de livraison de 140.9 heures.",
       "difficulty": "facile"
     },
     {
@@ -1841,7 +1842,7 @@
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel trajet a effectué le véhicule V0924 le 2023-10-18, et quel chauffeur était au volant ?",
       "answer": "Le 2023-10-18, le véhicule V0924 a effectué le trajet Taza - Oujda, conduit par Rachid Sqalli, avec un chargement de Produits alimentaires (frais) (19.1 t).",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
@@ -1855,28 +1856,28 @@
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel a été le revenu estimé et le coût de carburant du trajet T00299 (véhicule V0668) ?",
       "answer": "Le trajet T00299 du véhicule V0668 a généré un revenu estimé de 499 818 MAD pour un coût de carburant de 306 654 MAD.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Dans quelles conditions météo et routières s'est déroulé le trajet T01809 ?",
-      "answer": "Le trajet T01809 s'est déroulé par conditions météo « venteux » sur un itinéraire de type « autoroute », pour un délai de livraison de 67.8 heures.",
-      "difficulty": "moyen"
+      "answer": "Le trajet T01809 s'est déroulé par conditions météo « venteux » sur une route de type « autoroute », pour un délai de livraison de 67.8 heures.",
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel trajet a effectué le véhicule V0314 le 2024-04-04, et quel chauffeur était au volant ?",
       "answer": "Le 2024-04-04, le véhicule V0314 a effectué le trajet Ouarzazate - Zagora, conduit par Rachid Fassi, avec un chargement de Produits agricoles (33.6 t).",
-      "difficulty": "moyen"
+      "difficulty": "facile"
     },
     {
       "category": "logistique",
       "source_file": "truckmind_v2.db (tables trips, routes, chauffeurs)",
       "question": "Quel type de marchandise a été transporté lors du trajet T00757 et le chargement était-il dangereux ?",
       "answer": "Le trajet T00757 a transporté « Véhicules et pièces détachées » (24.8 t) ; ce chargement n'est pas classé comme marchandise dangereuse.",
-      "difficulty": "facile"
+      "difficulty": "moyen"
     },
     {
       "category": "logistique",
@@ -2092,7 +2093,7 @@
       "category": "logistique",
       "source_file": "truckmind_v2.db (table chauffeurs)",
       "question": "À quelle date expire le permis de conduire du chauffeur D108 ?",
-      "answer": "Le permis de conduire du chauffeur D108 (Ismail Berrada) expire le 2026-06-18.",
+      "answer": "Le permis de conduire du chauffeur D108 (Ismail Berrada) expire le 2026-06-18 (expiré depuis 125 jours au 2026-10-21).",
       "difficulty": "facile"
     },
     {
@@ -2120,7 +2121,7 @@
       "category": "documentaire",
       "source_file": "Amortissement_Materiel_Transport_Maroc.pdf (ChromaDB)",
       "question": "Quels sont les deux référentiels applicables à l'amortissement d'un camion au Maroc ?",
-      "answer": "Deux référentiels coexistent : le Code général de la normalisation comptable (CGNC), qui vise la dépréciation économique réelle du bien, et le Code général des impôts (CGI, article 10-I-F, complété par la note circulaire n°717 d'avril 2011), qui encadre la déduction fiscale. En cas de divergence, la durée fiscale reste la référence la plus prudente et vérifiable.",
+      "answer": "Deux référentiels coexistent : le Code général de la normalisation comptable (CGNC), qui vise la dépréciation économique réelle du bien, et le Code général des impôts (CGI, article 10-I-F, complété par la note circulaire n°717 d'avril 2011), qui encadre la déduction fiscale. En cas de divergence, la durée fiscale reste la référence la plus prudente et la plus vérifiable.",
       "difficulty": "moyen"
     },
     {
@@ -2134,224 +2135,224 @@
       "category": "documentaire",
       "source_file": "Amortissement_Materiel_Transport_Maroc.pdf (ChromaDB)",
       "question": "Quelle méthode d'amortissement est la méthode de droit commun au Maroc ?",
-      "answer": "La méthode lineaire est la méthode de droit commun, tant sur le plan comptable que fiscal. Le taux annuel se calcule comme cent divisé par le nombre d'années de la durée retenue, et le point de départ du calcul est la date de mise en service effective du véhicule, non sa date d'achat.",
+      "answer": "La méthode linéaire est la méthode de droit commun, sur le plan comptable comme fiscal. Le taux annuel est égal à 100 divisé par le nombre d'années retenu, et le calcul démarre à la date de mise en service effective du véhicule, non à sa date d'achat.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Amortissement_Materiel_Transport_Maroc.pdf (ChromaDB)",
       "question": "Un camion est mis en service le 5 octobre. Comment se calcule la dotation d'amortissement de la première année ?",
-      "answer": "La dotation de la première année se calcule au prorata du nombre de mois restant jusqu'à la clôture de l'exercice ; toute fraction de mois entamée compte pour un mois entier. Un véhicule mis en service le 5 octobre est donc réputé mis en service pour l'intégralité du mois d'octobre.",
+      "answer": "La dotation de la première année est calculée au prorata du nombre de mois restant jusqu'à la clôture de l'exercice, toute fraction de mois entamée comptant pour un mois entier. Un véhicule mis en service le 5 octobre est donc réputé en service pour tout le mois d'octobre.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Amortissement_Materiel_Transport_Maroc.pdf (ChromaDB)",
       "question": "Quels sont les coefficients du mode dégressif applicables aux camions selon la durée d'utilisation ?",
-      "answer": "Le coefficient dégressif est de 1,5 pour une durée normale de trois ou quatre ans, de 2 pour une durée de cinq ou six ans, et de 3 pour une durée supérieure à six ans ; il s'applique au taux linéaire correspondant, puis à la valeur nette comptable du bien.",
+      "answer": "Le coefficient dégressif est de 1,5 pour une durée normale de 3 ou 4 ans, de 2 pour 5 ou 6 ans, et de 3 au-delà de 6 ans. Il multiplie le taux linéaire correspondant, puis le taux obtenu s'applique à la valeur nette comptable.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Amortissement_Materiel_Transport_Maroc.pdf (ChromaDB)",
       "question": "Le plafonnement de 400 000 dirhams s'applique-t-il aux camions de transport de marchandises de la flotte TruckMind ?",
-      "answer": "Non. Ce plafonnement, relevé à 400 000 dirhams TTC par véhicule depuis la loi de finances 2025, ne concerne que les véhicules de tourisme (transport de personnes). Les camions et véhicules utilitaires affectés au transport de marchandises sont amortissables sans plafond, sur la totalité de leur coût d'acquisition.",
+      "answer": "Non. Ce plafond, relevé de 300 000 à 400 000 dirhams TTC par véhicule par la loi de finances 2025, ne concerne que les véhicules de tourisme (transport de personnes). Les camions et véhicules utilitaires de transport de marchandises sont amortissables sur la totalité de leur coût d'acquisition.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Amortissement_Materiel_Transport_Maroc.pdf (ChromaDB)",
       "question": "Que se passe-t-il si une entreprise oublie de comptabiliser la dotation d'amortissement d'un exercice ?",
-      "answer": "Selon l'article 10 du CGI, un amortissement non comptabilisé au titre de l'exercice auquel il se rapporte est définitivement perdu et ne peut être rattrapé sur un exercice ultérieur ; à l'inverse, le cumul des amortissements pratiqués ne peut jamais être inférieur au montant qu'aurait produit le mode linéaire (règle du plancher).",
+      "answer": "Selon l'article 10 du CGI, un amortissement non comptabilisé au titre de son exercice est définitivement perdu et ne peut pas être rattrapé l'année suivante. Symétriquement, le cumul des amortissements pratiqués ne peut jamais être inférieur à celui qu'aurait produit le mode linéaire (règle du plancher).",
       "difficulty": "difficile"
     },
     {
       "category": "documentaire",
       "source_file": "Amortissement_Materiel_Transport_Maroc.pdf (ChromaDB)",
       "question": "Qu'est-ce que la méthode des unités de production appliquée à un camion, et pourquoi intéresse-t-elle TruckMind ?",
-      "answer": "Cette méthode calcule la dotation de l'exercice comme le produit de la base amortissable par le kilométrage parcouru pendant l'exercice, divisé par le kilométrage total estimé sur la durée de vie du véhicule. Elle intéresse TruckMind car le système dispose déjà d'un suivi kilométrique détaillé de chaque véhicule.",
+      "answer": "La dotation de l'exercice égale la base amortissable multipliée par les kilomètres parcourus pendant l'exercice, divisée par le kilométrage total estimé sur la vie du véhicule. Elle intéresse TruckMind car le système suit déjà le kilométrage de chaque véhicule, à condition que l'estimation du kilométrage total soit justifiable en cas de contrôle.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Amortissement_Materiel_Transport_Maroc.pdf (ChromaDB)",
-      "question": "Sur quels comptes comptables se passe l'écriture de dotation aux amortissements du matériel de transport ?",
-      "answer": "La dotation annuelle se comptabilise au débit du compte 6193 (dotations d'exploitation aux amortissements des immobilisations corporelles) par le crédit du compte 2834 (amortissements du matériel de transport), ce dernier venant en déduction du compte d'actif 2340 où le véhicule est enregistré à son coût d'entrée.",
+      "question": "Sur quels comptes comptables passe l'écriture de dotation aux amortissements du matériel de transport ?",
+      "answer": "La dotation annuelle est comptabilisée au débit du compte 6193 (dotations d'exploitation aux amortissements des immobilisations corporelles) et au crédit du compte 2834 (amortissements du matériel de transport), qui vient en déduction du compte d'actif 2340 où le véhicule est enregistré à son coût d'entrée.",
       "difficulty": "difficile"
     },
     {
       "category": "documentaire",
       "source_file": "Amortissement_Materiel_Transport_Maroc.pdf (ChromaDB)",
       "question": "Quelle est la durée d'amortissement usuelle observée en pratique pour les poids lourds par rapport aux camionnettes ?",
-      "answer": "En pratique professionnelle, les camionnettes et véhicules utilitaires légers sont le plus souvent amortis sur quatre à six ans, tandis que les poids lourds proprement dits le sont sur cinq à huit ans compte tenu de leur robustesse mécanique supérieure ; ces fourchettes ne figurent pas telles quelles dans la note circulaire officielle.",
+      "answer": "Selon la pratique des cabinets comptables marocains, les camionnettes et utilitaires légers sont amortis sur 4 à 6 ans et les poids lourds sur 5 à 8 ans ; ces fourchettes ne figurent pas telles quelles dans la note circulaire n°717 mais restent compatibles avec elle.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Couts_Exploitation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Depuis quand les prix des carburants sont-ils libéralisés au Maroc et qu'est-ce que cela implique pour TruckMind ?",
-      "answer": "Les prix des carburants sont librement fixés par chaque distributeur depuis le 1er décembre 2015, en application de la loi n°12-104 et de son décret d'application n°2-14-652. Il n'existe donc plus d'indice réglementaire unique : le coût du carburant doit être traité comme une variable de marché horodatée et rafraîchie à chaque révision, plutôt qu'une constante figée dans la base.",
+      "answer": "Les prix sont librement fixés par chaque distributeur depuis le 1er décembre 2015 (loi n°12-104 et décret n°2-14-652). Il n'existe plus d'indice réglementaire unique : le coût du carburant doit être traité comme une variable de marché, horodatée et rafraîchie à chaque révision.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Couts_Exploitation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quel était le prix du gasoil et de l'essence après la révision du 16 juillet 2026 ?",
-      "answer": "Après la révision du 16 juillet 2026, le gasoil est passé de 65 à 70 centimes le litre et l'essence super de 38 à 39 centimes, portant le litre de gasoil à environ 13,30 dirhams et celui d'essence à environ 14,24 dirhams.",
+      "answer": "La révision du 16 juillet 2026 a augmenté le gasoil de 65 à 70 centimes par litre et l'essence super de 38 à 39 centimes, portant le litre de gasoil à environ 13,30 dirhams et celui d'essence à environ 14,24 dirhams.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Couts_Exploitation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Combien de classes de véhicules la grille de péage d'Autoroutes du Maroc définit-elle, et quelle classe concerne les poids lourds ?",
-      "answer": "La grille actuellement publiée par Autoroutes du Maroc définit trois classes de véhicules. La classe 3, la plus élevée, regroupe les véhicules ou ensembles à plus de deux essieux dont la hauteur dépasse 1,30 mètre — c'est la classe de référence pour la quasi-totalité des camions et semi-remorques de la flotte.",
+      "answer": "La grille actuelle compte trois classes. La classe 3 regroupe les véhicules ou ensembles de plus de deux essieux dont la hauteur dépasse 1,30 m : c'est la classe de référence pour la quasi-totalité des camions et semi-remorques de la flotte.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Couts_Exploitation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quel est le tarif de péage en classe 3 sur le trajet Casablanca-Rabat ?",
-      "answer": "Sur la section Casablanca-Rabat, le tarif est de 23 dirhams en classe 1, 34 dirhams en classe 2 et 41 dirhams en classe 3, cette dernière étant la classe applicable aux poids lourds.",
+      "answer": "Sur Casablanca-Rabat, le péage est de 23 dirhams en classe 1, 34 dirhams en classe 2 et 41 dirhams en classe 3, cette dernière s'appliquant aux poids lourds.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Couts_Exploitation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Comment est calculée la taxe spéciale annuelle sur les véhicules (vignette) pour un camion de 20 à 33 tonnes ?",
-      "answer": "Selon le barème de l'article 262 du CGI, un vehicule ou ensemble dont le poids total en charge (ou poids total maximum en charge tracté) est compris entre 20 000 et 33 000 kg est soumis à une taxe spéciale annuelle de 7 300 dirhams.",
+      "answer": "Selon le barème de l'article 262 du CGI, un véhicule (ou un ensemble, sur la base du poids total maximum en charge tracté) de 20 000 à 33 000 kg paie une taxe spéciale annuelle de 7 300 dirhams.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Couts_Exploitation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Les véhicules de transport de marchandises de plus de 9 tonnes bénéficient-ils d'un paiement fractionné de la vignette ?",
-      "answer": "Oui. Depuis la loi de finances 2019, pour les véhicules dont le poids total en charge dépasse 9 000 kilogrammes, le paiement de la taxe spéciale annuelle peut être effectué en deux versements égaux : le premier avant fin février, le second avant fin août de chaque année.",
+      "answer": "Oui. Depuis la loi de finances 2019, la taxe d'un véhicule dépassant 9 000 kg peut être payée en deux versements égaux : le premier avant fin février, le second avant fin août de chaque année.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Couts_Exploitation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Qu'est-ce que le badge Jawaz Pro et quel est son intérêt pour une flotte comme TruckMind ?",
-      "answer": "Jawaz Pro est le dispositif de télépéage professionnel d'Autoroutes du Maroc, associé à un espace client permettant de consulter et d'exporter l'historique des passages par véhicule ; il permet de réconcilier les coûts de péage réellement payés avec les trajets effectivement réalisés, plutôt que de reposer sur une estimation forfaitaire.",
+      "answer": "Jawaz Pro est le télépéage professionnel d'Autoroutes du Maroc, associé à un espace client qui permet de consulter et exporter l'historique des passages par véhicule. Il permet de rapprocher les péages réellement payés des trajets effectués, au lieu d'une estimation forfaitaire.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Couts_Exploitation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quelle part de la consommation nationale de carburants routiers représente le gasoil au Maroc ?",
-      "answer": "Selon des estimations sectorielles, le gasoil représente entre 75 et 80 % de la consommation nationale de carburants routiers, une proportion liée à la place prépondérante du transport routier de marchandises dans le parc automobile marocain.",
+      "answer": "Selon des estimations sectorielles, le gasoil représente entre 75 et 80 % de la consommation nationale de carburants routiers, en raison du poids du transport routier de marchandises.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "Comment se calcule le coût kilométrique complet (CKC) d'un véhicule selon la politique TruckMind ?",
-      "answer": "Le CKC se calcule comme la somme des coûts fixes annuels (amortissement, taxe spéciale, assurance, contrôle technique, télépéage, quote-part frais de structure) et des coûts variables annuels (carburant, péage, maintenance, pneumatiques, part indexée du salaire chauffeur), le tout divisé par le kilométrage annuel réellement parcouru.",
+      "answer": "CKC = (coûts fixes annuels + coûts variables annuels) / kilométrage annuel réellement parcouru. Les coûts fixes incluent amortissement, vignette, assurance, contrôle technique, télépéage et quote-part de structure ; les coûts variables incluent carburant, péage, maintenance, pneumatiques et part indexée du salaire du chauffeur.",
       "difficulty": "difficile"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "À partir de quel seuil un véhicule est-il signalé comme structurellement déficitaire ?",
-      "answer": "Un véhicule dont le tarif moyen facturé au client descend en dessous de son coût kilométrique complet sur une période glissante de trois mois doit être signalé comme structurellement déficitaire et faire l'objet d'une revue par le contrôle de gestion dans les quinze jours suivant le déclenchement du signal.",
+      "answer": "Quand son tarif moyen facturé passe sous son coût kilométrique complet sur une période glissante de trois mois : le contrôle de gestion doit alors le réviser dans les quinze jours suivant le signal.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "Quel est le seuil minimal du taux d'utilisation de la flotte avant déclenchement d'une revue d'affectation ?",
-      "answer": "Un taux d'utilisation qui descend durablement, c'est-à-dire sur deux mois consécutifs, sous 65 % doit déclencher une revue de l'affectation du véhicule concerné.",
+      "answer": "Un taux d'utilisation inférieur à 65 % pendant deux mois consécutifs déclenche une revue de l'affectation du véhicule.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "Quel est le seuil de kilomètres à vide à partir duquel une optimisation de tournée est prioritaire ?",
-      "answer": "Un taux de kilomètres à vide qui dépasse 25 % sur un véhicule donné doit être signalé au planificateur de tournées comme une piste d'optimisation prioritaire.",
+      "answer": "Au-delà de 25 % de kilomètres à vide sur un véhicule, le cas est signalé au planificateur de tournées comme piste d'optimisation prioritaire.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "Tous les combien de kilomètres ou de mois la vidange moteur d'un poids lourd diesel récent doit-elle être réalisée ?",
-      "answer": "La vidange moteur et le remplacement du filtre à huile interviennent tous les 15 000 à 20 000 kilomètres, ou au minimum une fois par an si ce kilométrage n'est pas atteint — selon la première échéance atteinte.",
+      "answer": "Tous les 15 000 à 20 000 km, ou au minimum une fois par an si ce kilométrage n'est pas atteint : c'est la première échéance atteinte qui déclenche l'intervention.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "À quelle fréquence les plaquettes et disques de frein doivent-ils être contrôlés et remplacés ?",
-      "answer": "Le contrôle et le remplacement éventuel des plaquettes et disques de frein s'effectuent tous les 40 000 à 60 000 kilomètres selon l'intensité d'utilisation, avec un contrôle visuel intermédiaire tous les 15 000 kilomètres.",
+      "answer": "Contrôle et remplacement éventuel tous les 40 000 à 60 000 km selon l'intensité d'utilisation, avec un contrôle visuel intermédiaire tous les 15 000 km.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "Quel est le seuil de profondeur de sculpture en dessous duquel un pneu doit être systématiquement remplacé ?",
-      "answer": "Le contrôle de la pression et de l'usure des pneumatiques est réalisé mensuellement, avec un remplacement systématique en dessous de 1,6 millimètre de profondeur de sculpture.",
+      "answer": "La pression et l'usure des pneus sont contrôlées chaque mois, avec un remplacement systématique sous 1,6 mm de profondeur de sculpture.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "Combien de jours avant l'expiration du contrôle technique annuel une alerte est-elle générée pour un véhicule de plus de 3,5 tonnes ?",
-      "answer": "Le système génère une alerte automatique quarante-cinq jours avant l'expiration du contrôle technique annuel de chaque véhicule de plus de 3,5 tonnes.",
+      "answer": "Une alerte automatique est générée 45 jours avant l'expiration du contrôle technique annuel.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "Quel délai spécifique s'applique aux véhicules transportant des marchandises dangereuses pour l'alerte de contrôle technique ?",
-      "answer": "Pour les véhicules affectés au transport de marchandises dangereuses (colonne Marchandise_Dangereuse), une alerte spécifique et prioritaire est générée soixante jours avant l'expiration du contrôle technique spécifique imposé par la loi 30-05, ce délai plus long tenant compte de la difficulté accrue à programmer ce contrôle particulier.",
+      "answer": "Pour les véhicules identifiés par la colonne Marchandise_Dangereuse, une alerte prioritaire est générée 60 jours avant l'expiration du contrôle technique spécifique imposé par la loi 30-05, car ce contrôle est plus difficile à programmer auprès des centres agréés.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "À partir de combien d'incidents correctifs sur 30 jours une alerte de deuxième niveau est-elle déclenchée ?",
-      "answer": "Une alerte de deuxième niveau, plus urgente, est déclenchée lorsqu'un véhicule enregistre trois incidents correctifs ou davantage sur une période glissante de trente jours, signalant un risque de panne majeure imminente.",
+      "answer": "À partir de trois incidents correctifs sur une période glissante de trente jours, ce qui signale un risque de panne majeure imminente.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "De quel écart de consommation de carburant par rapport à la référence constructeur déclenche-t-on une alerte de consommation ?",
-      "answer": "Une alerte de consommation est déclenchée lorsque la consommation moyenne mesurée sur une période glissante de trente jours dépasse de plus de 10 % la consommation de référence constructeur ou la consommation historique moyenne du même véhicule.",
+      "answer": "Quand la consommation moyenne sur 30 jours glissants dépasse de plus de 10 % la référence constructeur ou la consommation historique moyenne du même véhicule.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Politique_Gestion_Flotte_TruckMind.pdf (ChromaDB)",
       "question": "Qui est responsable du suivi du calendrier de maintenance préventive dans l'organisation TruckMind ?",
-      "answer": "Le responsable maintenance est chargé du suivi du calendrier préventif, de la validation des interventions correctives et de l'analyse des pannes récurrentes.",
+      "answer": "Le responsable maintenance, qui valide aussi les interventions correctives et analyse les pannes récurrentes.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Reglementation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quel est le texte fondateur de la réglementation marocaine du transport routier de marchandises ?",
-      "answer": "Le texte fondateur est la loi n° 52-05 portant code de la route, promulguée par le dahir n° 1-10-07 du 11 février 2010, modifiée et complétée par la loi n°116-14 de 2016 qui a notamment introduit le système du permis à points.",
+      "answer": "Le texte fondateur est la loi n°52-05 portant code de la route (dahir n°1-10-07 du 11 février 2010), modifiée par la loi n°116-14 de 2016 qui a notamment introduit le permis à points.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Reglementation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Combien de points comporte le capital initial du permis de conduire au Maroc ?",
-      "answer": "Un capital de trente points est affecté à chaque permis de conduire au Maroc, ce capital pouvant être réduit par une amende transactionnelle et forfaitaire ou par une décision judiciaire définitive.",
+      "answer": "Chaque permis est doté d'un capital de trente points, réduit par une amende transactionnelle et forfaitaire ou par une condamnation judiciaire définitive.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "Reglementation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quelle est la longueur maximale autorisée pour un véhicule articulé et pour un train routier selon le décret 2-10-421 ?",
-      "answer": "Le décret n° 2-10-421 fixe la longueur maximale d'un véhicule articulé à 16,50 mètres et celle d'un train routier à 18,75 mètres.",
+      "answer": "16,50 mètres pour un véhicule articulé et 18,75 mètres pour un train routier.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Reglementation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quelles sont la largeur et la hauteur maximales autorisées pour un véhicule au Maroc ?",
-      "answer": "La largeur maximale autorisée est de 2,55 mètres pour tout véhicule (2,60 mètres pour les superstructures des véhicules conditionnés), et la hauteur maximale est fixée à 4,00 mètres, tous véhicules confondus.",
+      "answer": "La largeur maximale est de 2,55 m (2,60 m pour les superstructures des véhicules conditionnés) et la hauteur maximale de 4,00 m.",
       "difficulty": "facile"
     },
     {
@@ -2365,308 +2366,308 @@
       "category": "documentaire",
       "source_file": "Reglementation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quel texte de loi régit le transport routier des marchandises dangereuses au Maroc ?",
-      "answer": "Le transport routier des marchandises dangereuses est régi par la loi n° 30-05, promulguée par le dahir n° 1-11-37 du 2 juin 2011, qui renvoie à l'accord ADR pour la classification internationale des matières et les normes d'emballage.",
+      "answer": "La loi n°30-05 (dahir n°1-11-37 du 2 juin 2011), qui renvoie à l'accord ADR pour la classification internationale des matières et les normes d'emballage.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Reglementation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quel contrôle supplémentaire est imposé aux véhicules transportant des marchandises dangereuses par rapport au contrôle technique de droit commun ?",
-      "answer": "En plus du contrôle technique annuel de droit commun applicable à tout véhicule, le véhicule affecté au transport de marchandises dangereuses est soumis à un contrôle technique spécifique en application de la loi 30-05.",
+      "answer": "En plus du contrôle technique annuel de droit commun, le véhicule est soumis à un contrôle technique spécifique, en application de la loi 30-05.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Reglementation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Qu'est-ce que le carnet TIR et à quoi sert-il ?",
-      "answer": "Le carnet TIR, prévu par la convention de Genève de 1975, permet la circulation de marchandises dans des véhicules ou conteneurs scellés entre pays parties à la convention, moyennant la reconnaissance mutuelle des contrôles douaniers ; un carnet est établi par véhicule ou conteneur.",
+      "answer": "Le carnet TIR (convention de Genève de 1975) permet la circulation de marchandises dans des véhicules ou conteneurs scellés entre pays parties, avec reconnaissance mutuelle des contrôles douaniers ; un carnet est établi par véhicule ou conteneur.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "Reglementation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quel montant de fonds propres est exigé pour une entreprise souhaitant s'inscrire simultanément aux registres de transporteur, loueur et commissionnaire ?",
-      "answer": "Le ministère du Transport et de la Logistique exige un montant de fonds propres d'au moins 500 000 dirhams pour une inscription simultanée aux trois registres de transporteur, de loueur et de commissionnaire.",
+      "answer": "Au moins 500 000 dirhams de fonds propres, selon le ministère du Transport et de la Logistique.",
       "difficulty": "difficile"
     },
     {
       "category": "documentaire",
       "source_file": "Reglementation_Transport_Routier_Maroc.pdf (ChromaDB)",
       "question": "Quel document accompagne un envoi lors d'un transport international routier sous convention CMR ?",
-      "answer": "Chaque envoi est accompagné d'une lettre de voiture CMR établie en quatre exemplaires ; l'absence de réserves à la livraison fait présumer que la marchandise a été reçue en bon état, engageant la responsabilité du transporteur pour tout dommage constaté ultérieurement.",
+      "answer": "Une lettre de voiture CMR établie en quatre exemplaires ; l'absence de réserves à la livraison fait présumer que la marchandise est reçue en bon état, ce qui engage la responsabilité du transporteur pour tout dommage constaté ensuite.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "rapport_Manuel.pdf (ChromaDB - Manuel Volvo FH/FM)",
       "question": "Quelle est la plage normale de température du liquide de refroidissement en conduite normale sur un Volvo FH/FM ?",
-      "answer": "En conduite normale, la température du liquide de refroidissement doit rester entre 80°C et 100°C ; au-delà, il faut arrêter immédiatement le véhicule et laisser le moteur tourner au ralenti jusqu'au refroidissement.",
+      "answer": "L'aiguille doit rester entre 80 et 100 °C. Le système de protection allume un voyant jaune à 100 °C, puis un voyant rouge d'arrêt à 101 °C : il faut alors arrêter le véhicule et laisser le moteur tourner au ralenti jusqu'au refroidissement.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "rapport_Manuel.pdf (ChromaDB - Manuel Volvo FH/FM)",
       "question": "Quelle est la plage normale de pression d'huile moteur à chaud sur le Volvo FH/FM ?",
-      "answer": "En conduite normale avec moteur chaud, la pression d'huile doit se situer entre 3 et 5,5 bars (300-550 kPa). Si le voyant s'allume, il faut arrêter immédiatement et couper le moteur.",
+      "answer": "Entre 3 et 5,5 bars (300-550 kPa) moteur chaud. Si le voyant s'allume, il faut arrêter immédiatement et couper le moteur.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "rapport_Manuel.pdf (ChromaDB - Manuel Volvo FH/FM)",
       "question": "À quel niveau de carburant restant la lampe d'avertissement du réservoir s'allume-t-elle ?",
-      "answer": "La lampe d'avertissement du niveau de carburant s'allume lorsqu'il reste entre 7 et 10 % de combustible dans le ou les réservoirs.",
+      "answer": "Lorsqu'il reste entre 7 et 10 % de carburant dans le ou les réservoirs.",
       "difficulty": "facile"
     },
     {
       "category": "documentaire",
       "source_file": "rapport_Manuel.pdf (ChromaDB - Manuel Volvo FH/FM)",
       "question": "Quel est le régime de ralenti par défaut d'un Volvo FH/FM et dans quelle plage peut-il être ajusté ?",
-      "answer": "Le régime de ralenti est généralement réglé à 600 tr/min à la livraison, et peut être ajusté temporairement entre 550 et 650 tr/min.",
+      "answer": "Il est réglé à environ 600 tr/min à la livraison et peut être ajusté entre 550 et 650 tr/min.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "rapport_Manuel.pdf (ChromaDB - Manuel Volvo FH/FM)",
       "question": "Que doit faire le conducteur si le voyant rouge « STOP » s'allume avec un signal sonore pendant la conduite ?",
-      "answer": "Le manuel indique d'arrêter immédiatement le véhicule et de déconnecter le moteur dès que le voyant d'alerte s'allume, puis de rechercher la cause avant toute reprise de la conduite.",
+      "answer": "Arrêter immédiatement le véhicule et couper le moteur, puis rechercher la cause avant toute reprise de la conduite.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "rapport_Manuel.pdf (ChromaDB - Manuel Volvo FH/FM)",
       "question": "À partir de quelle température de l'huile moteur le système de protection déclenche-t-il un arrêt progressif du couple moteur ?",
-      "answer": "Lorsque la température de l'huile moteur atteint 125°C, une lampe d'avertissement rouge de « parada » s'allume et le couple moteur diminue graduellement, dans le cadre du système de protection additionnel du moteur.",
+      "answer": "À 125 °C, le voyant rouge d'arrêt s'allume et le couple moteur diminue progressivement ; un voyant jaune d'avertissement s'allume dès 123 °C.",
       "difficulty": "difficile"
     },
     {
       "category": "documentaire",
       "source_file": "rapport_Manuel.pdf (ChromaDB - Manuel Volvo FH/FM)",
       "question": "Quelle pression minimale du système de freins est requise pour désengager le frein de stationnement via la vanne de blocage ?",
-      "answer": "La pression dans le système de freins doit être supérieure à 5 bars pour pouvoir appuyer sur la vanne de verrouillage et désengager le frein de stationnement.",
+      "answer": "La pression du système de freins doit être supérieure à 5 bars pour pouvoir actionner la vanne de verrouillage et desserrer le frein de stationnement.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "rapport_Manuel.pdf (ChromaDB - Manuel Volvo FH/FM)",
       "question": "Quelles sont les principales recommandations de conduite économique mentionnées dans le manuel Volvo FH/FM ?",
-      "answer": "Le manuel recommande notamment de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir une pression de pneus correcte, et de limiter l'usage du programmateur de vitesse sur terrain irrégulier pour réduire la consommation de carburant.",
+      "answer": "Le manuel recommande notamment de rouler dans la moitié inférieure du champ vert du compte-tours, de ne pas pomper l'accélérateur, de maintenir la bonne pression des pneus et de limiter le programmateur de vitesse sur terrain irrégulier.",
       "difficulty": "moyen"
     },
     {
       "category": "documentaire",
       "source_file": "rapport_Manuel.pdf (ChromaDB - Manuel Volvo FH/FM)",
       "question": "Que signifie l'indicateur de pression du turbocompresseur et comment doit-il se comporter sur route plate ?",
-      "answer": "Pour une consommation économique, l'aiguille de l'indicateur de pression du turbocompresseur doit rester stable lors de la conduite sur des routes plates, c'est-à-dire sans appuyer ou relâcher la pédale d'accélérateur sans raison importante.",
+      "answer": "Pour une consommation économique, elle doit rester stable sur route plate, donc sans appuyer ni relâcher l'accélérateur sans raison importante.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Amortissement_Materiel_Transport_Maroc.pdf",
       "question": "Le véhicule V0242 a été acheté 1 133 982 MAD et sa valeur actuelle est de 1 132 508 MAD. Selon quelle méthode et quel taux ce type de camion devrait-il être amorti au Maroc ?",
-      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0242 a une valeur d'achat de 1 133 982 MAD et une valeur actuelle de 1 132 508 MAD. Politique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : pour un poids lourd affecté au transport de marchandises, la méthode linéaire au taux usuel de 20 à 25 % s'applique par défaut, sans plafonnement puisque ce plafond ne vise que les véhicules de tourisme, en décomptant la durée depuis la date de mise en service.",
+      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0242 a une valeur d'achat de 1 133 982 MAD et une valeur actuelle de 1 132 508 MAD.\nPolitique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : méthode linéaire au taux usuel de 20 à 25 % (4 à 5 ans), sans plafonnement puisque le plafond de 400 000 MAD ne vise que les véhicules de tourisme, soit une dotation annuelle d'environ 226 796 à 283 496 MAD, décomptée depuis la date de mise en service.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Amortissement_Materiel_Transport_Maroc.pdf",
       "question": "Le véhicule V0310 a été acheté 958 619 MAD et sa valeur actuelle est de 855 152 MAD. Selon quelle méthode et quel taux ce type de camion devrait-il être amorti au Maroc ?",
-      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0310 a une valeur d'achat de 958 619 MAD et une valeur actuelle de 855 152 MAD. Politique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : pour un poids lourd affecté au transport de marchandises, la méthode linéaire au taux usuel de 20 à 25 % s'applique par défaut, sans plafonnement puisque ce plafond ne vise que les véhicules de tourisme, en décomptant la durée depuis la date de mise en service.",
+      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0310 a une valeur d'achat de 958 619 MAD et une valeur actuelle de 855 152 MAD.\nPolitique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : méthode linéaire au taux usuel de 20 à 25 % (4 à 5 ans), sans plafonnement puisque le plafond de 400 000 MAD ne vise que les véhicules de tourisme, soit une dotation annuelle d'environ 191 724 à 239 655 MAD, décomptée depuis la date de mise en service.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Amortissement_Materiel_Transport_Maroc.pdf",
       "question": "Le véhicule V0723 a été acheté 907 591 MAD et sa valeur actuelle est de 782 313 MAD. Selon quelle méthode et quel taux ce type de camion devrait-il être amorti au Maroc ?",
-      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0723 a une valeur d'achat de 907 591 MAD et une valeur actuelle de 782 313 MAD. Politique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : pour un poids lourd affecté au transport de marchandises, la méthode linéaire au taux usuel de 20 à 25 % s'applique par défaut, sans plafonnement puisque ce plafond ne vise que les véhicules de tourisme, en décomptant la durée depuis la date de mise en service.",
+      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0723 a une valeur d'achat de 907 591 MAD et une valeur actuelle de 782 313 MAD.\nPolitique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : méthode linéaire au taux usuel de 20 à 25 % (4 à 5 ans), sans plafonnement puisque le plafond de 400 000 MAD ne vise que les véhicules de tourisme, soit une dotation annuelle d'environ 181 518 à 226 898 MAD, décomptée depuis la date de mise en service.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Amortissement_Materiel_Transport_Maroc.pdf",
       "question": "Le véhicule V0768 a été acheté 1 232 477 MAD et sa valeur actuelle est de 833 935 MAD. Selon quelle méthode et quel taux ce type de camion devrait-il être amorti au Maroc ?",
-      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0768 a une valeur d'achat de 1 232 477 MAD et une valeur actuelle de 833 935 MAD. Politique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : pour un poids lourd affecté au transport de marchandises, la méthode linéaire au taux usuel de 20 à 25 % s'applique par défaut, sans plafonnement puisque ce plafond ne vise que les véhicules de tourisme, en décomptant la durée depuis la date de mise en service.",
+      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0768 a une valeur d'achat de 1 232 477 MAD et une valeur actuelle de 833 935 MAD.\nPolitique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : méthode linéaire au taux usuel de 20 à 25 % (4 à 5 ans), sans plafonnement puisque le plafond de 400 000 MAD ne vise que les véhicules de tourisme, soit une dotation annuelle d'environ 246 495 à 308 119 MAD, décomptée depuis la date de mise en service.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Amortissement_Materiel_Transport_Maroc.pdf",
       "question": "Le véhicule V0033 a été acheté 981 175 MAD et sa valeur actuelle est de 947 750 MAD. Selon quelle méthode et quel taux ce type de camion devrait-il être amorti au Maroc ?",
-      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0033 a une valeur d'achat de 981 175 MAD et une valeur actuelle de 947 750 MAD. Politique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : pour un poids lourd affecté au transport de marchandises, la méthode linéaire au taux usuel de 20 à 25 % s'applique par défaut, sans plafonnement puisque ce plafond ne vise que les véhicules de tourisme, en décomptant la durée depuis la date de mise en service.",
+      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0033 a une valeur d'achat de 981 175 MAD et une valeur actuelle de 947 750 MAD.\nPolitique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : méthode linéaire au taux usuel de 20 à 25 % (4 à 5 ans), sans plafonnement puisque le plafond de 400 000 MAD ne vise que les véhicules de tourisme, soit une dotation annuelle d'environ 196 235 à 245 294 MAD, décomptée depuis la date de mise en service.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Amortissement_Materiel_Transport_Maroc.pdf",
       "question": "Le véhicule V0714 a été acheté 1 266 222 MAD et sa valeur actuelle est de 1 263 056 MAD. Selon quelle méthode et quel taux ce type de camion devrait-il être amorti au Maroc ?",
-      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0714 a une valeur d'achat de 1 266 222 MAD et une valeur actuelle de 1 263 056 MAD. Politique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : pour un poids lourd affecté au transport de marchandises, la méthode linéaire au taux usuel de 20 à 25 % s'applique par défaut, sans plafonnement puisque ce plafond ne vise que les véhicules de tourisme, en décomptant la durée depuis la date de mise en service.",
+      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0714 a une valeur d'achat de 1 266 222 MAD et une valeur actuelle de 1 263 056 MAD.\nPolitique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : méthode linéaire au taux usuel de 20 à 25 % (4 à 5 ans), sans plafonnement puisque le plafond de 400 000 MAD ne vise que les véhicules de tourisme, soit une dotation annuelle d'environ 253 244 à 316 556 MAD, décomptée depuis la date de mise en service.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Amortissement_Materiel_Transport_Maroc.pdf",
       "question": "Le véhicule V0680 a été acheté 1 095 142 MAD et sa valeur actuelle est de 1 048 343 MAD. Selon quelle méthode et quel taux ce type de camion devrait-il être amorti au Maroc ?",
-      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0680 a une valeur d'achat de 1 095 142 MAD et une valeur actuelle de 1 048 343 MAD. Politique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : pour un poids lourd affecté au transport de marchandises, la méthode linéaire au taux usuel de 20 à 25 % s'applique par défaut, sans plafonnement puisque ce plafond ne vise que les véhicules de tourisme, en décomptant la durée depuis la date de mise en service.",
+      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0680 a une valeur d'achat de 1 095 142 MAD et une valeur actuelle de 1 048 343 MAD.\nPolitique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : méthode linéaire au taux usuel de 20 à 25 % (4 à 5 ans), sans plafonnement puisque le plafond de 400 000 MAD ne vise que les véhicules de tourisme, soit une dotation annuelle d'environ 219 028 à 273 786 MAD, décomptée depuis la date de mise en service.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Amortissement_Materiel_Transport_Maroc.pdf",
       "question": "Le véhicule V0822 a été acheté 1 296 179 MAD et sa valeur actuelle est de 1 243 425 MAD. Selon quelle méthode et quel taux ce type de camion devrait-il être amorti au Maroc ?",
-      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0822 a une valeur d'achat de 1 296 179 MAD et une valeur actuelle de 1 243 425 MAD. Politique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : pour un poids lourd affecté au transport de marchandises, la méthode linéaire au taux usuel de 20 à 25 % s'applique par défaut, sans plafonnement puisque ce plafond ne vise que les véhicules de tourisme, en décomptant la durée depuis la date de mise en service.",
+      "answer": "Fiche véhicule (truckmind_v2.db, table vehicules) : le véhicule V0822 a une valeur d'achat de 1 296 179 MAD et une valeur actuelle de 1 243 425 MAD.\nPolitique d'amortissement (Amortissement_Materiel_Transport_Maroc.pdf) : méthode linéaire au taux usuel de 20 à 25 % (4 à 5 ans), sans plafonnement puisque le plafond de 400 000 MAD ne vise que les véhicules de tourisme, soit une dotation annuelle d'environ 259 236 à 324 045 MAD, décomptée depuis la date de mise en service.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + rapport_Manuel.pdf",
       "question": "Le véhicule V0383 consomme 55.0 L/100km lors du contrôle du 2023-12-27, ce qui dépasse le seuil critique. Que recommande le manuel Volvo pour réduire la consommation ?",
-      "answer": "Données maintenance (truckmind_v2.db) : avec 55.0 L/100km, le véhicule V0383 dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
+      "answer": "Données maintenance (truckmind_v2.db) : avec 55.0 L/100km, le véhicule V0383 atteint ou dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + rapport_Manuel.pdf",
       "question": "Le véhicule V0586 consomme 49.4 L/100km lors du contrôle du 2023-10-23, ce qui dépasse le seuil critique. Que recommande le manuel Volvo pour réduire la consommation ?",
-      "answer": "Données maintenance (truckmind_v2.db) : avec 49.4 L/100km, le véhicule V0586 dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
+      "answer": "Données maintenance (truckmind_v2.db) : avec 49.4 L/100km, le véhicule V0586 atteint ou dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + rapport_Manuel.pdf",
       "question": "Le véhicule V0585 consomme 55.0 L/100km lors du contrôle du 2023-11-05, ce qui dépasse le seuil critique. Que recommande le manuel Volvo pour réduire la consommation ?",
-      "answer": "Données maintenance (truckmind_v2.db) : avec 55.0 L/100km, le véhicule V0585 dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
+      "answer": "Données maintenance (truckmind_v2.db) : avec 55.0 L/100km, le véhicule V0585 atteint ou dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + rapport_Manuel.pdf",
       "question": "Le véhicule V0800 consomme 45.6 L/100km lors du contrôle du 2023-05-03, ce qui dépasse le seuil critique. Que recommande le manuel Volvo pour réduire la consommation ?",
-      "answer": "Données maintenance (truckmind_v2.db) : avec 45.6 L/100km, le véhicule V0800 dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
+      "answer": "Données maintenance (truckmind_v2.db) : avec 45.6 L/100km, le véhicule V0800 atteint ou dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + rapport_Manuel.pdf",
       "question": "Le véhicule V0302 consomme 55.0 L/100km lors du contrôle du 2024-02-29, ce qui dépasse le seuil critique. Que recommande le manuel Volvo pour réduire la consommation ?",
-      "answer": "Données maintenance (truckmind_v2.db) : avec 55.0 L/100km, le véhicule V0302 dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
+      "answer": "Données maintenance (truckmind_v2.db) : avec 55.0 L/100km, le véhicule V0302 atteint ou dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + rapport_Manuel.pdf",
       "question": "Le véhicule V0988 consomme 48.9 L/100km lors du contrôle du 2023-04-02, ce qui dépasse le seuil critique. Que recommande le manuel Volvo pour réduire la consommation ?",
-      "answer": "Données maintenance (truckmind_v2.db) : avec 48.9 L/100km, le véhicule V0988 dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
+      "answer": "Données maintenance (truckmind_v2.db) : avec 48.9 L/100km, le véhicule V0988 atteint ou dépasse le seuil critique de 45 L/100km fixé par la table thresholds.\nManuel Volvo FH/FM : il recommande de conduire dans la moitié inférieure du champ vert du compte-tours, d'éviter de pomper la pédale d'accélérateur, de maintenir la pression correcte des pneus et de limiter l'usage du programmateur de vitesse sur terrain irrégulier.\n⚠️ Action recommandée : diagnostic immédiat requis (dépassement critique).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table fleet_costs) + Couts_Exploitation_Transport_Routier_Maroc.pdf",
-      "question": "Le véhicule V0542 a un coût de carburant total de 338 403 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
-      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0542 est de 338 403 MAD, un poste distinct du péage.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille tarifaire d'Autoroutes du Maroc (essieux >2 et hauteur >1,30 m), dont le montant doit être lu section par section car le rapport entre classes varie (globalement entre 1,5 et 2,1 fois le tarif de la classe 1).",
+      "question": "Le véhicule V0542 a un coût de carburant total de 438 913 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
+      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0542 est de 438 913 MAD ; la table ne contient pas de colonne péage, c'est donc un poste distinct.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille d'Autoroutes du Maroc (plus de 2 essieux et hauteur > 1,30 m), dont le montant se lit section par section car le rapport avec la classe 1 varie (globalement entre 1,5 et 2,1).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table fleet_costs) + Couts_Exploitation_Transport_Routier_Maroc.pdf",
-      "question": "Le véhicule V0244 a un coût de carburant total de 208 903 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
-      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0244 est de 208 903 MAD, un poste distinct du péage.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille tarifaire d'Autoroutes du Maroc (essieux >2 et hauteur >1,30 m), dont le montant doit être lu section par section car le rapport entre classes varie (globalement entre 1,5 et 2,1 fois le tarif de la classe 1).",
+      "question": "Le véhicule V0244 a un coût de carburant total de 3 786 038 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
+      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0244 est de 3 786 038 MAD ; la table ne contient pas de colonne péage, c'est donc un poste distinct.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille d'Autoroutes du Maroc (plus de 2 essieux et hauteur > 1,30 m), dont le montant se lit section par section car le rapport avec la classe 1 varie (globalement entre 1,5 et 2,1).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table fleet_costs) + Couts_Exploitation_Transport_Routier_Maroc.pdf",
-      "question": "Le véhicule V0138 a un coût de carburant total de 2 287 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
-      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0138 est de 2 287 MAD, un poste distinct du péage.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille tarifaire d'Autoroutes du Maroc (essieux >2 et hauteur >1,30 m), dont le montant doit être lu section par section car le rapport entre classes varie (globalement entre 1,5 et 2,1 fois le tarif de la classe 1).",
+      "question": "Le véhicule V0138 a un coût de carburant total de 5 306 852 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
+      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0138 est de 5 306 852 MAD ; la table ne contient pas de colonne péage, c'est donc un poste distinct.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille d'Autoroutes du Maroc (plus de 2 essieux et hauteur > 1,30 m), dont le montant se lit section par section car le rapport avec la classe 1 varie (globalement entre 1,5 et 2,1).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table fleet_costs) + Couts_Exploitation_Transport_Routier_Maroc.pdf",
-      "question": "Le véhicule V0401 a un coût de carburant total de 287 705 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
-      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0401 est de 287 705 MAD, un poste distinct du péage.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille tarifaire d'Autoroutes du Maroc (essieux >2 et hauteur >1,30 m), dont le montant doit être lu section par section car le rapport entre classes varie (globalement entre 1,5 et 2,1 fois le tarif de la classe 1).",
+      "question": "Le véhicule V0401 a un coût de carburant total de 2 145 975 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
+      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0401 est de 2 145 975 MAD ; la table ne contient pas de colonne péage, c'est donc un poste distinct.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille d'Autoroutes du Maroc (plus de 2 essieux et hauteur > 1,30 m), dont le montant se lit section par section car le rapport avec la classe 1 varie (globalement entre 1,5 et 2,1).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table fleet_costs) + Couts_Exploitation_Transport_Routier_Maroc.pdf",
-      "question": "Le véhicule V0418 a un coût de carburant total de 1 014 697 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
-      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0418 est de 1 014 697 MAD, un poste distinct du péage.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille tarifaire d'Autoroutes du Maroc (essieux >2 et hauteur >1,30 m), dont le montant doit être lu section par section car le rapport entre classes varie (globalement entre 1,5 et 2,1 fois le tarif de la classe 1).",
+      "question": "Le véhicule V0418 a un coût de carburant total de 1 435 607 MAD. Ce montant inclut-il le péage, et quelle classe tarifaire ADM s'applique à ce type de camion ?",
+      "answer": "Fleet_costs (truckmind_v2.db) : le coût de carburant total du véhicule V0418 est de 1 435 607 MAD ; la table ne contient pas de colonne péage, c'est donc un poste distinct.\nCouts_Exploitation_Transport_Routier_Maroc.pdf : les poids lourds relèvent de la classe 3 de la grille d'Autoroutes du Maroc (plus de 2 essieux et hauteur > 1,30 m), dont le montant se lit section par section car le rapport avec la classe 1 varie (globalement entre 1,5 et 2,1).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + Politique_Gestion_Flotte_TruckMind.pdf",
       "question": "Le véhicule V0107 a un score prédictif de 0.81 le 2024-05-31. Selon la politique de gestion de flotte, quelle est la procédure d'escalade si l'alerte n'est pas traitée ?",
-      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0107 est de 0.81 (ARRÊT IMMÉDIAT) au 2024-05-31.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
+      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0107 est de 0.81 (ARRÊT IMMÉDIAT, au-dessus de 0.8) au 2024-05-31.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + Politique_Gestion_Flotte_TruckMind.pdf",
       "question": "Le véhicule V0152 a un score prédictif de 0.52 le 2023-09-29. Selon la politique de gestion de flotte, quelle est la procédure d'escalade si l'alerte n'est pas traitée ?",
-      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0152 est de 0.52 (ÉLEVÉ) au 2023-09-29.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
+      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0152 est de 0.52, niveau « Modéré » (au-dessus du seuil de surveillance de 0.5) au 2023-09-29.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + Politique_Gestion_Flotte_TruckMind.pdf",
       "question": "Le véhicule V0628 a un score prédictif de 0.76 le 2023-09-09. Selon la politique de gestion de flotte, quelle est la procédure d'escalade si l'alerte n'est pas traitée ?",
-      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0628 est de 0.76 (ÉLEVÉ) au 2023-09-09.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
+      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0628 est de 0.76, niveau « Critique » (au-dessus du seuil de surveillance de 0.5) au 2023-09-09.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + Politique_Gestion_Flotte_TruckMind.pdf",
       "question": "Le véhicule V0021 a un score prédictif de 0.60 le 2023-11-17. Selon la politique de gestion de flotte, quelle est la procédure d'escalade si l'alerte n'est pas traitée ?",
-      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0021 est de 0.60 (ÉLEVÉ) au 2023-11-17.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
+      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0021 est de 0.60, niveau « Élevé » (au-dessus du seuil de surveillance de 0.5) au 2023-11-17.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + Politique_Gestion_Flotte_TruckMind.pdf",
       "question": "Le véhicule V0094 a un score prédictif de 0.63 le 2023-11-03. Selon la politique de gestion de flotte, quelle est la procédure d'escalade si l'alerte n'est pas traitée ?",
-      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0094 est de 0.63 (ÉLEVÉ) au 2023-11-03.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
+      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0094 est de 0.63, niveau « Élevé » (au-dessus du seuil de surveillance de 0.5) au 2023-11-03.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table maintenance) + Politique_Gestion_Flotte_TruckMind.pdf",
       "question": "Le véhicule V0488 a un score prédictif de 0.57 le 2023-06-16. Selon la politique de gestion de flotte, quelle est la procédure d'escalade si l'alerte n'est pas traitée ?",
-      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0488 est de 0.57 (ÉLEVÉ) au 2023-06-16.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
+      "answer": "Maintenance (truckmind_v2.db) : le score prédictif du véhicule V0488 est de 0.57, niveau « Élevé » (au-dessus du seuil de surveillance de 0.5) au 2023-06-16.\nPolitique_Gestion_Flotte_TruckMind.pdf : toute alerte générée doit être affectée à la fonction responsable et faire l'objet d'un accusé de réception ; l'absence de réponse dans le délai prévu déclenche une escalade automatique, avec une fréquence croissante et notification directe au responsable d'exploitation.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Reglementation_Transport_Routier_Maroc.pdf",
       "question": "Le véhicule V0186 a une capacité de charge de 27.9 tonnes. Ce chiffre est-il cohérent avec les plafonds de poids fixés par la réglementation marocaine pour un ensemble routier ?",
-      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0186 est de 27.9 tonnes.\nRéglementation (décret n° 2-10-421) : le poids total roulant maximal autorisé pour un ensemble routier varie selon la configuration des essieux, avec un plafond général de 36 tonnes pour un train routier à quatre essieux, pouvant atteindre 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds. La cohérence doit être vérifiée au cas par cas selon la configuration exacte du véhicule, information non disponible dans la table vehicules.",
+      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0186 est de 27.9 tonnes.\nRéglementation (décret n° 2-10-421) : plafond de 36 tonnes pour un train routier ou articulé à quatre essieux, jusqu'à 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds (poids total, tare comprise). Pour V0186 : 27.9 t reste sous le plafond général de 36 t, mais la conformité dépend de la configuration des essieux et de la tare (non disponibles dans la table vehicules).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Reglementation_Transport_Routier_Maroc.pdf",
       "question": "Le véhicule V0416 a une capacité de charge de 20.3 tonnes. Ce chiffre est-il cohérent avec les plafonds de poids fixés par la réglementation marocaine pour un ensemble routier ?",
-      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0416 est de 20.3 tonnes.\nRéglementation (décret n° 2-10-421) : le poids total roulant maximal autorisé pour un ensemble routier varie selon la configuration des essieux, avec un plafond général de 36 tonnes pour un train routier à quatre essieux, pouvant atteindre 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds. La cohérence doit être vérifiée au cas par cas selon la configuration exacte du véhicule, information non disponible dans la table vehicules.",
+      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0416 est de 20.3 tonnes.\nRéglementation (décret n° 2-10-421) : plafond de 36 tonnes pour un train routier ou articulé à quatre essieux, jusqu'à 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds (poids total, tare comprise). Pour V0416 : 20.3 t reste sous le plafond général de 36 t, mais la conformité dépend de la configuration des essieux et de la tare (non disponibles dans la table vehicules).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Reglementation_Transport_Routier_Maroc.pdf",
       "question": "Le véhicule V0354 a une capacité de charge de 25.2 tonnes. Ce chiffre est-il cohérent avec les plafonds de poids fixés par la réglementation marocaine pour un ensemble routier ?",
-      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0354 est de 25.2 tonnes.\nRéglementation (décret n° 2-10-421) : le poids total roulant maximal autorisé pour un ensemble routier varie selon la configuration des essieux, avec un plafond général de 36 tonnes pour un train routier à quatre essieux, pouvant atteindre 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds. La cohérence doit être vérifiée au cas par cas selon la configuration exacte du véhicule, information non disponible dans la table vehicules.",
+      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0354 est de 25.2 tonnes.\nRéglementation (décret n° 2-10-421) : plafond de 36 tonnes pour un train routier ou articulé à quatre essieux, jusqu'à 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds (poids total, tare comprise). Pour V0354 : 25.2 t reste sous le plafond général de 36 t, mais la conformité dépend de la configuration des essieux et de la tare (non disponibles dans la table vehicules).",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Reglementation_Transport_Routier_Maroc.pdf",
       "question": "Le véhicule V0644 a une capacité de charge de 47.7 tonnes. Ce chiffre est-il cohérent avec les plafonds de poids fixés par la réglementation marocaine pour un ensemble routier ?",
-      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0644 est de 47.7 tonnes.\nRéglementation (décret n° 2-10-421) : le poids total roulant maximal autorisé pour un ensemble routier varie selon la configuration des essieux, avec un plafond général de 36 tonnes pour un train routier à quatre essieux, pouvant atteindre 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds. La cohérence doit être vérifiée au cas par cas selon la configuration exacte du véhicule, information non disponible dans la table vehicules.",
+      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0644 est de 47.7 tonnes.\nRéglementation (décret n° 2-10-421) : plafond de 36 tonnes pour un train routier ou articulé à quatre essieux, jusqu'à 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds (poids total, tare comprise). Pour V0644 : 47.7 t dépasse même le poids total maximal de 44 t : la valeur est incohérente avec la réglementation et à corriger dans la table vehicules.",
       "difficulty": "difficile"
     },
     {
       "category": "cross-domain",
       "source_file": "truckmind_v2.db (table vehicules) + Reglementation_Transport_Routier_Maroc.pdf",
       "question": "Le véhicule V0238 a une capacité de charge de 26.6 tonnes. Ce chiffre est-il cohérent avec les plafonds de poids fixés par la réglementation marocaine pour un ensemble routier ?",
-      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0238 est de 26.6 tonnes.\nRéglementation (décret n° 2-10-421) : le poids total roulant maximal autorisé pour un ensemble routier varie selon la configuration des essieux, avec un plafond général de 36 tonnes pour un train routier à quatre essieux, pouvant atteindre 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds. La cohérence doit être vérifiée au cas par cas selon la configuration exacte du véhicule, information non disponible dans la table vehicules.",
+      "answer": "Fiche véhicule (truckmind_v2.db) : la capacité de charge déclarée pour V0238 est de 26.6 tonnes.\nRéglementation (décret n° 2-10-421) : plafond de 36 tonnes pour un train routier ou articulé à quatre essieux, jusqu'à 44 tonnes pour un véhicule à trois essieux avec semi-remorque transportant un conteneur de 40 pieds (poids total, tare comprise). Pour V0238 : 26.6 t reste sous le plafond général de 36 t, mais la conformité dépend de la configuration des essieux et de la tare (non disponibles dans la table vehicules).",
       "difficulty": "difficile"
     }
   ]
